@@ -1,0 +1,4 @@
+Prototip je ceo tim radio zajedno, tako što jedan član tima doda stranicu u prototip, a ostali članovi je menjaju, ako misle da na njoj može nešto bolje da se uradi, što se najčešće i dešavalo. 
+Iz tog razloga nismo dodavali imena pojedinačnih članova na stranice prototipa.
+
+ProLabTim
