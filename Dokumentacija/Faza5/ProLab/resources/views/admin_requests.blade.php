@@ -19,6 +19,7 @@
     <div class="container">
         <div clas="row">
             <div class="col">
+                <h2 class="mb-5 mt-5">Registration requests</h2>
             </div>
         </div>
         <div class="row">

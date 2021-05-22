@@ -40,7 +40,7 @@ class EmailCheck implements Rule
             }
         } else {
             if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\.-_]*[a-zA-Z0-9]@admin.etf(\.bg\.ac)?\.rs$/", $value)) {
-                return Flase;
+                return False;
             } else {
                 return True;
             }
