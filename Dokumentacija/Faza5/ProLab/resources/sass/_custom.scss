@@ -1,0 +1,17 @@
+$button-bg-color: black;
+$button-active-color: #254cff;
+$button-text-color: white;
+
+.my-btn {
+    background-color: $button-bg-color;
+    color: $button-text-color;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 500ms all;
+}
+.my-btn-tab {
+    border-bottom: 5px solid  $button-bg-color;
+}
+.my-btn-tab {
+    border-bottom: 5px solid $button-active-color;
+}
