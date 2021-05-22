@@ -8,8 +8,10 @@ use App\Rules\EmailCheck;
 use App\Rules\PasswordCheck;
 use App\Rules\UsernameCheck;
 use App\Student;
+use App\Subject;
 use App\Teacher;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class GuestController extends Controller
@@ -22,6 +24,7 @@ class GuestController extends Controller
     }
 
     protected function getUserType($email) {
+        //return 'student';
         if (preg_match("/@student/", $email)) {
             return 'student';
         } else if (preg_match("/@admin/", $email)) {
@@ -176,4 +179,6 @@ class GuestController extends Controller
 //
 //        return request()->get('username');
 //    }
+
+
 }

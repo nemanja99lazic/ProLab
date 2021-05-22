@@ -56,7 +56,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Don't have account? <a href="{{ route('guest.register.get') }}" class="font-weight-bold"><u>Register here</u></a>
+                                    Don't have an account? <a href="{{ route('guest.register.get') }}" class="font-weight-bold"><u>Register here</u></a>
                                 </td>
                             </tr>
                         </table>

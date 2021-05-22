@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 //Guest
 
+
+
 Route::get('/',[App\Http\Controllers\GuestController::class, 'loginGet'])->name('guest.login.get');  //DEFAULT ruta
 Route::post('/login',[App\Http\Controllers\GuestController::class, 'loginPost'])->name('guest.login.post');
 
@@ -37,7 +39,7 @@ Route::post('/register',[App\Http\Controllers\GuestController::class, 'registerP
 
 Route::get('/student',[App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
 Route::get('/student/logout',[App\Http\Controllers\StudentController::class, 'logout'])->name('student.logout');
-
+Route::get('/student/chosen',[App\Http\Controllers\StudentController::class, 'chosen'])->name('student.chosen');
 //Teacher
 
 Route::get('/teacher',[App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
