@@ -12,9 +12,9 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-      
 
-//Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
+
+Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
 
 //Funkcionalnosti :
 // Login, Logout, Register, Index
