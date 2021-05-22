@@ -28,7 +28,7 @@ class GuestController extends Controller
         } else if (preg_match("/@admin/", $email)) {
             return 'admin';
         } else {
-            return 'profesor';
+            return 'teacher';
         }
     }
 
