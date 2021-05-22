@@ -18,6 +18,9 @@ class GuestMiddleware
         if ($request->session()->has("user")) {
             return redirect()->back();
         }
+        if (!$request->session()->has('register_request') && $request->route()->getName() == 'guest.registerinfo') {
+            return redirect()->to(url('/'));
+        }
         return $next($request);
     }
 }

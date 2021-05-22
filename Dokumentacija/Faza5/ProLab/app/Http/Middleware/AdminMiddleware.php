@@ -1,5 +1,5 @@
 <?php
-
+// Slobodan Katanic
 namespace App\Http\Middleware;
 
 use Closure;

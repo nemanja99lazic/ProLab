@@ -27,7 +27,7 @@ class EmailCheck implements Rule
      */
     public function passes($attribute, $value) {
         if ($this->userType == 'teacher') {
-            if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\.-_]*[a-zA-Z0-9]@etf(\.bg\.ac){0, 1}\.rs$/", $value)) {
+            if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\.-_]*[a-zA-Z0-9]@etf(\.bg\.ac)?\.rs$/", $value)) {
                 return False;
             } else {
                 return True;
@@ -39,7 +39,7 @@ class EmailCheck implements Rule
                 return True;
             }
         } else {
-            if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\.-_]*[a-zA-Z0-9]@admin.etf(\.bg\.ac){0, 1}\.rs$/", $value)) {
+            if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\.-_]*[a-zA-Z0-9]@admin.etf(\.bg\.ac)?\.rs$/", $value)) {
                 return Flase;
             } else {
                 return True;

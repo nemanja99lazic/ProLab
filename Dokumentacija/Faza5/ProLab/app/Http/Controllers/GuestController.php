@@ -12,6 +12,7 @@ use App\Teacher;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class GuestController extends Controller
 {
 
@@ -29,12 +30,6 @@ class GuestController extends Controller
         } else {
             return 'profesor';
         }
-    }
-
-    protected function getIndexFromEmail($email) {
-        $year = "20".substr($email, 2, 2);
-        $number = substr($email, 4, 4);
-        return $year."/".$number;
     }
 
     public function loginGet(Request &$request) {
@@ -79,42 +74,32 @@ class GuestController extends Controller
         ]);
 
         $user = User::where('username', '=', $request->get('username'))->first();
-        if ($user != null) {
+        $regUser = RegistrationRequest::where('username', 'like', $request->get('username').",%")->first();
+        if ($user != null || $regUser != null) {
             return redirect()->to(url('register'))->withInput()->with('errorUsername', 'Username already exists.');
         }
 
         $user = User::where('email', '=', $request->get('email'))->first();
-        if ($user != null) {
+        $regUser = RegistrationRequest::where('email', '=', $request->get('email'))->first();
+        if ($user != null || $regUser != null) {
             return redirect()->to(url('register'))->withInput()->with('errorEmail', 'Email address has already been taken.');
         }
 
-        $user = new User;
-        $user->forename = $request->get('firstname');
-        $user->surname = $request->get('lastname');
-        $user->email = $request->get('email');
-        $user->username = $request->get('username');
-        $user->password = $request->get('password');
-        $user->save();
+        $reqistrationRequest = new RegistrationRequest;
+        $reqistrationRequest->userType = substr($userType, 0, 1);
+        $reqistrationRequest->email = $request->get('email');
+        $reqistrationRequest->password = $request->get('password');
+        $reqistrationRequest->username = $request->get('username').",".$request->get('firstname').",".$request->get('lastname');
 
-        $user = User::where('username', '=', $request->get('username'))->first();
-        $newUser = null;
+        $reqistrationRequest->save();
 
-        if ($userType == 'student') {
-            $newUser = new Student;
-            $newUser->idStudent = $user->idUser;
-            $newUser->index = $this->getIndexFromEmail($user->email);
-        } elseif ($userType == 'teacher') {
-            $newUser = new Teacher;
-            $newUser->idTeacher = $user->idUser;
-        } else {
-            $newUser = new Administrator;
-            $newUser->idAdministrator = $user->idUser;
-        }
+        $request->session()->put('register_request', 'ok');
+        return redirect()->to(url("register_info"));
+    }
 
-        $newUser->save();
-        $request->session()->put('user', ['userObject' => $user, 'userType' => $userType]);
-
-        return redirect()->to(url("$userType"));
+    public function registerInfo(Request $request) {
+        $request->session()->forget('register_request');
+        return view('register_info');
     }
 
 //    public function index()
