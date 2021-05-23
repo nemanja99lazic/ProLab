@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/navbar.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Document</title>
     <style>
@@ -15,9 +16,7 @@
             border: none;
             padding: 0;
         }
-        .hero{
-            background-color:#ffffdd ;
-        }
+
 
 
     </style>
@@ -31,7 +30,7 @@
         </div>
 
         <div class="row">
-            <div class="col hero">
+            <div class="col ">
 
                     @yield('content')
 

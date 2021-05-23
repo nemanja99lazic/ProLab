@@ -46,6 +46,7 @@ class GuestController extends Controller
         ]);
 
         $user = User::where('username', '=', $request->get('username'))->first();
+
         if ($user == null) {
             return redirect()->to(url('/'))->withInput()->with('errorUsername', 'Wrong username');
         }
@@ -56,6 +57,7 @@ class GuestController extends Controller
         }
 
         $userType = $this->getUserType($user->email);
+
         $request->session()->put('user', ['userObject' => $user, 'userType' => $userType]);
 
         return redirect()->to(url("$userType"));

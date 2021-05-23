@@ -41,6 +41,16 @@ Route::get('/register_info',[App\Http\Controllers\GuestController::class, 'regis
 Route::get('/student',[App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
 Route::get('/student/logout',[App\Http\Controllers\StudentController::class, 'logout'])->name('student.logout');
 Route::get('/student/chosen',[App\Http\Controllers\StudentController::class, 'chosen'])->name('student.chosen');
+// KOMENTARISI RED ISPOD, OVO SRETEN RADI
+Route::get('/student/subject/{code}/index',[App\Http\Controllers\StudentController::class, 'index'])->name('student.subject.index');
+
+Route::get('/student/subject/{code}/lab',[App\Http\Controllers\StudentController::class, 'lab'])->name('student.subject.lab');
+Route::get('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'showAppointments'])->name('student.subject.lab.idlab.join.get');
+Route::post('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'joinAppointment'])->name('student.subject.lab.idlab.join.post');
+
+
+
+
 //Teacher
 
 Route::get('/teacher',[App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
