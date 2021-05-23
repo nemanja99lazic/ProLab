@@ -7,11 +7,25 @@ $button-text-color: white;
     color: $button-text-color;
     font-weight: bold;
     cursor: pointer;
+    padding: 10px;
     transition: 500ms all;
 }
-.my-btn-tab {
-    border-bottom: 5px solid  $button-bg-color;
+.btn-dark {
+    background-color: $button-bg-color;
+    color: $button-text-color;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.btn-dark:hover {
+    color: white;
 }
 .my-btn-tab {
+    border-top: 5px solid $button-bg-color;
+    border-bottom: 5px solid  $button-bg-color;
+}
+.my-btn-tab.active {
     border-bottom: 5px solid $button-active-color;
+}
+.header {
+    height: 200px;
 }

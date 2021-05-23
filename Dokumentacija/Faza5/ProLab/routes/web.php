@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //Funkcionalnosti :
 // Login, Logout, Register, Index
 //
-
+Route::get("/testAdmin", [\App\Http\Controllers\HomeController::class, "testAdmin"])->name("testadmin");
 
 //Guest
 
