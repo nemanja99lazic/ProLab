@@ -21,6 +21,8 @@ class RegistrationRequest extends Model
      */
     protected $primaryKey = 'idRegistrationRequest';
 
+    public $timestamps = false;
+
     /**
      * @var array
      */

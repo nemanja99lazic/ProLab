@@ -29,11 +29,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[App\Http\Controllers\GuestController::class, 'loginGet'])->name('guest.login.get');  //DEFAULT ruta
-Route::post('/login',[App\Http\Controllers\GuestController::class, 'loginPost'])->name('guest.login.post');
+Route::post('/',[App\Http\Controllers\GuestController::class, 'loginPost'])->name('guest.login.post');
 
 
 Route::get('/register',[App\Http\Controllers\GuestController::class, 'registerGet'])->name('guest.register.get');
 Route::post('/register',[App\Http\Controllers\GuestController::class, 'registerPost'])->name('guest.register.post');
+Route::get('/register_info',[App\Http\Controllers\GuestController::class, 'registerInfo'])->name('guest.registerinfo');
 
 //Student
 
@@ -49,3 +50,8 @@ Route::get('/teacher/logout',[App\Http\Controllers\TeacherController::class, 'lo
 
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 Route::get('/admin/logout',[App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
+//Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');
+//Route::post('/admin/deleteRequest',[App\Http\Controllers\AdminController::class, 'deleteRequest'])->name('admin.deleterequest');
+Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');
+Route::post('/admin/deleteRequest',[App\Http\Controllers\AdminController::class, 'deleteRequest'])->name('admin.deleterequest');
+
