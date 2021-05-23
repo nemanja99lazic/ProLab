@@ -38,6 +38,11 @@ Route::get('/register_info',[App\Http\Controllers\GuestController::class, 'regis
 
 Route::get('/student',[App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
 Route::get('/student/logout',[App\Http\Controllers\StudentController::class, 'logout'])->name('student.logout');
+Route::get('/student/subject/enroll', [App\Http\Controllers\StudentController::class, 'showAllSubjectsList'])->name('student.showAllSubjectsList');
+Route::post('/student/subject/enroll', [App\Http\Controllers\StudentController::class, 'sendJoinRequest'])->name('student.sendJoinRequest');
+
+// IZBRISI OVO
+Route::get('/student/test', [App\Http\Controllers\StudentController::class, 'test'])->name('student.test');
 
 //Teacher
 
