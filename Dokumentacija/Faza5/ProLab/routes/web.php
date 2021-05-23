@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //Funkcionalnosti :
 // Login, Logout, Register, Index
 //
-
+Route::get("/testAdmin", [\App\Http\Controllers\HomeController::class, "testAdmin"])->name("testadmin");
 
 //Guest
 
@@ -43,6 +43,7 @@ Route::get('/student/logout',[App\Http\Controllers\StudentController::class, 'lo
 
 Route::get('/teacher',[App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
 Route::get('/teacher/logout',[App\Http\Controllers\TeacherController::class, 'logout'])->name('teacher.logout');
+Route::get('/teacher/subject/list',[App\Http\Controllers\HomeController::class, 'getSubjects'])->name('teacher.subject.list');
 
 Route::get('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
 Route::post('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');
