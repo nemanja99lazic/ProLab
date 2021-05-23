@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Subject;
 use Illuminate\Http\Request;
 use App\Teacher;
+use Illuminate\View\View;
 class HomeController extends Controller
 {
 
@@ -18,9 +20,20 @@ class HomeController extends Controller
         if (is_array($userData)) {
             $userType = $userData["userType"];
             $user = $userData["userObject"];
+            $teacher = $user->teacher()->sole();
+            $subjects = $teacher->subjects()->getResults();
+            $list = [];
+            foreach ($subjects as $subject)
+                $list[] = $subject;
 
-            //$subjects = $user->teacher()->subjectss();
-            return view("teacher_subject_list");
+            $teaches = $teacher->teachesSubjects()->getResults();
+            foreach ($teaches as $teach) {
+                //$sub = $teaches->subject()->sole();
+                $list[] = $teach;
+            }
+            return view("teacher_subject_list", ["subjectList" => $list]);
+
+            return dd($list);
         } else {
             return redirect()->to(url("/"));
         }
@@ -29,6 +42,10 @@ class HomeController extends Controller
         }*/
 
         return strval($u);
+    }
+    public function getSubject($idSubject) {
+        $subject = Subject::find($idSubject);
+        return dd($subject);
     }
 
 

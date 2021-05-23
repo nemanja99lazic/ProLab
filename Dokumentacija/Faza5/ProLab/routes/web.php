@@ -44,7 +44,7 @@ Route::get('/student/logout',[App\Http\Controllers\StudentController::class, 'lo
 Route::get('/teacher',[App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
 Route::get('/teacher/logout',[App\Http\Controllers\TeacherController::class, 'logout'])->name('teacher.logout');
 Route::get('/teacher/subject/list',[App\Http\Controllers\HomeController::class, 'getSubjects'])->name('teacher.subject.list');
-
+Route::get('/teacher/subject/{idSubject}/index',[App\Http\Controllers\HomeController::class, 'getSubject'])->name('teacher.subject.page');
 //Admin
 
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
