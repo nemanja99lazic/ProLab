@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Student;
 use App\Teacher;
-use App\Administartor;
+use App\Administrator;
 
 class AdminController extends Controller
 {
@@ -65,6 +65,10 @@ class AdminController extends Controller
         $regReq->delete();
         // RegistrationRequest::truncate();
         return redirect()->to(url('admin'));
+    }
+
+    public function addSubject() {
+
     }
 
     protected function getIndexFromEmail($email) {

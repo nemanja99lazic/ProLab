@@ -7,14 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Register info</title>
+    <title>Document</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h1>Vas zahtev za registraciju je uspesno poslat!</h1>
-                <a href="{{ route('guest.login.get') }}">Back</a>
+            <div class="row">
+
             </div>
         </div>
     </div>

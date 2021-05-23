@@ -46,6 +46,9 @@ Route::get('/student/chosen',[App\Http\Controllers\StudentController::class, 'ch
 Route::get('/teacher',[App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
 Route::get('/teacher/logout',[App\Http\Controllers\TeacherController::class, 'logout'])->name('teacher.logout');
 
+Route::get('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
+Route::post('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');
+
 //Admin
 
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
