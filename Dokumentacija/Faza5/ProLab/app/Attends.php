@@ -17,6 +17,8 @@ class Attends extends Model
      */
     protected $fillable = [];
 
+    public $timestamps = false;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -22,15 +22,15 @@
     <div class="container">
         <div clas="row">
             <div class="col">
-                <h2 class="mb-5 mt-5">List of subjects which you can enroll in</h2>
+                <h2 class="mb-5 mt-5">Lista predmeta koje možete da prijavite</h2>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <table class="table table-bordered table-striped text-center" id="subject_enrollment_table">
                     <tr>
-                        <th>Code</th>
-                        <th>Name</th>
+                        <th>Sifra</th>
+                        <th>Ime</th>
                         <th></th>
                     </tr>
                     @if(count($subjects) > 0)
@@ -42,7 +42,7 @@
                                     <form action="{{ route('student.sendJoinRequest') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="idSubject" id="idSubject" value="{{$subject->idSubject}}">
-                                        <button type="submit" class="btn btn-primary">Send request</button>
+                                        <button type="submit" class="btn btn-primary">Prijavi predmet</button>
                                     </form>
                                 </td>
                             </tr>

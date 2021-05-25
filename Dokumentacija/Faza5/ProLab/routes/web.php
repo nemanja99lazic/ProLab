@@ -52,6 +52,10 @@ Route::get('/teacher/logout',[App\Http\Controllers\TeacherController::class, 'lo
 Route::get('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
 Route::post('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');
 
+Route::get('/teacher/subject/request/list', [App\Http\Controllers\TeacherController::class, 'showRequestsList'])->name('teacher.showRequestsList');
+Route::post('/teacher/subject/request/list/accept', [App\Http\Controllers\TeacherController::class, 'acceptRequest'])->name('teacher.acceptRequest');
+Route::post('/teacher/subject/request/list/reject', [App\Http\Controllers\TeacherController::class, 'rejectRequest'])->name('teacher.rejectRequest');
+
 //Admin
 
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
