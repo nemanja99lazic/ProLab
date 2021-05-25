@@ -16,6 +16,10 @@
             border: none;
             padding: 0;
         }
+        .blueHeader{
+            background-color: #3d7cba;
+        }
+
 
 
 
@@ -29,14 +33,11 @@
             </header>
         </div>
 
-        <div class="row">
-            <div class="col ">
+
 
                     @yield('content')
 
-            </div>
-
-        </div>
+          
 
 
 

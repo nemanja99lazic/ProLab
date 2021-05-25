@@ -10,17 +10,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property Appointment $appointment
  * @property Student $student
  * @property FreeAgent[] $freeAgents
- * @property FreeAgent[] $freeAgents
+ * @property FreeAgent[] $freeAgentss
  */
 class HasAppointment extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'has_appointment';
-
+    public $timestamps = false;
     /**
      * @var array
      */
@@ -53,7 +53,7 @@ class HasAppointment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function freeAgents()
+    public function freeAgentss()
     {
         return $this->hasMany('App\FreeAgent', 'idStudent', 'idStudent');
     }
