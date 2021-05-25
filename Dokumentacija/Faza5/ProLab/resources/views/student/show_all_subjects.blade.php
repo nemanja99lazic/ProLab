@@ -1,3 +1,7 @@
+<!--
+    Nemanja Lazic 2018/0004
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +50,9 @@
                     @endif
                 </table>
             </div>
+        </div>
+        <div class="row">
+            {{$subjects->links()}}
         </div>
     </div>
 </body>
