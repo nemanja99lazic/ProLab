@@ -8,8 +8,10 @@ use App\Rules\EmailCheck;
 use App\Rules\PasswordCheck;
 use App\Rules\UsernameCheck;
 use App\Student;
+use App\Subject;
 use App\Teacher;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +25,7 @@ class GuestController extends Controller
     }
 
     protected function getUserType($email) {
+        //return 'student';
         if (preg_match("/@student/", $email)) {
             return 'student';
         } else if (preg_match("/@admin/", $email)) {
@@ -43,6 +46,7 @@ class GuestController extends Controller
         ]);
 
         $user = User::where('username', '=', $request->get('username'))->first();
+
         if ($user == null) {
             return redirect()->to(url('/'))->withInput()->with('errorUsername', 'Wrong username');
         }
@@ -53,6 +57,7 @@ class GuestController extends Controller
         }
 
         $userType = $this->getUserType($user->email);
+
         $request->session()->put('user', ['userObject' => $user, 'userType' => $userType]);
 
         return redirect()->to(url("$userType"));
@@ -161,4 +166,6 @@ class GuestController extends Controller
 //
 //        return request()->get('username');
 //    }
+
+
 }

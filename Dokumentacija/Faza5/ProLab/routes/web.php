@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 //Guest
 
+
+
 Route::get('/',[App\Http\Controllers\GuestController::class, 'loginGet'])->name('guest.login.get');  //DEFAULT ruta
 Route::post('/',[App\Http\Controllers\GuestController::class, 'loginPost'])->name('guest.login.post');
 
@@ -43,6 +45,15 @@ Route::post('/student/subject/enroll', [App\Http\Controllers\StudentController::
 
 // IZBRISI OVO
 Route::get('/student/test', [App\Http\Controllers\StudentController::class, 'test'])->name('student.test');
+
+Route::get('/student/chosen',[App\Http\Controllers\StudentController::class, 'chosen'])->name('student.chosen');
+// KOMENTARISI RED ISPOD, OVO SRETEN RADI
+Route::get('/student/subject/{code}/index',[App\Http\Controllers\StudentController::class, 'index'])->name('student.subject.index');
+
+Route::get('/student/subject/{code}/lab',[App\Http\Controllers\StudentController::class, 'lab'])->name('student.subject.lab');
+Route::get('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'showAppointments'])->name('student.subject.lab.idlab.join.get');
+Route::post('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'joinAppointment'])->name('student.subject.lab.idlab.join.post');
+
 
 //Teacher
 

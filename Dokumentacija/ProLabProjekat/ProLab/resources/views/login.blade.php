@@ -1,23 +1,18 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+@extends('layout.main')
 
-    <title>Log in</title>
-</head>
-<body>
+@section('content')
+
 <div class="jumbotron">
     <div class="container-fluid">
         <h1>ProLab</h1>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-4 offset-4">
-            <form action="{{ route('guest.loginSubmit') }}" method="post">
+            <form action="" method="post">
                 @csrf
                 <table class="table text-center">
                     <tr>
@@ -49,7 +44,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <a href="{{ route('guest.register') }}">Don't have account?</a>
+                            <a href="">Don't have account?</a>
                         </td>
                     </tr>
                 </table>
@@ -57,6 +52,6 @@
         </div>
     </div>
 </div>
-</body>
-</html>
+
+@endsection
 
