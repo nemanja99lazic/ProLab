@@ -6,16 +6,13 @@ use App\Appointment;
 use App\LabExercise;
 use App\Subject;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Session;
 use App\Subject;
 use App\Attends;
 use App\SubjectJoinRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-=======
 use App\Attends;
->>>>>>> mojBranch
 class StudentController extends Controller
 {
     public function __construct() {
@@ -31,7 +28,6 @@ class StudentController extends Controller
         return redirect()->to(url('/'));
     }
 
-<<<<<<< HEAD
     /**
      * Prikaz svih predmeta koji mogu da se prijave. Poziva se za rutu '/student/subject/enroll'
      * 
@@ -56,7 +52,7 @@ class StudentController extends Controller
         
         return view('student.show_all_subjects', ['subjects' => $paginatorSubjects]);
     }
-
+    
     /*
     Funkcija za testiranje - TREBA DA SE IZBRISE
      */
@@ -90,7 +86,7 @@ class StudentController extends Controller
         $joinRequest->save();
 
         return redirect()->route('student.showAllSubjectsList');
-=======
+    }
     public function chosen(Request $request){
 
 
@@ -146,6 +142,5 @@ class StudentController extends Controller
 
     public function joinAppointment(Request $request){
         //prijavi se za termin , tako sto uzmes hidden polje idTermina iz forme
->>>>>>> mojBranch
     }
 }
