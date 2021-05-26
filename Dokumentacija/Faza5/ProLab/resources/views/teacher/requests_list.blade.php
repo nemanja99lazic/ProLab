@@ -11,6 +11,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/teacher_requests_list_script.js') }}" defer></script>
+    <link rel="stylesheet" href="{{asset('css/teacher_requests_list_style.css')}}">
     <title>Requests list</title>
 </head>
 <body>
@@ -48,14 +49,14 @@
                                     <form action="{{ route('teacher.acceptRequest') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="idRequest" id="idRequest" value="{{$request->idRequest}}">
-                                        <button type="submit" class="btn btn-success">Prihvati</button>
+                                        <button type="submit" class="btn btn-success" id="btn-prihvati-zahtev">Prihvati</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="{{ route('teacher.rejectRequest') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="idRequest" id="idRequest" value="{{$request->idRequest}}">
-                                        <button type="submit" class="btn btn-danger">Odbij</button>
+                                        <button type="submit" class="btn btn-danger" id="btn-odbij-zahtev">Odbij</button>
                                     </form>
                                 </td>
                             </tr>
@@ -66,6 +67,12 @@
         </div>
         <div class="row">
             {{$requests->links()}}
+        </div>
+        <div class="row">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p id="alert-ispis"></p>
+            </div>
         </div>
     </div>
 </body>
