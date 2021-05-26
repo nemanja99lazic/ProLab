@@ -7,6 +7,7 @@ use App\Teacher;
 
 use App\SubjectJoinRequest;
 use App\Attends;
+use App\Project;
 
 class TeacherController extends Controller
 {
@@ -79,5 +80,43 @@ class TeacherController extends Controller
         SubjectJoinRequest::destroy($idRequest);
 
         return redirect()->route('teacher.showRequestsList');
+    }
+
+    /**
+     * Prikaz svih definisanih projekata za odredjeni predmet
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
+    public function showProjects(Request $request)
+    {
+        $code = $request->code;
+
+        $myProjects = Project::where('projects.idSubject', '=', function($query) use ($code){
+            $query  -> select('idSubject')
+                    -> from('subjects')
+                    -> where('subjects.code', '=', $code);
+        })->get();
+
+        return view('teacher.show_projects', ['projects' => $myProjects, 'code' => $code]);
+    }
+    
+    /**
+     * Prikaz forme za definisanje projekta
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
+    public function showProjectForm(Request $request)
+    {
+
+    }
+
+    /**
+     * Uklanjanje projekta - POST zahtev
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
+    public function removeProject(Request $request)
+    {
+
     }
 }

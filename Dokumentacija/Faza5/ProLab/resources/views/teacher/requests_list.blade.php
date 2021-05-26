@@ -10,8 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/teacher_requests_list_script.js') }}" defer></script>
-    <link rel="stylesheet" href="{{asset('css/teacher_requests_list_style.css')}}">
+    <script src="{{ asset('js/teacher/requests_list_script.js') }}" defer></script>
+    <link rel="stylesheet" href="{{asset('css/teacher/requests_list_style.css')}}">
     <title>Requests list</title>
 </head>
 <body>

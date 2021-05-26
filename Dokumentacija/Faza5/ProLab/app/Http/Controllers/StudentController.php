@@ -7,12 +7,10 @@ use App\LabExercise;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Subject;
 use App\Attends;
 use App\SubjectJoinRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-use App\Attends;
 class StudentController extends Controller
 {
     public function __construct() {
