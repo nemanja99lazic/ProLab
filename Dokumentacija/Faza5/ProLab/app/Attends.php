@@ -17,6 +17,8 @@ class Attends extends Model
      */
     protected $fillable = [];
 
+    public $timestamps = false;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -31,5 +33,14 @@ class Attends extends Model
     public function subject()
     {
         return $this->belongsTo('App\Subject', 'idSubject', 'idSubject');
+    }
+
+    public static function studentAttendsSubjectTest($idStudentCheck, $idSubjectCheck)
+    {
+        $queryResult = Attends::where('idStudent', '=', $idStudentCheck)->where('idSubject', "=", $idSubjectCheck)->get(); 
+        if(!($queryResult->isEmpty()))
+            return true;
+        return false;
+        
     }
 }

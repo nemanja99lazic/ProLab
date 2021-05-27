@@ -40,6 +40,12 @@ Route::get('/register_info',[App\Http\Controllers\GuestController::class, 'regis
 
 Route::get('/student',[App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
 Route::get('/student/logout',[App\Http\Controllers\StudentController::class, 'logout'])->name('student.logout');
+Route::get('/student/subject/enroll', [App\Http\Controllers\StudentController::class, 'showAllSubjectsList'])->name('student.showAllSubjectsList');
+Route::post('/student/subject/enroll', [App\Http\Controllers\StudentController::class, 'sendJoinRequest'])->name('student.sendJoinRequest');
+
+// IZBRISI OVO
+Route::get('/student/test', [App\Http\Controllers\StudentController::class, 'test'])->name('student.test');
+
 Route::get('/student/chosen',[App\Http\Controllers\StudentController::class, 'chosen'])->name('student.chosen');
 // KOMENTARISI RED ISPOD, OVO SRETEN RADI
 Route::get('/student/subject/{code}/index',[App\Http\Controllers\StudentController::class, 'index'])->name('student.subject.index');
@@ -50,8 +56,6 @@ Route::post('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\Stu
 Route::post('/student/subject/{code}/lab/{idLab}/leave',[App\Http\Controllers\StudentController::class, 'leaveAppointment'])->name('student.subject.lab.idlab.leave');
 
 
-
-
 //Teacher
 
 Route::get('/teacher',[App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
@@ -59,6 +63,14 @@ Route::get('/teacher/logout',[App\Http\Controllers\TeacherController::class, 'lo
 
 Route::get('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
 Route::post('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');
+
+Route::get('/teacher/subject/request/list', [App\Http\Controllers\TeacherController::class, 'showRequestsList'])->name('teacher.showRequestsList');
+Route::post('/teacher/subject/request/list/accept', [App\Http\Controllers\TeacherController::class, 'acceptRequest'])->name('teacher.acceptRequest');
+Route::post('/teacher/subject/request/list/reject', [App\Http\Controllers\TeacherController::class, 'rejectRequest'])->name('teacher.rejectRequest');
+
+Route::get('/teacher/subject/{code}/project', [App\Http\Controllers\TeacherController::class, 'showProjects'])->name('teacher.showProjects');
+Route::get('/teacher/subject/{code}/project/define', [App\Http\Controllers\TeacherController::class, 'showProjectForm'])->name('teacher.showProjectForm');
+Route::post('/teacher/subject/{code}/project/removeProject', [App\Http\Controllers\TeacherController::class, 'removeProject'])->name('teacher.removeProject');
 
 //Admin
 
