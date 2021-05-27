@@ -69,7 +69,7 @@ Route::post('/teacher/subject/request/list/reject', [App\Http\Controllers\Teache
 
 Route::get('/teacher/subject/{code}/project', [App\Http\Controllers\TeacherController::class, 'showProjects'])->name('teacher.showProjects');
 Route::get('/teacher/subject/{code}/project/define', [App\Http\Controllers\TeacherController::class, 'showProjectForm'])->name('teacher.showProjectForm');
-Route::post('/teacher/subject/{code}/project/removeProject', [App\Http\Controllers\TeacherController::class, 'deleteProject'])->name('teacher.deleteProject');
+Route::post('/teacher/subject/{code}/project/removeProject', [App\Http\Controllers\TeacherController::class, 'removeProject'])->name('teacher.removeProject');
 
 //Admin
 

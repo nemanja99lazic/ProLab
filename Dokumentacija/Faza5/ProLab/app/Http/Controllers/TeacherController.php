@@ -117,6 +117,10 @@ class TeacherController extends Controller
      */
     public function removeProject(Request $request)
     {
+        $idProject = $request->get('idProject');
+        Project::destroy($idProject);
+        $message = "Uspesno uklonjen projekat";
 
+        return response()->json(array('message' => $message, 'idProject' => $idProject), 200);
     }
 }
