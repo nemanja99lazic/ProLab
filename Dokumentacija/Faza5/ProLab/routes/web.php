@@ -62,6 +62,7 @@ Route::post('/admin/requests/newSubjects/addSubject', [\App\Http\Controllers\Adm
 Route::post('/admin/requests/newSubjects/delete', [\App\Http\Controllers\AdminController::class, 'deleteSubjectRequest'])->name('admin.deleteRequest.subject');
 
 Route::get('/admin/subjects/list', [\App\Http\Controllers\AdminController::class, 'subjectList'])->name('admin.subjects.list');
+Route::post('/admin/requests/subjects/{id}/delete', [\App\Http\Controllers\AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
 
 Route::get('/admin/logout',[App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 //Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');

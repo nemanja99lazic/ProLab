@@ -101,6 +101,11 @@ class TeacherController extends Controller {
         return redirect()->route('teacher.addsubject.get');
     }
 
+    /**
+     * Fukcija koja prikazuje profesoru informaije od odredjenom predmetu.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     protected function addSubjectInfo() {
         return view('teacher/teacher_create_subject_info');
     }

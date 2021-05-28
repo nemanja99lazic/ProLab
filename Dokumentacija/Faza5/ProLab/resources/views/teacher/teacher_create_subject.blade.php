@@ -19,7 +19,7 @@
     </div>
     <div class="container">
         @if(!empty(Session::get('success')))
-            {{Session::forget('success')}}
+            {{ Session::forget('success') }}
             <div class="row">
                 <div class="col">
                     <div class="alert alert-success alert-dismissible" role="alert">
