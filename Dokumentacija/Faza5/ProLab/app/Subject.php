@@ -20,10 +20,12 @@ class Subject extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idSubject';
+
+    public $timestamps = false;
 
     /**
      * @var array

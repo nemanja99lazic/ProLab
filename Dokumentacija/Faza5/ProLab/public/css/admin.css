@@ -1,0 +1,17 @@
+.header {
+    background-color: #F2F2F2;
+    border-bottom: 2px solid dimgrey;
+}
+
+.mytable {
+    font-size: 12px;
+    text-align: left;
+}
+
+#v-pills {
+    font-size: 12px;
+}
+
+#logo {
+    width: 50px;
+}

@@ -7,15 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Document</title>
+    <title>Register info</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="row">
-
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Your reqest for creating new subject is successfully sent!</h1>
+            <a href="{{ route('teacher.index') }}">Back</a>
         </div>
     </div>
+</div>
 </body>
 </html>
+

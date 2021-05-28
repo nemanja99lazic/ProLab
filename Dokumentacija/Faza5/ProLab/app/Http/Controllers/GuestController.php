@@ -13,6 +13,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 /**
+ * Autor: Sloodan Katanic
 *ako se uloguje korisnik
  * se čuva u sesiji
  * kljuc user

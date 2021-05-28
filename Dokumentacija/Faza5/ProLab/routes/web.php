@@ -47,13 +47,23 @@ Route::get('/teacher/subject/list',[App\Http\Controllers\HomeController::class, 
 
 Route::get('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
 Route::post('/teacher/addSubject',[App\Http\Controllers\TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');
+Route::get  ('/teacher/addSubject/info',[App\Http\Controllers\TeacherController::class, 'addSubjectInfo'])->name('teacher.addsubject.info');
 
 //Admin
 
-Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin',[App\Http\Controllers\AdminController::class, 'registerRequests'])->name('admin.index');
+
+Route::get('/admin/requests/register',[App\Http\Controllers\AdminController::class, 'registerRequests'])->name('admin.register.requests');
+Route::post('/admin/requests/register/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.addUser');
+Route::post('/admin/requests/register/delete',[App\Http\Controllers\AdminController::class, 'deleteRegisterRequest'])->name('admin.deleteRequest.register');
+
+Route::get('/admin/requests/newSubjects',[App\Http\Controllers\AdminController::class, 'newSubjectRequests'])->name('admin.newSubject.requests');
+Route::post('/admin/requests/newSubjects/addSubject', [\App\Http\Controllers\AdminController::class, 'addSubject'])->name('admin.addSubject');
+Route::post('/admin/requests/newSubjects/delete', [\App\Http\Controllers\AdminController::class, 'deleteSubjectRequest'])->name('admin.deleteRequest.subject');
+
+Route::get('/admin/subjects/list', [\App\Http\Controllers\AdminController::class, 'subjectList'])->name('admin.subjects.list');
+
 Route::get('/admin/logout',[App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 //Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');
 //Route::post('/admin/deleteRequest',[App\Http\Controllers\AdminController::class, 'deleteRequest'])->name('admin.deleterequest');
-Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');
-Route::post('/admin/deleteRequest',[App\Http\Controllers\AdminController::class, 'deleteRequest'])->name('admin.deleterequest');
 

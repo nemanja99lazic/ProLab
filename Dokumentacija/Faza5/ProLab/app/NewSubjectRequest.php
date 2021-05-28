@@ -15,15 +15,17 @@ class NewSubjectRequest extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idRequest';
 
+    public $timestamps = false;
+
     /**
      * @var array
      */
-    protected $fillable = ['subjectName', 'idTeacher'];
+    protected $fillable = ['idRequest', 'subjectName', 'idTeacher'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
