@@ -26,7 +26,6 @@ class Subject extends Model
      */
     protected $primaryKey = 'idSubject';
 
-    public $timestamps = false;
 
     /**
      * @var array

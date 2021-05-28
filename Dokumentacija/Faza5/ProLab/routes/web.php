@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,7 @@ use App\Http\Controllers\GuestController;
 //    return view('welcome');
 //});
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index']);
 
 //Funkcionalnosti :
 // Login, Logout, Register, Index
@@ -63,9 +64,11 @@ Route::post('/student/subject/{code}/lab/{idLab}/swap',[StudentController::class
 //Teacher
 
 Route::get('/teacher',[TeacherController::class, 'index'])->name('teacher.index');
-Route::get('/teacher/logout',[eacherController::class, 'logout'])->name('teacher.logout');
-Route::get('/teacher/subject/list',[HomeController::class, 'getSubjects'])->name('teacher.subject.list');
-Route::get('/teacher/subject/{idSubject}/index',[HomeController::class, 'getSubject'])->name('teacher.subject.page');
+
+Route::get('/teacher/logout',[TeacherController::class, 'logout'])->name('teacher.logout');
+Route::get('/teacher/subject/list',[TeacherController::class, 'getSubjects'])->name('teacher.subject.list');
+Route::get('/teacher/subject/{idSubject}/index',[HomeController::class, 'getSubject'])->name('teacher.subject.index');
+
 Route::get('/teacher/addSubject',[TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
 Route::post('/teacher/addSubject',[TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');
 Route::get  ('/teacher/addSubject/info',[TeacherController::class, 'addSubjectInfo'])->name('teacher.addsubject.info');

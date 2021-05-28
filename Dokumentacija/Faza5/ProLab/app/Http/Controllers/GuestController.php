@@ -34,7 +34,6 @@ class GuestController extends Controller
         //$this->middleware('auth');
     }
 
-<<<<<<< HEAD
     protected function getUserType($user) {
         if (!is_null($user->student()->getResults())) {
             return "student";
@@ -43,21 +42,18 @@ class GuestController extends Controller
             return "admin";
         }
         return "teacher";
-       /* if (preg_match("/@student/", $email)) {
-=======
-    protected function getUserType($email) {
-        //return 'student';
-        if (preg_match("/@student/", $email)) {
->>>>>>> 42e738aa6957d6364526a8c2f58eae82235733a9
-            return 'student';
-        } else if (preg_match("/@admin/", $email)) {
-            return 'admin';
-        } else {
-            return 'teacher';
+       }
 
-        }
-        }*/
-    }
+//    protected function getUserType($email) {
+//        if (preg_match("/@student/", $email)) {
+//            return 'student';
+//        } else if (preg_match("/@admin/", $email)) {
+//            return 'admin';
+//        } else {
+//            return 'teacher';
+//        }
+//        }
+//    }
 
     public function loginGet(Request &$request) {
         return view('login');
@@ -86,11 +82,8 @@ class GuestController extends Controller
 
         $userType = $this->getUserType($user);
 
-<<<<<<< HEAD
-=======
-        $userType = $this->getUserType($user->email);
+        // $userType = $this->getUserType($user->email);
 
->>>>>>> 42e738aa6957d6364526a8c2f58eae82235733a9
         $request->session()->put('user', ['userObject' => $user, 'userType' => $userType]);
 
         return redirect()->to(url("$userType"));
