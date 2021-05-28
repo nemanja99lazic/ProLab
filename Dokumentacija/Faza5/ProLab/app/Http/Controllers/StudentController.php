@@ -192,8 +192,14 @@ class StudentController extends Controller
         $arrayForView=[];// niz koji sadrzi: ImeStudenta,PrezimeStudenta,Index,idTermina
                          // (Potrebno za tabelu da znamo koji su studenti u kom terminu)
         foreach($appointments as $appointment) {
-           $temp=$appointment->students;
+            $temp=[];
+           //$temp=$appointment->students;
+            $hasAppointments=HasAppointment::where('idAppointment','=',$appointment->idAppointment)->get();
+            foreach($hasAppointments as $hasAppointment){
+                $temp[]=Student::where('idStudent','=',$hasAppointment->idStudent)->first();
+            }
 
+            //nadji sve studente koji imaju ovaj termin
             foreach ($temp as $t)
 
                     $arrayForView[] = $t->user->forename . "," . $t->user->surname . "," . $t->index . "," . $appointment->idAppointment.",".$t->idStudent;
@@ -214,12 +220,20 @@ class StudentController extends Controller
 
 
         foreach($appointments as $appointment) {
-            $temp=$appointment->students;
+            //$hasAppointments=HasAppointment::where('idAppointment','=',$appointment->idAppointment)->get();
+
+            $temp=[];
+
+            $hasAppointments=HasAppointment::where('idAppointment','=',$appointment->idAppointment)->get();
+            foreach($hasAppointments as $hasAppointment){
+                $temp[]=Student::where('idStudent','=',$hasAppointment->idStudent)->first();
+            }
             foreach ($temp as $t){
                 if($t->user->idUser==$request->session()->get('user')['userObject']->idUser)
                     $IAmInThisOne=$appointment;
 
             }
+
             //za paginaciju je potreban niz appointment-a, a ne kolekcija, zato pravim ovo
             $appointmentsArray[]=$appointment;
         }
@@ -271,10 +285,10 @@ class StudentController extends Controller
         $objekatTermina=Appointment::find($termin);
         $studentiNaTerminu=HasAppointment::where('idAppointment','=',$termin)->get();
         $trenutno=count($studentiNaTerminu);
-        Session::put('greska', 0);
+
 
         if(($trenutno+1)>$objekatTermina->capacity){
-            Session::put('greska', 1);
+            Session::put('greska', $request->get('iteracija')+1);
             return redirect()->route('student.subject.lab.idlab.join.get', [$request->code,$request->idLab]);
 
         }
@@ -284,8 +298,6 @@ class StudentController extends Controller
         $dodat->idStudent=$user->idUser;
 
         $dodat->save();
-        //dd($request->code." , ".$request->idLab);
-        //redirect()->route('student.subject.lab.idlab.join.get',['code'=>$request->code,'idLab'=>$request->idLab]);
         return redirect()->route('student.subject.lab.idlab.join.get', [$request->code,$request->idLab]);
     }
 
@@ -338,15 +350,20 @@ class StudentController extends Controller
             if($temp!=null) $myAppointmentArray[]=$temp;
         }
 
-        if(sizeof($myAppointmentArray)!=1) dd("greska");
+
+        if(sizeof($myAppointmentArray)!=1) {
+            //TODO: ako nemam termin, vratim ga na stranicu sa ispisom greske
+            dd("greska");}
         $myAppointment=$myAppointmentArray[0];
 
         //nadjem sve studente kojima je DesiredAppointment == mojAppointment
         $freeAgents=FreeAgent::where('idDesiredAppointment','=',$myAppointment->idAppointment)->get();
+
         $formatForView=[];
         foreach($freeAgents as $freeAgent){
-            $student=Student::where('idStudent','=',$freeAgent->idStudent)->first();
-            $appointment=Appointment::where('idAppointment','=',$freeAgent->idAppointment)->first();
+            $hasAppStudent=HasAppointment::where('idHasAppointment','=',$freeAgent->idHasAppointment)->first();
+            $student=Student::where('idStudent','=',$hasAppStudent->idStudent)->first();
+            $appointment=Appointment::where('idAppointment','=',$hasAppStudent->idAppointment)->first();
             $formatForView[]=$student->user->forename." ".$student->user->surname." ".$student->index
                         .",".$appointment->datetime->format('d.m.Y').",".$appointment->datetime->format('H:i').",".
                         $appointment->classroom.",".$appointment->idAppointment.",".$student->idStudent;
@@ -382,36 +399,40 @@ class StudentController extends Controller
         //dohvatimo iz forme potrebne podatke, i uradimo zamenu
 
         $data=$request->get('odabrani');
-        //dd($data);
+
         $myAppointment=explode(',',$data)[0];
         $myId=explode(',',$data)[1];
         $swapAppointment=explode(',',$data)[2];
         $swapId=explode(',',$data)[3];
 
         //obrises iz FreeAgents drugog studenta
-        FreeAgent::where('idStudent','=',$swapId)->where('idAppointment','=',$swapAppointment)->delete();
+        $hasApp=HasAppointment::where('idStudent','=',$swapId)->where('idAppointment','=',$swapAppointment)->first();
+        FreeAgent::where('idHasAppointment','=',$hasApp->idHasAppointment)->delete();
 
         //obrises iz HasAppointment drugog studenta
 
 
         //NE RADI OVA LINIJA KODA
-        HasAppointment::where('idStudent','=',$swapId)->where('idAppointment','=',$swapAppointment)->delete();
+        //HasAppointment::where('idStudent','=',$swapId)->where('idAppointment','=',$swapAppointment)->delete();
+        $hasApp->delete();
 
         //obrises iz HasAppointment mene
-        dd("bunike");
+        //dd("bunike");
         HasAppointment::where('idStudent','=',$myId)->where('idAppointment','=',$myAppointment)->delete();
         //dodam u HasAppointment mene sa swapAppointment
         $t1=new HasAppointment();
+        $t1->idHasAppointment=(HasAppointment::max('idHasAppointment')+1);
         $t1->idAppointment=$swapAppointment;
         $t1->idStudent=$myId;
         $t1->save();
         //dodam u HasAppointment drugog studenta sa myAppointment
         $t2=new HasAppointment();
+        $t2->idHasAppointment=(HasAppointment::max('idHasAppointment')+1);
         $t2->idAppointment=$myAppointment;
         $t2->idStudent=$swapId;
         $t2->save();
 
-        //obavestenje AJAX o izvrsenoj promeni
+
 
         return redirect()->route('student.subject.lab.idlab.join.get', [$request->code,$request->idLab]);
 

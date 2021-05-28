@@ -15,18 +15,18 @@ class HasAppointment extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'has_appointment';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idHasAppointment';
-
+    public $timestamps = false;
     /**
      * @var array
      */
