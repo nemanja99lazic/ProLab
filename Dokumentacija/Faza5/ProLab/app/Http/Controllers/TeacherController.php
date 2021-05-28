@@ -10,8 +10,10 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Teacher;
 use MongoDB\Driver\Session;
+use App\SubjectJoinRequest;
+use App\Attends;
+use App\Project;
 
-<<<<<<< HEAD
 /**
  * TeacherController - klasa koja implemenitra logiku funckionalnosti za tip korisnika profesor.
  *
@@ -24,16 +26,6 @@ class TeacherController extends Controller {
      * @return void
      */
     public function __construct() {
-=======
-use App\SubjectJoinRequest;
-use App\Attends;
-use App\Project;
-
-class TeacherController extends Controller
-{
-    public function __construct()
-    {
->>>>>>> 42e738aa6957d6364526a8c2f58eae82235733a9
         $this->middleware('teacherMiddleware');
     }
 
@@ -122,7 +114,7 @@ class TeacherController extends Controller
     }
     /**
      * Prikaz svih zahteva za upis na kurs koji su stigli profesoru
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function showRequestsList(Request $request)
@@ -135,15 +127,15 @@ class TeacherController extends Controller
         })->join('users', 'users.idUser', '=', 'subject_join_requests.idStudent')
         ->join('subjects', 'subjects.idSubject', '=', 'subject_join_requests.idSubject')
         ->paginate(2);
-        
+
         //dd($myRequests);
-        
+
         return view('teacher.requests_list', ['requests' => $myRequests]);
     }
 
     /**
      * Privatanje zahteva - POST
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function acceptRequest(Request $request)
@@ -171,7 +163,7 @@ class TeacherController extends Controller
 
     /**
      * Prikaz svih definisanih projekata za odredjeni predmet
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function showProjects(Request $request)
@@ -186,10 +178,10 @@ class TeacherController extends Controller
 
         return view('teacher.show_projects', ['projects' => $myProjects, 'code' => $code]);
     }
-    
+
     /**
      * Prikaz forme za definisanje projekta
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function showProjectForm(Request $request)
@@ -199,7 +191,7 @@ class TeacherController extends Controller
 
     /**
      * Uklanjanje projekta - POST zahtev
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function removeProject(Request $request)
