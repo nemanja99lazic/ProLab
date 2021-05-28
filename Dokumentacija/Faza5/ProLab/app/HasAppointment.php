@@ -5,26 +5,32 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $idAppointment
+ * @property int $idHasAppointment
  * @property int $idStudent
+ * @property int $idAppointment
  * @property Appointment $appointment
  * @property Student $student
- * @property FreeAgent[] $freeAgents
- * @property FreeAgent[] $freeAgentss
  */
 class HasAppointment extends Model
 {
     /**
      * The table associated with the model.
-     *
+     * 
      * @var string
      */
     protected $table = 'has_appointment';
-    public $timestamps = false;
+
+    /**
+     * The primary key for the model.
+     * 
+     * @var string
+     */
+    protected $primaryKey = 'idHasAppointment';
+
     /**
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['idStudent', 'idAppointment'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -40,21 +46,5 @@ class HasAppointment extends Model
     public function student()
     {
         return $this->belongsTo('App\Student', 'idStudent', 'idStudent');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function freeAgents()
-    {
-        return $this->hasMany('App\FreeAgent', 'idAppointment', 'idAppointment');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function freeAgentss()
-    {
-        return $this->hasMany('App\FreeAgent', 'idStudent', 'idStudent');
     }
 }

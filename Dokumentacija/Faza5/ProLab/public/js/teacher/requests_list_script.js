@@ -12,5 +12,11 @@ $(document).ready(function (){
         ispisAlertNode.innerHTML = "Zahtev odbijen";
         $(".alert-info").show();
     });
+    $("#btn-termin-prijava").click(function (){
+        $(".alert-danger").hide();
+        let ispisAlertNode = document.getElementById("alert-nemogucaPrijava");
+        ispisAlertNode.innerHTML = "Termin je pun. Vaša prijava je odbijena.";
+        $(".alert-danger").show();
+    });
 
 });

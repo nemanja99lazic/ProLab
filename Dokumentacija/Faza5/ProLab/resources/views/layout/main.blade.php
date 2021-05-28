@@ -8,6 +8,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/navbar.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/temp.css') }}" rel="stylesheet">
     <title>Document</title>
     <style>
         hr{
@@ -35,9 +36,9 @@
 
 
 
-                    @yield('content')
+        @yield('content')
 
-          
+
 
 
 

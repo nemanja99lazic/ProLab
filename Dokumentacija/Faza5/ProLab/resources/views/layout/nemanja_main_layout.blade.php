@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <!-- Kad se doda header, ovo treba da se izmeni -->
         <div class="row">
             <header>

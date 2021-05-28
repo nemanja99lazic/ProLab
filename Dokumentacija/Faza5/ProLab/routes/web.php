@@ -54,7 +54,8 @@ Route::get('/student/subject/{code}/lab',[App\Http\Controllers\StudentController
 Route::get('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'showAppointments'])->name('student.subject.lab.idlab.join.get');
 Route::post('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'joinAppointment'])->name('student.subject.lab.idlab.join.post');
 Route::post('/student/subject/{code}/lab/{idLab}/leave',[App\Http\Controllers\StudentController::class, 'leaveAppointment'])->name('student.subject.lab.idlab.leave');
-
+Route::get('/student/subject/{code}/lab/{idLab}/swap',[App\Http\Controllers\StudentController::class, 'showPossibleSwaps'])->name('student.subject.code.lab.idlab.swap.get');
+Route::post('/student/subject/{code}/lab/{idLab}/swap',[App\Http\Controllers\StudentController::class, 'performSwap'])->name('student.subject.code.lab.idlab.swap.post');
 
 //Teacher
 

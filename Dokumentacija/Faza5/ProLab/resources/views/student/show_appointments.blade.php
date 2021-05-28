@@ -2,18 +2,16 @@
 @extends('layout.main')
 @section('content')
 
-    <script src="{{ asset('js/navbar.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/teacher/requests_list_script.js') }}" defer></script>
+    <link rel="stylesheet" href="{{asset('css/student/show_appointments.css')}}">
+
     <br>
-
-
-
-
             <div class="row justify-content-center">
                 <h2 class="font-weight-bold  text-center border-bottom-12 offset-0"  >Ponuđeni termini za {{$lab->name}}</h2>
 
             </div>
-
-
 
             <div class="row justify-content-center">
                 <button class='btn btn-info justify-content-center' disabled>
@@ -25,15 +23,13 @@
 
     <br>
 
-
-
     @for ($i = 0; $i < count($appointments);$i+=2 )
-        <div class="row">
+        <div class="row p-3">
 
             @if(($i)<count($appointments))
                 <div class="col-6">
 
-                    <table id="dtDynamicVerticalScrollExample" class="table table-bordered m-auto " style="width: 80vh" >
+                    <table  class="table table-bordered m-auto " style="width: 80vh" >
                         <thead class="thead-light" >
                         <tr>
 
@@ -51,7 +47,7 @@
                                         <input type="hidden" name="idAppointment" id="idAppointment" value="{{$appointments[$i]->idAppointment}}">
 
                                         <button
-                                            type="submit" class="btn btn-secondary p-1 m-1"
+                                            type="submit" class="btn btn-secondary p-1 m-1" about="{{Session::get('greska')}}" id="btn-termin-prijava"
                                             @foreach($array as $a)
                                                 @if(explode(',',$a)[3]!=$appointments[$i]->idAppointment)
                                                     @continue
@@ -102,7 +98,7 @@
                             <tr style="">
 
 
-                                <td class=" text-center" style="width: 20%">{{$redniBrojevi[$i+1]++}} </td>
+                                <td class=" text-center" style="width: 20%">{{$redniBrojevi[$i]++}} </td>
                                 <td class=" text-center" style="width: 40%">{{explode(',',$a)[0]." ".explode(',',$a)[1]}} </td>
                                 <td class=" text-center" style="width: 40%">{{explode(',',$a)[2]}} </td>
                             </tr>
@@ -110,6 +106,16 @@
 
                         </tbody>
                     </table>
+
+                    <div type="hidden">
+
+                    </div>
+                    <div class="row" id="sakriveno">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <p id="alert-nemogucaPrijava1"></p>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -119,7 +125,7 @@
                 @if(($i+1)<count($appointments))
                     <div class="col-6">
 
-                        <table id="dtDynamicVerticalScrollExample" class="table table-bordered m-auto " style="width: 80vh" >
+                        <table class="table table-bordered m-auto " style="width: 80vh" >
                             <thead class="thead-light" >
                             <tr>
 
@@ -137,7 +143,7 @@
                                             <input type="hidden" name="idAppointment" id="idAppointment" value="{{$appointments[$i+1]->idAppointment}}">
 
                                             <button
-                                                type="submit" class="btn btn-secondary p-1 m-1"
+                                                type="submit" class="btn btn-secondary p-1 m-1" id="btn-termin-prijava"
                                                 @foreach($array as $a)
                                                 @if(explode(',',$a)[3]!=$appointments[$i+1]->idAppointment)
                                                 @continue
@@ -197,6 +203,12 @@
                             </tbody>
                         </table>
 
+                        <div class="row">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">x</button>
+                                <p id="alert-nemogucaPrijava2"></p>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -205,7 +217,9 @@
 
         </div>
     @endfor
-
+    <div class="row justify-content-center pt-4">
+        {{$appointments->links()}}
+    </div>
 
 
 
