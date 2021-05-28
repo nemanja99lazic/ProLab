@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idLabExercise
  * @property LabExercise $labExercise
  * @property FreeAgent[] $freeAgents
- * @property Student[] $students
+ * @property HasAppointment[] $hasAppointments
  */
 class Appointment extends Model
 {
@@ -47,10 +47,10 @@ class Appointment extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function students()
+    public function hasAppointments()
     {
-        return $this->belongsToMany('App\Student', 'has_appointment', 'idAppointment', 'idStudent');
+        return $this->hasMany('App\HasAppointment', 'idAppointment', 'idAppointment');
     }
 }

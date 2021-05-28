@@ -5,12 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $idStudent
- * @property int $idAppointment
+ * @property int $idHasAppointment
  * @property int $idDesiredAppointment
- * @property HasAppointment $hasAppointment
  * @property Appointment $appointment
- * @property HasAppointment $hasAppointment
  */
 class FreeAgent extends Model
 {
@@ -22,24 +19,8 @@ class FreeAgent extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function hasAppointment()
-    {
-        return $this->belongsTo('App\HasAppointment', 'idAppointment', 'idAppointment');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function appointment()
     {
         return $this->belongsTo('App\Appointment', 'idDesiredAppointment', 'idAppointment');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function hasAppointment()
-    {
-        return $this->belongsTo('App\HasAppointment', 'idStudent', 'idStudent');
     }
 }

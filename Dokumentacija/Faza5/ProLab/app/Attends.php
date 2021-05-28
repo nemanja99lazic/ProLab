@@ -34,4 +34,13 @@ class Attends extends Model
     {
         return $this->belongsTo('App\Subject', 'idSubject', 'idSubject');
     }
+
+    public static function studentAttendsSubjectTest($idStudentCheck, $idSubjectCheck)
+    {
+        $queryResult = Attends::where('idStudent', '=', $idStudentCheck)->where('idSubject', "=", $idSubjectCheck)->get(); 
+        if(!($queryResult->isEmpty()))
+            return true;
+        return false;
+        
+    }
 }
