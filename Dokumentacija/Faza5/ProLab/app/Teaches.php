@@ -15,7 +15,9 @@ class Teaches extends Model
     /**
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['idTeacher', 'idSubject'];
+
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

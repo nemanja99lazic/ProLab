@@ -18,12 +18,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Subject extends Model
 {
+    public $timestamps = false;
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idSubject';
+
+    public $timestamps = false;
 
     /**
      * @var array

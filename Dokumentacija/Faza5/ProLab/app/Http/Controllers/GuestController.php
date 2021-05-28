@@ -8,11 +8,14 @@ use App\Rules\EmailCheck;
 use App\Rules\PasswordCheck;
 use App\Rules\UsernameCheck;
 use App\Student;
+use App\Subject;
 use App\Teacher;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 /**
+ * Autor: Sloodan Katanic
 *ako se uloguje korisnik
  * se čuva u sesiji
  * kljuc user
@@ -31,6 +34,7 @@ class GuestController extends Controller
         //$this->middleware('auth');
     }
 
+<<<<<<< HEAD
     protected function getUserType($user) {
         if (!is_null($user->student()->getResults())) {
             return "student";
@@ -40,11 +44,18 @@ class GuestController extends Controller
         }
         return "teacher";
        /* if (preg_match("/@student/", $email)) {
+=======
+    protected function getUserType($email) {
+        //return 'student';
+        if (preg_match("/@student/", $email)) {
+>>>>>>> 42e738aa6957d6364526a8c2f58eae82235733a9
             return 'student';
         } else if (preg_match("/@admin/", $email)) {
             return 'admin';
         } else {
             return 'teacher';
+
+        }
         }*/
     }
 
@@ -59,17 +70,27 @@ class GuestController extends Controller
         ]);
 
         $user = User::where('username', '=', $request->get('username'))->first();
+
         if ($user == null) {
             return redirect()->to(url('/'))->withInput()->with('errorUsername', 'Wrong username');
+        } else {
+            if ($user->password != $request->get('password')) {
+                return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Wrong password');
+            }
         }
 
-        $user = User::where('password', '=', $request->get('password'))->first();
-        if ($user == null) {
-            return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Wrong password');
-        }
+//        $user = User::where('password', '=', $request->get('password'))->first();
+//        if ($user == null) {
+//            return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Wrong password');
+//        }
 
         $userType = $this->getUserType($user);
 
+<<<<<<< HEAD
+=======
+        $userType = $this->getUserType($user->email);
+
+>>>>>>> 42e738aa6957d6364526a8c2f58eae82235733a9
         $request->session()->put('user', ['userObject' => $user, 'userType' => $userType]);
 
         return redirect()->to(url("$userType"));
@@ -178,4 +199,6 @@ class GuestController extends Controller
 //
 //        return request()->get('username');
 //    }
+
+
 }

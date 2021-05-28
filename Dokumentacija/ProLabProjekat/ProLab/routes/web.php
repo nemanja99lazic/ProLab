@@ -14,7 +14,7 @@ use App\Http\Controllers\HomeController;
 */
 
 
-//Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
 
 //Funkcionalnosti :
 // Login, Logout, Register, Index
