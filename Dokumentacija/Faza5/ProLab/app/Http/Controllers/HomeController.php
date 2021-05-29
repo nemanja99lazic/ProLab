@@ -14,10 +14,7 @@ class HomeController extends Controller
         return view("admin_header");
     }
 
-    public function getSubject($idSubject) {
-        $subject = Subject::find($idSubject);
-        return dd($subject);
-    }
+
 
 
 }

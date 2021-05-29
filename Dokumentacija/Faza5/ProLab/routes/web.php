@@ -67,7 +67,7 @@ Route::get('/teacher',[TeacherController::class, 'index'])->name('teacher.index'
 
 Route::get('/teacher/logout',[TeacherController::class, 'logout'])->name('teacher.logout');
 Route::get('/teacher/subject/list',[TeacherController::class, 'getSubjects'])->name('teacher.subject.list');
-Route::get('/teacher/subject/{idSubject}/index',[HomeController::class, 'getSubject'])->name('teacher.subject.index');
+Route::get('/teacher/subject/{idSubject}/index',[TeacherController::class, 'subjectIndexPage'])->name('teacher.subject.index');
 
 Route::get('/teacher/addSubject',[TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
 Route::post('/teacher/addSubject',[TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');

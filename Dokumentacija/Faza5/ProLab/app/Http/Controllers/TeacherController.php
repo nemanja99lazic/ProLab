@@ -6,10 +6,10 @@ namespace App\Http\Controllers;
 
 use App\NewSubjectRequest;
 use App\NewSubjectRequestTeaches;
+use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
 use App\Teacher;
-use MongoDB\Driver\Session;
 use App\SubjectJoinRequest;
 use App\Attends;
 use App\Project;
@@ -222,12 +222,30 @@ class TeacherController extends Controller {
 
         $teaches = $teacher->teachesSubjects()->getResults();
         foreach ($teaches as $teach) {
-            //$sub = $teaches->subject()->sole();
             $list[] = $teach;
         }
-        return view("teacher/subject_list", ["subjectList" => $list]);
+        return view("teacher.subject_list", ["subjectList" => $list]);
 
+    }
+    /**
+     *
+     * @note Funkcija prikazuje predmet iz pogleda profesora
+     *
+     * @return \Illuminate\Contracts\View\View
+     * @author zvk17
+     */
+    public function subjectIndexPage($code) {
+        $subject = Subject::where("code", "=", $code)->first();
+        if ($subject == null) {
+            return redirect()->route('teacher.subject.list');
+        }
+        $teacherList = [];
+        $teacherList[] = $subject->teacher()->sole()->user()->sole();
+        $otherTeachers = $subject->teachers()->getResults();
 
-
+        foreach ($otherTeachers as $otherTeacher) {
+            $teacherList[] = $otherTeacher->user()->sole();
+        }
+        return view("teacher/subject_index", ["subjectTitle"=> $subject->name, "teacherList"=> $teacherList]);
     }
 }

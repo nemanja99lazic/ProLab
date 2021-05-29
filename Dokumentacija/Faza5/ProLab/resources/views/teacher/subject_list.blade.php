@@ -9,12 +9,12 @@
 @section('content')
 
 
-    <div class="row">
-        <div class="col-12">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-xl-6 col-lg-8">
             <table class="table table-striped table-hover">
                 <tr>
                     <th>Predmet</th>
-                    <th>Stranica</th>
+                    <th>Šifra predmeta</th>
                 </tr>
                 @foreach ($subjectList as $subject)
                     <tr>
