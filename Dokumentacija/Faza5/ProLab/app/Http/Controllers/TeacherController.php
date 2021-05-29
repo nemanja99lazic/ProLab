@@ -8,6 +8,7 @@ use App\Teacher;
 use App\SubjectJoinRequest;
 use App\Attends;
 use App\Project;
+use App\Subject;
 
 class TeacherController extends Controller
 {
@@ -107,7 +108,9 @@ class TeacherController extends Controller
      */
     public function showProjectForm(Request $request)
     {
-
+        $myCode = $request->code;
+        $mySubject = Subject::where('code', '=', $myCode)->first();
+        return view('teacher.define_project', ['idSubject' => $mySubject->idSubject, 'code' => $myCode]);
     }
 
     /**
@@ -122,5 +125,32 @@ class TeacherController extends Controller
         $message = "Uspesno uklonjen projekat";
 
         return response()->json(array('message' => $message, 'idProject' => $idProject), 200);
+    }
+
+    /**
+     * Definisanje projekta - POST zahtev
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
+    public function defineProject(Request $request){
+
+        $name = $request->get('nazivProjekta');
+        $minMemberNumber = $request->get('minBrojClanova');
+        $maxMemberNumber = $request->get('maxBrojClanova');
+        $expirationDate = $request->get('rok');
+        $subjectCode = $request->get('code');
+        $idSubject = Subject::where('code', '=', $subjectCode)->first()->idSubject;
+
+        $newProject = new Project;
+        $newProject->name = $name;
+        $newProject->minMemberNumber = $minMemberNumber;
+        $newProject->maxMemberNumber = $maxMemberNumber;
+        $newProject->expirationDate = $expirationDate;
+        $newProject->idSubject = $idSubject;
+        $newProject->save();
+
+        $message = "Projekat uspešno definisan";
+
+        return response()->json(array('message' => $message), 200);
     }
 }

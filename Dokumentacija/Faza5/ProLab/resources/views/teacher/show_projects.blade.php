@@ -4,14 +4,16 @@
 @section('contentInsideTheContainer')
 
 <link rel="stylesheet" href="{{asset('css/teacher/show_projects_style.css')}}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- JQUERY CDN - samo za test -->
 <script src="{{asset('js/teacher/show_projects_script.js')}}"></script>
 
 <div class="row">
     <div class="col text-center">
-        <button class="btn btn-primary" id="btn-definisi-projekat" action="{{url("/teacher/subject/{code}/project/removeProject")}}">Definiši projekat</button>
+        <form action="{{route('teacher.showProjectForm', $code)}}" method="GET">
+          <button type="submit" class="btn btn-primary" id="btn-definisi-projekat"">Definiši projekat</button>
+        </form>
     </div>
 </div>
+
 <div class="row">
     <div class="col">
         <table class="table table-bordered table-striped text-center">
@@ -46,14 +48,14 @@
 </div>
 <!-- Dodavanje bootstrap modala (DIJALOGA) -->
 <div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Uklanjanje projekta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Uklanjanje projekta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
         <div class="modal-body">
           <p>Da li ste sigurni da želite da uklonite projekat?</p>
         </div>
@@ -61,8 +63,8 @@
           <button type="button" class="btn btn-primary" id="modal-btn-ukloni">Ukloni</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id ="modal-btn-otkazi">Otkaži</button>
         </div>
-      </div>
     </div>
   </div>
+</div>
 
 @endsection
