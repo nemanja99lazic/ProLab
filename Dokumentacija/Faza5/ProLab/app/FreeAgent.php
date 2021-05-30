@@ -15,7 +15,7 @@ class FreeAgent extends Model
      * @var array
      */
     protected $fillable = [];
-
+    public $timestamps = false;
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

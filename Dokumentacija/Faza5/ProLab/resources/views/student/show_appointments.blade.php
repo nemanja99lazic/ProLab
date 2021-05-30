@@ -23,6 +23,45 @@
             </div>
 
     <br>
+    @if(Session::has('nePosedujemTermin'))
+        <div class="row justify-content-center p-3">
+            <div class="alert alert-danger alert-dismissible ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p >
+                    <small>
+                        Ne možete uraditi zamenu ako niste prijavljeni na neki termin.
+                    </small>
+                </p>
+            </div>
+        </div>
+        {{Session::forget('nePosedujemTermin')}}
+    @endif
+    @if(Session::has('swapZavrsen'))
+        <div class="row justify-content-center p-3">
+            <div class="alert alert-success alert-dismissible ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p >
+                    <small>
+                        Uspešno izvršena zamena termina.
+                    </small>
+                </p>
+            </div>
+        </div>
+        {{Session::forget('swapZavrsen')}}
+    @endif
+    @if(Session::has('zahtevEvidentiran'))
+        <div class="row justify-content-center p-3">
+            <div class="alert alert-success alert-dismissible ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p >
+                    <small>
+                        Uspešno evidentiran zahtev za zamenu.
+                    </small>
+                </p>
+            </div>
+        </div>
+        {{Session::forget('zahtevEvidentiran')}}
+    @endif
 
     @for ($i = 0; $i < count($appointments);$i+=2 )
         <div class="row p-3">
@@ -109,7 +148,7 @@
                     </table>
 
 
-                    @if(Session::get('greska')==($i+1))
+                    @if(Session::get('kapacitet')==($i+1))
                         <div class="row justify-content-center p-3">
                             <div class="alert alert-danger alert-dismissible ">
                                 <button type="button" class="close" data-dismiss="alert">x</button>
@@ -119,7 +158,7 @@
                                 </p>
                             </div>
                         </div>
-                        {{Session::forget('greska')}}
+                        {{Session::forget('kapacitet')}}
                     @endif
                 </div>
 
@@ -205,7 +244,7 @@
                         </tbody>
                     </table>
 
-                    @if(Session::get('greska')==($i+2))
+                    @if(Session::get('kapacitet')==($i+2))
                         <div class="row justify-content-center p-3">
                             <div class="alert alert-danger alert-dismissible ">
                                 <button type="button" class="close" data-dismiss="alert">x</button>
@@ -215,7 +254,7 @@
                                 </p>
                             </div>
                         </div>
-                        {{Session::forget('greska')}}
+                        {{Session::forget('kapacitet')}}
                     @endif
 
 

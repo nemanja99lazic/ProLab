@@ -7,6 +7,21 @@
     <br>
     <h3 class="font-weight-bold text-center border-bottom-12 offset-0"  >Spisak aktivnih labova</h3>
     <br>
+
+    @if(Session::has('prosao'))
+        <div class="row justify-content-center p-3">
+            <div class="alert alert-danger alert-dismissible ">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p >
+                    <small>
+                        Rok za prijavu na Lab{{Session::get('prosao')}} je prošao.
+                    </small>
+                </p>
+            </div>
+        </div>
+        {{Session::forget('prosao')}}
+    @endif
+
     <div class="row justify-content-center">
         <div class="col-auto">
 
