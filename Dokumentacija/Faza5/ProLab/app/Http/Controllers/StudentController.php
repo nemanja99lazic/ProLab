@@ -21,8 +21,18 @@ class StudentController extends Controller
         $this->middleware('studentMiddleware');
     }
 
-    public function index() {
-        return view('index');
+    /**
+     * @note Indeksna strana predmeta iz pogleda studenta
+     * @author zvk17
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function subjectIndex($code, Request $request) {
+        $subject = Subject::where("code", "=", $code);
+        return view("student/subject_list");
+    }
+    public function index(Request $request) {
+
+        return view('student/index');
     }
 
     public function logout(Request $request) {
@@ -402,8 +412,8 @@ class StudentController extends Controller
         HasAppointment::where('idStudent','=',$myId)->where('idAppointment','=',$myAppointment)->delete();
         //dodam u HasAppointment mene sa swapAppointment
         $t1=new HasAppointment();
-        $t1->idAppointment=$swapAppointment;
-        $t1->idStudent=$myId;
+        $t1->idAppointment = $swapAppointment;
+        $t1->idStudent = $myId;
         $t1->save();
         //dodam u HasAppointment drugog studenta sa myAppointment
         $t2=new HasAppointment();
