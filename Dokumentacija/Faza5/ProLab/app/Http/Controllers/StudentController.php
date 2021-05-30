@@ -130,6 +130,34 @@ class StudentController extends Controller
     }
 
     /**
+     * Privatna funkcija za proveru da li je rok prosao
+     *
+     *
+     *
+     * @param int $idLab
+     * @return boolean
+     *
+     * - Valerijan Matvejev 2018/0257
+     */
+    private function prosaoRok($idLab){
+        $lab=LabExercise::where('idLabExercise','=',$idLab)->first();
+
+        $rokZaPrijavu=$lab->expiration;
+
+        $sada = Carbon::now();
+
+
+        $sada->addHours(2); //za lokalno vreme
+
+
+        if($sada->gt($rokZaPrijavu)){
+
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Prikaz svih laboratorijskih vežbi za dati predmet.
      *
      * Poziva se za rutu '/student/subject/{code}/lab'
@@ -144,29 +172,42 @@ class StudentController extends Controller
         //prikaz svih labova za predmet sa datom sifrom
 
         $code=$request->code; //dohvatamo parametar
-
-
         $subject=Subject::where('code','=',$code)->first();
-        if($subject==null) {
-            //Sta da radim?
-        }
+
+
+
         $labExercises=LabExercise::where('idSubject','=',$subject->idSubject)->get();
+        $arrayActiveLabExercises=[];
+        $arrayInactiveLabExcercises=[];
         foreach($labExercises as $labExercise){
-            $arrayLabExcercises[]=$labExercise;
+            if($this->prosaoRok($labExercise->idLabExercise)){
+                $arrayInactiveLabExcercises[]=$labExercise;
+            }
+            else{
+                $arrayActiveLabExercises[]=$labExercise;
+            }
+
         }
-        //dd($labExercises);
-        //return view('/student/test');
+
         $maxItemsPerPage=10;
-        $paginatorLabExercises = new LengthAwarePaginator
-        (array_slice($arrayLabExcercises, (LengthAwarePaginator::resolveCurrentPage() - 1) * $maxItemsPerPage, $maxItemsPerPage)
-            ,count($arrayLabExcercises), $maxItemsPerPage, null, [
+        $paginatorActiveLabExercises = new LengthAwarePaginator
+        (array_slice($arrayActiveLabExercises, (LengthAwarePaginator::resolveCurrentPage() - 1) * $maxItemsPerPage, $maxItemsPerPage)
+            ,count($arrayActiveLabExercises), $maxItemsPerPage, null, [
 
             ]);
 
-        $paginatorLabExercises->withPath("/student/subject/".$request->code."/lab");
+        $paginatorActiveLabExercises->withPath("/student/subject/".$request->code."/lab");
 
+        $paginatorInactiveLabExercises = new LengthAwarePaginator
+        (array_slice($arrayInactiveLabExcercises, (LengthAwarePaginator::resolveCurrentPage() - 1) * $maxItemsPerPage, $maxItemsPerPage)
+            ,count($arrayInactiveLabExcercises), $maxItemsPerPage, null, [
 
-        return view('student/lab_exercices_index',['labExercises'=>$paginatorLabExercises, 'code'=>$code]);
+            ]);
+
+        $paginatorInactiveLabExercises->withPath("/student/subject/".$request->code."/lab");
+
+        return view('student/lab_exercices_index',['activeLabExercises'=>$paginatorActiveLabExercises,
+            'inactiveLabExercises'=>$paginatorInactiveLabExercises,'code'=>$code]);
 
     }
 
@@ -188,7 +229,9 @@ class StudentController extends Controller
         $lab=LabExercise::where('idLabExercise','=',$idLab)->first();
         //svi termini ovog laba
         $appointments=Appointment::where('idLabExercise','=',$idLab)->get();
-
+        //ako ne postoji nijedan termin
+        if(count($appointments)==0)
+            Session::put('nemaTermina',1);
 
         $arrayForView=[];// niz koji sadrzi: ImeStudenta,PrezimeStudenta,Index,idTermina
                          // (Potrebno za tabelu da znamo koji su studenti u kom terminu)
@@ -258,8 +301,8 @@ class StudentController extends Controller
     }
 
     /**
-     * Privatna funkcija za proveru da li je rok prosao
-     *
+     * Privatna funkcija za proveru da li je rok prosao, uz dodatno postaljanje
+     * odgovarajućeg parametra Sesije, kako bi se naznačilo probijanje roka.
      *
      *
      * @param int $idLab
@@ -267,7 +310,7 @@ class StudentController extends Controller
      *
      * - Valerijan Matvejev 2018/0257
      */
-    private function prosaoRok($idLab){
+    private function prosaoRokSaPostavljanjemSesije($idLab){
         $lab=LabExercise::where('idLabExercise','=',$idLab)->first();
 
         $rokZaPrijavu=$lab->expiration;
@@ -301,9 +344,8 @@ class StudentController extends Controller
         $user=$request->session()->get('user')['userObject'];
 
         //ukoliko je rok za termin prosao, ne moze da se prijavi na termin
-        if($this->prosaoRok($request->idLab)){
+        if($this->prosaoRokSaPostavljanjemSesije($request->idLab)){
             return redirect()->route('student.subject.lab', [$request->code]);
-
         }
 
 
@@ -336,7 +378,7 @@ class StudentController extends Controller
 
         //ubacim ga na novi termin
         $dodat=new HasAppointment;
-        $dodat->idHasAppointment=(HasAppointment::max('idHasAppointment')+1);
+        //$dodat->idHasAppointment=(HasAppointment::max('idHasAppointment')+1);
         $dodat->idAppointment=$termin;
         $dodat->idStudent=$user->idUser;
 
@@ -423,7 +465,7 @@ class StudentController extends Controller
 
 
         $myAppointmentArray=[];
-
+        //trazim svoj termin
         $appointment=$appointments[0];
         foreach($appointments as $appointment){
             $temp=HasAppointment::where('idStudent','=',$request->session()->get('user')['userObject']->idUser)
@@ -540,6 +582,14 @@ class StudentController extends Controller
         $fullAppointments=[];
         $myAppointment=HasAppointment::where('idStudent','=',$request->session()->get('user')['userObject']->idUser)
             ->first();
+
+        if($myAppointment==null) {
+            // ako nemam termin, vratim ga na stranicu svih termina, sa ispisom greske
+            Session::put('nePosedujemTermin',1);
+            return redirect()->route('student.subject.lab.idlab.join.get', [$request->code,$request->idLab]);
+
+        }
+
         foreach($allAppointments as $allAppointment){
             $temp=HasAppointment::where('idAppointment','=',$allAppointment->idAppointment)->get();
             $currentNumberOfStudents=count($temp);

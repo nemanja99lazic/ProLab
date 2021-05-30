@@ -5,7 +5,10 @@
 
 
 
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/student/show_appointments_script.js') }}" defer></script>
+    <link rel="stylesheet" href="{{asset('css/student/show_appointments_style.css')}}">
 
 
     <br>
@@ -23,6 +26,23 @@
             </div>
 
     <br>
+
+
+    @if(Session::has('nemaTermina'))
+        <div class="row justify-content-center">
+            <div class="jumbotron justify-content-center" style="width: 40vh; height: 10vh; background: none">
+
+                <div class="row justify-content-center" style="font-size: x-large">
+                    Nema termina za ovaj lab.
+                </div>
+                <div class="row ">
+                    <button class="btn btn-info btn-sm hBack" style="font-size: medium" type="button"> <- Povratak na prethodnu stranu </button>
+                </div>
+
+            </div>
+        </div>
+        {{Session::forget('nemaTermina')}}
+    @endif
     @if(Session::has('nePosedujemTermin'))
         <div class="row justify-content-center p-3">
             <div class="alert alert-danger alert-dismissible ">
