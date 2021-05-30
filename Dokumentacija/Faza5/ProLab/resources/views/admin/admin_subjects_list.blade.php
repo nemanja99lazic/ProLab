@@ -19,7 +19,7 @@
                 @for($i = 0; $i < count($subjects); $i++)
                     <tr>
                         <td>{{ $i + 1 }}</td>
-                        <td>{{ $subjects[$i]->name }}</td>
+                        <td><a href="{{ route('admin.subject.index', [$subjects[$i]->idSubject]) }}">{{ $subjects[$i]->name }}</a></td>
                         <td>{{ $subjects[$i]->code }}</td>
                         <td>{{ $subjects[$i]->teacher->user->forename.' '.$subjects[$i]->teacher->user->surname }}</td>
                         <td class="text-center">

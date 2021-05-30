@@ -20,6 +20,7 @@ use App\SubjectJoinRequest;
 use App\Teaches;
 use App\Team;
 use App\TeamMember;
+use GuzzleHttp\HandlerStack;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\User;
@@ -162,7 +163,7 @@ class AdminController extends Controller {
      * @return void
      */
     public function deleteSubject(Request $request) {
-        $idSubject = $request->id;
+        $idSubject = $request->idS;
 
         Attends::where('idSubject', '=', $idSubject)->delete();
         SubjectJoinRequest::where('idSubject', '=', $idSubject)->delete();
@@ -207,7 +208,130 @@ class AdminController extends Controller {
         return redirect()->to(url('admin/subjects/list'));
     }
 
+    public function subjectIndex(Request $request) {
+        $idSubject = $request->idS;
+        $subject = Subject::where('idSubject', '=', $idSubject)->first();
+        if ($subject == null) {
+            return abort(404);
+        } else {
+            return view('admin/admin_subject_index', ['subject' => $subject]);
+        }
+    }
 
+    public function deleteTeacher(Request $request) {
+        $idSubject = $request->idS;
+        $idTeacher = $request->idT;
+
+        Teaches::where('idTeacher', '=', $idTeacher)->where('idSubject', $idSubject)->delete();
+
+        $subject = Subject::where('idSubject', '=', $idSubject)->first();
+        if ($subject->idTeacher == $idTeacher) {
+            $teaches = Teaches::where('idSubject', $idSubject)->first();
+            if ($teaches != null) {
+                $subject->idTeacher = $teaches->teacher->idTeacher;
+                $subject->save();
+            } else {
+                //return redirect()->route('admin.delete.subject', [$idSubject]);
+                return $this->deleteSubject($request);
+            }
+        }
+
+        return redirect()->route('admin.subject.index', [$idSubject]);
+    }
+
+    public function deleteStudent(Request $request) {
+        $idSubject = $request->idS;
+        $idStudent = $request->idSt;
+
+        Attends::where('idStudent', '=', $idStudent)->where('idSubject', '=', $idSubject)->delete();
+
+        $subject = Subject::where('idSubject', '=', $idSubject)->first();
+
+        $labs = $subject->labExercises;
+
+        if ($labs == null) {
+            return redirect()->route('admin.subject.index', [$idSubject]);
+        }
+
+        foreach ($labs as $lab) {
+            $appointments = $lab->appointments;
+            if ($appointments == null) {
+                continue;
+            }
+            foreach ($appointments as $appointment) {
+                $hasApp = HasAppointment::where('idStudent', '=', $idStudent)->where('idAppointment', '=', $appointment->idAppointment)->first();
+                if ($hasApp != null) {
+                    FreeAgent::where('idHasAppointment', '=', $hasApp->idHasAppointment)->delete();
+                    $hasApp->delete();
+                    $this->swapStudents($appointment->idAppointment);
+                    break;
+                }
+            }
+        }
+
+        $projects = $subject->projects;
+        if ($projects == null) {
+            return redirect()->route('admin.subject.index', [$idSubject]);
+        }
+
+        $project = $projects[0];
+        $teams = $project->teams;
+        foreach ($teams as $team) {
+            $teamMember = TeamMember::where('idStudent', '=', $idStudent)->where('idTeam', '=', $team->idTeam)->first();
+            if ($teamMember != null) {
+                $teamMember->delete();
+                // provera za datum, ako je ok onda idi dalje
+                // ako je ovaj student bio tim lider - proglasi drugog studenta za lidera
+                // ako je ovaj student jedini u timu - izbrisi tim
+                break;
+            }
+        }
+
+        return redirect()->route('admin.subject.index', [$idSubject]);
+    }
+
+    protected function swapStudents($idFreeAppointment) {
+        // dodaj if za datum
+
+        $freeAgent = FreeAgent::where('idDesiredAppointment', '=', $idFreeAppointment)->first();
+        if ($freeAgent == null) {
+            return;
+        }
+        $idHasApp = $freeAgent->idHasAppointment;
+        FreeAgent::where('idHasAppointment', '=', $idHasApp)->delete();
+
+        $hasApp = HasAppointment::where('idHasAppointment', '=', $idHasApp)->first();
+        $newFreeAppointment = $hasApp->idAppointment;
+        $hasApp->idAppointment = $idFreeAppointment;
+        $hasApp->save();
+
+        $this->swapStudents($newFreeAppointment);
+    }
+
+    /**
+     * Funkcija koja prikazuje pocetnu stranicu za prikaz laboratorijskih vezbi.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function labExercisesIndex(Request $request) {
+        $idSubject = $request->idS;
+        $labs = LabExercise::where('idSubject', '=', $idSubject)->get();
+        return view('admin/admin_lab_list', ['labs' => $labs]);
+    }
+
+    public function showLabExercise(Request $request) {
+        $idSubject = $request->idS;
+        $idLab = $request->idL;
+
+        $lab = LabExercise::where('idLabExercise', '=', $idLab)->where('idSubject', '=', $idSubject)->first();
+        if ($lab == null) {
+            return abort(404);
+        }
+
+        return view('admin/admin_lab_list', ['lab' => $lab]);
+    }
 
     /**
      * Pomocna funkcija koja na osnovu email adrese
@@ -223,3 +347,4 @@ class AdminController extends Controller {
         return $year."/".$number;
     }
 }
+

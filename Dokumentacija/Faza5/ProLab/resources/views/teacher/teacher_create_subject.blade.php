@@ -36,14 +36,14 @@
                     <table class="table w-50 m-auto">
                         <tr>
                             <td colspan="2">
-                                <h2 class="text-center font-weight-bold">Create new subject</h2>
+                                <h2 class="text-center font-weight-bold">Kreiranje novog predmeta</h2>
                             </td>
                         </tr>
                         <tr>
-                            <td class="align-middle">Subject name:</td>
+                            <td class="align-middle font-weight-bold">Naziv predmeta:</td>
                             <td>
                                 @if($errors->first('name'))
-                                    <input type="text" class="form-control m-1 is-invalid w-100" name="name" id="name" autocomplete="off" placeholder="Dodaj za validate" value="{{old("name")}}">
+                                    <input type="text" class="form-control m-1 is-invalid w-100" name="name" id="name" autocomplete="off" placeholder="" value="{{old("name")}}">
                                     <div class="text-danger text-left h6 small">{{ $errors->first('name') }}</div>
                                 @else
                                     <input type="text" class="form-control m-1 w-100" name="name" id="name" autocomplete="off" value="{{old("name")}}">
@@ -51,7 +51,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="align-middle">Select associates:</td>
+                            <td class="align-middle font-weight-bold">Izabrani saradnici:</td>
                             <td>
                                 <select name="teachers_select[]" id="teachers_select" multiple size="5" class="w-100 form-control">
                                     @foreach($teachers as $teacher)
@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="text-center">
-                                <button type="submit" class="btn btn-dark w-50">Create subject</button>
+                                <button type="submit" class="btn btn-dark w-50">Napravi predmet</button>
                             </td>
                         </tr>
                     </table>

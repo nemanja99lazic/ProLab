@@ -1,3 +1,6 @@
+{{--
+    Autor: Slobodan Katanic 2018/0133
+--}}
 <!doctype html>
 <html lang="en">
     <head>
@@ -5,24 +8,37 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('js/app.js') }}" defer></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--        <script src="{{ asset('js/guest/register_info.js') }}" defer></script>--}}
         <title>Register</title>
     </head>
     <body>
-        <div class="jumbotron p-5">
-            <div class="container text-center">
-                <img src="images\ProLabLOGO.jpg" class="rounded img-thumbnail img-fluid" width="15%">
-            </div>
-        </div>
-        <div class="container">
+{{--        <div class="jumbotron p-5">--}}
+{{--            <div class="container text-center">--}}
+{{--                <img src="images\ProLabLOGO.jpg" class="rounded img-thumbnail img-fluid" width="15%">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+        <div class="container pt-5">
+            @if(!empty(Session::get('success')))
+                {{ Session::forget('success') }}
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-success alert-dismissible" id="alert-register-info" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            Vas zahtev za kreiranje naloga je uspesno poslat.
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-5 offset-3 m-auto">
                     <form action="{{ route('guest.register.post') }}" method="post">
                         @csrf
                         <table class="table text-center w-100">
                             <tr class="text-center">
-                                <td colspan="2" class="font-weight-bold h2">Create account</td>
+                                <td colspan="2" class="font-weight-bold h3">Kreiranje novog naloga</td>
                             </tr>
                             <tr>
                                 <td class="w-50">
@@ -98,7 +114,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    Have already an account? <a href="{{ route('guest.login.get') }}" class="font-weight-bold"><u>Login here</u></a>
+                                    Imate nalog? <a href="{{ route('guest.login.get') }}" class="font-weight-bold"><u>Ulogujte se ovde</u></a>
                                 </td>
                             </tr>
                         </table>

@@ -1,18 +1,32 @@
-.header {
-    background-color: #F2F2F2;
-    border-bottom: 2px solid dimgrey;
-}
-
 .mytable {
     font-size: 12px;
     text-align: left;
 }
 
-#v-pills {
+.pill-request {
     font-size: 12px;
 }
 
-#logo {
-    width: 50px;
+.nav-pills #pill-reg .nav-link:not(.active) {
+    background: none;
+    color: black;
 }
 
+.nav-pills #pill-new .nav-link:not(.active) {
+    background: none;
+    color: black;
+}
+
+.nav-pills #pill-reg .nav-link {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.nav-pills #pill-new .nav-link {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.header {
+    background-image: linear-gradient(to right, #a7a9aa, #8d959b, #75818d, #5f6d7f, #4d5971);
+}

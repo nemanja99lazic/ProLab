@@ -4,6 +4,7 @@
  */
 namespace App\Http\Controllers;
 
+use App\Rules\SubjectNameCheck;
 use App\NewSubjectRequest;
 use App\NewSubjectRequestTeaches;
 use App\User;
@@ -72,7 +73,10 @@ class TeacherController extends Controller {
      */
     public function addSubjectPost(Request $request) {
         $request->validate([
-            'name' => 'required'
+            'name' => ['required', new SubjectNameCheck()]
+        ],
+        [
+            'name.required' => 'Obavezno polje',
         ]);
         $teachers = $request->get('teachers_select');
         $teacher = $request->session()->get('user')['userObject'];

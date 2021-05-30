@@ -15,7 +15,13 @@ class AdminMiddleware
      * @return mixed
      */
     public function handle(Request $request, Closure $next) {
-        if (!$request->session()->has("user") || $request->session()->get("user")['userType'] != "admin") {
+//        if (!$request->session()->has("user") || $request->session()->get("user")['userType'] != "admin") {
+//            return redirect()->back();
+//        }
+//        return $next($request);
+        if (!$request->session()->has("user")) {
+            return redirect()->route('/');
+        } else if ($request->session()->get("user")['userType'] != "admin") {
             return redirect()->back();
         }
         return $next($request);
