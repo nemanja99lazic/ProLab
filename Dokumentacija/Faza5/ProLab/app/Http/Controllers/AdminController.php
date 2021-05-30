@@ -6,13 +6,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use App\Attends;
+use App\FreeAgent;
+use App\HasAppointment;
+use App\LabExercise;
 use App\NewSubjectRequest;
 use App\NewSubjectRequestTeaches;
+use App\Project;
 use App\RegistrationRequest;
 use App\Subject;
 use App\SubjectJoinRequest;
 use App\Teaches;
+use App\Team;
+use App\TeamMember;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\User;
@@ -159,11 +166,48 @@ class AdminController extends Controller {
 
         Attends::where('idSubject', '=', $idSubject)->delete();
         SubjectJoinRequest::where('idSubject', '=', $idSubject)->delete();
+        Teaches::where('idSubject', '=', $idSubject)->delete();
+
+        $projects = Project::where('idSubject', '=', $idSubject)->get();
+
+        foreach ($projects as $project) {
+            $teams = Team::where('idProject', '=', $project->idProject)->get();
+
+            foreach ($teams as $team) {
+                TeamMember::where('idTeam', '=', $team->idTeam)->delete();
+                $team->delete();
+            }
+
+            $project->delete();
+        }
+
+        $labExercises = LabExercise::where('idSubject', '=', $idSubject)->get();
+
+        foreach ($labExercises as $labExercise) {
+            $appointments = Appointment::where('idLabExercise', '=', $labExercise->idLabExercise)->get();
+
+            foreach ($appointments as $appointment) {
+                $hasAppointments = HasAppointment::where('idAppointment', '=', $appointment->idAppointment)->get();
+
+                foreach ($hasAppointments as $hasAppointment) {
+                    FreeAgent::where('idHasAppointment', '=', $hasAppointment->idHasAppointment)->delete();
+                    $hasAppointment->delete();
+                }
+
+                FreeAgent::where('idDesiredAppointment', '=', $appointment->idAppointment)->delete();
+
+                $appointment->delete();
+            }
+
+            $labExercise->delete();
+        }
 
         Subject::where('idSubject', '=', $idSubject)->delete();
 
         return redirect()->to(url('admin/subjects/list'));
     }
+
+
 
     /**
      * Pomocna funkcija koja na osnovu email adrese

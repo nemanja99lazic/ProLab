@@ -39,7 +39,6 @@
                                         <div class="modal-footer">
                                             <form action="{{ route('admin.delete.subject', [$subjects[$i]->idSubject]) }}" method="post">
                                                 @csrf
-                                                {{--                                <input type="hidden" name="email" id="email" value="{{ $req->email }}">--}}
                                                 <button type="submit" class="btn btn-outline-danger">Delete</button>
                                             </form>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -93,10 +93,11 @@ Route::get('/admin/requests/newSubjects',[AdminController::class, 'newSubjectReq
 Route::post('/admin/requests/newSubjects/addSubject', [AdminController::class, 'addSubject'])->name('admin.addSubject');
 Route::post('/admin/requests/newSubjects/delete', [AdminController::class, 'deleteSubjectRequest'])->name('admin.deleteRequest.subject');
 
+
 Route::get('/admin/subjects/list', [AdminController::class, 'subjectList'])->name('admin.subjects.list');
 Route::post('/admin/requests/subjects/{id}/delete', [AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
-
 Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
+
 //Route::post('/admin/addUser',[AdminController::class, 'addUser'])->name('admin.adduser');
 //Route::post('/admin/deleteRequest',[AdminController::class, 'deleteRequest'])->name('admin.deleterequest');
 
