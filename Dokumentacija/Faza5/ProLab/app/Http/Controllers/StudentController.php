@@ -9,6 +9,7 @@ use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\LabExercise;
 use App\Student;
 use App\Subject;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Attends;
@@ -21,8 +22,18 @@ class StudentController extends Controller
         $this->middleware('studentMiddleware');
     }
 
+    /**
+     * Prikaz pocetne stranice studenta
+     * 
+     * @return view
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
     public function index() {
-        return view('index');
+        $myId = Session::get("user")["userObject"]->idUser;
+        $userInfo = User::find($myId);
+        $studentInfo = Student::find($myId);
+        return view('student.index', ['forename' => $userInfo->forename, 'surname' => $userInfo->surname, 'email' => $userInfo->email, 'index' => $studentInfo->index]);
     }
 
     public function logout(Request $request) {

@@ -37,6 +37,10 @@ class TeacherController extends Controller
     /**
      * Prikaz svih zahteva za upis na kurs koji su stigli profesoru
      * 
+     * @param Request $request Request
+     * 
+     * @return view
+     * 
      * - Nemanja Lazic 2018/0004
      */
     public function showRequestsList(Request $request)
@@ -57,6 +61,10 @@ class TeacherController extends Controller
 
     /**
      * Privatanje zahteva - POST
+     * 
+     * @param Request $request Request
+     * 
+     * @return redirect
      * 
      * - Nemanja Lazic 2018/0004
      */
@@ -86,6 +94,10 @@ class TeacherController extends Controller
     /**
      * Prikaz svih definisanih projekata za odredjeni predmet
      * 
+     * @param Request $request Request
+     * 
+     * @return view
+     * 
      * - Nemanja Lazic 2018/0004
      */
     public function showProjects(Request $request)
@@ -104,6 +116,10 @@ class TeacherController extends Controller
     /**
      * Prikaz forme za definisanje projekta
      * 
+     * @param Request $request Request
+     * 
+     * @return view
+     * 
      * - Nemanja Lazic 2018/0004
      */
     public function showProjectForm(Request $request)
@@ -115,6 +131,10 @@ class TeacherController extends Controller
 
     /**
      * Uklanjanje projekta - POST zahtev
+     * 
+     * @param Request $request Request
+     * 
+     * @return response
      * 
      * - Nemanja Lazic 2018/0004
      */
@@ -129,6 +149,10 @@ class TeacherController extends Controller
 
     /**
      * Definisanje projekta - POST zahtev
+     * 
+     * @param Request $request Request
+     * 
+     * @return response
      * 
      * - Nemanja Lazic 2018/0004
      */
