@@ -60,6 +60,12 @@ Route::post('/student/subject/{code}/lab/{idLab}/leave',[StudentController::clas
 Route::get('/student/subject/{code}/lab/{idLab}/swap',[StudentController::class, 'showPossibleSwaps'])->name('student.subject.code.lab.idlab.swap.get');
 Route::post('/student/subject/{code}/lab/{idLab}/swap',[StudentController::class, 'performSwap'])->name('student.subject.code.lab.idlab.swap.post');
 
+//PROJECTS restful
+Route::get("/student/subject/{code}/project", [StudentController::class, "projectIndexPage"])->name("student.project.index");
+Route::get("/student/subject/{code}/team/available", [StudentController::class, "availableTeams"])->name("student.team.availableTeams");
+//TODO prebaciti na post rutu ispod
+Route::post("/student/subject/{code}/team/{teamId}/join", [StudentController::class, "joinTeam"])->name("student.team.join");
+
 //Teacher
 
 Route::get('/teacher',[TeacherController::class, 'index'])->name('teacher.index');
@@ -83,7 +89,6 @@ Route::post('/teacher/subject/{code}/project/removeProject', [TeacherController:
 //Admin
 
 Route::get('/admin',[AdminController::class, 'registerRequests'])->name('admin.index');
-
 Route::get('/admin/requests/register',[AdminController::class, 'registerRequests'])->name('admin.register.requests');
 Route::post('/admin/requests/register/addUser',[AdminController::class, 'addUser'])->name('admin.addUser');
 Route::post('/admin/requests/register/delete',[AdminController::class, 'deleteRegisterRequest'])->name('admin.deleteRequest.register');

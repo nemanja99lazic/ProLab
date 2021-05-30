@@ -9,6 +9,7 @@ use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\LabExercise;
 use App\Student;
 use App\Subject;
+use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Attends;
@@ -21,21 +22,7 @@ class StudentController extends Controller
         $this->middleware('studentMiddleware');
     }
 
-    /**
-     * @note Indeksna strana predmeta iz pogleda studenta
-     * @author zvk17
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function subjectIndex($code, Request $request) {
-        $subject = Subject::where("code", "=", $code)->first();
-        if (is_null($subject)) {
-            return redirect()->to(route('student.index'));
-        }
-        $subjectTitle = $subject->name;
-        $teacherList = [];
 
-        return view("student/subject_index", ["subjectTitle"=> $subjectTitle, "teacherList"=> $teacherList]);
-    }
     public function index(Request $request) {
 
         return view('student/index');
@@ -431,6 +418,60 @@ class StudentController extends Controller
 
         return redirect()->route('student.subject.lab.idlab.join.get', [$request->code,$request->idLab]);
 
+    }
+    /**
+     * @note Indeksna strana predmeta iz pogleda studenta
+     * @author zvk17
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function subjectIndex($code, Request $request) {
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return redirect()->to(route('student.index'));
+        }
+        $subjectTitle = $subject->name;
+
+        $teacherList = [];
+        $otherTeachers = $subject->teachers()->getResults();
+
+        foreach ($otherTeachers as $otherTeacher) {
+            $teacherList[] = $otherTeacher->user()->sole();
+        }
+
+        return view("student/subject_index", ["subjectTitle"=> $subjectTitle, "teacherList"=> $teacherList]);
+    }
+
+    /**
+     * @note Prikaz stranice za upravljanje projektima iz uloge studenta
+     * @param $code
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @author zvk17
+     */
+    public function projectIndexPage($code) {
+        return view("student/project");
+    }
+
+    /**
+     * @note JSON lista dostupnih timova za dati predmet (GET)
+     * @param $code
+     * @author zvk17
+     */
+    public function availableTeams($code) {
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return response("Not found", 400);
+        }
+        $project = $subject->projects()->sole();
+        if (is_null($project) ){
+            return response("Not found", 400);
+        }
+        $teams = $project->teams()->getResults();
+        $teamList = [];
+        foreach($teams as $team) {
+            $teamList[] = $team;
+        }
+
+        return response()->json(['teams' => $teamList], 200);
     }
 
 }

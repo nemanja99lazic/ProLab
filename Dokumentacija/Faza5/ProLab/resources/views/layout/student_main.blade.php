@@ -3,7 +3,8 @@
  *
  * @author zvk17 koristi Valerijanov footer
  */
-
+$user = Session::get('user')["userObject"];
+$userName = $user->forename . " " . $user->surname;
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,12 +39,15 @@
 <body>
 <div class="container-fluid">
     <div class="row header">
-        <div class="col-12 d-flex  justify-content-end p-2">
-            <ul class="nav">
-                <li class="nav-item">
+        <div class="col-12 d-flex  justify-content-end pb-2 pt-0 ">
+            <ul class="nav d-flex align-items-center">
+                <li class="nav-item ml-1 mr-1">
+                    {{$userName}}
+                </li>
+                <li class="nav-item ml-1 mr-1">
                     <a class="nav-link btn btn-dark" href="{{ route(Session::get('user')['userType'].'.index') }}">Početna</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ml-1 mr-1">
                     <a class="nav-link btn btn-dark" href="{{ route(Session::get('user')['userType'].'.logout') }}">Odjavi se</a>
                 </li>
             </ul>
