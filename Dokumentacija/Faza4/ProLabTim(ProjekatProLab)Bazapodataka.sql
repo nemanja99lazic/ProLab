@@ -69,7 +69,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES (1,'Termin 1','Sala 65',2,'ETF','2021-05-24 15:00:00',1),(2,'Termin 2','Sala 56',100,'ETF','2021-05-24 18:00:00',1),(3,'asd','123',123,'123','2021-05-29 16:09:49',1);
+INSERT INTO `appointments` VALUES (1,'Termin 1','Sala 65',1,'ETF','2021-05-29 21:56:00',1),(2,'adada','adadad',1,'asdadas','2021-05-07 14:06:03',1),(3,'asd','123',1,'123','2021-05-29 21:43:00',1);
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +141,7 @@ CREATE TABLE `has_appointment` (
   KEY `FK_hasAppointment_idAppointment_idx` (`idAppointment`),
   CONSTRAINT `FK_hasAppointment_idAppointment` FOREIGN KEY (`idAppointment`) REFERENCES `appointments` (`idAppointment`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_hasAppointment_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,6 +150,7 @@ CREATE TABLE `has_appointment` (
 
 LOCK TABLES `has_appointment` WRITE;
 /*!40000 ALTER TABLE `has_appointment` DISABLE KEYS */;
+INSERT INTO `has_appointment` VALUES (9,2,2),(11,4,3);
 /*!40000 ALTER TABLE `has_appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +179,7 @@ CREATE TABLE `lab_exercises` (
 
 LOCK TABLES `lab_exercises` WRITE;
 /*!40000 ALTER TABLE `lab_exercises` DISABLE KEYS */;
-INSERT INTO `lab_exercises` VALUES (1,'Lab1','opis lab vezbe 1','2021-05-25 20:42:36',2),(2,'Lab2','opis vezbe lab 2','2021-05-22 23:58:17',2);
+INSERT INTO `lab_exercises` VALUES (1,'Lab1','opis lab vezbe 1','2021-05-30 22:00:00',2),(2,'Lab2','opis vezbe lab 2','2021-05-22 23:58:17',2);
 /*!40000 ALTER TABLE `lab_exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,9 +464,12 @@ CREATE TABLE `teams` (
   `name` varchar(45) NOT NULL,
   `locked` tinyint NOT NULL,
   `idProject` int NOT NULL,
+  `idLeader` int NOT NULL,
   PRIMARY KEY (`idTeam`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `gfdgdfg_idx` (`idProject`),
+  KEY `fk_teams_idLeader_idx` (`idLeader`),
+  CONSTRAINT `fk_teams_idLeader` FOREIGN KEY (`idLeader`) REFERENCES `students` (`idStudent`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_teams_idProject` FOREIGN KEY (`idProject`) REFERENCES `projects` (`idProject`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -519,4 +523,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-28 21:58:41
+-- Dump completed on 2021-05-30 14:37:23
