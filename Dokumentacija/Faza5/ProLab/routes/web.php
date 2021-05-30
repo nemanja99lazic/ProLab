@@ -53,7 +53,11 @@ Route::get('/student/subject/{code}/index',[App\Http\Controllers\StudentControll
 Route::get('/student/subject/{code}/lab',[App\Http\Controllers\StudentController::class, 'lab'])->name('student.subject.lab');
 Route::get('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'showAppointments'])->name('student.subject.lab.idlab.join.get');
 Route::post('/student/subject/{code}/lab/{idLab}/join',[App\Http\Controllers\StudentController::class, 'joinAppointment'])->name('student.subject.lab.idlab.join.post');
-
+Route::post('/student/subject/{code}/lab/{idLab}/leave',[App\Http\Controllers\StudentController::class, 'leaveAppointment'])->name('student.subject.lab.idlab.leave');
+Route::get('/student/subject/{code}/lab/{idLab}/swap',[App\Http\Controllers\StudentController::class, 'showPossibleSwaps'])->name('student.subject.code.lab.idlab.swap.get');
+Route::post('/student/subject/{code}/lab/{idLab}/swap',[App\Http\Controllers\StudentController::class, 'performSwap'])->name('student.subject.code.lab.idlab.swap.post');
+Route::get('/student/subject/{code}/lab/{idLab}/request',[App\Http\Controllers\StudentController::class, 'enterRequest'])->name('student.subject.code.lab.idlab.request.get');
+Route::post('/student/subject/{code}/lab/{idLab}/request',[App\Http\Controllers\StudentController::class, 'submitRequest'])->name('student.subject.code.lab.idlab.request.post');
 
 //Teacher
 

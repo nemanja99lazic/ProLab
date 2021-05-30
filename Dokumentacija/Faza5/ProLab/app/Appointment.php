@@ -14,22 +14,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idLabExercise
  * @property LabExercise $labExercise
  * @property FreeAgent[] $freeAgents
- * @property Student[] $students
+ * @property HasAppointment[] $hasAppointments
  */
 class Appointment extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idAppointment';
-
+    protected $dates = ['datetime'];
     /**
      * @var array
      */
     protected $fillable = ['name', 'classroom', 'capacity', 'location', 'datetime', 'idLabExercise'];
-
+    public $timestamps = false;
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -47,10 +47,10 @@ class Appointment extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function students()
+    public function hasAppointments()
     {
-        return $this->belongsToMany('App\Student', 'has_appointment', 'idAppointment', 'idStudent');
+        return $this->hasMany('App\HasAppointment', 'idAppointment', 'idAppointment');
     }
 }

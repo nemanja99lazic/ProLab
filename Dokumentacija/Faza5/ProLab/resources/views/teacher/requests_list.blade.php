@@ -38,6 +38,7 @@
                         <th></th>
                         <th></th>
                     </tr>
+
                     @if(count($requests) > 0)
                         @foreach ($requests as $request)
                             <tr>
@@ -49,14 +50,14 @@
                                     <form action="{{ route('teacher.acceptRequest') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="idRequest" id="idRequest" value="{{$request->idRequest}}">
-                                        <button type="submit" class="btn btn-success" id="btn-prihvati-zahtev">Prihvati</button>
+                                        <button type="submit" class="btn btn-outline-success" id="btn-prihvati-zahtev">Prihvati</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="{{ route('teacher.rejectRequest') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="idRequest" id="idRequest" value="{{$request->idRequest}}">
-                                        <button type="submit" class="btn btn-danger" id="btn-odbij-zahtev">Odbij</button>
+                                        <button type="submit" class="btn btn-outline-danger" id="btn-odbij-zahtev">Odbij</button>
                                     </form>
                                 </td>
                             </tr>

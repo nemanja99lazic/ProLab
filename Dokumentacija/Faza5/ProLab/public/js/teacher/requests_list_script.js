@@ -13,4 +13,5 @@ $(document).ready(function (){
         $(".alert-info").show().delay(3000).fadeOut(400);
     });
 
+
 });

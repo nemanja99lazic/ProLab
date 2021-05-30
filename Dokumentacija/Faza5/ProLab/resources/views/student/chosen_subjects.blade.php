@@ -1,3 +1,4 @@
+<?php //Autor: Valerijan Matvejev 2018/0257 ;  Ispis svih odabranih predmeta?>
 @extends('layout.main')
 @section('content')
 

@@ -17,7 +17,7 @@ class LabExercise extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idLabExercise';
@@ -26,7 +26,7 @@ class LabExercise extends Model
      * @var array
      */
     protected $fillable = ['name', 'description', 'expiration', 'idSubject'];
-
+    protected $dates = ['expiration'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
