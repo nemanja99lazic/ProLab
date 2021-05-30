@@ -51,7 +51,7 @@ Route::post('/student/subject/enroll', [StudentController::class, 'sendJoinReque
 Route::get('/student/test', [StudentController::class, 'test'])->name('student.test');
 
 Route::get('/student/chosen',[StudentController::class, 'chosen'])->name('student.chosen');
-// KOMENTARISI RED ISPOD, OVO SRETEN RADI
+// TODO KOMENTARISI RED ISPOD, OVO SRETEN RADI
 Route::get('/student/subject/{code}/index',[StudentController::class, 'index'])->name('student.subject.index');
 
 Route::get('/student/subject/{code}/lab',[StudentController::class, 'lab'])->name('student.subject.lab');
