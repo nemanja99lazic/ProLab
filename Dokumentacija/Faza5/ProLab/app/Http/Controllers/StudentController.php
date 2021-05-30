@@ -27,8 +27,14 @@ class StudentController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function subjectIndex($code, Request $request) {
-        $subject = Subject::where("code", "=", $code);
-        return view("student/subject_list");
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return redirect()->to(route('student.index'));
+        }
+        $subjectTitle = $subject->name;
+        $teacherList = [];
+
+        return view("student/subject_index", ["subjectTitle"=> $subjectTitle, "teacherList"=> $teacherList]);
     }
     public function index(Request $request) {
 

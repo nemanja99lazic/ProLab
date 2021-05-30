@@ -236,8 +236,8 @@ class TeacherController extends Controller {
      */
     public function subjectIndexPage($code) {
         $subject = Subject::where("code", "=", $code)->first();
-        if ($subject == null) {
-            return redirect()->route('teacher.subject.list');
+        if (is_null($subject)) {
+            return redirect()->route('teacher.index');
         }
         $teacherList = [];
         $teacherList[] = $subject->teacher()->sole()->user()->sole();
