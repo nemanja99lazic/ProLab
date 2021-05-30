@@ -17,7 +17,7 @@
         <div class="col-5 tabs d-flex flex-column justify-content-end p-0">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <input hidden value="{{ request()->idS }}" id="idS">
+                    <input hidden value="{{ request()->subjectCode }}" id="subjectCode">
                     <a class="pill nav-item nav-link btn-outline-dark {{ request()->routeIs('admin.subject.index') ? 'active' : ''}}" id="nav-subjectPage-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true">Stranica predmeta</a>
                     <a class="pill nav-item nav-link btn-outline-dark {{ request()->is('admin/subjects/*/lab/*') ? 'active' : ''}}" id="nav-lab-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" aria-selected="false">Laboratorijske vezbe</a>
                     <a class="pill nav-item nav-link btn-outline-dark {{ request()->is('admin/subjects/*/project/*') ? 'active' : ''}}" id="project-user-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false">Projekat</a>

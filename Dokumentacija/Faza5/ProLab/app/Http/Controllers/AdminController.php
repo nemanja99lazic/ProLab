@@ -111,19 +111,10 @@ class AdminController extends Controller {
         $idRequest = $request->get('idRequest');
         $subjectRequest = NewSubjectRequest::where('idRequest', '=', $idRequest)->first();
 
-        $code = '';
-        foreach (explode(' ', $subjectRequest->subjectName) as $part) {
-            if (is_numeric($part)) {
-                $code .= $part;
-            } else if (strlen($part) > 1) {
-                $code .= $part[0];
-            }
-        }
-
         $subject = new Subject;
-        $subject->name = $subjectRequest->subjectName;
+        $subject->name = explode('_', $subjectRequest->subjectName)[0];
         $subject->idTeacher = $subjectRequest->idTeacher;
-        $subject->code = strtoupper($code);
+        $subject->code = explode('_', $subjectRequest->subjectName)[1];;
         $subject->save();
 
         $teachers = $subjectRequest->teachers;
@@ -163,7 +154,9 @@ class AdminController extends Controller {
      * @return void
      */
     public function deleteSubject(Request $request) {
-        $idSubject = $request->idS;
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode);
+        $idSubject = $subject->idSubject;
 
         Attends::where('idSubject', '=', $idSubject)->delete();
         SubjectJoinRequest::where('idSubject', '=', $idSubject)->delete();
@@ -203,14 +196,15 @@ class AdminController extends Controller {
             $labExercise->delete();
         }
 
-        Subject::where('idSubject', '=', $idSubject)->delete();
+        // Subject::where('idSubject', '=', $idSubject)->delete();
+        $subject->delete();
 
         return redirect()->to(url('admin/subjects/list'));
     }
 
     public function subjectIndex(Request $request) {
-        $idSubject = $request->idS;
-        $subject = Subject::where('idSubject', '=', $idSubject)->first();
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode)->first();
         if ($subject == null) {
             return abort(404);
         } else {
@@ -219,12 +213,13 @@ class AdminController extends Controller {
     }
 
     public function deleteTeacher(Request $request) {
-        $idSubject = $request->idS;
         $idTeacher = $request->idT;
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        $idSubject = $subject->idSubject;
 
         Teaches::where('idTeacher', '=', $idTeacher)->where('idSubject', $idSubject)->delete();
 
-        $subject = Subject::where('idSubject', '=', $idSubject)->first();
         if ($subject->idTeacher == $idTeacher) {
             $teaches = Teaches::where('idSubject', $idSubject)->first();
             if ($teaches != null) {
@@ -236,21 +231,23 @@ class AdminController extends Controller {
             }
         }
 
-        return redirect()->route('admin.subject.index', [$idSubject]);
+        return redirect()->route('admin.subject.index', [$subjectCode]);
     }
 
     public function deleteStudent(Request $request) {
-        $idSubject = $request->idS;
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        $idSubject = $subject->idSubject;
         $idStudent = $request->idSt;
 
         Attends::where('idStudent', '=', $idStudent)->where('idSubject', '=', $idSubject)->delete();
 
-        $subject = Subject::where('idSubject', '=', $idSubject)->first();
+        // $subject = Subject::where('idSubject', '=', $idSubject)->first();
 
         $labs = $subject->labExercises;
 
         if ($labs == null) {
-            return redirect()->route('admin.subject.index', [$idSubject]);
+            return redirect()->route('admin.subject.index', [$subjectCode]);
         }
 
         foreach ($labs as $lab) {
@@ -271,7 +268,7 @@ class AdminController extends Controller {
 
         $projects = $subject->projects;
         if ($projects == null) {
-            return redirect()->route('admin.subject.index', [$idSubject]);
+            return redirect()->route('admin.subject.index', [$subjectCode]);
         }
 
         $project = $projects[0];
@@ -287,7 +284,7 @@ class AdminController extends Controller {
             }
         }
 
-        return redirect()->route('admin.subject.index', [$idSubject]);
+        return redirect()->route('admin.subject.index', [$subjectCode]);
     }
 
     protected function swapStudents($idFreeAppointment) {
@@ -316,14 +313,23 @@ class AdminController extends Controller {
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function labExercisesIndex(Request $request) {
-        $idSubject = $request->idS;
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
+        $idSubject = $subject->idSubject;
+
         $labs = LabExercise::where('idSubject', '=', $idSubject)->get();
         return view('admin/admin_lab_list', ['labs' => $labs]);
     }
 
     public function showLabExercise(Request $request) {
-        $idSubject = $request->idS;
-        $idLab = $request->idL;
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        $idSubject = $subject->idSsubject;
+        // $idLab = $request->idL;
+        $idLab = $request->input('labs_list');
 
         $lab = LabExercise::where('idLabExercise', '=', $idLab)->where('idSubject', '=', $idSubject)->first();
         if ($lab == null) {

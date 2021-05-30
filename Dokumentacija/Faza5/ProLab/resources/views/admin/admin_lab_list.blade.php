@@ -2,7 +2,7 @@
 
 @section('admin_content')
 
-    <form action="{{ route('admin.subject.lab.show', request()->idS, request()->input('labs_list')) }}" method="get">
+    <form action="{{ route('admin.subject.lab.show', request()->subjectCode) }}" method="get">
         <div class="row pt-5 d-flex flex-row justify-content-center">
                 <div class="col-3">
                     <select name="labs_list" class="form-control rounded-pill">

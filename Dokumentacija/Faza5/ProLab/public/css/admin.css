@@ -1,6 +1,7 @@
 .mytable {
-    font-size: 12px;
+    font-size: 15px;
     text-align: left;
+    vertical-align: center;
 }
 
 .pill-request {
@@ -28,5 +29,7 @@
 }
 
 .header {
-    background-image: linear-gradient(to right, #a7a9aa, #8d959b, #75818d, #5f6d7f, #4d5971);
+    background-color: #d7e1ec;
+    /*background-color: #ffffff;*/
+    /*background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);*/
 }

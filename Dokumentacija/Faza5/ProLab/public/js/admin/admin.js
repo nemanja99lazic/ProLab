@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let idStudent = $("#idS").val();
+    let subjectCode = $("#subjectCode").val();
 
     $("#v-pill-registerRequest").click(function () {
         window.location.href = '/admin/requests/register';
@@ -17,11 +17,19 @@ $(document).ready(function () {
         window.location.href = '/admin/requests/register';
     });
 
+    // $("#nav-lab-tab").click(function () {
+    //     window.location.href = '/admin/subjects/' + idStudent + '/lab/list';
+    // });
+    //
+    // $("#nav-subjectPage-tab").click(function () {
+    //     window.location.href = '/admin/subjects/' + idStudent;
+    // });
+
     $("#nav-lab-tab").click(function () {
-        window.location.href = '/admin/subjects/' + idStudent + '/lab/list';
+        window.location.href = '/admin/subjects/' + subjectCode + '/lab/list';
     });
 
     $("#nav-subjectPage-tab").click(function () {
-        window.location.href = '/admin/subjects/' + idStudent;
+        window.location.href = '/admin/subjects/' + subjectCode;
     });
 })

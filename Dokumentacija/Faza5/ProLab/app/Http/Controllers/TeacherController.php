@@ -5,12 +5,12 @@
 namespace App\Http\Controllers;
 
 use App\Rules\SubjectNameCheck;
+use App\Rules\SubjectCodeCheck;
 use App\NewSubjectRequest;
 use App\NewSubjectRequestTeaches;
 use App\User;
 use Illuminate\Http\Request;
 use App\Teacher;
-use MongoDB\Driver\Session;
 use App\SubjectJoinRequest;
 use App\Attends;
 use App\Project;
@@ -73,17 +73,19 @@ class TeacherController extends Controller {
      */
     public function addSubjectPost(Request $request) {
         $request->validate([
-            'name' => ['required', new SubjectNameCheck()]
+            'name' => ['required', new SubjectNameCheck()],
+            'code' => ['required', 'alpha_num', new SubjectCodeCheck()]
         ],
         [
-            'name.required' => 'Obavezno polje',
+            'required' => 'Obavezno polje',
+            'alpha_num' => 'Sifra se mora sastojati samo od slova i cifara'
         ]);
         $teachers = $request->get('teachers_select');
         $teacher = $request->session()->get('user')['userObject'];
 
         $newSubjectRequest = new NewSubjectRequest;
         $newSubjectRequest->idTeacher = $teacher->idUser;
-        $newSubjectRequest->subjectName = $request->get('name');
+        $newSubjectRequest->subjectName = $request->get('name').'_'.$request->get('code');
         $newSubjectRequest->save();
         $requestId = $newSubjectRequest->idRequest;
 

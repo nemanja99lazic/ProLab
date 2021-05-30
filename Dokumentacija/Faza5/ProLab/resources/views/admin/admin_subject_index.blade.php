@@ -8,7 +8,7 @@
             <h4>({{ $subject->code }})</h4>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col">
             <h3>Profesori:</h3>
             <table class="table">
@@ -36,7 +36,7 @@
                                             Da li zaista zelite trajno da obrisete profesora sa datog predmeta?
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('admin.delete.teacher', [$subject->idSubject, $teacher->idTeacher]) }}" method="post">
+                                            <form action="{{ route('admin.delete.teacher', [$subject->code, $teacher->idTeacher]) }}" method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-outline-danger">Delete</button>
                                             </form>
@@ -77,7 +77,7 @@
                                             Da li zaista zelite trajno da obrisete profesora sa datog predmeta?
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('admin.delete.student', [$subject->idSubject, $student->idStudent]) }}" method="post">
+                                            <form action="{{ route('admin.delete.student', [$subject->code, $student->idStudent]) }}" method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-outline-danger">Delete</button>
                                             </form>

@@ -88,14 +88,14 @@ Route::post('/admin/requests/newSubjects/addSubject', [App\Http\Controllers\Admi
 Route::post('/admin/requests/newSubjects/delete', [App\Http\Controllers\AdminController::class, 'deleteSubjectRequest'])->name('admin.deleteRequest.subject');
 
 Route::get('/admin/subjects/list', [App\Http\Controllers\AdminController::class, 'subjectList'])->name('admin.subjects.list');
-Route::get('/admin/subjects/{idS}', [App\Http\Controllers\AdminController::class, 'subjectIndex'])->name('admin.subject.index');
-Route::post('/admin/subjects/{idS}/delete', [App\Http\Controllers\AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
+Route::get('/admin/subjects/{subjectCode}', [App\Http\Controllers\AdminController::class, 'subjectIndex'])->name('admin.subject.index');
+Route::post('/admin/subjects/{subjectCode}/delete', [App\Http\Controllers\AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
 
-Route::post('/admin/subjects/{idS}/deleteTeacher/{idT}', [App\Http\Controllers\AdminController::class, 'deleteTeacher'])->name('admin.delete.teacher');
-Route::post('/admin/subjects/{idS}/deleteStudent/{idSt}', [App\Http\Controllers\AdminController::class, 'deleteTeacher'])->name('admin.delete.student');
+Route::post('/admin/subjects/{subjectCode}/deleteTeacher/{idT}', [App\Http\Controllers\AdminController::class, 'deleteTeacher'])->name('admin.delete.teacher');
+Route::post('/admin/subjects/{subjectCode}/deleteStudent/{idSt}', [App\Http\Controllers\AdminController::class, 'deleteTeacher'])->name('admin.delete.student');
 
-Route::get('/admin/subjects/{idS}/lab/list', [App\Http\Controllers\AdminController::class, 'labExercisesIndex'])->name('admin.subject.lab');
-Route::get('/admin/subjects/{idS}/lab/info', [App\Http\Controllers\AdminController::class, 'showLabExercise'])->name('admin.subject.lab.show');
+Route::get('/admin/subjects/{subjectCode}/lab/list', [App\Http\Controllers\AdminController::class, 'labExercisesIndex'])->name('admin.subject.lab');
+Route::get('/admin/subjects/{subjectCode}/lab', [App\Http\Controllers\AdminController::class, 'showLabExercise'])->name('admin.subject.lab.show');
 
 Route::get('/admin/logout',[App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 //Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');
