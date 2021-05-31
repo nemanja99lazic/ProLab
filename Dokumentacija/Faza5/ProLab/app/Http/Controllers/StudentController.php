@@ -622,12 +622,6 @@ class StudentController extends Controller
         //PREDUSLOV: kao i kod swapa obicnog, mora student da ima svoj termin
         //treba mi i podatak u kom se ja trenutno terminu nalazim
 
-
-
-
-
-
-<<<<<<< HEAD
         //obrises iz HasAppointment mene
         dd("bunike");
         HasAppointment::where('idStudent','=',$myId)->where('idAppointment','=',$myAppointment)->delete();
@@ -641,8 +635,6 @@ class StudentController extends Controller
         $t2->idAppointment=$myAppointment;
         $t2->idStudent=$swapId;
         $t2->save();
-=======
->>>>>>> origin/mojBranch
 
 
 
