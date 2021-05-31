@@ -19,8 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\SubjectJoinRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Validator;
-use function PHPUnit\Framework\isNull;
-use Carbon\Carbon;
+
 
 class StudentController extends Controller
 {
@@ -30,7 +29,6 @@ class StudentController extends Controller
 
 
     public function index(Request $request) {
-
         return view('student/index');
     }
 
@@ -818,11 +816,18 @@ class StudentController extends Controller
             );
     }
     ///student/subject/{code}/team/create
+    /// /**
+    /**
+     * @note kreiranje tima restful POST
+     * @param $code
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createTeam($code, Request $request) {
         $post = $request->post();
-
+        //TODO testirati regex
         $validator = Validator::make($post, [
-            'teamname' => 'required|min:4|max:60|alpha_dash'
+            'teamname' => 'required|min:4|max:60|regex:/^[a-zA-Z0-9\s_\-]+$/'
         ]);
         if ($validator->fails()) {
             return response()->json(["message"=> "bad_input"], 400);
@@ -858,6 +863,13 @@ class StudentController extends Controller
         return response()->json(["message"=> "ok"], 200);
     }
 
+    /**
+     * @note da li je student vec u nekom timu na datom projektu
+     * @param $code
+     * @param $idUser
+     * @return bool
+     * @author zvk17
+     */
     private function alreadyInTeam($code, $idUser):bool {
         $teamsTable = $this->getTeamsTable()
             ->where("team_members.idStudent", "=", $idUser)
