@@ -93,11 +93,17 @@ Route::get('/admin/subjects/list', [App\Http\Controllers\AdminController::class,
 Route::get('/admin/subjects/{subjectCode}', [App\Http\Controllers\AdminController::class, 'subjectIndex'])->name('admin.subject.index');
 Route::post('/admin/subjects/{subjectCode}/delete', [App\Http\Controllers\AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
 
-Route::post('/admin/subjects/{subjectCode}/deleteTeacher/{idT}', [App\Http\Controllers\AdminController::class, 'deleteTeacher'])->name('admin.delete.teacher');
-Route::post('/admin/subjects/{subjectCode}/deleteStudent/{idSt}', [App\Http\Controllers\AdminController::class, 'deleteTeacher'])->name('admin.delete.student');
+Route::post('/admin/subjects/{subjectCode}/deleteTeacher/{idT}', [App\Http\Controllers\AdminController::class, 'deleteTeacherFromSubject'])->name('admin.delete.teacher');
+Route::post('/admin/subjects/{subjectCode}/deleteStudent/{idSt}', [App\Http\Controllers\AdminController::class, 'deleteStudentFromSubject'])->name('admin.delete.student');
 
 Route::get('/admin/subjects/{subjectCode}/lab/list', [App\Http\Controllers\AdminController::class, 'labExercisesIndex'])->name('admin.subject.lab');
-Route::get('/admin/subjects/{subjectCode}/lab', [App\Http\Controllers\AdminController::class, 'showLabExercise'])->name('admin.subject.lab.show');
+Route::get('/admin/subjects/{subjectCode}/lab', [App\Http\Controllers\AdminController::class, 'labExerciseIndex'])->name('admin.subject.lab.show');
+Route::post('/admin/subjects/{subjectCode}/lab/delete', [App\Http\Controllers\AdminController::class, 'labExerciseDelete'])->name('admin.subject.lab.delete');
+Route::post('/admin/subjects/{subjectCode}/lab/appointment/{idApp}/delete', [App\Http\Controllers\AdminController::class, 'deleteAppointment'])->name('admin.subject.lab.app.delete');
+
+Route::get('/admin/subjects/{subjectCode}/project', [App\Http\Controllers\AdminController::class, 'projectIndex'])->name('admin.subject.project.index');
+Route::post('/admin/subjects/{subjectCode}/project/team/{idTeam}/delete', [App\Http\Controllers\AdminController::class, 'deleteTeam'])->name('admin.subject.team.delete');
+Route::post('/admin/subjects/{subjectCode}/project/delete', [App\Http\Controllers\AdminController::class, 'deleteProject'])->name('admin.subject.project.delete');
 
 Route::get('/admin/logout',[App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 //Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');

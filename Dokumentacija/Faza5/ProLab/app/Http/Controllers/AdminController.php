@@ -155,7 +155,7 @@ class AdminController extends Controller {
      */
     public function deleteSubject(Request $request) {
         $subjectCode = $request->subjectCode;
-        $subject = Subject::where('code', '=', $subjectCode);
+        $subject = Subject::where('code', '=', $subjectCode)->first();
         $idSubject = $subject->idSubject;
 
         Attends::where('idSubject', '=', $idSubject)->delete();
@@ -212,7 +212,7 @@ class AdminController extends Controller {
         }
     }
 
-    public function deleteTeacher(Request $request) {
+    public function deleteTeacherFromSubject(Request $request) {
         $idTeacher = $request->idT;
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
@@ -234,7 +234,7 @@ class AdminController extends Controller {
         return redirect()->route('admin.subject.index', [$subjectCode]);
     }
 
-    public function deleteStudent(Request $request) {
+    public function deleteStudentFromSubject(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
         $idSubject = $subject->idSubject;
@@ -276,10 +276,13 @@ class AdminController extends Controller {
         foreach ($teams as $team) {
             $teamMember = TeamMember::where('idStudent', '=', $idStudent)->where('idTeam', '=', $team->idTeam)->first();
             if ($teamMember != null) {
-                $teamMember->delete();
                 // provera za datum, ako je ok onda idi dalje
-                // ako je ovaj student bio tim lider - proglasi drugog studenta za lidera
-                // ako je ovaj student jedini u timu - izbrisi tim
+                if ($team->idLeader == $idStudent || count($team->students) == 1) {
+                    TeamMember::where('idTeam', '=', $team->idTeam)->delete();
+                    $team->delete();
+                } else {
+                    $teamMember->delete();
+                }
                 break;
             }
         }
@@ -305,6 +308,26 @@ class AdminController extends Controller {
         $this->swapStudents($newFreeAppointment);
     }
 
+    public function projectIndex(Request $request) {
+        $subjectCode = $request->subjectCode;
+        $project = Subject::where('code', '=', $subjectCode)->first()->projects;
+        if ($project != null) {
+            return view('admin/admin_project_index', ['project' => $project[0]]);
+        }
+        return view('admin/admin_project_index', ['project' => $project, 'teams' => $project->teams]);
+    }
+
+    public function deleteTeam(Request $request) {
+        $idTeam = $request->idTeam;
+        TeamMember::where('idTeam', '=', $idTeam)->delete();
+        Team::where('idTeam', '=', $idTeam)->delete();
+        return redirect()->route('admin.subject.project.index', $request->subjectCode);
+    }
+
+    public  function deleteProject(Request $request) {
+        $subjectCode = $request->subjectCode;
+    }
+
     /**
      * Funkcija koja prikazuje pocetnu stranicu za prikaz laboratorijskih vezbi.
      *
@@ -324,19 +347,69 @@ class AdminController extends Controller {
         return view('admin/admin_lab_list', ['labs' => $labs]);
     }
 
-    public function showLabExercise(Request $request) {
+    public function labExerciseIndex(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
-        $idSubject = $subject->idSsubject;
+        $idSubject = $subject->idSubject;
         // $idLab = $request->idL;
         $idLab = $request->input('labs_list');
-
         $lab = LabExercise::where('idLabExercise', '=', $idLab)->where('idSubject', '=', $idSubject)->first();
         if ($lab == null) {
             return abort(404);
         }
 
-        return view('admin/admin_lab_list', ['lab' => $lab]);
+        $labs = LabExercise::where('idSubject', '=', $idSubject)->get();
+        return view('admin/admin_lab_list', ['idLab' => $idLab,'labs' => $labs, 'lab' => $lab]);
+    }
+
+    public function deleteAppointment(Request $request) {
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        $idSubject = $subject->idSubject;
+        $idLab = $request->input('labs_list');
+
+        $idAppointment = $request->idApp;
+
+        $this->deleteAppointmentHelper($request, $idAppointment);
+
+        $lab = LabExercise::where('idLabExercise', '=', $idLab)->where('idSubject', '=', $idSubject)->first();
+        $labs = LabExercise::where('idSubject', '=', $idSubject)->get();
+        return view('admin/admin_lab_list', ['idLab' => $idLab,'labs' => $labs, 'lab' => $lab]);
+    }
+
+    public function labExerciseDelete(Request $request) {
+        $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        $idSubject = $subject->idSubject;
+
+        $idLab = $request->input('labs_list');
+
+        $lab = LabExercise::where('idLabExercise', '=', $idLab)->first();
+        $apps = $lab->appointments;
+
+        foreach ($apps as $app) {
+            $this->deleteAppointmentHelper($request, $app->idAppointment);
+        }
+
+        $lab->delete();
+
+        $labs = LabExercise::where('idSubject', '=', $idSubject)->get();
+        return view('admin/admin_lab_list', ['labs' => $labs]);
+    }
+
+    protected function deleteAppointmentHelper(Request $request, $idAppointment) {
+        $app = Appointment::where('idAppointment', '=', $idAppointment)->first();
+        if ($app == null) {
+            return;
+        }
+        $hasApps = $app->hasAppointments;
+
+        foreach ($hasApps as $hasApp) {
+            FreeAgent::where('idHasAppointment', '=', $hasApp->idHasAppointment)->delete();
+            $hasApp->delete();
+        }
+        FreeAgent::where('idDesiredAppointment', '=', $idAppointment)->delete();
+        return $app->delete();
     }
 
     /**
@@ -353,4 +426,3 @@ class AdminController extends Controller {
         return $year."/".$number;
     }
 }
-

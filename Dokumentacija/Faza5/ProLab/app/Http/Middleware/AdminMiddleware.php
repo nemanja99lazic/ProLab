@@ -20,7 +20,7 @@ class AdminMiddleware
 //        }
 //        return $next($request);
         if (!$request->session()->has("user")) {
-            return redirect()->route('/');
+            return redirect()->route('guest.login.get');
         } else if ($request->session()->get("user")['userType'] != "admin") {
             return redirect()->back();
         }
