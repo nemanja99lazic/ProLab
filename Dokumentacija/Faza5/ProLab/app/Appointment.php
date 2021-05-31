@@ -20,16 +20,16 @@ class Appointment extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idAppointment';
-
+    protected $dates = ['datetime'];
     /**
      * @var array
      */
     protected $fillable = ['name', 'classroom', 'capacity', 'location', 'datetime', 'idLabExercise'];
-
+    public $timestamps = false;
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

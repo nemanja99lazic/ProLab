@@ -59,6 +59,10 @@ Route::post('/student/subject/{code}/lab/{idLab}/join',[StudentController::class
 Route::post('/student/subject/{code}/lab/{idLab}/leave',[StudentController::class, 'leaveAppointment'])->name('student.subject.lab.idlab.leave');
 Route::get('/student/subject/{code}/lab/{idLab}/swap',[StudentController::class, 'showPossibleSwaps'])->name('student.subject.code.lab.idlab.swap.get');
 Route::post('/student/subject/{code}/lab/{idLab}/swap',[StudentController::class, 'performSwap'])->name('student.subject.code.lab.idlab.swap.post');
+Route::get('/student/subject/{code}/lab/{idLab}/request',[StudentController::class, 'enterRequest'])->name('student.subject.code.lab.idlab.request.get');
+Route::post('/student/subject/{code}/lab/{idLab}/request',[StudentController::class, 'submitRequest'])->name('student.subject.code.lab.idlab.request.post');
+
+
 
 //PROJECTS restful
 Route::get("/student/subject/{code}/project", [StudentController::class, "projectIndexPage"])->name("student.project.index");
@@ -70,10 +74,13 @@ Route::post("/student/subject/{code}/team/create", [StudentController::class, "c
 //Teacher
 
 Route::get('/teacher',[TeacherController::class, 'index'])->name('teacher.index');
-
 Route::get('/teacher/logout',[TeacherController::class, 'logout'])->name('teacher.logout');
 Route::get('/teacher/subject/list',[TeacherController::class, 'getSubjects'])->name('teacher.subject.list');
 Route::get('/teacher/subject/{idSubject}/index',[TeacherController::class, 'subjectIndexPage'])->name('teacher.subject.index');
+
+
+
+
 
 Route::get('/teacher/addSubject',[TeacherController::class, 'addSubjectGet'])->name('teacher.addsubject.get');
 Route::post('/teacher/addSubject',[TeacherController::class, 'addSubjectPost'])->name('teacher.addsubject.post');

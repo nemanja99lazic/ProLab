@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property boolean $locked
  * @property int $idProject
+ * @property int $idLeader
+ * @property Student $student
  * @property Project $project
  * @property Student[] $students
  */
@@ -24,7 +26,15 @@ class Team extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'locked', 'idProject'];
+    protected $fillable = ['name', 'locked', 'idProject', 'idLeader'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function student()
+    {
+        return $this->belongsTo('App\Student', 'idLeader', 'idStudent');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

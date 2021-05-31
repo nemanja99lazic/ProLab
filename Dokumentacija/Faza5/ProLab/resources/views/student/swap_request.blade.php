@@ -1,17 +1,20 @@
-<?php //Autor: Valerijan Matvejev 2018/0257; Prikaz mogućih studenata za zamenu ?>
+<?php //Autor: Valerijan Matvejev 2018/0257; Prikaz za unos zahteva za zamenu ?>
 @extends('layout.main')
 @section('content')
 
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+
+
     <div class="row justify-content-center">
         <h2 class="font-weight-bold  text-center border-bottom-12 offset-0 p-5 m-1"  >
-            Izaberite sa kime biste želeli da zamenite termin:
+            Odaberite željeni (željene) termine:
         </h2>
 
     </div>
-
-    <form action="{{ route('student.subject.code.lab.idlab.swap.post',[$code,$lab]) }}" method="post">
-        @csrf
-    <div class="row justify-content-center">
+    <form action="{{ route('student.subject.code.lab.idlab.request.post',[$code,$lab]) }}" method="post">
+    @csrf
+        <div class="row justify-content-center">
 
             <div class="col-6">
 
@@ -26,13 +29,6 @@
                             </h2>
                         </th>
                         <th  class="text-center" style="width: auto" >
-                            <h2 >
-                                <small class="font-weight-bold  text-center">
-                                   Ime, prezime i broj indeksa
-                                </small>
-                            </h2>
-                        </th>
-                        <th  class="text-center" >
                             <h2 >
                                 <small class="font-weight-bold  text-center">
                                     Datum
@@ -56,6 +52,7 @@
 
 
 
+
                     </tr>
                     </thead>
 
@@ -63,34 +60,31 @@
 
                     <tbody>
 
-                    @foreach($datas as $data)
+                    @foreach($appointments as $appointment)
 
                         <tr class="text-center">
                             <td >
                                 <div class="form-check">
-
-                                         <input class=" form-check-input" style="width: 20px; height: 20px" type="radio"
-                                           name="odabrani" id="odabrani"
+                                    <input class="form-check-input" type="checkbox" id="zahtevi" name="zahtevi[]"
                                            value="{{$myAppointment.",".Session::get('user')['userObject']->idUser
-                                                .",".explode(',',$data)[4].",".explode(',',$data)[5]}}">
+                                                .",".explode(',',$appointment)[3]}}"
+                                           >
 
                                 </div>
                             </td>
 
                             <td class="text-center">
-                                {{explode(',',$data)[0]}}
+                                {{explode(',',$appointment)[0]}}
                             </td>
                             <td class="text-center">
 
-                                {{explode(',',$data)[1]}}
+                                {{explode(',',$appointment)[1]}}
 
                             </td>
                             <td class="text-center">
-                                {{explode(',',$data)[2]}}
+                                {{explode(',',$appointment)[2]}}
                             </td>
-                            <td class="text-center">
-                                {{explode(',',$data)[3]}}
-                            </td>
+
 
 
 
@@ -110,20 +104,17 @@
 
 
 
-    </div>
-        <div class="row justify-content-center pt-4">
-            {{$datas->links()}}
         </div>
-    <div class="row justify-content-center p-5">
+
+
+        <div class="row justify-content-center pt-4">
+            {{$appointments->links()}}
+        </div>
+        <div class="row justify-content-center p-5">
             <button
-                type="submit" class="btn-lg btn-outline-info  "
+                type="submit" class="btn-lg btn-outline-info  " id="btn-kreiranje-zahteva"
             >Potvrdi
             </button>
-    </div>
+        </div>
     </form>
-
-
-
-
-
 @endsection
