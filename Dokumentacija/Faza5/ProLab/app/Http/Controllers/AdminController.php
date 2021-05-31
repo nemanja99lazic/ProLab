@@ -311,21 +311,27 @@ class AdminController extends Controller {
     public function projectIndex(Request $request) {
         $subjectCode = $request->subjectCode;
         $project = Subject::where('code', '=', $subjectCode)->first()->projects;
-        if ($project != null) {
-            return view('admin/admin_project_index', ['project' => $project[0]]);
+        if (count($project) == 0) {
+            return view('admin/admin_project_index');
         }
-        return view('admin/admin_project_index', ['project' => $project, 'teams' => $project->teams]);
+        return view('admin/admin_project_index', ['project' => $project[0], 'teams' => $project[0]->teams]);
     }
 
     public function deleteTeam(Request $request) {
         $idTeam = $request->idTeam;
-        TeamMember::where('idTeam', '=', $idTeam)->delete();
-        Team::where('idTeam', '=', $idTeam)->delete();
+        $this->deleteTeamHelper($request, $idTeam);
         return redirect()->route('admin.subject.project.index', $request->subjectCode);
     }
 
     public  function deleteProject(Request $request) {
         $subjectCode = $request->subjectCode;
+        $subject = Subject::where('code', $subjectCode)->first();
+        $project = $subject->projects;
+        $teams = $project[0]->teams;
+        foreach ($teams as $team) {
+            $this->deleteTeamHelper($request, $team->idTeam);
+        }
+        return redirect()->route('admin.subject.project.index', $request->subjectCode);
     }
 
     /**
@@ -397,6 +403,11 @@ class AdminController extends Controller {
         return view('admin/admin_lab_list', ['labs' => $labs]);
     }
 
+    protected function deleteTeamHelper(Request $request, $idTeam) {
+        TeamMember::where('idTeam', '=', $idTeam)->delete();
+        Team::where('idTeam', '=', $idTeam)->delete();
+    }
+
     protected function deleteAppointmentHelper(Request $request, $idAppointment) {
         $app = Appointment::where('idAppointment', '=', $idAppointment)->first();
         if ($app == null) {
@@ -410,6 +421,51 @@ class AdminController extends Controller {
         }
         FreeAgent::where('idDesiredAppointment', '=', $idAppointment)->delete();
         return $app->delete();
+    }
+
+    public function searchUsers() {
+        return view('admin/admin_users_search');
+    }
+
+    public function searchUsersResults(Request $request) {
+        $searchInput = $request->get('search-input');
+        $userType = $request->input('search');
+
+        $users = [];
+
+        $usersResult = User::where('forename', 'LIKE', '%'.$searchInput.'%')
+            ->orWhere('surname', 'LIKE', '%'.$searchInput.'%')
+            ->orWhere('username', 'LIKE', '%'.$searchInput.'%')->get();
+
+        foreach ($usersResult as $user) {
+            if ($userType == 'teacher' && !is_null($user->teacher)) {
+                $users[] = $user->teacher;
+            } else if ($userType == 'student' && !is_null($user->student)) {
+                $users[] = $user->student;
+            } else if($userType == 'admin' && !is_null($user->admin) && $request->session()->get('user')['userObject']->idUser != $user->idUser) {
+                $users[] = $user->admin;
+            }
+        }
+
+        if ($userType == 'teacher') {
+            return view('admin/admin_users_search',
+                ['teachers' => $users]);
+        } else if ($userType == 'student') {
+            return view('admin/admin_users_search',
+                ['students' => $users]);
+        } else {
+            return view('admin/admin_users_search',
+                ['admins' => $users]);
+        }
+    }
+
+    public function deleteStudentFromSystem(Request $request) {
+        $idStudent = $request->idS;
+
+        Student::where('idStudent', '=', $idStudent)->delete();
+        User::where('idUser', '=', $idStudent)->delete();
+
+        return response()->json(array('message' => 'ok'));
     }
 
     /**
@@ -426,3 +482,4 @@ class AdminController extends Controller {
         return $year."/".$number;
     }
 }
+

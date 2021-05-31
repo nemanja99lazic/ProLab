@@ -22,7 +22,7 @@
                 </select>
             </div>
             <div class="col-1">
-                <button type="submit" class="btn btn-dark rounded-pill" formaction="{{ route('admin.subject.lab.show', request()->subjectCode) }}" formmethod="get">Prikazi</button>
+                <button disabled={{ count($labs) == 0 ? "true" : "false" }} type="submit" class="btn btn-dark rounded-pill" formaction="{{ route('admin.subject.lab.show', request()->subjectCode) }}" formmethod="get">Prikazi</button>
             </div>
             @isset($lab)
                 <div class="col-4 offset-1 h4">
@@ -43,7 +43,7 @@
                                     Da li zaista zelite trajno da obrisete laboratorijsku vezbu?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-dark rounded-pill" formmethod="post" formaction="{{ route('admin.subject.lab.delete', [request()->subjectCode]) }}">Ukloni</button>
+                                    <button type="submit" class="btn btn-danger" formmethod="post" formaction="{{ route('admin.subject.lab.delete', [request()->subjectCode]) }}">Ukloni</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                                     Da li zaista zelite trajno da uklonite termin?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-dark rounded-pill" formmethod="post" formaction="{{ route('admin.subject.lab.app.delete', [request()->subjectCode, $lab->appointments[$i]->idAppointment]) }}">Ukloni termin</button>
+                                                    <button type="submit" class="btn btn-danger" formmethod="post" formaction="{{ route('admin.subject.lab.app.delete', [request()->subjectCode, $lab->appointments[$i]->idAppointment]) }}">Ukloni termin</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                 </div>
                                             </div>
@@ -112,7 +112,7 @@
                                                         Da li zaista zelite trajno da uklonite termin?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-dark rounded-pill" formmethod="post" formaction="{{ route('admin.subject.lab.app.delete', [request()->subjectCode, $lab->appointments[$i + 1]->idAppointment]) }}">Ukloni termin</button>
+                                                        <button type="submit" class="btn btn-danger" formmethod="post" formaction="{{ route('admin.subject.lab.app.delete', [request()->subjectCode, $lab->appointments[$i + 1]->idAppointment]) }}">Ukloni termin</button>
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
