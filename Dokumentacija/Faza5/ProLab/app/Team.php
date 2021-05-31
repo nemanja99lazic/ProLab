@@ -20,7 +20,7 @@ class Team extends Model
      * @var string
      */
     protected $primaryKey = 'idTeam';
-
+    public $timestamps = false;
     /**
      * @var array
      */

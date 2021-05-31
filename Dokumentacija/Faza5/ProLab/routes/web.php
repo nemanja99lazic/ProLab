@@ -66,6 +66,7 @@ Route::get("/student/subject/{code}/team/available", [StudentController::class, 
 //TODO prebaciti na post rutu ispod
 Route::get("/student/subject/{code}/team/{teamId}/join", [StudentController::class, "joinTeam"])->name("student.team.join");
 Route::get("/student/subject/{code}/team/{teamId}/exit", [StudentController::class, "exitTeam"])->name("student.team.exit");
+Route::post("/student/subject/{code}/team/create", [StudentController::class, "createTeam"])->name("student.team.create");
 //Teacher
 
 Route::get('/teacher',[TeacherController::class, 'index'])->name('teacher.index');

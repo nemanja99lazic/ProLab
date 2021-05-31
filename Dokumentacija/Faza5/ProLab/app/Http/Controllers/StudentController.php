@@ -5,19 +5,21 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use App\FreeAgent;
 use App\HasAppointment;
-use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\LabExercise;
 use App\Student;
 use App\Subject;
 use App\Project;
 use App\Team;
 use App\TeamMember;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Attends;
 use Illuminate\Support\Facades\DB;
 use App\SubjectJoinRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Validator;
+use function PHPUnit\Framework\isNull;
 
 class StudentController extends Controller
 {
@@ -462,12 +464,16 @@ class StudentController extends Controller
     public function availableTeams($code) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response("Not found", 400);
+            return response()->json(["message"=> "subject not exist"], 400);
         }
         $project = $subject->projects()->sole();
-        if (is_null($project) ){
-            return response("Not found", 400);
+        if (is_null($project)) {
+            return response()->json(["message"=> "project not exist"], 400);
         }
+        if ($project->hasExpired()) {
+            return response()->json(["message"=> "project expired"], 400);
+        }
+
         $teams = $project->teams()->getResults();
         $teamList = [];
         foreach($teams as $team) {
@@ -484,12 +490,24 @@ class StudentController extends Controller
      * @author zvk17
      */
     public function joinTeam($code, $teamId) {
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return response()->json(["message"=> "subject not exist"], 400);
+        }
+        $project = $subject->projects()->sole();
+        if (is_null($project)) {
+            return response()->json(["message"=> "project not exist"], 400);
+        }
+        if ($project->hasExpired()) {
+            return response()->json(["message"=> "project expired"], 400);
+        }
+
         $user = request()->session()->get("user")["userObject"];
         $team = Team::find($teamId);
         if (is_null($team)) {
             return response()->json(["message"=>"team doesnt exist"], 409);
         }
-        $project = $team->project()->sole();
+
 
         $mmn = (int)$project->maxMemberNumber;
         $tmc = $team->members()->count();
@@ -497,11 +515,8 @@ class StudentController extends Controller
             return response()->json(["message"=>"max member count exceeded"], 409);
         }
 
-        $teamsTable = $this->getTeamsTable()
-            ->where("team_members.idStudent", "=", $user->idUser)
-            ->where("subjects.code", "=", $code);
-        $results = $teamsTable->get();
-        if ($results->count() > 0) {
+
+        if ($this->alreadyInTeam($code, $user->idUser)) {
             return response()->json(["message"=>"already in team"], 409);
         }
 
@@ -518,10 +533,22 @@ class StudentController extends Controller
      * @param $teamId
      * @return \Illuminate\Http\JsonResponse|void
      */
-    public function exitTeam($subjectId, $teamId) {
+    public function exitTeam($code, $teamId) {
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return response()->json(["message"=> "subject not exist"], 400);
+        }
+        $project = $subject->projects()->sole();
+        if (is_null($project)) {
+            return response()->json(["message"=> "project not exist"], 400);
+        }
+        if ($project->hasExpired()) {
+            return response()->json(["message"=> "project expired"], 400);
+        }
 
         $user = request()->session()->get("user")["userObject"];
         $team = Team::find($teamId);
+
         if (is_null($team)) {
             return response()->json(["message"=> "team doesnt exist"], 409);
         }
@@ -533,6 +560,7 @@ class StudentController extends Controller
         $mmn = (int)$team->project()->sole()->minMemberNumber;
         $members = $team->members();
         //TODO da li da brišemo kad je minMember veci od broja clanova
+        // treba dogovoriti na sastanku
         if ($members->count() <= $mmn) {
             return response()->json(["message"=>"cannot exit"], 409);
         }
@@ -545,8 +573,9 @@ class StudentController extends Controller
         return response()->json(["message"=>"not deleted"], 400);
     }
 
-    /**@note vraća tabelu sa timovima spojenu sa predmetima i članovima timova
-     *
+    /**
+     * @note vraća query nekoliko spojenih tabela na koje mogu da se primene filteri
+     * @return \Illuminate\Database\Query\Builder
      */
     private function getTeamsTable() {
         return DB::table('subjects')
@@ -559,5 +588,55 @@ class StudentController extends Controller
                 'teams.name as teamName'
             );
     }
+    ///student/subject/{code}/team/create
+    public function createTeam($code, Request $request) {
+        $post = $request->post();
+
+        $validator = Validator::make($post, [
+            'teamname' => 'required|min:4|max:60|alpha_dash'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(["message"=> "bad_input"], 400);
+        }
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return response()->json(["message"=> "subject not exist"], 400);
+        }
+        $project = $subject->projects()->sole();
+        if (is_null($project)) {
+            return response()->json(["message"=> "project not exist"], 400);
+        }
+        if ($project->hasExpired()) {
+            return response()->json(["message"=> "project expired"], 400);
+        }
+        $user = request()->session()->get("user")["userObject"];
+        if ($this->alreadyInTeam($code, $user->idUser)) {
+            return response()->json(["message"=>"already in team"], 409);
+        }
+
+        $user = request()->session()->get("user")["userObject"];
+        $newTeam = new Team();
+        $newTeam->name = $post["teamname"];
+        $newTeam->idProject = $project->idProject;
+        $newTeam->idLeader = $user->idUser;
+        $newTeam->locked = false;
+        $newTeam->save();
+        $teamMember = new TeamMember();
+        $teamMember->idStudent = $user->idUser;
+        $teamMember->idTeam = $newTeam->idTeam;
+        $teamMember->save();
+
+        return response()->json(["message"=> "ok"], 200);
+    }
+
+    private function alreadyInTeam($code, $idUser):bool {
+        $teamsTable = $this->getTeamsTable()
+            ->where("team_members.idStudent", "=", $idUser)
+            ->where("subjects.code", "=", $code);
+        $results = $teamsTable->get();
+        return $results->count() > 0;
+    }
+
+
 
 }
