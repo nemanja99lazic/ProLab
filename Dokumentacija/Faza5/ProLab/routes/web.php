@@ -78,6 +78,9 @@ Route::get('/teacher/subject/{code}/project/define', [App\Http\Controllers\Teach
 Route::post('/teacher/subject/{code}/project/define', [App\Http\Controllers\TeacherController::class, 'defineProject'])->name('teacher.defineProject');
 Route::post('/teacher/subject/{code}/project/removeProject', [App\Http\Controllers\TeacherController::class, 'removeProject'])->name('teacher.removeProject');
 
+Route::get('/teacher/subject/{code}/lab', [App\Http\Controllers\TeacherController::class, 'showLabs'])->name('teacher.showLabs');
+Route::get('/teacher/subject/{code}/lab/{idLab}', [App\Http\Controllers\TeacherController::class, 'showLabAppointments'])->name('teacher.showLabAppointments');
+
 //Admin
 
 Route::get('/admin',[App\Http\Controllers\AdminController::class, 'registerRequests'])->name('admin.index');

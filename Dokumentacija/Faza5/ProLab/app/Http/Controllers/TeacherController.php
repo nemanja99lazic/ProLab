@@ -15,6 +15,8 @@ use App\SubjectJoinRequest;
 use App\Attends;
 use App\Project;
 use App\Subject;
+use App\LabExercise;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * TeacherController - klasa koja implemenitra logiku funckionalnosti za tip korisnika profesor.
@@ -282,5 +284,50 @@ class TeacherController extends Controller
         $message = "Projekat uspešno definisan";
 
         return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_OK);
+    }
+
+    /**
+     * Prikaz svih labova za dati predmet
+     * 
+     * @param Request $request Request
+     * 
+     * @return view
+     * 
+     * - Valerijan Matvejev 2018/0257,
+     *  prilagodio Nemanja Lazic 2018/0004
+     */
+    public function showLabs(Request $request){
+        
+        $code=$request->code;
+        $subject=Subject::where('code','=',$code)->first();
+
+        $arrayLabExcercises = array();
+        $labExercises=LabExercise::where('idSubject','=',$subject->idSubject)->get();
+        foreach($labExercises as $labExercise){
+            $arrayLabExcercises[]=$labExercise;
+        }
+
+        $maxItemsPerPage=10;
+        $paginatorLabExercises = new LengthAwarePaginator
+        (array_slice($arrayLabExcercises, (LengthAwarePaginator::resolveCurrentPage() - 1) * $maxItemsPerPage, $maxItemsPerPage)
+            ,count($arrayLabExcercises), $maxItemsPerPage, null, []);
+
+        $paginatorLabExercises->withPath("/student/subject/".$code."/lab");
+
+        return view('teacher.show_labs',['labExercises'=>$paginatorLabExercises, 'code'=>$code]);
+    }
+
+    /**
+     * Prikaz informacija o labu sa svim terminima za dati lab
+     * 
+     * @param Request $request Request
+     * 
+     * @return view
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
+    public function showLabAppointments(Request $request)
+    {
+        echo "Hello world";
     }
 }
