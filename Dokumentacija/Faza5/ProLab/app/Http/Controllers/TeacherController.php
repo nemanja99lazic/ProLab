@@ -12,6 +12,12 @@ use App\Subject;
 
 class TeacherController extends Controller
 {
+
+    // Potrebno u odgovorima za ajax zahteve
+    public const HTTP_STATUS_OK = 200;
+    public const HTTP_STATUS_NOT_FOUND = 404;
+    public const HTTP_STATUS_ERROR_ALREADY_EXISTS = 409;
+
     public function __construct()
     {
         $this->middleware('teacherMiddleware');
@@ -141,10 +147,17 @@ class TeacherController extends Controller
     public function removeProject(Request $request)
     {
         $idProject = $request->get('idProject');
-        Project::destroy($idProject);
-        $message = "Uspesno uklonjen projekat";
-
-        return response()->json(array('message' => $message, 'idProject' => $idProject), 200);
+        $success = Project::destroy($idProject);
+        
+        if($success != 0){
+            $message = "Uspesno uklonjen projekat";
+            return response()->json(array('message' => $message, 'idProject' => $idProject), TeacherController::HTTP_STATUS_OK);
+        }
+        else
+        {
+            $message = "Brisanje nije uspelo.";
+            return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_ERROR_NOT_FOUND);
+        }
     }
 
     /**
@@ -165,6 +178,12 @@ class TeacherController extends Controller
         $subjectCode = $request->get('code');
         $idSubject = Subject::where('code', '=', $subjectCode)->first()->idSubject;
 
+        if(Project::where('idSubject', '=', $idSubject)->exists())
+        {
+            $message = "Jedan projekat za predmet već postoji.";
+            return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_ERROR_ALREADY_EXISTS);            
+        }
+
         $newProject = new Project;
         $newProject->name = $name;
         $newProject->minMemberNumber = $minMemberNumber;
@@ -175,6 +194,6 @@ class TeacherController extends Controller
 
         $message = "Projekat uspešno definisan";
 
-        return response()->json(array('message' => $message), 200);
+        return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_OK);
     }
 }

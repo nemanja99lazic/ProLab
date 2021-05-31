@@ -80,7 +80,13 @@ $(document).ready(function(){
                 $("#alert").addClass('alert alert-success alert-dismissible');
                 $("#alert-tekst").text(poruka);
                 $(".alert").show().delay(3000).fadeOut(300);
-            });
+            }).fail(function(responseObject, textStatus, error) {   // 
+                let poruka = 'GREŠKA! ' + responseObject.responseJSON['message'];
+                $("#alert").removeClass(); // Izbrisace sve klase
+                $("#alert").addClass('alert alert-danger alert-dismissible');
+                $("#alert-tekst").text(poruka);
+                $(".alert").show().delay(3000).fadeOut(300);
+          });
         }
         else
         {
