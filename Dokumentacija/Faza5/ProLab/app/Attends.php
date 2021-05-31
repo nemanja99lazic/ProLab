@@ -37,10 +37,10 @@ class Attends extends Model
 
     public static function studentAttendsSubjectTest($idStudentCheck, $idSubjectCheck)
     {
-        $queryResult = Attends::where('idStudent', '=', $idStudentCheck)->where('idSubject', "=", $idSubjectCheck)->get(); 
+        $queryResult = Attends::where('idStudent', '=', $idStudentCheck)->where('idSubject', "=", $idSubjectCheck)->get();
         if(!($queryResult->isEmpty()))
             return true;
         return false;
-        
+
     }
 }

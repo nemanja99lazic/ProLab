@@ -21,6 +21,7 @@ class FreeAgent extends Model
      */
     public function appointment()
     {
+        date();
         return $this->belongsTo('App\Appointment', 'idDesiredAppointment', 'idAppointment');
     }
 }

@@ -20,7 +20,7 @@ class Project extends Model
     
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idProject';
@@ -28,7 +28,9 @@ class Project extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'minMemberNumber', 'maxMemberNumber', 'expirationDate', 'idSubject'];
+    protected $fillable = ['idProject', 'name', 'minMemberNumber', 'maxMemberNumber', 'expirationDate', 'idSubject'];
+
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
