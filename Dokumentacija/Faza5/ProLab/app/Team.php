@@ -16,7 +16,7 @@ class Team extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idTeam';
@@ -37,7 +37,7 @@ class Team extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function students()
+    public function members()
     {
         return $this->belongsToMany('App\Student', 'team_members', 'idTeam', 'idStudent');
     }

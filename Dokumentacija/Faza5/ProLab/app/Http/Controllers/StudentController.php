@@ -10,9 +10,12 @@ use App\LabExercise;
 use App\Student;
 use App\Subject;
 use App\Project;
+use App\Team;
+use App\TeamMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Attends;
+use Illuminate\Support\Facades\DB;
 use App\SubjectJoinRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -472,6 +475,89 @@ class StudentController extends Controller
         }
 
         return response()->json(['teams' => $teamList], 200);
+    }
+
+    /***
+     * @note dodaje studenta u tim
+     * @param String $code sifra predmeta
+     * @param int $teamId id tima
+     * @author zvk17
+     */
+    public function joinTeam($code, $teamId) {
+        $user = request()->session()->get("user")["userObject"];
+        $team = Team::find($teamId);
+        if (is_null($team)) {
+            return response()->json(["message"=>"team doesnt exist"], 409);
+        }
+        $project = $team->project()->sole();
+
+        $mmn = (int)$project->maxMemberNumber;
+        $tmc = $team->members()->count();
+        if ($mmn <= $tmc) {
+            return response()->json(["message"=>"max member count exceeded"], 409);
+        }
+
+        $teamsTable = $this->getTeamsTable()
+            ->where("team_members.idStudent", "=", $user->idUser)
+            ->where("subjects.code", "=", $code);
+        $results = $teamsTable->get();
+        if ($results->count() > 0) {
+            return response()->json(["message"=>"already in team"], 409);
+        }
+
+        $teamMember = new TeamMember();
+        $teamMember->idStudent = $user->idUser;
+        $teamMember->idTeam = $teamId;
+        $teamMember->save();
+        return response()->json(["message"=> "ok"], 200);
+    }
+
+    /**
+     * @note izlazak iz tima
+     * @param $subjectId
+     * @param $teamId
+     * @return \Illuminate\Http\JsonResponse|void
+     */
+    public function exitTeam($subjectId, $teamId) {
+
+        $user = request()->session()->get("user")["userObject"];
+        $team = Team::find($teamId);
+        if (is_null($team)) {
+            return response()->json(["message"=> "team doesnt exist"], 409);
+        }
+        $idLeader = (int)$team->idLeader;
+        if ($idLeader == $user->idUser) {
+            Team::destroy($teamId);
+            return response()->json(["message"=>"team deleted"], 200);
+        }
+        $mmn = (int)$team->project()->sole()->minMemberNumber;
+        $members = $team->members();
+        //TODO da li da brišemo kad je minMember veci od broja clanova
+        if ($members->count() <= $mmn) {
+            return response()->json(["message"=>"cannot exit"], 409);
+        }
+        $result = TeamMember::where("team_members.idStudent", "=", $user->idUser)
+                ->where("team_members.idTeam", "=", $teamId)
+                ->delete();
+        if ($result) {
+            return response()->json(["message"=>"ok"], 200);
+        }
+        return response()->json(["message"=>"not deleted"], 400);
+    }
+
+    /**@note vraća tabelu sa timovima spojenu sa predmetima i članovima timova
+     *
+     */
+    private function getTeamsTable() {
+        return DB::table('subjects')
+            ->join('projects', 'subjects.idSubject', '=', 'projects.idSubject')
+            ->join('teams', 'projects.idProject', '=', 'teams.idProject')
+            ->join("team_members", "teams.idTeam", "=", "team_members.idTeam")
+            ->select("*",
+                'projects.name as projectName',
+                'subjects.name as subjectName',
+                'teams.name as teamName'
+            );
     }
 
 }

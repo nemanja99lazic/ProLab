@@ -15,6 +15,7 @@ class TeamMember extends Model
     /**
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = [];
 
     /**

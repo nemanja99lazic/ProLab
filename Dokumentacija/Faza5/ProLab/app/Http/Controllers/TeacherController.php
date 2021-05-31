@@ -247,15 +247,7 @@ class TeacherController extends Controller {
         }
         return view("teacher/subject_index", ["subjectTitle"=> $subject->name, "teacherList"=> $teacherList]);
     }
-    public function joinTeam($code, $teamId) {
-        $articles =DB::table('subjects')
-            ->join('projects', 'subjects.idSubject', '=', 'projects.idSubject')
-            ->join('teams', 'projects.idProject', '=', 'teams.idProject')
-            ->join("students", "students.idStudent", "=")
-            ->select('articles.id','articles.title','articles.body','users.username', 'category.name')
-            ->where("subjects.code", "=", $code)
-            ->get();
-    }
+
 
 
 }
