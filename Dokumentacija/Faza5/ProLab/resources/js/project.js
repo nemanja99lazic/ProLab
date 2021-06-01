@@ -29,8 +29,9 @@ class Project {
             $tbody.append($rt);
         });
         $table.append($tbody);
-        $table.addClass("table table-striped table-hover");
-        return $table;
+        $table.addClass("table table-striped table-hover text-center");
+
+        return $("<div>").append($table).addClass("col-6 pt-2");
     }
     loadData(code) {
         let ref = this;

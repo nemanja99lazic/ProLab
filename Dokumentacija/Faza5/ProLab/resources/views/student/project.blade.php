@@ -33,6 +33,10 @@ $userName = $user->forename . " " . $user->surname;
         {{$subjectName}} - Projekti
     </title>
     <style>
+        body {
+            margin:0;
+            padding:0;
+        }
         hr{
             height: 20px;
             background-color: #000066;
@@ -46,7 +50,7 @@ $userName = $user->forename . " " . $user->surname;
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row header">
+    <div class="row header mt-2">
         <div class="col-12 d-flex  justify-content-end pb-2 pt-0 ">
             <ul class="nav d-flex align-items-center">
                 <li class="nav-item ml-1 mr-1">
@@ -60,37 +64,21 @@ $userName = $user->forename . " " . $user->surname;
                 </li>
             </ul>
         </div>
-        <div class="col-3 tabs d-flex flex-column justify-content-end p-0">
+
+        <div class="col-12 d-flex justify-content-center text-center">
+            <img class="header-logo" src="{{asset("images/ProLabLOGO.jpg")}}" width="150px" class="img-fluid">
+
+        </div>
+        <div class="col-12 tabs d-flex flex-column justify-content-end p-0">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link btn-outline-dark  request()->is('student/requests/*') || request()->is('admin') ? 'active' : '' " id="nav-request-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true">Requests</a>
-                    <a class="nav-item nav-link btn-outline-dark request()->is('student/subjects/*') ? 'active' : ''" id="nav-subject-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" aria-selected="false">Predmeti</a>
-                    <a class="nav-item nav-link btn-outline-dark" id="nav-user-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false">Users</a>
+
+                    <a class="nav-item m-1 nav-link btn-dark  request()->is('student/requests/*') || request()->is('admin') ? 'active' : '' " id="nav-request-tab" data-toggle="tab" href="" role="tab">Dostupni timovi</a>
+                    <a class="nav-item m-1 nav-link btn-dark request()->is('student/subjects/*') ? 'active' : ''" id="nav-subject-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" >Kreiraj tim</a>
+
                 </div>
             </nav>
-            {{--                <div class="tab-content" id="nav-tabContent">--}}
-            {{--                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">ALO</div>--}}
-            {{--                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">ALO</div>--}}
-            {{--                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">ALO</div>--}}
-            {{--                </div>--}}
-            {{--                    <div>--}}
-            {{--                        <button class="btn btn-dark my-btn-tab">Zahtevi--}}
-            {{--                            <span class="badge badge-danger" id="request-number"></span>--}}
-            {{--                        </button>--}}
-            {{--                        <button class="btn btn-dark my-btn-tab">Predmeti</button>--}}
-            {{--                        <button class="btn btn-dark my-btn-tab">Korisnici</button>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="">--}}
-            {{--                        <button class="btn btn-dark">Početna</button>--}}
-            {{--                        <button class="btn btn-dark">Odjava</button>--}}
-            {{--                    </div>--}}
-
         </div>
-        <div class="col-6 d-flex flex-column justify-content-center text-center">
-            {{--                <img src="images\ProLabLOGO.jpg" class="rounded img-thumbnail img-fluid" width="30%">--}}
-            <h1>ProLab</h1>
-        </div>
-
     </div>
     <main class="row" id="main">
         <div class="col-12">
@@ -114,27 +102,18 @@ $userName = $user->forename . " " . $user->surname;
 
 
     <div class="row">
-        <div class="col fixed-bottom">
+        <footer class="page-footer bg-light col-12" >
             <hr style="width: 100%; color: #000066 " >
+            <div class="text-lg-center text-md-center text-sm-center"  >
+                <p class="justify-content-center">© ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008
+                </p>
+                <p>
+                    Elektrotehnički fakultet, Univerzitet u Beogradu
+                </p>
 
+            </div>
 
-
-
-
-
-            <footer class="page-footer bg-light " >
-
-                <div class="text-lg-center text-md-center text-sm-center"  >
-                    <p class="justify-content-center">© ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008
-                    </p>
-                    <p>
-                        Elektrotehnički fakultet, Univerzitet u Beogradu
-                    </p>
-
-                </div>
-
-            </footer>
-        </div>
+        </footer>
     </div>
 
 
