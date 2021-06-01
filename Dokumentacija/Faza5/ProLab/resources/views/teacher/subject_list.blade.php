@@ -19,7 +19,7 @@
                 @foreach ($subjectList as $subject)
                     <tr>
                         <td>{{$subject->name}}</td>
-                        <td><a href="{{ route("teacher.subject.index",$subject->code) }}">{{$subject->code}}</a></td>
+                        <td><a href="{{ route("teacher.subject.index", $subject->code) }}">{{$subject->code}}</a></td>
                     </tr>
                 @endforeach
 

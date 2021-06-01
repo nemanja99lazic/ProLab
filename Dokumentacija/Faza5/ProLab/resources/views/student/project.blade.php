@@ -46,6 +46,12 @@ $userName = $user->forename . " " . $user->surname;
         .blueHeader{
             background-color: #3d7cba;
         }
+        .header {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 150px 150px;
+            background-image: url("{{asset("images/ProLabLOGO.jpg")}}");
+        }
     </style>
 </head>
 <body>
@@ -66,12 +72,12 @@ $userName = $user->forename . " " . $user->surname;
         </div>
 
         <div class="col-12 d-flex justify-content-center text-center">
-            <img class="header-logo" src="{{asset("images/ProLabLOGO.jpg")}}" width="150px" class="img-fluid">
+            <img class="header-logo" src="" width="150px" class="img-fluid">
 
         </div>
-        <div class="col-12 tabs d-flex flex-column justify-content-end p-0">
+        <div class="col-12 tabs d-flex flex-column justify-content-end pb-2">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs" id="nav-tab">
 
                     <a class="nav-item m-1 nav-link btn-dark  request()->is('student/requests/*') || request()->is('admin') ? 'active' : '' " id="nav-request-tab" data-toggle="tab" href="" role="tab">Dostupni timovi</a>
                     <a class="nav-item m-1 nav-link btn-dark request()->is('student/subjects/*') ? 'active' : ''" id="nav-subject-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" >Kreiraj tim</a>
@@ -81,18 +87,7 @@ $userName = $user->forename . " " . $user->surname;
         </div>
     </div>
     <main class="row" id="main">
-        <div class="col-12">
-            <table>
-                <tr>
-                    <th>Ime</th>
-                    <th>Prezime</th>
-                    <th>Indeks</th>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
+
 
     </main>
 

@@ -715,6 +715,7 @@ class StudentController extends Controller
             ->select(//"*",
                     //"subjects.name as subjectName",
                     "teams.name as teamName",
+                    "teams.locked",
                     "teams.idTeam",
                     "users.forename",
                     "users.surname",
