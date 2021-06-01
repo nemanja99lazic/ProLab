@@ -8,6 +8,7 @@ use App\Rules\SubjectNameCheck;
 use App\Rules\SubjectCodeCheck;
 use App\NewSubjectRequest;
 use App\NewSubjectRequestTeaches;
+use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
 use App\Teacher;
@@ -208,4 +209,52 @@ class TeacherController extends Controller {
 
         return response()->json(array('message' => $message, 'idProject' => $idProject), 200);
     }
+
+
+    /**
+     *
+     * @note Funkcija prikazuje sve predmete na kojima profesor predaje.
+     *
+     * @return \Illuminate\Contracts\View\View
+     * @author zvk17
+     */
+    public function getSubjects(Request $request){
+        $userData = $request->session()->get("user");
+        $user = $userData["userObject"];
+        $teacher = $user->teacher()->sole();
+        //$subjects = $teacher->subjects()->getResults();
+        $list = [];
+        //foreach ($subjects as $subject)
+        //    $list[] = $subject;
+
+        $teaches = $teacher->teachesSubjects()->getResults();
+        foreach ($teaches as $teach) {
+            $list[] = $teach;
+        }
+        return view("teacher.subject_list", ["subjectList" => $list]);
+
+    }
+    /**
+     *
+     * @note Funkcija prikazuje predmet iz pogleda profesora
+     *
+     * @return \Illuminate\Contracts\View\View
+     * @author zvk17
+     */
+    public function subjectIndexPage($code) {
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return redirect()->route('teacher.index');
+        }
+        $teacherList = [];
+        $otherTeachers = $subject->teachers()->getResults();
+
+        foreach ($otherTeachers as $otherTeacher) {
+            $teacherList[] = $otherTeacher->user()->sole();
+        }
+        return view("teacher/subject_index", ["subjectTitle"=> $subject->name, "teacherList"=> $teacherList]);
+    }
+
+
+
 }
