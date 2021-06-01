@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\User;
 
 class AdminMiddleware
 {
@@ -21,8 +22,13 @@ class AdminMiddleware
 //        return $next($request);
         if (!$request->session()->has("user")) {
             return redirect()->route('guest.login.get');
-        } else if ($request->session()->get("user")['userType'] != "admin") {
-            return redirect()->back();
+        } else {
+            $user = User::where('idUser', '=', $request->session()->get("user")['userObject']->idUser)->first();
+            if ($user == null) {
+                return redirect()->route('guest.login.get');
+            } else if ($request->session()->get("user")['userType'] != "admin") {
+                return redirect()->back();
+            }
         }
         return $next($request);
     }

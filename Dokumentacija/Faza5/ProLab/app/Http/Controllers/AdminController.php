@@ -30,10 +30,10 @@ use App\Administrator;
 
 /**
  * AdminController - klasa koja implemenitra logiku funckionalnosti za tip korisnika admin.
+ *
  * @version 1.0
  */
 class AdminController extends Controller {
-
     /**
      * Kreiranje nove instance.
      *
@@ -55,6 +55,8 @@ class AdminController extends Controller {
     }
 
     /**
+     * Funckija koja prikazuje
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function newSubjectRequests() {
@@ -155,50 +157,7 @@ class AdminController extends Controller {
      */
     public function deleteSubject(Request $request) {
         $subjectCode = $request->subjectCode;
-        $subject = Subject::where('code', '=', $subjectCode)->first();
-        $idSubject = $subject->idSubject;
-
-        Attends::where('idSubject', '=', $idSubject)->delete();
-        SubjectJoinRequest::where('idSubject', '=', $idSubject)->delete();
-        Teaches::where('idSubject', '=', $idSubject)->delete();
-
-        $projects = Project::where('idSubject', '=', $idSubject)->get();
-
-        foreach ($projects as $project) {
-            $teams = Team::where('idProject', '=', $project->idProject)->get();
-
-            foreach ($teams as $team) {
-                TeamMember::where('idTeam', '=', $team->idTeam)->delete();
-                $team->delete();
-            }
-
-            $project->delete();
-        }
-
-        $labExercises = LabExercise::where('idSubject', '=', $idSubject)->get();
-
-        foreach ($labExercises as $labExercise) {
-            $appointments = Appointment::where('idLabExercise', '=', $labExercise->idLabExercise)->get();
-
-            foreach ($appointments as $appointment) {
-                $hasAppointments = HasAppointment::where('idAppointment', '=', $appointment->idAppointment)->get();
-
-                foreach ($hasAppointments as $hasAppointment) {
-                    FreeAgent::where('idHasAppointment', '=', $hasAppointment->idHasAppointment)->delete();
-                    $hasAppointment->delete();
-                }
-
-                FreeAgent::where('idDesiredAppointment', '=', $appointment->idAppointment)->delete();
-
-                $appointment->delete();
-            }
-
-            $labExercise->delete();
-        }
-
-        // Subject::where('idSubject', '=', $idSubject)->delete();
-        $subject->delete();
-
+        $this->deleteSubjectHelper($subjectCode);
         return redirect()->to(url('admin/subjects/list'));
     }
 
@@ -215,23 +174,14 @@ class AdminController extends Controller {
     public function deleteTeacherFromSubject(Request $request) {
         $idTeacher = $request->idT;
         $subjectCode = $request->subjectCode;
-        $subject = Subject::where('code', '=', $subjectCode)->first();
-        $idSubject = $subject->idSubject;
 
-        Teaches::where('idTeacher', '=', $idTeacher)->where('idSubject', $idSubject)->delete();
+        $subjectDeleted = $this->deleteTeacherFromSubjectHelper($idTeacher, $subjectCode);
 
-        if ($subject->idTeacher == $idTeacher) {
-            $teaches = Teaches::where('idSubject', $idSubject)->first();
-            if ($teaches != null) {
-                $subject->idTeacher = $teaches->teacher->idTeacher;
-                $subject->save();
-            } else {
-                //return redirect()->route('admin.delete.subject', [$idSubject]);
-                return $this->deleteSubject($request);
-            }
+        if ($subjectDeleted) {
+            return redirect()->to(url('admin/subjects/list'));
+        } else {
+            return redirect()->route('admin.subject.index', [$subjectCode]);
         }
-
-        return redirect()->route('admin.subject.index', [$subjectCode]);
     }
 
     public function deleteStudentFromSubject(Request $request) {
@@ -423,12 +373,14 @@ class AdminController extends Controller {
         return $app->delete();
     }
 
-    public function searchUsers() {
+    public function searchUsers(Request $request) {
+        $request->session()->forget('searchInput');
         return view('admin/admin_users_search');
     }
 
     public function searchUsersResults(Request $request) {
         $searchInput = $request->get('search-input');
+        $request->session()->put('searchInput', $searchInput);
         $userType = $request->input('search');
 
         $users = [];
@@ -442,8 +394,8 @@ class AdminController extends Controller {
                 $users[] = $user->teacher;
             } else if ($userType == 'student' && !is_null($user->student)) {
                 $users[] = $user->student;
-            } else if($userType == 'admin' && !is_null($user->admin) && $request->session()->get('user')['userObject']->idUser != $user->idUser) {
-                $users[] = $user->admin;
+            } else if($userType == 'admin' && !is_null($user->administrator) && $request->session()->get('user')['userObject']->idUser != $user->idUser) {
+                $users[] = $user->administrator;
             }
         }
 
@@ -462,8 +414,145 @@ class AdminController extends Controller {
     public function deleteStudentFromSystem(Request $request) {
         $idStudent = $request->idS;
 
+        SubjectJoinRequest::where('idStudent', '=', $idStudent)->delete();
+
+        $hasApps = HasAppointment::where('idStudent', '=', $idStudent)->get();
+        foreach ($hasApps as $hasApp) {
+            $idAppointment = $hasApp->idAppointment;
+            if ($hasApp != null) {
+                FreeAgent::where('idHasAppointment', '=', $hasApp->idHasAppointment)->delete();
+                $hasApp->delete();
+                $this->swapStudents($idAppointment);
+                break;
+            }
+        }
+
+        Attends::where('idStudent', '=', $idStudent)->delete();
+
+        $teamMembers = TeamMember::where('idStudent', '=', $idStudent)->get();
+        foreach ($teamMembers as $teamMember) {
+            $team = $teamMember->team;
+            if ($team->idLeader == $idStudent || count($team->students) == 1) {
+                TeamMember::where('idTeam', '=', $team->idTeam)->delete();
+                $team->delete();
+            } else {
+                $teamMember->delete();
+            }
+        }
+
         Student::where('idStudent', '=', $idStudent)->delete();
         User::where('idUser', '=', $idStudent)->delete();
+
+        return response()->json(array('message' => 'ok'));
+    }
+
+    public function deleteTeacherFromSystem(Request $request) {
+        $idTeacher = $request->idT;
+
+        NewSubjectRequestTeaches::where('idTeacher', '=', $idTeacher)->delete();
+        $requests = NewSubjectRequest::where('idTeacher', '=', $idTeacher)->get();
+
+        foreach ($requests as $req) {
+            NewSubjectRequestTeaches::where('idRequest', '=', $req->idRequest)->delete();
+            $req->delete();
+        }
+
+        $subjectTeaches = Teaches::where('idTeacher', '=', $idTeacher)->get();
+        foreach ($subjectTeaches as $subjectTeach) {
+            $this->deleteTeacherFromSubjectHelper($idTeacher, $subjectTeaches->subject->code);
+        }
+
+        Teacher::where('idTeacher', '=', $idTeacher)->delete();
+        User::where('idUser', '=', $idTeacher)->delete();
+
+        return response()->json(array('message' => 'ok'));
+    }
+
+    protected function deleteTeacherFromSubjectHelper($idTeacher, $subjectCode) {
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        $idSubject = $subject->idSubject;
+
+        Teaches::where('idTeacher', '=', $idTeacher)->where('idSubject', $idSubject)->delete();
+
+        if ($subject->idTeacher == $idTeacher) {
+            $teaches = Teaches::where('idSubject', $idSubject)->first();
+            if ($teaches != null) {
+                $subject->idTeacher = $teaches->teacher->idTeacher;
+                $subject->save();
+                return False;
+            } else {
+                //return redirect()->route('admin.delete.subject', [$idSubject]);
+                // return $this->deleteSubject($request);
+                $this->deleteSubjectHelper($subjectCode);
+                return True;
+            }
+        }
+
+        return False;
+
+        // return redirect()->route('admin.subject.index', [$subjectCode]);
+    }
+
+    protected function deleteSubjectHelper($subjectCode) {
+        $subject = Subject::where('code', '=', $subjectCode)->first();
+        $idSubject = $subject->idSubject;
+
+        Attends::where('idSubject', '=', $idSubject)->delete();
+        SubjectJoinRequest::where('idSubject', '=', $idSubject)->delete();
+        Teaches::where('idSubject', '=', $idSubject)->delete();
+
+        $projects = Project::where('idSubject', '=', $idSubject)->get();
+
+        foreach ($projects as $project) {
+            $teams = Team::where('idProject', '=', $project->idProject)->get();
+
+            foreach ($teams as $team) {
+                TeamMember::where('idTeam', '=', $team->idTeam)->delete();
+                $team->delete();
+            }
+
+            $project->delete();
+        }
+
+        $labExercises = LabExercise::where('idSubject', '=', $idSubject)->get();
+
+        foreach ($labExercises as $labExercise) {
+            $appointments = Appointment::where('idLabExercise', '=', $labExercise->idLabExercise)->get();
+
+            foreach ($appointments as $appointment) {
+                $hasAppointments = HasAppointment::where('idAppointment', '=', $appointment->idAppointment)->get();
+
+                foreach ($hasAppointments as $hasAppointment) {
+                    FreeAgent::where('idHasAppointment', '=', $hasAppointment->idHasAppointment)->delete();
+                    $hasAppointment->delete();
+                }
+
+                FreeAgent::where('idDesiredAppointment', '=', $appointment->idAppointment)->delete();
+
+                $appointment->delete();
+            }
+
+            $labExercise->delete();
+        }
+
+        // Subject::where('idSubject', '=', $idSubject)->delete();
+        $subject->delete();
+
+        // return redirect()->to(url('admin/subjects/list'));
+    }
+
+    /**
+     * Funkcija koja trano brise iz sistema korisnika tipa admin.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteAdminFromSystem(Request $request) {
+        $idAdministrator = $request->idA;
+
+        Administrator::where('idAdministrator', '=', $idAdministrator)->delete();
+        User::where('idUser', '=', $idAdministrator)->delete();
 
         return response()->json(array('message' => 'ok'));
     }
