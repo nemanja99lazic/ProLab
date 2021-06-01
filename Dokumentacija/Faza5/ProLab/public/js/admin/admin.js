@@ -51,11 +51,12 @@ $(document).ready(function () {
         idUser = idTableRow = $(this).attr("name");
     });
 
-    $(".delete-user").click(function () {
+    $(".delete-user").click(function (event) {
+        event.preventDefault();
         userType = $(this).attr("name");
         $.ajax({
             type: "POST",
-            url: '/admin/users/' + userType + '/'+ idUser +'/delete'
+            url: '/admin/users/' + userType + '/'+ idUser +'/delete/',
         }).done(function(response) {
             $("#modal" + idUser).modal('hide');
             $('body').removeClass('modal-open');

@@ -9,9 +9,9 @@
         <title>Log in</title>
     </head>
     <body>
-        <div class="jumbotron p-5">
+        <div class="jumbotron p-0">
             <div class="container text-center">
-                <img src="images\ProLabLOGO.jpg" class="rounded img-thumbnail img-fluid" width="15%">
+                <img src="/images/ProLabLOGO.png" class="rounded" width="30%">
             </div>
         </div>
         <div class="container">

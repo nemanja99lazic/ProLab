@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 use Illuminate\Http\Request;
+use MongoDB\Driver\Session;
 
 class GuestMiddleware
 {
@@ -16,11 +18,18 @@ class GuestMiddleware
      */
     public function handle(Request $request, Closure $next) {
         if ($request->session()->has("user")) {
-            return redirect()->back();
+            $user = User::where('idUser', '=', $request->session()->get("user")['userObject']->idUser)->first();
+            if ($user == null) {
+                $request->session()->forget('user');
+                return $next($request);
+            } else {
+                return redirect()->back();
+            }
         }
         if (!$request->session()->has('register_request') && $request->route()->getName() == 'guest.registerinfo') {
             return redirect()->to(url('/'));
         }
+
         return $next($request);
     }
 }

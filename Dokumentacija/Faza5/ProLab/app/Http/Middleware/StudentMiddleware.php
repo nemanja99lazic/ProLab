@@ -30,6 +30,7 @@ class StudentMiddleware
         } else {
             $user = User::where('idUser', '=', $request->session()->get("user")['userObject']->idUser)->first();
             if ($user == null) {
+                $request->session()->forget('user');
                 return redirect()->route('guest.login.get');
             } else if ($request->session()->get("user")['userType'] != "student") {
                 return redirect()->back();

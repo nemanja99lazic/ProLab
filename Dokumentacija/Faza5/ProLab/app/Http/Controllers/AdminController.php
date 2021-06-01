@@ -281,6 +281,7 @@ class AdminController extends Controller {
         foreach ($teams as $team) {
             $this->deleteTeamHelper($request, $team->idTeam);
         }
+        $project[0]->delete();
         return redirect()->route('admin.subject.project.index', $request->subjectCode);
     }
 
@@ -448,7 +449,6 @@ class AdminController extends Controller {
 
     public function deleteTeacherFromSystem(Request $request) {
         $idTeacher = $request->idT;
-
         NewSubjectRequestTeaches::where('idTeacher', '=', $idTeacher)->delete();
         $requests = NewSubjectRequest::where('idTeacher', '=', $idTeacher)->get();
 
@@ -459,7 +459,7 @@ class AdminController extends Controller {
 
         $subjectTeaches = Teaches::where('idTeacher', '=', $idTeacher)->get();
         foreach ($subjectTeaches as $subjectTeach) {
-            $this->deleteTeacherFromSubjectHelper($idTeacher, $subjectTeaches->subject->code);
+            $this->deleteTeacherFromSubjectHelper($idTeacher, $subjectTeach->subject->code);
         }
 
         Teacher::where('idTeacher', '=', $idTeacher)->delete();
@@ -536,13 +536,13 @@ class AdminController extends Controller {
         }
 
         // Subject::where('idSubject', '=', $idSubject)->delete();
-        $subject->delete();
+        return $subject->delete();
 
         // return redirect()->to(url('admin/subjects/list'));
     }
 
     /**
-     * Funkcija koja trano brise iz sistema korisnika tipa admin.
+     * Funkcija koja trajno brise iz sistema korisnika tipa admin.
      *
      * @param Request $request
      *

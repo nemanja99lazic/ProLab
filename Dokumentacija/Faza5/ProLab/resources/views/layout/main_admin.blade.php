@@ -41,8 +41,8 @@
 
         @yield('admin_content')
 
-        <div class="row">
-            <div class="col-12 fixed-bottom m-5 text-center">
+        <div class="row footer">
+            <div class="col-12 m-3 text-center">
                 <hr>
                 <div class="font-weight-bold font-italic">Elektrotehnički fakultet, Univerzitet u Beogradu</div>
                 <div>Slobodan Katanic</div>
