@@ -680,7 +680,13 @@ class StudentController extends Controller
      * @author zvk17
      */
     public function projectIndexPage($code) {
-        return view("student/project");
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return redirect()->to(route('student.index'));
+        }
+        $project = $subject->projects()->sole();
+
+        return view("student/project", ["subjectName"=>$subject->name, "project"=> $project, "code"=>$code]);
     }
 
     /**
@@ -700,14 +706,37 @@ class StudentController extends Controller
         if ($project->hasExpired()) {
             return response()->json(["message"=> "project expired"], 400);
         }
+        $teams = DB::table('subjects')
+            ->join('projects', 'subjects.idSubject', '=', 'projects.idSubject')
+            ->join('teams', 'projects.idProject', '=', 'teams.idProject')
+            ->join("team_members", "teams.idTeam", "=", "team_members.idTeam")
+            ->join("students", "students.idStudent", "=", "team_members.idStudent")
+            ->join("users", "students.idStudent", "=", "users.idUser")
+            ->select(//"*",
+                    //"subjects.name as subjectName",
+                    "teams.name as teamName",
+                    "teams.idTeam",
+                    "users.forename",
+                    "users.surname",
+                    "teams.idTeam",
+                    "students.idStudent",
+                    "students.index as studentIndex"
+            )
+            ->where("subjects.code", "=", $code)
+            ->get();
 
-        $teams = $project->teams()->getResults();
+        /*$teams = $project->teams()->getResults();
         $teamList = [];
         foreach($teams as $team) {
-            $teamList[] = $team;
-        }
+            /*$members = $team->members()->getResults();
+            $memberList = [];
+            foreach ($members as $member) {
+                $memberList[] = $member->
+            }*/
+           /// $teamList[] = $team;
+        //}
 
-        return response()->json(['teams' => $teamList], 200);
+        return response()->json($teams, 200);
     }
 
     /***
@@ -734,7 +763,9 @@ class StudentController extends Controller
         if (is_null($team)) {
             return response()->json(["message"=>"team doesnt exist"], 409);
         }
-
+        if ((int)$team->locked == 1) {
+            return response()->json(["message"=>"team is locked"], 409);
+        }
 
         $mmn = (int)$project->maxMemberNumber;
         $tmc = $team->members()->count();
@@ -825,7 +856,7 @@ class StudentController extends Controller
      */
     public function createTeam($code, Request $request) {
         $post = $request->post();
-        //TODO testirati regex
+        // mala velika slova, cifre, razmaci, _, -
         $validator = Validator::make($post, [
             'teamname' => 'required|min:4|max:60|regex:/^[a-zA-Z0-9\s_\-]+$/'
         ]);
@@ -863,6 +894,56 @@ class StudentController extends Controller
         return response()->json(["message"=> "ok"], 200);
     }
 
+    ///student/subject/{code}/project/team/{idTeam}/lock
+    public function lockTeam($code, $idTeam) {
+        $user = request()->session()->get("user")["userObject"];
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return response()->json(["message"=> "subject not exist"], 400);
+        }
+        $project = $subject->projects()->sole();
+        if (is_null($project)) {
+            return response()->json(["message"=> "project not exist"], 400);
+        }
+        if ($project->hasExpired()) {
+            return response()->json(["message"=> "project expired"], 400);
+        }
+        $team = Team::find($idTeam);
+        if (is_null($team)) {
+            return response()->json(["message"=>"team doesnt exist"], 409);
+        }
+        if ($team->idLeader !== $user->idUser) {
+            return response()->json(["message"=> "not a leader"], 400);
+        }
+        $team->locked = 1;
+        $team->save();
+        return response()->json(["message"=> "ok"], 200);
+
+    }
+    public function unlockTeam($code, $idTeam) {
+        $user = request()->session()->get("user")["userObject"];
+        $subject = Subject::where("code", "=", $code)->first();
+        if (is_null($subject)) {
+            return response()->json(["message"=> "subject not exist"], 400);
+        }
+        $project = $subject->projects()->sole();
+        if (is_null($project)) {
+            return response()->json(["message"=> "project not exist"], 400);
+        }
+        if ($project->hasExpired()) {
+            return response()->json(["message"=> "project expired"], 400);
+        }
+        $team = Team::find($idTeam);
+        if (is_null($team)) {
+            return response()->json(["message"=>"team doesnt exist"], 409);
+        }
+        if ($team->idLeader !== $user->idUser) {
+            return response()->json(["message"=> "not a leader"], 400);
+        }
+        $team->locked = 0;
+        $team->save();
+        return response()->json(["message"=> "ok"], 200);
+    }
     /**
      * @note da li je student vec u nekom timu na datom projektu
      * @param $code

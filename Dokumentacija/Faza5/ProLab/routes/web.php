@@ -71,6 +71,9 @@ Route::get("/student/subject/{code}/team/available", [StudentController::class, 
 Route::get("/student/subject/{code}/team/{teamId}/join", [StudentController::class, "joinTeam"])->name("student.team.join");
 Route::get("/student/subject/{code}/team/{teamId}/exit", [StudentController::class, "exitTeam"])->name("student.team.exit");
 Route::post("/student/subject/{code}/team/create", [StudentController::class, "createTeam"])->name("student.team.create");
+Route::get("/student/subject/{code}/team/{idTeam}/lock", [StudentController::class, "lockTeam"])->name("student.team.lock");
+Route::get("/student/subject/{code}/team/{idTeam}/unlock", [StudentController::class, "unlockTeam"])->name("student.team.unlock");
+//Route::get("/student/subject/{code}/team/{idTeam}/isLocked", [StudentController::class, "isTeamLocked"])->name("student.team.isLocked");
 //Teacher
 
 Route::get('/teacher',[TeacherController::class, 'index'])->name('teacher.index');
