@@ -78,14 +78,19 @@ class Project {
             });
     }
     updateTeams(teams) {
-       let $main = $("#main");
-       //$main.html("");
+       let $teamList = $("#team-list");
+
+        $teamList.empty();
         teams.forEach(team=>{
-            $main.append(Project.getTeamTable(team));
-        })
+            $teamList.append(Project.getTeamTable(team));
+        });
         console.log(teams);
 
     }
+    tabs() {
+
+    }
+
 }
 
 $(document).ready(()=>{
@@ -94,4 +99,20 @@ $(document).ready(()=>{
     let p = new Project(project);
     //$("#main").append(Project.getTeamTable([]));
     p.loadData(project.code);
+    $(".project-tab-button").each((i, ele)=>{
+        let $button = $(ele);
+
+        $button.on("click",() => {
+            let $this = $button;
+            let $tab = $($this.attr("data-tab-id"));
+            //console.log($(this));
+            if (!$this.hasClass("active")) {
+                $(".project-tab-button").removeClass("active");
+                $this.addClass("active");
+                $(".project-tab").addClass("d-none");
+                $tab.removeClass("d-none");
+            }
+        });
+
+    });
 });

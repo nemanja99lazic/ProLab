@@ -720,6 +720,7 @@ class StudentController extends Controller
                     "users.forename",
                     "users.surname",
                     "teams.idTeam",
+                    "teams.idLeader",
                     "students.idStudent",
                     "students.index as studentIndex"
             )

@@ -15,9 +15,9 @@ $userName = $user->forename . " " . $user->surname;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/navbar.js') }}" defer></script>
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/temp.css') }}" rel="stylesheet"/>
+    <link href="{{ asset("css/project.css") }}" rel="stylesheet"/>
     <script>
         window.project = {
             name: "{{$project->name}}",
@@ -26,6 +26,7 @@ $userName = $user->forename . " " . $user->surname;
             max: {{$project->maxMemberNumber}},
             idSubject: {{$project->idSubject}},
             expirationDate: "{{$project->expirationDate}}",
+            idUser: {{$user->idUser}},
             code: "{{$code}}"
         };
     </script>
@@ -46,12 +47,7 @@ $userName = $user->forename . " " . $user->surname;
         .blueHeader{
             background-color: #3d7cba;
         }
-        .header {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 150px 150px;
-            background-image: url("{{asset("images/ProLabLOGO.jpg")}}");
-        }
+
     </style>
 </head>
 <body>
@@ -77,25 +73,17 @@ $userName = $user->forename . " " . $user->surname;
         </div>
         <div class="col-12 tabs d-flex flex-column justify-content-end pb-2">
             <nav>
-                <div class="nav nav-tabs" id="nav-tab">
-
-                    <a class="nav-item m-1 nav-link btn-dark  request()->is('student/requests/*') || request()->is('admin') ? 'active' : '' " id="nav-request-tab" data-toggle="tab" href="" role="tab">Dostupni timovi</a>
-                    <a class="nav-item m-1 nav-link btn-dark request()->is('student/subjects/*') ? 'active' : ''" id="nav-subject-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" >Kreiraj tim</a>
-
+                <div class="nav" id="nav-tab">
+                    <button class="project-tab-button active nav-item m-1 nav-link btn-dark" data-tab-id="#team-list" id="nav-request-tab">Dostupni timovi</button>
+                    <button class="project-tab-button nav-item m-1 nav-link btn-dark" data-tab-id="team-create">Kreiraj tim</button>
                 </div>
             </nav>
         </div>
     </div>
-    <main class="row" id="main">
-
-
+    <main id="main">
+        <div class="row project-tab" id="team-list"><div>
+        <div class="row d-none project-tab" id="team-create"></div>
     </main>
-
-
-
-
-
-
     <div class="row">
         <footer class="page-footer bg-light col-12" >
             <hr style="width: 100%; color: #000066 " >
