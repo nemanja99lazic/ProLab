@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/admin/admin.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -19,7 +20,7 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link btn-outline-dark {{ request()->is('admin/requests/*') || request()->is('admin') ? 'active' : ''}}" id="nav-request-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true">Zahtevi</a>
                         <a class="nav-item nav-link btn-outline-dark {{ request()->is('admin/subjects/*') ? 'active' : ''}}" id="nav-subject-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" aria-selected="false">Predmeti</a>
-                        <a class="nav-item nav-link btn-outline-dark" id="nav-user-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false">Korisnici</a>
+                        <a class="nav-item nav-link btn-outline-dark {{ request()->is('admin/users/*') ? 'active' : ''}}" id="nav-user-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false">Korisnici</a>
                     </div>
                 </nav>
             </div>

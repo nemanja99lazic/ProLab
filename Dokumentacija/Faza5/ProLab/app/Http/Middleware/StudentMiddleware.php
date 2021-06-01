@@ -21,7 +21,7 @@ class StudentMiddleware
 //        return $next($request);
         if (!$request->session()->has("user")) {
             return redirect()->route('guest.login.get');
-        } else if ($request->session()->get("user")['userType'] != "teacher") {
+        } else if ($request->session()->get("user")['userType'] != "student") {
             return redirect()->back();
         }
         return $next($request);

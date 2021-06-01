@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/admin/admin.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -20,7 +21,7 @@
                     <input hidden value="{{ request()->subjectCode }}" id="subjectCode">
                     <a class="pill nav-item nav-link btn-outline-dark {{ request()->routeIs('admin.subject.index') ? 'active' : ''}}" id="nav-subjectPage-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true">Stranica predmeta</a>
                     <a class="pill nav-item nav-link btn-outline-dark {{ request()->is('admin/subjects/*/lab*') ? 'active' : ''}}" id="nav-lab-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" aria-selected="false">Laboratorijske vezbe</a>
-                    <a class="pill nav-item nav-link btn-outline-dark {{ request()->is('admin/subjects/*/project/*') ? 'active' : ''}}" id="project-user-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false">Projekat</a>
+                    <a class="pill nav-item nav-link btn-outline-dark {{ request()->is('admin/subjects/*/project*') ? 'active' : ''}}" id="nav-project-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false">Projekat</a>
                 </div>
             </nav>
         </div>

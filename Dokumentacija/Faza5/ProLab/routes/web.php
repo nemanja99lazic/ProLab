@@ -109,7 +109,11 @@ Route::get('/admin/subjects/{subjectCode}/project', [App\Http\Controllers\AdminC
 Route::post('/admin/subjects/{subjectCode}/project/team/{idTeam}/delete', [App\Http\Controllers\AdminController::class, 'deleteTeam'])->name('admin.subject.team.delete');
 Route::post('/admin/subjects/{subjectCode}/project/delete', [App\Http\Controllers\AdminController::class, 'deleteProject'])->name('admin.subject.project.delete');
 
-Route::get('/admin/logout',[App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
-//Route::post('/admin/addUser',[App\Http\Controllers\AdminController::class, 'addUser'])->name('admin.adduser');
-//Route::post('/admin/deleteRequest',[App\Http\Controllers\AdminController::class, 'deleteRequest'])->name('admin.deleterequest');
+Route::get('/admin/users/search', [App\Http\Controllers\AdminController::class, 'searchUsers'])->name('admin.users.search.index');
+Route::get('/admin/users/search/results', [App\Http\Controllers\AdminController::class, 'searchUsersResults'])->name('admin.users.search.results');
+Route::post('/admin/users/student/{idS}/delete', [App\Http\Controllers\AdminController::class, 'deleteStudentFromSystem'])->name('admin.users.delete.student');
+Route::post('/admin/users/teacher/{idT}/delete', [App\Http\Controllers\AdminController::class, 'deleteTeacherFromSystem'])->name('admin.users.delete.teacher');
+Route::post('/admin/users/admin/{idA}/delete', [App\Http\Controllers\AdminController::class, 'deleteAdminFromSystem'])->name('admin.users.delete.admin');
+
+Route::get('/admin/logout', [App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 
