@@ -17,4 +17,11 @@ main {
 .project-tab-button.active {
     border-bottom: 3px solid blue!important;
 }
+#nav-tab {
+    border-bottom: 2px solid grey;
+}
+.team-leader {
+    /*background-color: #b9b9b9;*/
+    font-weight: bold;
+}
 

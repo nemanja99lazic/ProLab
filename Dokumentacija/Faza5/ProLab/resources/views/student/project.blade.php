@@ -75,14 +75,33 @@ $userName = $user->forename . " " . $user->surname;
             <nav>
                 <div class="nav" id="nav-tab">
                     <button class="project-tab-button active nav-item m-1 nav-link btn-dark" data-tab-id="#team-list" id="nav-request-tab">Dostupni timovi</button>
-                    <button class="project-tab-button nav-item m-1 nav-link btn-dark" data-tab-id="team-create">Kreiraj tim</button>
+                    <button class="project-tab-button nav-item m-1 nav-link btn-dark" data-tab-id="#team-create">Kreiraj tim</button>
                 </div>
             </nav>
         </div>
     </div>
     <main id="main">
-        <div class="row project-tab" id="team-list"><div>
-        <div class="row d-none project-tab" id="team-create"></div>
+        <div class="project-tab" id="team-list"></div>
+        <div class="d-none project-tab" id="team-create">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <div class="mt-4"><h1 class="text-center">Kreiranje tima</h1></div>
+                    <div class="mt-4">
+                        <label for="form-team-name">Naziv tima: </label><input type="text" id="form-team-name" />
+                    </div>
+                    <div class="mt-4">
+                        <button class="btn d-block w-100 btn-dark" id="form-team-sumbit">Kreiraj tim</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-12">
+
+            </div>
+        </div>
+
     </main>
     <div class="row">
         <footer class="page-footer bg-light col-12" >

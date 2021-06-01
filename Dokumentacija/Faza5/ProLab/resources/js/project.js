@@ -14,14 +14,24 @@ class Project {
 
     }
     static getTeamTable(team) {
-        console.log(team)
+        let $div = $("<div>").addClass("col-6 pt-2");
+        let $header = $("<div>");
+        $header.append($("<h3>").text(team.teamName));
+
+        let $join = $("<button>").text("Pridruži se").addClass("btn btn-dark");
+        let $exit = $("<button>").text("Izađi").addClass("btn btn-dark");
+        $div.append($join).append($exit).append($header);
         let $table = $("<table>");
         let $tbody = $("<tbody>");
         let $rh = $("<tr><th>Ime</th><th>Prezime</th><th>Indeks</th></tr>");
         $tbody.append($rh);
-
+        console.log(team);
         team.students.forEach(student => {
             let $rt = $("<tr>");
+            //console.log(student.idStudent, team.idLeader)
+            if (student.idStudent == team.idLeader) {
+                $rt.addClass("team-leader");
+            }
             $rt.attr("data-id", student.idStudent);
             $rt.append($("<td>").text(student.forename));
             $rt.append($("<td>").text(student.surname));
@@ -30,8 +40,8 @@ class Project {
         });
         $table.append($tbody);
         $table.addClass("table table-striped table-hover text-center");
-
-        return $("<div>").append($table).addClass("col-6 pt-2");
+        $div.append($table)
+        return $div;
     }
     loadData(code) {
         let ref = this;
@@ -58,6 +68,7 @@ class Project {
                     let team = {
                         idTeam: first.idTeam,
                         teamName: first.teamName,
+                        idLeader: first.idLeader,
                         students: []
                     }
                     row.forEach(el=>{
@@ -78,8 +89,7 @@ class Project {
             });
     }
     updateTeams(teams) {
-       let $teamList = $("#team-list");
-
+        let $teamList = $("#team-list");
         $teamList.empty();
         teams.forEach(team=>{
             $teamList.append(Project.getTeamTable(team));
@@ -101,11 +111,10 @@ $(document).ready(()=>{
     p.loadData(project.code);
     $(".project-tab-button").each((i, ele)=>{
         let $button = $(ele);
-
         $button.on("click",() => {
             let $this = $button;
             let $tab = $($this.attr("data-tab-id"));
-            //console.log($(this));
+            console.log($this);
             if (!$this.hasClass("active")) {
                 $(".project-tab-button").removeClass("active");
                 $this.addClass("active");
