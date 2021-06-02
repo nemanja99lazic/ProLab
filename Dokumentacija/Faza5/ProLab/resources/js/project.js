@@ -7,6 +7,41 @@
 
 const $ = require("jquery");
 
+class CreateTeam{
+    constructor() {
+        this.$teamName = $("#form-team-name");
+        this.$button = $("#form-team-sumbit");
+        let ref = this;
+        this.$button.on("click", ()=>{
+           ref.submit();
+        });
+    }
+    submit() {
+        console.log("submit")
+        let ref = this;
+        let teamName = this.$teamName.val();
+        console.log(teamName)
+        let errorMessage = "";
+        if (teamName.length <= 4) {
+            errorMessage += "Ime tima mora biti duze od 4 znaka<br />";
+        }
+        if (teamName.length > 60) {
+            errorMessage += "Ime tima mora biti kraze od 60 znaka<br />";
+        }
+        if (!/^[a-zA-Z\d\s\-_]+$/.test(teamName)) {
+            errorMessage += "Ime sme da sadrzi slova, cifre, -, _ i razmak<br />";
+        }
+        if (errorMessage.length > 0) {
+
+            return;
+        }
+
+        
+        fetch()
+    }
+
+}
+
 class Project {
 
     constructor(projectData) {
@@ -124,4 +159,5 @@ $(document).ready(()=>{
         });
 
     });
+    new CreateTeam();
 });

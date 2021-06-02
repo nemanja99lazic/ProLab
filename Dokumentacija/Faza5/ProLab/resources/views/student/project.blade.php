@@ -84,14 +84,23 @@ $userName = $user->forename . " " . $user->surname;
         <div class="project-tab" id="team-list"></div>
         <div class="d-none project-tab" id="team-create">
             <div class="row d-flex justify-content-center">
-                <div class="col-12 col-lg-6">
-                    <div class="mt-4"><h1 class="text-center">Kreiranje tima</h1></div>
-                    <div class="mt-4">
-                        <label for="form-team-name">Naziv tima: </label><input type="text" id="form-team-name" />
-                    </div>
-                    <div class="mt-4">
-                        <button class="btn d-block w-100 btn-dark" id="form-team-sumbit">Kreiraj tim</button>
-                    </div>
+                <div class="col-12 col-md-8 col-lg-5 col-xl-4 mt-4">
+                    <table class="table text-center table-bordered w-100">
+                        <tr>
+                            <td class="font-weight-bold h2">Kreiranje tima</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @csrf
+                                <input class="form-control" placeholder="Naziv tima" type="text" id="form-team-name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn d-block w-100 btn-dark" id="form-team-sumbit">Kreiraj tim</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
 

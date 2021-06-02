@@ -8,7 +8,7 @@ Autor: Sreten Živković 0008/2018
     background-image: url("../../images/ProLabLOGO.jpg");
 }
 main {
-    min-height: 40vh;
+    min-height: 45vh;
 }
 .project-tab-button {
     border-size: 3px 0;
