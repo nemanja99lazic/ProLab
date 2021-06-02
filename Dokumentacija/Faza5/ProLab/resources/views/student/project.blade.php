@@ -58,6 +58,7 @@ $userName = $user->forename . " " . $user->surname;
     </style>
 </head>
 <body>
+<span class ="d-none" id="csrf">@csrf</span>
 <div class="container-fluid">
     <div class="row header mt-2">
         <div class="col-12 d-flex  justify-content-end pb-2 pt-0 ">
@@ -78,20 +79,63 @@ $userName = $user->forename . " " . $user->surname;
             <img class="header-logo" src="" width="150px" class="img-fluid">
 
         </div>
-        <div class="col-12 tabs d-flex flex-column justify-content-end pb-2">
+        <div class="col-12 tabs d-flex" id="nav-div">
             <nav>
-                <div class="nav" id="nav-tab">
-                    <button class="project-tab-button active nav-item m-1 nav-link btn-dark" data-tab-id="#team-list" id="nav-request-tab">Dostupni timovi</button>
+                <div class="nav">
+                    <button class="project-tab-button active nav-item m-1 nav-link btn-dark" data-tab-id="#project-info">Informacije o projektu</button>
+                    <button class="project-tab-button nav-item m-1 nav-link btn-dark" data-tab-id="#team-list">Dostupni timovi</button>
                     <button class="project-tab-button nav-item m-1 nav-link btn-dark" data-tab-id="#team-create">Kreiraj tim</button>
                 </div>
             </nav>
         </div>
     </div>
     <main id="main">
-        <div class="project-tab" id="team-list">
-            @if($project->notExist)
-                <div class=col-12"><h1>Projekat ne postoji za ovaj predmet.</h1></div>
-            @endif
+        <div class="project-tab" id="project-info">
+
+                @if($project->notExist)
+                    <div class="row">
+                        <div class=col-12"><h1>Projekat ne postoji za ovaj predmet.</h1></div>
+                    </div>
+                @else
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-4 mt-3">
+                            <table class="text-center table">
+                                <tr>
+                                    <td colspan="2">
+                                        <h2 class="font-weight-bold">
+                                            {{$subjectName}} - Informacije o projektu
+                                        </h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ime projekta</td>
+                                    <td>{{$project->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Minimalni broj članova</td>
+                                    <td>{{$project->minMemberNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Maksimalni broj članova</td>
+                                    <td>{{$project->maxMemberNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Datum isteka prijave</td>
+                                    <td>{{
+                                            implode(".",array_reverse(explode("-",$project->expirationDate)))
+                                        }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                @endif
+
+        </div>
+        <div class="d-none project-tab" id="team-list">
+
+
         </div>
         <div class="d-none project-tab" id="team-create">
             <div class="row d-flex justify-content-center">
@@ -102,13 +146,12 @@ $userName = $user->forename . " " . $user->surname;
                         </tr>
                         <tr>
                             <td>
-                                <span id="csrf">@csrf</span>
                                 <input class="form-control" placeholder="Naziv tima" type="text" id="form-team-name" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div id="form-message" class="col-12 pb-2 text-danger">
+                                <div id="form-message" class="col-12 pb-2">
 
                                 </div>
                                 <button class="btn d-block w-100 btn-dark" id="form-team-sumbit">Kreiraj tim</button>

@@ -4,8 +4,9 @@ Autor: Sreten Živković 0008/2018
 .header {
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 150px 150px;
+    background-size: 100px 100px;
     background-image: url(/images/ProLabLOGO.jpg?50a1116a3efaab43bd490158a3e43e3f);
+    padding-bottom: 0px;
 }
 main {
     min-height: 45vh;
@@ -17,11 +18,11 @@ main {
 .project-tab-button.active {
     border-bottom: 3px solid blue!important;
 }
-#nav-tab {
+#nav-div {
     border-bottom: 2px solid grey;
 }
 .team-leader {
-    /*background-color: #b9b9b9;*/
+
     font-weight: bold;
 }
 
