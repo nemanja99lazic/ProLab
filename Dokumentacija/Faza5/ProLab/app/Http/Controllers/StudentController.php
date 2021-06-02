@@ -685,7 +685,12 @@ class StudentController extends Controller
             return redirect()->to(route('student.index'));
         }
         $project = $subject->projects()->sole();
-
+        if (is_null($project)) {
+            $project = new stdClass();
+            $project->notExist = true;
+        } else {
+            $project->notExist = false;
+        }
         return view("student/project", ["subjectName"=>$subject->name, "project"=> $project, "code"=>$code]);
     }
 
@@ -695,6 +700,7 @@ class StudentController extends Controller
      * @author zvk17
      */
     public function availableTeams($code) {
+        $user = request()->session()->get("user")["userObject"];
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
             return response()->json(["message"=> "subject not exist"], 400);
@@ -706,6 +712,7 @@ class StudentController extends Controller
         if ($project->hasExpired()) {
             return response()->json(["message"=> "project expired"], 400);
         }
+
         $teams = DB::table('subjects')
             ->join('projects', 'subjects.idSubject', '=', 'projects.idSubject')
             ->join('teams', 'projects.idProject', '=', 'teams.idProject')
@@ -713,7 +720,6 @@ class StudentController extends Controller
             ->join("students", "students.idStudent", "=", "team_members.idStudent")
             ->join("users", "students.idStudent", "=", "users.idUser")
             ->select(//"*",
-                    //"subjects.name as subjectName",
                     "teams.name as teamName",
                     "teams.locked",
                     "teams.idTeam",
@@ -739,41 +745,44 @@ class StudentController extends Controller
     public function joinTeam($code, $teamId) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist"], 200);
+            return response()->json(["status"=>"not_ok","message"=> "subject not exist"], 200);
         }
         $project = $subject->projects()->sole();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist"], 200);
+            return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired"], 200);
+            return response()->json(["status"=>"not_ok","message"=> "project expired"], 200);
         }
 
         $user = request()->session()->get("user")["userObject"];
+        if ($this->notAttends($subject, $user)) {
+            return response()->json(["status"=>"not_ok","message"=> "not attends"], 400);
+        }
         $team = Team::find($teamId);
         if (is_null($team)) {
-            return response()->json(["message"=>"team doesnt exist"], 200);
+            return response()->json(["status"=>"not_ok","message"=>"team doesnt exist"], 200);
         }
         if ((int)$team->locked == 1) {
-            return response()->json(["message"=>"team is locked"], 409);
+            return response()->json(["status"=>"not_ok","message"=>"team is locked"], 200);
         }
 
         $mmn = (int)$project->maxMemberNumber;
         $tmc = $team->members()->count();
         if ($mmn <= $tmc) {
-            return response()->json(["message"=>"max member count exceeded"], 409);
+            return response()->json(["status"=>"not_ok","message"=>"max member count exceeded"], 200);
         }
 
 
         if ($this->alreadyInTeam($code, $user->idUser)) {
-            return response()->json(["message"=>"already in team"], 409);
+            return response()->json(["status"=>"not_ok","message"=>"already in team"], 200);
         }
 
         $teamMember = new TeamMember();
         $teamMember->idStudent = $user->idUser;
         $teamMember->idTeam = $teamId;
         $teamMember->save();
-        return response()->json(["message"=> "ok"], 200);
+        return response()->json(["status"=> "ok"], 200);
     }
 
     /**
@@ -837,8 +846,9 @@ class StudentController extends Controller
                 'teams.name as teamName'
             );
     }
-    ///student/subject/{code}/team/create
-    /// /**
+
+
+
     /**
      * @note kreiranje tima restful POST
      * @param $code
@@ -854,7 +864,7 @@ class StudentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(["status"=>"not_ok","message"=> "bad_input", "error_number"=>1], 200);
+            return response()->json(["status"=>"not_ok","message"=> "bad input", "error_number"=>1], 200);
         }
 
         $subject = Subject::where("code", "=", $code)->first();
@@ -871,6 +881,9 @@ class StudentController extends Controller
         $user = request()->session()->get("user")["userObject"];
         if ($this->alreadyInTeam($code, $user->idUser)) {
             return response()->json(["status"=>"not_ok","message"=>"already in team","error_number"=>5], 200);
+        }
+        if ($this->notAttends($subject, $user)) {
+            return response()->json(["status"=>"not_ok","message"=> "not attends","error_number"=>6], 200);
         }
 
         $user = request()->session()->get("user")["userObject"];
@@ -953,7 +966,22 @@ class StudentController extends Controller
         return $results->count() > 0;
     }
 
-
+    /**
+     * @note da li student prati dati predmet
+     * @param $subject
+     * @param $user
+     * @return bool
+     */
+    private function notAttends($subject, $user): bool{
+        $students = $subject->students()->getResults();
+        $id = $user->idUser;
+        foreach($students as $student) {
+            if ($student->idStudent == $id) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * POST zahtev koji unosi zahtev za zamenu u bazu podataka

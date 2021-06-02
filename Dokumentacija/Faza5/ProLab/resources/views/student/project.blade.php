@@ -20,6 +20,7 @@ $userName = $user->forename . " " . $user->surname;
     <link href="{{ asset("css/project.css") }}" rel="stylesheet"/>
     <script>
         window.projectData = {
+            @if(!$project->notExist)
             name: "{{$project->name}}",
             idProject: {{$project->idProject}},
             min: {{$project->minMemberNumber}},
@@ -27,11 +28,17 @@ $userName = $user->forename . " " . $user->surname;
             idSubject: {{$project->idSubject}},
             expirationDate: "{{$project->expirationDate}}",
             idUser: {{$user->idUser}},
-            code: "{{$code}}"
+            code: "{{$code}}",
+            @endif
+            notExist: {{$project->notExist? "true" : "false"}}
         };
     </script>
     <title>
-        {{$subjectName}} - Projekti
+        @if($project->notExist)
+            Projekat ne postoji.
+        @else
+            {{$subjectName}} - Projekti
+        @endif
     </title>
     <style>
         body {
@@ -81,7 +88,11 @@ $userName = $user->forename . " " . $user->surname;
         </div>
     </div>
     <main id="main">
-        <div class="project-tab" id="team-list"></div>
+        <div class="project-tab" id="team-list">
+            @if($project->notExist)
+                <div class=col-12"><h1>Projekat ne postoji za ovaj predmet.</h1></div>
+            @endif
+        </div>
         <div class="d-none project-tab" id="team-create">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-8 col-lg-5 col-xl-4 mt-4">
@@ -97,7 +108,7 @@ $userName = $user->forename . " " . $user->surname;
                         </tr>
                         <tr>
                             <td>
-                                <div id="form-error-message" class="col-12 pb-2 text-danger">
+                                <div id="form-message" class="col-12 pb-2 text-danger">
 
                                 </div>
                                 <button class="btn d-block w-100 btn-dark" id="form-team-sumbit">Kreiraj tim</button>

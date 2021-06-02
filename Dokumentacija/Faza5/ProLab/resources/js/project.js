@@ -110,11 +110,24 @@ class CreateTeam{
     constructor() {
         this.$teamName = $("#form-team-name");
         this.$button = $("#form-team-sumbit");
-        this.$error = $("#form-error-message")
+        this.$message = $("#form-message");
         let ref = this;
         this.$button.on("click", ()=>{
            ref.submit();
         });
+    }
+    writeError(message) {
+        this.$message.removeClass("text-success");
+        this.$message.addClass("text-danger");
+        this.$message.html(message);
+    }
+    writeSuccess(message) {
+        this.$message.removeClass("text-danger");
+        this.$message.addClass("text-success");
+        this.$message.html(message);
+    }
+    clearInfo() {
+        this.$message.empty();
     }
     submit() {
         console.log("submit")
@@ -132,10 +145,12 @@ class CreateTeam{
             errorMessage += "Ime sme da sadrži slova, cifre, -, _ i razmak<br />";
         }
         if (errorMessage.length > 0) {
-            this.$error.html(errorMessage);
+            this.writeError(errorMessage);
+            //this.$error.html(errorMessage);
             return;
         }
-        this.$error.empty();
+        this.clearInfo();
+
         let pData = Project.getProjectData();
         let body = new URLSearchParams();
         body.append("teamname", teamName);
@@ -153,6 +168,8 @@ class CreateTeam{
             if (json.status != "ok") {
                 throw json;
             }
+            this.writeSuccess("Uspešno ste kreirali tim");
+            this.loadData();
         }).catch(error=>{
             console.log("catch");
             let errorMessage = "";
@@ -172,12 +189,16 @@ class CreateTeam{
                 case 5:
                     errorMessage = "Već ste u timu";
                     break;
+                case 6:
+                    errorMessage = "Niste prijavljeni na predmet";
+                    break;
                 default:
                     console.log(error.error_number)
                     return;
 
             }
-            this.$error.html(errorMessage);
+            this.writeError(errorMessage);
+            //this.$error.html(errorMessage);
             console.log(error);
         });
 
@@ -193,6 +214,9 @@ $(document).ready(()=>{
     //console.log(project);
     let $csrf = $("#csrf> input");
     window.projectData.csrf = $csrf.val();
+    if (window.projectData.notExist) {
+        return;
+    }
     //console.log();
     Project.setProjectData(window.projectData);
     let p = new Project();
