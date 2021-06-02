@@ -6,7 +6,7 @@
     <script src="{{asset("js/teacher/show_labs_script.js")}}"></script>
 
     <br>
-    <h3 class="font-weight-bold text-center border-bottom-12 offset-0"  >Spisak aktivnih labova</h3>
+    <h3 class="font-weight-bold text-center border-bottom-12 offset-0"  >Spisak laboratorijskih vežbi</h3>
     <br>
 
     <div class="row justify-content-center">

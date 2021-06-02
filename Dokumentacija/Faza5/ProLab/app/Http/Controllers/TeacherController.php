@@ -18,6 +18,7 @@ use App\Subject;
 use App\LabExercise;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Appointment;
+use App\HasAppointment;
 
 /**
  * TeacherController - klasa koja implemenitra logiku funckionalnosti za tip korisnika profesor.
@@ -330,7 +331,32 @@ class TeacherController extends Controller
      */
     public function showLabAppointments(Request $request)
     {
-        echo "Hello world";
+        $subjectCode = $request -> code;
+        $idLab = $request->idLab;
+
+        $myLab = LabExercise::find($idLab); // nasao Lab
+        $myAppointmentsWithStudents = Appointment::where('idLabExercise', '=', $idLab)->get(); // Nasao termina, vraca collection
+        foreach($myAppointmentsWithStudents as $appointment) // Nadji studente koji su u odgovarajucim terminima
+        {
+            $studentsRows = HasAppointment::where('idAppointment', '=', $appointment->idAppointment)
+                            ->join('students', 'students.idStudent', '=', 'has_appointment.idStudent')
+                            ->join('users', 'users.idUser', '=', 'has_appointment.idStudent')
+                            ->select('forename', 'surname', 'index')
+                            ->get()->toArray();
+            $appointment['students'] = $studentsRows; // prosiri kolekciju termina nizom studenata za taj termin 'students'
+        }
+
+        $maxItemsPerPage=4;
+        $myAppointmentsWithStudents = $myAppointmentsWithStudents->toArray();
+        $paginatorAppointments = new LengthAwarePaginator
+        (array_slice($myAppointmentsWithStudents, (LengthAwarePaginator::resolveCurrentPage() - 1) * $maxItemsPerPage, $maxItemsPerPage)
+            ,count($myAppointmentsWithStudents), $maxItemsPerPage, null, [
+
+            ]);
+
+        $paginatorAppointments->withPath("/teacher/subject/". $subjectCode ."/lab/". $idLab ."/appointments");
+        
+        return view('teacher.show_lab_appointments', ['lab' => $myLab, 'appointments' => $paginatorAppointments, 'code' => $subjectCode]);
     }
 
     /**
