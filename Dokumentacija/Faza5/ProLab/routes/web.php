@@ -79,7 +79,9 @@ Route::post('/teacher/subject/{code}/project/define', [App\Http\Controllers\Teac
 Route::post('/teacher/subject/{code}/project/removeProject', [App\Http\Controllers\TeacherController::class, 'removeProject'])->name('teacher.removeProject');
 
 Route::get('/teacher/subject/{code}/lab', [App\Http\Controllers\TeacherController::class, 'showLabs'])->name('teacher.showLabs');
-Route::get('/teacher/subject/{code}/lab/{idLab}', [App\Http\Controllers\TeacherController::class, 'showLabAppointments'])->name('teacher.showLabAppointments');
+Route::get('/teacher/subject/{code}/lab/{idLab}/appointments', [App\Http\Controllers\TeacherController::class, 'showLabAppointments'])->name('teacher.showLabAppointments');
+Route::get('/teacher/subject/{code}/lab/addLab', [App\Http\Controllers\TeacherController::class, 'showAddLabForm'])->name('teacher.showAddLabForm');
+Route::post('/teacher/subject/{code}/lab/addLab', [App\Http\Controllers\TeacherController::class, 'defineLab'])->name('teacher.defineLab');
 
 //Admin
 

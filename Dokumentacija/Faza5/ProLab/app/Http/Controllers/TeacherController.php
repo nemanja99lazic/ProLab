@@ -17,6 +17,7 @@ use App\Project;
 use App\Subject;
 use App\LabExercise;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Appointment;
 
 /**
  * TeacherController - klasa koja implemenitra logiku funckionalnosti za tip korisnika profesor.
@@ -30,6 +31,7 @@ class TeacherController extends Controller
     public const HTTP_STATUS_OK = 200;
     public const HTTP_STATUS_NOT_FOUND = 404;
     public const HTTP_STATUS_ERROR_ALREADY_EXISTS = 409;
+    public const HTTP_STATUS_ERROR_SERVER_ERROR = 500;
 
     /**
      * Kreiranje nove instance.
@@ -329,5 +331,64 @@ class TeacherController extends Controller
     public function showLabAppointments(Request $request)
     {
         echo "Hello world";
+    }
+
+    /**
+     * Prikaz forme za definisanje laboratorijske vezbe
+     * 
+     * @param Request $request Request
+     * 
+     * @return view
+     * 
+     * - Nemanja Lazic 2018/0004 
+     */
+    public function showAddLabForm(Request $request)
+    {
+        $code = $request->code;
+        return view('teacher.add_lab', ['code' => $code]);
+    }
+
+    /**
+     * Definisanje laboratorijske vezbe - upis laboratorijske vezbe u bazu i odgovarajucih termina
+     * 
+     * @param Request $request Request
+     * 
+     * @return view
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
+    public function defineLab(Request $request)
+    {
+        $subjectCode = $request->code;
+        $labExerciseName = $request->get('name');
+        $labExerciseDescription = $request->get('description');
+        $labExerciseExpiration = $request->get('expiration');
+        $labExerciseAppointmentsArray = $request->get('appointments');
+        $idSubject = Subject::where('code', '=', $subjectCode)->first()->idSubject;
+
+        $savedLabId = LabExercise::create(array('name' => $labExerciseName, 
+                                                    'description' => $labExerciseDescription, 
+                                                    'expiration' => $labExerciseExpiration,
+                                                    'idSubject' => $idSubject)) -> idLabExercise;
+
+        if($savedLabId == null)
+            return response()->json(array('message' => 'Nije uspelo da sačuva laboratorijsku vežbu.'), TeacherController::HTTP_STATUS_ERROR_SERVER_ERROR);
+
+        foreach($labExerciseAppointmentsArray as $appointmentObject)
+        {
+            $newAppointment = new Appointment;
+            $newAppointment->name = $labExerciseName;
+            $newAppointment->classroom = $appointmentObject["classroom"];
+            $newAppointment->capacity = $appointmentObject["capacity"];
+            $newAppointment->location = $appointmentObject["location"];
+            $newAppointment->datetime = $appointmentObject["datetime"];
+            $newAppointment->idLabExercise = $savedLabId;
+
+            $savedIndicator = $newAppointment->save();
+            if(!$savedIndicator)
+                return response()->json(array('message' => 'Nije uspelo da sačuva laboratorijsku vežbu.'), TeacherController::HTTP_STATUS_ERROR_SERVER_ERROR);
+        }
+
+        return response()->json(array('message' => "Uspesnooo"), TeacherController::HTTP_STATUS_OK);
     }
 }
