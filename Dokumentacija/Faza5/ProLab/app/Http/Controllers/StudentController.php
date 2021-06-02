@@ -727,17 +727,6 @@ class StudentController extends Controller
             ->where("subjects.code", "=", $code)
             ->get();
 
-        /*$teams = $project->teams()->getResults();
-        $teamList = [];
-        foreach($teams as $team) {
-            /*$members = $team->members()->getResults();
-            $memberList = [];
-            foreach ($members as $member) {
-                $memberList[] = $member->
-            }*/
-           /// $teamList[] = $team;
-        //}
-
         return response()->json($teams, 200);
     }
 
@@ -750,20 +739,20 @@ class StudentController extends Controller
     public function joinTeam($code, $teamId) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist"], 400);
+            return response()->json(["message"=> "subject not exist"], 200);
         }
         $project = $subject->projects()->sole();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist"], 400);
+            return response()->json(["message"=> "project not exist"], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired"], 400);
+            return response()->json(["message"=> "project expired"], 200);
         }
 
         $user = request()->session()->get("user")["userObject"];
         $team = Team::find($teamId);
         if (is_null($team)) {
-            return response()->json(["message"=>"team doesnt exist"], 409);
+            return response()->json(["message"=>"team doesnt exist"], 200);
         }
         if ((int)$team->locked == 1) {
             return response()->json(["message"=>"team is locked"], 409);
@@ -865,23 +854,23 @@ class StudentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(["message"=> "bad_input", "error_number"=>1], 400);
+            return response()->json(["status"=>"not_ok","message"=> "bad_input", "error_number"=>1], 200);
         }
 
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist", "error_number"=>2], 400);
+            return response()->json(["status"=>"not_ok","message"=> "subject not exist", "error_number"=>2], 200);
         }
         $project = $subject->projects()->sole();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist", "error_number"=>3], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project not exist", "error_number"=>3], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired","error_number"=>4], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project expired","error_number"=>4], 200);
         }
         $user = request()->session()->get("user")["userObject"];
         if ($this->alreadyInTeam($code, $user->idUser)) {
-            return response()->json(["message"=>"already in team","error_number"=>5], 400);
+            return response()->json(["status"=>"not_ok","message"=>"already in team","error_number"=>5], 200);
         }
 
         $user = request()->session()->get("user")["userObject"];
@@ -896,7 +885,7 @@ class StudentController extends Controller
         $teamMember->idTeam = $newTeam->idTeam;
         $teamMember->save();
 
-        return response()->json(["message"=> "ok"], 200);
+        return response()->json(["status"=> "ok","message"=>"team created"], 200);
     }
 
     ///student/subject/{code}/project/team/{idTeam}/lock

@@ -147,7 +147,39 @@ class CreateTeam{
             headers: {
                 "X-CSRF-TOKEN": pData.csrf
             }
-        }).then(data=>data.json());
+        }).then(
+            data=>data.json()
+        ).then(json=>{
+            if (json.status != "ok") {
+                throw json;
+            }
+        }).catch(error=>{
+            console.log("catch");
+            let errorMessage = "";
+            switch (error.error_number) {
+                case 1:
+                    errorMessage = "Loš format";
+                    break;
+                case 2:
+                    errorMessage = "Predmet ne postoji";
+                    break;
+                case 3:
+                    errorMessage = "Projekat ne postoji";
+                    break;
+                case 4:
+                    errorMessage = "Isteklo vreme za prijavu projekta";
+                    break;
+                case 5:
+                    errorMessage = "Već ste u timu";
+                    break;
+                default:
+                    console.log(error.error_number)
+                    return;
+
+            }
+            this.$error.html(errorMessage);
+            console.log(error);
+        });
 
 
 
