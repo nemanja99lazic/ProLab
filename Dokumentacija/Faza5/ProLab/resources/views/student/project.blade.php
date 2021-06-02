@@ -19,7 +19,7 @@ $userName = $user->forename . " " . $user->surname;
     <link href="{{ asset('css/temp.css') }}" rel="stylesheet"/>
     <link href="{{ asset("css/project.css") }}" rel="stylesheet"/>
     <script>
-        window.project = {
+        window.projectData = {
             name: "{{$project->name}}",
             idProject: {{$project->idProject}},
             min: {{$project->minMemberNumber}},
@@ -91,12 +91,15 @@ $userName = $user->forename . " " . $user->surname;
                         </tr>
                         <tr>
                             <td>
-                                @csrf
+                                <span id="csrf">@csrf</span>
                                 <input class="form-control" placeholder="Naziv tima" type="text" id="form-team-name" />
                             </td>
                         </tr>
                         <tr>
                             <td>
+                                <div id="form-error-message" class="col-12 pb-2 text-danger">
+
+                                </div>
                                 <button class="btn d-block w-100 btn-dark" id="form-team-sumbit">Kreiraj tim</button>
                             </td>
                         </tr>
@@ -106,12 +109,13 @@ $userName = $user->forename . " " . $user->surname;
 
             </div>
 
-            <div class="col-12">
 
-            </div>
         </div>
 
     </main>
+
+
+
     <div class="row">
         <footer class="page-footer bg-light col-12" >
             <hr style="width: 100%; color: #000066 " >

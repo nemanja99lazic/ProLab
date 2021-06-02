@@ -6,47 +6,12 @@
 
 
 const $ = require("jquery");
-
-class CreateTeam{
-    constructor() {
-        this.$teamName = $("#form-team-name");
-        this.$button = $("#form-team-sumbit");
-        let ref = this;
-        this.$button.on("click", ()=>{
-           ref.submit();
-        });
-    }
-    submit() {
-        console.log("submit")
-        let ref = this;
-        let teamName = this.$teamName.val();
-        console.log(teamName)
-        let errorMessage = "";
-        if (teamName.length <= 4) {
-            errorMessage += "Ime tima mora biti duze od 4 znaka<br />";
-        }
-        if (teamName.length > 60) {
-            errorMessage += "Ime tima mora biti kraze od 60 znaka<br />";
-        }
-        if (!/^[a-zA-Z\d\s\-_]+$/.test(teamName)) {
-            errorMessage += "Ime sme da sadrzi slova, cifre, -, _ i razmak<br />";
-        }
-        if (errorMessage.length > 0) {
-
-            return;
-        }
-
-        
-        fetch()
-    }
-
-}
-
 class Project {
-
-    constructor(projectData) {
-        Project.projectData = projectData;
-
+    static projectData = {};
+    static setProjectData(pData) {
+        Project.projectData = pData;
+    }
+    constructor() {
     }
     static getTeamTable(team) {
         let $div = $("<div>").addClass("col-6 pt-2");
@@ -78,13 +43,14 @@ class Project {
         $div.append($table)
         return $div;
     }
-    loadData(code) {
+    loadData() {
+        let code = Project.projectData.code;
         let ref = this;
         fetch("/student/subject/"+ code +"/team/available")
             .then(response => {
-                console.log("hello world fetch");
-                return response.json()}
-            )
+                //console.log("hello world fetch");
+                return response.json()
+            })
             .then(data => {
                 let teamObject = {};
                 for (let key in data) {
@@ -135,15 +101,71 @@ class Project {
     tabs() {
 
     }
+    static getProjectData() {
+        return Project.projectData;
+    }
+}
+
+class CreateTeam{
+    constructor() {
+        this.$teamName = $("#form-team-name");
+        this.$button = $("#form-team-sumbit");
+        this.$error = $("#form-error-message")
+        let ref = this;
+        this.$button.on("click", ()=>{
+           ref.submit();
+        });
+    }
+    submit() {
+        console.log("submit")
+        let ref = this;
+        let teamName = this.$teamName.val();
+        //console.log(teamName)
+        let errorMessage = "";
+        if (teamName.length <= 4) {
+            errorMessage += "Ime tima mora biti duže od 4 znaka<br />";
+        }
+        if (teamName.length > 60) {
+            errorMessage += "Ime tima mora biti kraće od 60 znaka<br />";
+        }
+        if (!/^[a-zA-Z\d\s\-_]+$/.test(teamName)) {
+            errorMessage += "Ime sme da sadrži slova, cifre, -, _ i razmak<br />";
+        }
+        if (errorMessage.length > 0) {
+            this.$error.html(errorMessage);
+            return;
+        }
+        this.$error.empty();
+        let pData = Project.getProjectData();
+        let body = new URLSearchParams();
+        body.append("teamname", teamName);
+            //this.$button.attr("disabled","disabled");
+        fetch("/student/subject/" + pData.code + "/team/create", {
+            method: "POST",
+            'Content-Type': 'application/x-www-form-urlencoded',
+            body: body,
+            headers: {
+                "X-CSRF-TOKEN": pData.csrf
+            }
+        }).then(data=>data.json());
+
+
+
+    }
 
 }
 
+
 $(document).ready(()=>{
-    const project = window.project;
-    console.log(project);
-    let p = new Project(project);
+    //const project = window.project;
+    //console.log(project);
+    let $csrf = $("#csrf> input");
+    window.projectData.csrf = $csrf.val();
+    //console.log();
+    Project.setProjectData(window.projectData);
+    let p = new Project();
     //$("#main").append(Project.getTeamTable([]));
-    p.loadData(project.code);
+    p.loadData();
     $(".project-tab-button").each((i, ele)=>{
         let $button = $(ele);
         $button.on("click",() => {
