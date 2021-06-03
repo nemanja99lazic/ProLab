@@ -1,7 +1,21 @@
 <?php //Autor: Valerijan Matvejev 2018/0257; Prikaz svih termina za dati lab ?>
-@extends('layout.main')
+@extends('layout.student_main')
+@section("page-title")
+    Spisak termina za dati lab
+@endsection
+
 @section('content')
 
+    <div class="col-5 mt-5 d-flex flex-column justify-content-start">
+        <ul class="nav nav-pills ml-5">
+            <li class="nav-item pill-request" id="pill-reg">
+                <a class="nav-link active" id="v-pill-joinAppointment" data-toggle="pill" href="">Prijava/odjava termina</a>
+            </li>
+            <li class="nav-item pill-request" id="pill-new">
+                <a class="nav-link" id="v-pill-swapAppointments" data-toggle="pill" href="">Zamena termina</a>
+            </li>
+        </ul>
+    </div>
 
 
 

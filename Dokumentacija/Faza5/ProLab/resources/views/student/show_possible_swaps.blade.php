@@ -1,8 +1,28 @@
 <?php //Autor: Valerijan Matvejev 2018/0257; Prikaz mogućih studenata za zamenu ?>
-@extends('layout.main')
+@extends('layout.student_main')
+@section("page-title")
+    Spisak termina za zamenu
+@endsection
 @section('content')
 
+
+    <div class="col-5 mt-5 d-flex flex-column justify-content-start">
+        <ul class="nav nav-pills ml-5">
+            <li class="nav-item pill-request" id="pill-reg">
+                <a class="nav-link " id="v-pill-joinAppointment" data-toggle="pill" href="">Prijava/odjava termina</a>
+            </li>
+            <li class="nav-item pill-request" id="pill-new">
+                <a class="nav-link active" id="v-pill-swapAppointments" data-toggle="pill" href="">Zamena termina</a>
+            </li>
+            <li class="nav-item pill-request" id="pill-new">
+                <a class="nav-link " id="v-pill-swapRequest" data-toggle="pill" href="">Zahtev za zamenu</a>
+            </li>
+        </ul>
+    </div>
+
+
     <div class="row justify-content-center">
+
         <h2 class="font-weight-bold  text-center border-bottom-12 offset-0 p-5 m-1"  >
             Izaberite sa kime biste želeli da zamenite termin:
         </h2>

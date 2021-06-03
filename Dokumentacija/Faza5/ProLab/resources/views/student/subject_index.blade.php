@@ -9,6 +9,7 @@
     {{$subjectTitle}} - Stranica predmeta
 @endsection
 @section('content')
+
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-xl-8 col-lg-10">
             <h1 class="text-center">{{$subjectTitle}}</h1>

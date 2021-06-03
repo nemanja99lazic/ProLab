@@ -1,5 +1,8 @@
 <?php //Autor: Valerijan Matvejev 2018/0257; Ispis svih labova za dati predmet ?>
-@extends('layout.main')
+@extends('layout.student_main')
+@section("page-title")
+     Spisak labova
+@endsection
 @section('content')
 
 
@@ -100,4 +103,9 @@
 
 
 
+
 @endsection
+
+
+
+

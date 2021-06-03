@@ -1,9 +1,23 @@
 <?php //Autor: Valerijan Matvejev 2018/0257; Prikaz za unos zahteva za zamenu ?>
-@extends('layout.main')
+@extends('layout.student_main')
 @section('content')
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+    <div class="col-5 mt-5 d-flex flex-column justify-content-start">
+        <ul class="nav nav-pills ml-5">
+            <li class="nav-item pill-request" id="pill-reg">
+                <a class="nav-link " id="v-pill-joinAppointment" data-toggle="pill" href="">Prijava/odjava termina</a>
+            </li>
+            <li class="nav-item pill-request" id="pill-new">
+                <a class="nav-link " id="v-pill-swapAppointments" data-toggle="pill" href="">Zamena termina</a>
+            </li>
+            <li class="nav-item pill-request" id="pill-new">
+                <a class="nav-link active " id="v-pill-swapRequest" data-toggle="pill" href="" >Zahtev za zamenu</a>
+            </li>
+        </ul>
+    </div>
 
 
     <div class="row justify-content-center">

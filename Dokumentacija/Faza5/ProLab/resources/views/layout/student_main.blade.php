@@ -15,8 +15,11 @@ $userName = $user->forename . " " . $user->surname;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/navbar.js') }}" defer></script>
+    <script src="{{ asset('js/student/navigacija_script.js') }}" defer></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/temp.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/student/show_appointments.css') }}" rel="stylesheet">
     <title>
         @yield('page-title')
     </title>
@@ -38,50 +41,9 @@ $userName = $user->forename . " " . $user->surname;
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row header">
-        <div class="col-12 d-flex  justify-content-end pb-2 pt-0 ">
-            <ul class="nav d-flex align-items-center">
-                <li class="nav-item ml-1 mr-1">
-                    {{$userName}}
-                </li>
-                <li class="nav-item ml-1 mr-1">
-                    <a class="nav-link btn btn-dark" href="{{ route(Session::get('user')['userType'].'.index') }}">Početna</a>
-                </li>
-                <li class="nav-item ml-1 mr-1">
-                    <a class="nav-link btn btn-dark" href="{{ route(Session::get('user')['userType'].'.logout') }}">Odjavi se</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-3 tabs d-flex flex-column justify-content-end p-0">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link btn-outline-dark  request()->is('student/requests/*') || request()->is('admin') ? 'active' : '' " id="nav-request-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true">Requests</a>
-                    <a class="nav-item nav-link btn-outline-dark request()->is('student/subjects/*') ? 'active' : ''" id="nav-subject-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" aria-selected="false">Predmeti</a>
-                    <a class="nav-item nav-link btn-outline-dark" id="nav-user-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false">Users</a>
-                </div>
-            </nav>
-            {{--                <div class="tab-content" id="nav-tabContent">--}}
-            {{--                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">ALO</div>--}}
-            {{--                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">ALO</div>--}}
-            {{--                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">ALO</div>--}}
-            {{--                </div>--}}
-            {{--                    <div>--}}
-            {{--                        <button class="btn btn-dark my-btn-tab">Zahtevi--}}
-            {{--                            <span class="badge badge-danger" id="request-number"></span>--}}
-            {{--                        </button>--}}
-            {{--                        <button class="btn btn-dark my-btn-tab">Predmeti</button>--}}
-            {{--                        <button class="btn btn-dark my-btn-tab">Korisnici</button>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="">--}}
-            {{--                        <button class="btn btn-dark">Početna</button>--}}
-            {{--                        <button class="btn btn-dark">Odjava</button>--}}
-            {{--                    </div>--}}
+    <div class="row header mb-5">
 
-        </div>
-        <div class="col-6 d-flex flex-column justify-content-center text-center">
-            {{--                <img src="images\ProLabLOGO.jpg" class="rounded img-thumbnail img-fluid" width="30%">--}}
-            <h1>ProLab</h1>
-        </div>
+        @include('layout/subject_header')
 
     </div>
 
@@ -95,7 +57,7 @@ $userName = $user->forename . " " . $user->surname;
 
     <div class="row">
         <div class="col fixed-bottom">
-            <hr style="width: 100%; color: #000066 " >
+            <hr style="width: 100%; color: #6c757d;height: 1px" >
 
 
 
