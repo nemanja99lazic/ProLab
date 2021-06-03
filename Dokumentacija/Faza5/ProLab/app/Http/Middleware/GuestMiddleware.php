@@ -9,6 +9,7 @@ class GuestMiddleware
 {
     /**
      * Handle an incoming request.
+     * @note ako je korisnik ulogovan, korisnik se šalje na njegovu početnu stranu
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -16,7 +17,8 @@ class GuestMiddleware
      */
     public function handle(Request $request, Closure $next) {
         if ($request->session()->has("user")) {
-            return redirect()->back();
+            $userType = $request->session()->get("user")["userType"];
+            return redirect()->to(url("/". $userType));
         }
         if (!$request->session()->has('register_request') && $request->route()->getName() == 'guest.registerinfo') {
             return redirect()->to(url('/'));

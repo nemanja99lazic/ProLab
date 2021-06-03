@@ -14,7 +14,7 @@ class NewSubjectRequestTeaches extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'new_subject_requests_teaches';
@@ -22,7 +22,9 @@ class NewSubjectRequestTeaches extends Model
     /**
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['idRequest', 'idTeacher'];
+
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

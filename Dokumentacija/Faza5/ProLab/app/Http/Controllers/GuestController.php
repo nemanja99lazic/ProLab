@@ -14,6 +14,16 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+/**
+ * Autor: Sloodan Katanic
+*ako se uloguje korisnik
+ * se čuva u sesiji
+ * kljuc user
+ * session()->get("user") vraća asocijativni niz
+ * userType čuva tip korisnika
+ * userObject čuva objekat korisnika
+ **/
+
 
 class GuestController extends Controller
 {
@@ -24,16 +34,26 @@ class GuestController extends Controller
         //$this->middleware('auth');
     }
 
-    protected function getUserType($email) {
-        //return 'student';
-        if (preg_match("/@student/", $email)) {
-            return 'student';
-        } else if (preg_match("/@admin/", $email)) {
-            return 'admin';
-        } else {
-            return 'teacher';
+    protected function getUserType($user) {
+        if (!is_null($user->student()->getResults())) {
+            return "student";
         }
-    }
+        if (!is_null($user->administrator()->getResults())) {
+            return "admin";
+        }
+        return "teacher";
+       }
+
+//    protected function getUserType($email) {
+//        if (preg_match("/@student/", $email)) {
+//            return 'student';
+//        } else if (preg_match("/@admin/", $email)) {
+//            return 'admin';
+//        } else {
+//            return 'teacher';
+//        }
+//        }
+//    }
 
     public function loginGet(Request &$request) {
         return view('login');
@@ -49,14 +69,20 @@ class GuestController extends Controller
 
         if ($user == null) {
             return redirect()->to(url('/'))->withInput()->with('errorUsername', 'Wrong username');
+        } else {
+            if ($user->password != $request->get('password')) {
+                return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Wrong password');
+            }
         }
 
-        $user = User::where('password', '=', $request->get('password'))->first();
-        if ($user == null) {
-            return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Wrong password');
-        }
+//        $user = User::where('password', '=', $request->get('password'))->first();
+//        if ($user == null) {
+//            return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Wrong password');
+//        }
 
-        $userType = $this->getUserType($user->email);
+        $userType = $this->getUserType($user);
+
+        // $userType = $this->getUserType($user->email);
 
         $request->session()->put('user', ['userObject' => $user, 'userType' => $userType]);
 

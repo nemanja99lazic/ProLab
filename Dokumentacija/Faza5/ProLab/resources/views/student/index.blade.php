@@ -14,6 +14,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>ProLab</h1>
+                <a href="{{route("student.showAllSubjectsList")}}">Lista predmeta</a>
                 <a href="{{ route(Session::get('user')['userType'].'.logout') }}">Logout</a>
             </div>
         </div>

@@ -15,11 +15,11 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-4 offset-4">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-8 col-lg-5 col-xl-4">
                     <form action="{{ route('guest.login.post') }}" method="post">
                         @csrf
-                        <table class="table text-center table-bordered">
+                        <table class="table text-center table-bordered w-100">
                             <tr class="text-center">
                                 <td class="font-weight-bold h2">Login</td>
                             </tr>

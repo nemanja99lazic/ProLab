@@ -71,7 +71,7 @@ class Student extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function teamss()
+    public function leaderInTeams()
     {
         return $this->hasMany('App\Team', 'idLeader', 'idStudent');
     }
