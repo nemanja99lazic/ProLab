@@ -61,10 +61,13 @@ class Teacher extends Model
     public $timestamps = false;
 
     /**
+     * @note vraća predmete na kojima nije glavni profesor
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function subjectss()
+
+    public function teachesSubjects()
     {
+
         return $this->belongsToMany('App\Subject', 'teaches', 'idTeacher', 'idSubject');
     }
 }

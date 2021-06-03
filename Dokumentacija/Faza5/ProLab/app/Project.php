@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -47,4 +48,15 @@ class Project extends Model
     {
         return $this->hasMany('App\Team', 'idProject', 'idProject');
     }
+
+    /**
+     * @note da li je vreme za prijavu projekta isteklo
+     * @return bool
+     * @author zvk17
+     */
+    public function hasExpired():bool {
+        $date = Carbon::parse($this->expirationDate);
+        return $date->isPast();
+    }
+
 }

@@ -1,4 +1,4 @@
-<?php //Autor: Valerijan Matvejev 2018/0257; Prikaz svih termina za dati lab ?>
+<?php //Autor: Valerijan Matvejev 2018/0257; Prikaz za unos zahteva za zamenu ?>
 @extends('layout.main')
 @section('content')
 
