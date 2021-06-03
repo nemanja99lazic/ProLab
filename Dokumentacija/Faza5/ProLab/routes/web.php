@@ -68,11 +68,11 @@ Route::post('/student/subject/{code}/lab/{idLab}/request',[StudentController::cl
 Route::get("/student/subject/{code}/project", [StudentController::class, "projectIndexPage"])->name("student.project.index");
 Route::get("/student/subject/{code}/team/available", [StudentController::class, "availableTeams"])->name("student.team.availableTeams");
 //TODO prebaciti na post rutu ispod
-Route::get("/student/subject/{code}/team/{teamId}/join", [StudentController::class, "joinTeam"])->name("student.team.join");
-Route::get("/student/subject/{code}/team/{teamId}/exit", [StudentController::class, "exitTeam"])->name("student.team.exit");
+Route::post("/student/subject/{code}/team/{teamId}/join", [StudentController::class, "joinTeam"])->name("student.team.join");
+Route::post("/student/subject/{code}/team/{teamId}/exit", [StudentController::class, "exitTeam"])->name("student.team.exit");
 Route::post("/student/subject/{code}/team/create", [StudentController::class, "createTeam"])->name("student.team.create");
-Route::get("/student/subject/{code}/team/{idTeam}/lock", [StudentController::class, "lockTeam"])->name("student.team.lock");
-Route::get("/student/subject/{code}/team/{idTeam}/unlock", [StudentController::class, "unlockTeam"])->name("student.team.unlock");
+Route::post("/student/subject/{code}/team/{idTeam}/lock", [StudentController::class, "lockTeam"])->name("student.team.lock");
+Route::post("/student/subject/{code}/team/{idTeam}/unlock", [StudentController::class, "unlockTeam"])->name("student.team.unlock");
 //Route::get("/student/subject/{code}/team/{idTeam}/isLocked", [StudentController::class, "isTeamLocked"])->name("student.team.isLocked");
 //Teacher
 

@@ -76,8 +76,8 @@ $userName = $user->forename . " " . $user->surname;
         </div>
 
         <div class="col-12 d-flex justify-content-center text-center">
-            <img class="header-logo" src="" width="150px" class="img-fluid">
-
+            <!--<img class="header-logo" src="" width="150px" class="img-fluid">
+            -->
         </div>
         <div class="col-12 tabs d-flex" id="nav-div">
             <nav>
@@ -99,10 +99,10 @@ $userName = $user->forename . " " . $user->surname;
                 @else
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-md-8 col-lg-6 col-xl-4 mt-3">
-                            <table class="text-center table">
+                            <table class="text-center table border" id="tabela-informacija">
                                 <tr>
                                     <td colspan="2">
-                                        <h2 class="font-weight-bold">
+                                        <h2 class="font-weight-bold text-center">
                                             {{$subjectName}} - Informacije o projektu
                                         </h2>
                                     </td>
@@ -134,7 +134,55 @@ $userName = $user->forename . " " . $user->surname;
 
         </div>
         <div class="d-none project-tab" id="team-list">
+            <div id="my-team" class="d-none">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 col-lg-6 pt-5">
+                        <table  id="my-team-table" class="table  w-100 border">
+                            <tr class="">
+                                <td colspan="2" class="">
+                                    <div class="d-flex justify-content-between w-100">
+                                        <h3 class="w-75 font-weight-bold">Moj tim</h3>
+                                        <button id="delete-exit-my-team" class="btn btn-danger p-2">Obriši ili izađi</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ime tima:</td>
+                                <td id="my-team-name" class="text-right font-weight-bold">Moj tim</td>
+                            </tr>
+                            <tr class="show-leader text-center">
+                                <td colspan="2" >Vi ste lider tima.</td>
+                            </tr>
+                            <tr>
 
+                                <td colspan="2">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-4 text-left show-leader">
+                                            <button class="btn-dark btn" id="lock-team">Zaključaj</button>
+                                        </div>
+                                        <div class="col-4 text-center font-weight-bold" id="locked-status">Zaključan</div>
+                                        <div class="col-4 text-right show-leader">
+                                            <button class="btn-dark btn" id="unlock-team">Otključaj</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" id="member" class="text-center text-uppercase font-weight-bold">Članovi</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-0" id="my-team-members">
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div id="other-teams">
+
+            </div>
 
         </div>
         <div class="d-none project-tab" id="team-create">
@@ -159,11 +207,7 @@ $userName = $user->forename . " " . $user->surname;
                         </tr>
                     </table>
                 </div>
-
-
             </div>
-
-
         </div>
 
     </main>
@@ -175,10 +219,10 @@ $userName = $user->forename . " " . $user->surname;
             <hr style="width: 100%; color: #000066 " >
             <div class="text-lg-center text-md-center text-sm-center"  >
                 <p class="justify-content-center">© ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008
-                </p>
-                <p>
+                    <br/>
                     Elektrotehnički fakultet, Univerzitet u Beogradu
                 </p>
+
 
             </div>
 

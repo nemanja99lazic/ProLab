@@ -794,34 +794,35 @@ class StudentController extends Controller
     public function exitTeam($code, $teamId) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist"], 400);
+            return response()->json(["message"=> "subject not exist"], 200);
         }
         $project = $subject->projects()->sole();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist"], 400);
+            return response()->json(["message"=> "project not exist"], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired"], 400);
+            return response()->json(["message"=> "project expired"], 200);
         }
 
         $user = request()->session()->get("user")["userObject"];
         $team = Team::find($teamId);
 
         if (is_null($team)) {
-            return response()->json(["message"=> "team doesnt exist"], 409);
+            return response()->json(["message"=> "team doesnt exist"], 200);
         }
         $idLeader = (int)$team->idLeader;
         if ($idLeader == $user->idUser) {
             Team::destroy($teamId);
             return response()->json(["message"=>"team deleted"], 200);
         }
-        $mmn = (int)$team->project()->sole()->minMemberNumber;
-        $members = $team->members();
-        //TODO da li da brišemo kad je minMember veci od broja clanova
+        //$mmn = (int)$team->project()->sole()->minMemberNumber;
+        //$members = $team->members();
+        // TODO da li da brišemo kad je minMember veci od broja clanova
         // treba dogovoriti na sastanku
-        if ($members->count() <= $mmn) {
-            return response()->json(["message"=>"cannot exit"], 409);
-        }
+        // ili to samo znači da tim nije validan
+        //if ($members->count() <= $mmn) {
+        //   return response()->json(["message"=>"cannot exit"], 409);
+        //}
         $result = TeamMember::where("team_members.idStudent", "=", $user->idUser)
                 ->where("team_members.idTeam", "=", $teamId)
                 ->delete();

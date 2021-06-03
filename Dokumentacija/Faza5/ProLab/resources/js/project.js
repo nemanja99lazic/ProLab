@@ -3,15 +3,38 @@
  * @author Sreten Živković 0008/2018
  *
  */
-
-
 const $ = require("jquery");
+
 class Project {
     static projectData = {};
+    static myTeamData = null;
     static setProjectData(pData) {
         Project.projectData = pData;
     }
+    static setMyTeamData(mData) {
+        Project.myTeamData = mData;
+    }
+    static getMyTeamData() {
+        return Project.myTeamData;
+    }
+
     constructor() {
+    }
+    static getTeamTableMemberList(team) {
+        let students = team.students;
+        return students.map(student => {
+            let $rt = $("<tr>");
+            $rt.addClass("d-flex");
+            //console.log(student.idStudent, team.idLeader)
+            if (student.idStudent == team.idLeader) {
+                $rt.addClass("team-leader");
+            }
+            $rt.attr("data-id", student.idStudent);
+            $rt.append($("<td>").addClass("col-4").text(student.forename));
+            $rt.append($("<td>").addClass("col-4").text(student.surname));
+            $rt.append($("<td>").addClass("col-4").text(student.index));
+            return $rt;
+        });
     }
     static getTeamTable(team) {
         let $div = $("<div>").addClass("col-6 pt-2");
@@ -22,11 +45,15 @@ class Project {
         let $exit = $("<button>").text("Izađi").addClass("btn btn-dark");
         $div.append($join).append($exit).append($header);
         let $table = $("<table>");
+        $
         let $tbody = $("<tbody>");
-        let $rh = $("<tr><th>Ime</th><th>Prezime</th><th>Indeks</th></tr>");
+        let $rh = $("<tr class='w-100 d-flex'><th class='col-4'>Ime</th><th class='col-4'>Prezime</th><th class='col-4'>Indeks</th></tr>");
         $tbody.append($rh);
         console.log(team);
-        team.students.forEach(student => {
+        Project.getTeamTableMemberList(team).forEach($el=>{
+            $tbody.append($el);
+        })
+        /*team.students.forEach(student => {
             let $rt = $("<tr>");
             //console.log(student.idStudent, team.idLeader)
             if (student.idStudent == team.idLeader) {
@@ -37,7 +64,7 @@ class Project {
             $rt.append($("<td>").text(student.surname));
             $rt.append($("<td>").text(student.index));
             $tbody.append($rt);
-        });
+        });*/
         $table.append($tbody);
         $table.addClass("table table-striped table-hover text-center");
         $div.append($table)
@@ -63,39 +90,102 @@ class Project {
                     }
                 }
                 let teams = [];
+                let myId = Project.getProjectData().idUser;
+                let isLeader = false;
+                let inTeam = false;
+                let myTeamId = -1;
+                let myTeam = null;
                 for (let key in teamObject) {
                     let row = teamObject[key];
                     let first = row[0];
+                    if (first.idLeader == myId) {
+                        isLeader = true;
+                        inTeam = true;
+                        myTeamId = first.idTeam;
+                    }
                     let team = {
                         idTeam: first.idTeam,
                         teamName: first.teamName,
                         idLeader: first.idLeader,
+                        isLocked: first.locked,
                         students: []
                     }
                     row.forEach(el=>{
+                        if (el.idStudent == myId) {
+                            myTeamId = el.idTeam;
+                            inTeam = true;
+                        }
                         team.students.push({
                             index: el.studentIndex,
                             forename: el.forename,
                             surname: el.surname,
                             idStudent: el.idStudent
                         });
-                    })
+                    });
+                    if (first.idTeam == myTeamId) {
+                        myTeam = team;
+                    }
                     teams.push(team);
                 }
-                ref.updateTeams(teams);
+
+                ref.updateTeams({teams,myTeamData:{myId,isLeader,inTeam, myTeamId, myTeam}});
                 return;
             })
             .catch((error) => {
+                //TODO ako server pukne
                 console.error('Error:', error);
             });
     }
-    updateTeams(teams) {
-        let $teamList = $("#team-list");
+    updateMyTeam() {
+        console.log("update my team")
+        let $showLeader = $(".show-leader");
+        let $teamMembers = $("#my-team-members");
+        let mtd = Project.getMyTeamData();
+        let $myTeam = $("#my-team");
+        let $exitButton = $("#delete-exit-my-team");
+        let $lockStatus = $("#locked-status");
+        let hideClass = "d-none";
+        if (!mtd.inTeam) {
+            $myTeam.addClass(hideClass);
+            return;
+        } else {
+            $myTeam.removeClass(hideClass);
+        }
+
+        console.log(mtd)
+        if (!mtd.isLeader) {
+            $showLeader.addClass(hideClass);
+            $exitButton.text("Napusti tim");
+        } else {
+            $showLeader.removeClass(hideClass);
+            $exitButton.text("Obriši tim");
+        }
+        if (mtd.myTeam.isLocked) {
+            $lockStatus.text("Zaključan");
+        } else {
+            $lockStatus.text("Otključan");
+        }
+        $teamMembers.empty();
+        let $table = $("<table>");
+        $table.addClass("table text-center w-100");
+        let $rh = $("<tr class='w-100 d-flex'><th class='col-4'>Ime</th><th class='col-4'>Prezime</th><th class='col-4'>Indeks</th></tr>");
+        $table.append($rh);
+        Project.getTeamTableMemberList(mtd.myTeam).forEach($el=>$table.append($el));
+        $teamMembers.append($table);
+    }
+    updateTeams(obj) {
+        console.log(obj)
+        let {teams, myTeamData} = obj;
+        Project.setMyTeamData(myTeamData);
+        Project.setMyTeamData(myTeamData);
+        this.updateMyTeam();
+        let $teamList = $("#other-teams");
         $teamList.empty();
         teams.forEach(team=>{
-            $teamList.append(Project.getTeamTable(team));
+            //if (team.idTeam != myTeamData.myTeamId)
+                $teamList.append(Project.getTeamTable(team, myTeamData));
         });
-        console.log(teams);
+        //console.log(teams);
 
     }
     tabs() {
@@ -105,8 +195,12 @@ class Project {
         return Project.projectData;
     }
 }
+class MyTeam {
+    constructor(myTeamData) {
 
-class CreateTeam{
+    }
+}
+class CreateTeam {
     constructor() {
         this.$teamName = $("#form-team-name");
         this.$button = $("#form-team-sumbit");
@@ -129,6 +223,10 @@ class CreateTeam{
     clearInfo() {
         this.$message.empty();
     }
+
+    /**
+     * @note obradjuje unos imena, i salje na server zahtev za kreiranje tima
+     */
     submit() {
         console.log("submit")
         let ref = this;
@@ -146,7 +244,6 @@ class CreateTeam{
         }
         if (errorMessage.length > 0) {
             this.writeError(errorMessage);
-            //this.$error.html(errorMessage);
             return;
         }
         this.clearInfo();
@@ -193,12 +290,11 @@ class CreateTeam{
                     errorMessage = "Niste prijavljeni na predmet";
                     break;
                 default:
-                    console.log(error.error_number)
+                    console.error(error.error_number);
                     return;
 
             }
             this.writeError(errorMessage);
-            //this.$error.html(errorMessage);
             console.log(error);
         });
 
@@ -214,20 +310,21 @@ $(document).ready(()=>{
     //console.log(project);
     let $csrf = $("#csrf> input");
     window.projectData.csrf = $csrf.val();
+    //ako projekat ne postoji
+    //nema potrebe da se učitava stranica
     if (window.projectData.notExist) {
         return;
     }
     //console.log();
     Project.setProjectData(window.projectData);
     let p = new Project();
-    //$("#main").append(Project.getTeamTable([]));
     p.loadData();
     $(".project-tab-button").each((i, ele)=>{
         let $button = $(ele);
         $button.on("click",() => {
             let $this = $button;
             let $tab = $($this.attr("data-tab-id"));
-            console.log($this);
+
             if (!$this.hasClass("active")) {
                 $(".project-tab-button").removeClass("active");
                 $this.addClass("active");
@@ -238,4 +335,26 @@ $(document).ready(()=>{
 
     });
     new CreateTeam();
+    let fetchOptions = {
+        headers: {
+            "X-CSRF-TOKEN": pd.csrf
+        },
+        'Content-Type': 'application/x-www-form-urlencoded',
+        method: "POST"
+    };
+    $("#delete-exit-my-team").on("click", ()=> {
+        let mtd = Project.getMyTeamData();
+        let pd = Project.getProjectData();
+        fetch("/student/subject/" + pd.code + "/team/" + mtd.myTeamId + "/exit", fetchOptions)
+            .then(response => response.json())
+            .then(json=>{
+                if (json.status != "ok") {
+
+                }
+                p.loadData();
+            }).catch(error=>{
+
+            });
+
+    });
 });
