@@ -758,7 +758,7 @@ class StudentController extends Controller
 
         $user = request()->session()->get("user")["userObject"];
         if ($this->notAttends($subject, $user)) {
-            return response()->json(["status"=>"not_ok","message"=> "not attends"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "not attends"], 200);
         }
         $team = Team::find($teamId);
         if (is_null($team)) {
@@ -816,21 +816,14 @@ class StudentController extends Controller
             Team::destroy($teamId);
             return response()->json(["message"=>"team deleted"], 200);
         }
-        //$mmn = (int)$team->project()->first()->minMemberNumber;
-        //$members = $team->members();
-        // TODO da li da brišemo kad je minMember veci od broja clanova
-        // treba dogovoriti na sastanku
-        // ili to samo znači da tim nije validan
-        //if ($members->count() <= $mmn) {
-        //   return response()->json(["message"=>"cannot exit"], 409);
-        //}
+
         $result = TeamMember::where("team_members.idStudent", "=", $user->idUser)
                 ->where("team_members.idTeam", "=", $teamId)
                 ->delete();
         if ($result) {
-            return response()->json(["message"=>"ok"], 200);
+            return response()->json(["status"=>"ok"]);
         }
-        return response()->json(["message"=>"not deleted"], 400);
+        return response()->json(["message"=>"not deleted"]);
     }
 
     /**
@@ -903,55 +896,65 @@ class StudentController extends Controller
         return response()->json(["status"=> "ok","message"=>"team created"], 200);
     }
 
-    ///student/subject/{code}/project/team/{idTeam}/lock
+    /**
+     * @param $code
+     * @param $idTeam
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function lockTeam($code, $idTeam) {
         $user = request()->session()->get("user")["userObject"];
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "subject not exist"], 200);
         }
         $project = $subject->projects()->first();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project expired"], 200);
         }
         $team = Team::find($idTeam);
         if (is_null($team)) {
-            return response()->json(["message"=>"team doesnt exist"], 409);
+            return response()->json(["status"=>"not_ok","message"=>"team doesnt exist"], 200);
         }
         if ($team->idLeader !== $user->idUser) {
-            return response()->json(["message"=> "not a leader"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "not a leader"], 200);
         }
         $team->locked = 1;
         $team->save();
-        return response()->json(["message"=> "ok"], 200);
+        return response()->json(["status"=> "ok"], 200);
 
     }
+
+    /**
+     * @param $code
+     * @param $idTeam
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function unlockTeam($code, $idTeam) {
         $user = request()->session()->get("user")["userObject"];
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "subject not exist"], 200);
         }
         $project = $subject->projects()->first();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project expired"], 200);
         }
         $team = Team::find($idTeam);
         if (is_null($team)) {
-            return response()->json(["message"=>"team doesnt exist"], 409);
+            return response()->json(["status"=>"not_ok","message"=>"team doesnt exist"], 200);
         }
         if ($team->idLeader !== $user->idUser) {
-            return response()->json(["message"=> "not a leader"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "not a leader"], 200);
         }
         $team->locked = 0;
         $team->save();
-        return response()->json(["message"=> "ok"], 200);
+        return response()->json(["status"=> "ok"], 200);
     }
     /**
      * @note da li je student vec u nekom timu na datom projektu
@@ -1003,8 +1006,8 @@ class StudentController extends Controller
         $nizOdabranih=$request->get('zahtevi');
 
         foreach($nizOdabranih as $odabraniData){
-            $myidAppointment=explode(',',$odabraniData)[0];
-            $myId=explode(',',$odabraniData)[1];
+            $myidAppointment = explode(',',$odabraniData)[0];
+            $myId = explode(',', $odabraniData)[1];
             $desiredIdAppointment=explode(',',$odabraniData)[2];
 
             //ako vec postojim u FreeAgents, nista ne radi . Na kraju ispis ako je uspesno dodat u FreeAgent

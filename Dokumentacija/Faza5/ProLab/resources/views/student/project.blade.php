@@ -160,7 +160,9 @@ $userName = $user->forename . " " . $user->surname;
                                         <div class="col-4 text-left show-leader">
                                             <button class="btn-dark btn" id="lock-team-button">Zaključaj</button>
                                         </div>
-                                        <div class="col-4 text-center font-weight-bold" id="locked-status">Zaključan</div>
+                                        <div class="col-4 text-center font-weight-bold" id="locked-status">
+                                            Zaključan
+                                        </div>
                                         <div class="col-4 text-right show-leader">
                                             <button class="btn-dark btn" id="unlock-team-button">Otključaj</button>
                                         </div>
@@ -180,8 +182,11 @@ $userName = $user->forename . " " . $user->surname;
                 </div>
 
             </div>
-            <div id="other-teams">
-
+            <div class="row">
+                <div class="col-12 text-center pt-2"><h2>Ostali timovi</h2></div>
+                <div class="col-12" id="">
+                    <div class="row" id="other-teams"></div>
+                </div>
             </div>
 
         </div>
@@ -233,14 +238,6 @@ $userName = $user->forename . " " . $user->surname;
 </div>
 
 <script src="{{ asset('js/project.js') }}"></script>
-
 </body>
 </html>
 
-@section("content")
-    <h1></h1>
-
-
-
-    <script></script>
-@endsection

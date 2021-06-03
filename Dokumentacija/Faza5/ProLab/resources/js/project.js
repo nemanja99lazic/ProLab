@@ -44,15 +44,16 @@ class Project {
         });
     }
     static getTeamTable(team) {
-        let $div = $("<div>").addClass("col-6 pt-2");
-        let $header = $("<div>");
-        $header.append($("<h3>").text(team.teamName));
-
-        let $join = $("<button>").text("Pridruži se").addClass("btn btn-dark");
-        let $exit = $("<button>").text("Izađi").addClass("btn btn-dark");
-        $div.append($join).append($exit).append($header);
+        let mtd = Project.getMyTeamData();
+        let $div = $("<div>").addClass("col-md-6 col-12 pt-2");
         let $table = $("<table>");
-        $
+        $table.append(
+          $("<tr>").addClass("text-center").append(
+                $("<td>").attr("colspan", "3").append(
+                                    $("<h3>").text(team.teamName)
+                )
+              )
+        );
         let $tbody = $("<tbody>");
         let $rh = $("<tr class='w-100 d-flex'><th class='col-4'>Ime</th><th class='col-4'>Prezime</th><th class='col-4'>Indeks</th></tr>");
         $tbody.append($rh);
@@ -60,29 +61,57 @@ class Project {
         Project.getTeamTableMemberList(team).forEach($el=>{
             $tbody.append($el);
         })
-        /*team.students.forEach(student => {
-            let $rt = $("<tr>");
-            //console.log(student.idStudent, team.idLeader)
-            if (student.idStudent == team.idLeader) {
-                $rt.addClass("team-leader");
-            }
-            $rt.attr("data-id", student.idStudent);
-            $rt.append($("<td>").text(student.forename));
-            $rt.append($("<td>").text(student.surname));
-            $rt.append($("<td>").text(student.index));
-            $tbody.append($rt);
-        });*/
+
         $table.append($tbody);
-        $table.addClass("table table-striped table-hover text-center");
-        $div.append($table)
+        $table.addClass("table border text-center");
+        let lockStatus = "";
+        if (team.isLocked) {
+            lockStatus = "Zaključan";
+        } else {
+            lockStatus = "Otključan";
+        }
+        $table.append(
+          $("<tr>").addClass("text-center").append($("<td>").text(lockStatus))
+        );
+        if (!team.isLocked && !mtd.inTeam) {//!team.isLocked
+            let $join = $("<button>").text("Pridruži se").addClass("btn btn-dark");
+            let teamId = team.idTeam;
+            $join.on("click",()=>{
+                let pData = Project.getProjectData();
+                console.log("join")
+                fetch("/student/subject/"+ pData.code +"/team/"+ teamId +"/join",{
+                    headers: {
+                        "X-CSRF-TOKEN": pData.csrf
+                    },
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    method: "POST"
+                })
+                .then(response=>response.json())
+                .then(json=>{
+                    if (json.status != "ok") {
+
+                        return;
+                    }
+                    Project.getInstance().loadData();
+                })
+            });
+            $table.append(
+                $("<tr>")
+                    .append($("<td>").attr("colspan", "3").append($join)).addClass("text-center p-2")
+            );
+        }
+
+        $div.append($table);
         return $div;
+
+
+
     }
     loadData() {
         let code = Project.projectData.code;
         let ref = this;
         fetch("/student/subject/"+ code +"/team/available")
             .then(response => {
-                //console.log("hello world fetch");
                 return response.json()
             })
             .then(data => {
@@ -136,7 +165,7 @@ class Project {
                 }
 
                 ref.updateTeams({teams,myTeamData:{myId,isLeader,inTeam, myTeamId, myTeam}});
-                return;
+
             })
             .catch((error) => {
                 //TODO ako server pukne
@@ -190,7 +219,7 @@ class Project {
         let $teamList = $("#other-teams");
         $teamList.empty();
         teams.forEach(team=>{
-            //if (team.idTeam != myTeamData.myTeamId)
+            if (team.idTeam != myTeamData.myTeamId)
                 $teamList.append(Project.getTeamTable(team, myTeamData));
         });
         //console.log(teams);
@@ -305,8 +334,6 @@ class CreateTeam {
             this.writeError(errorMessage);
             console.log(error);
         });
-
-
 
     }
 
