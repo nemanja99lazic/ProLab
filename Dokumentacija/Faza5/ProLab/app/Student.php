@@ -23,6 +23,8 @@ class Student extends Model
      */
     protected $primaryKey = 'idStudent';
 
+    public $timestamps = false;
+
     /**
      * @var array
      */

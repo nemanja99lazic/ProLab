@@ -222,21 +222,13 @@ class Project {
             if (team.idTeam != myTeamData.myTeamId)
                 $teamList.append(Project.getTeamTable(team, myTeamData));
         });
-        //console.log(teams);
-
     }
-    tabs() {
 
-    }
     static getProjectData() {
         return Project.projectData;
     }
 }
-class MyTeam {
-    constructor(myTeamData) {
 
-    }
-}
 class CreateTeam {
     constructor() {
         this.$teamName = $("#form-team-name");
