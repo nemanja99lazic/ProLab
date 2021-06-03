@@ -8,10 +8,7 @@ use App\HasAppointment;
 use App\LabExercise;
 use App\Student;
 use App\Subject;
-use App\Project;
-use App\Team;
-use App\TeamMember;
-use Carbon\Carbon;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Attends;
@@ -27,9 +24,18 @@ class StudentController extends Controller
         $this->middleware('studentMiddleware');
     }
 
-
-    public function index(Request $request) {
-        return view('student/index');
+    /**
+     * Prikaz pocetne stranice studenta
+     * 
+     * @return view
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
+    public function index() {
+        $myId = Session::get("user")["userObject"]->idUser;
+        $userInfo = User::find($myId);
+        $studentInfo = Student::find($myId);
+        return view('student.index', ['forename' => $userInfo->forename, 'surname' => $userInfo->surname, 'email' => $userInfo->email, 'index' => $studentInfo->index]);
     }
 
     public function logout(Request $request) {

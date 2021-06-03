@@ -19,7 +19,7 @@
                 @for($i = 0; $i < count($subjects); $i++)
                     <tr>
                         <td>{{ $i + 1 }}</td>
-                        <td>{{ $subjects[$i]->name }}</td>
+                        <td><a href="{{ route('admin.subject.index', [$subjects[$i]->code]) }}">{{ $subjects[$i]->name }}</a></td>
                         <td>{{ $subjects[$i]->code }}</td>
                         <td>{{ $subjects[$i]->teacher->user->forename.' '.$subjects[$i]->teacher->user->surname }}</td>
                         <td class="text-center">
@@ -37,7 +37,7 @@
                                             Da li zaista zelite trajno da obrisete predmet i sve inforamcije vezane za njega?
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('admin.delete.subject', [$subjects[$i]->idSubject]) }}" method="post">
+                                            <form action="{{ route('admin.delete.subject', [$subjects[$i]->code]) }}" method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-outline-danger">Delete</button>
                                             </form>

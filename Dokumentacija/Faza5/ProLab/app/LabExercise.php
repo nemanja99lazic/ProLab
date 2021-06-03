@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LabExercise extends Model
 {
+    public $timestamps = false;
     /**
      * The primary key for the model.
      *

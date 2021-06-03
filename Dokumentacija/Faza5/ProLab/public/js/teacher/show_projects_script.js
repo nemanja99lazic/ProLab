@@ -28,7 +28,10 @@ $(document).ready(function(){
                 $("#alert-ispis").html(response.message);
                 document.getElementById(response.idProject).remove(); // izbrisi red iz tabele
                 $(".alert").show().delay(3000).fadeOut(400);
-            })
+            }).fail(function(response){
+                $("#alert-ispis").html(response.message);
+                $(".alert").show().delay(3000).fadeOut(400);
+            });
         }
 
         $(".modal").hide();

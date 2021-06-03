@@ -15,7 +15,13 @@ class StudentMiddleware
      * @return mixed
      */
     public function handle(Request $request, Closure $next) {
-        if (!$request->session()->has("user") || $request->session()->get("user")['userType'] != "student") {
+//        if (!$request->session()->has("user") || $request->session()->get("user")['userType'] != "student") {
+//            return redirect()->back();
+//        }
+//        return $next($request);
+        if (!$request->session()->has("user")) {
+            return redirect()->route('guest.login.get');
+        } else if ($request->session()->get("user")['userType'] != "student") {
             return redirect()->back();
         }
         return $next($request);
