@@ -94,7 +94,7 @@ $userName = $user->forename . " " . $user->surname;
 
                 @if($project->notExist)
                     <div class="row">
-                        <div class=col-12"><h1>Projekat ne postoji za ovaj predmet.</h1></div>
+                        <div class="col-12 text-center"><h1 >Projekat ne postoji za ovaj predmet.</h1></div>
                     </div>
                 @else
                     <div class="row d-flex justify-content-center">

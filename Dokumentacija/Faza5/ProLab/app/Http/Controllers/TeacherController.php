@@ -214,7 +214,7 @@ class TeacherController extends Controller {
     public function getSubjects(Request $request){
         $userData = $request->session()->get("user");
         $user = $userData["userObject"];
-        $teacher = $user->teacher()->sole();
+        $teacher = $user->teacher()->first();
         //$subjects = $teacher->subjects()->getResults();
         $list = [];
         //foreach ($subjects as $subject)
@@ -243,7 +243,7 @@ class TeacherController extends Controller {
         $otherTeachers = $subject->teachers()->getResults();
 
         foreach ($otherTeachers as $otherTeacher) {
-            $teacherList[] = $otherTeacher->user()->sole();
+            $teacherList[] = $otherTeacher->user()->first();
         }
         return view("teacher/subject_index", ["subjectTitle"=> $subject->name, "teacherList"=> $teacherList]);
     }

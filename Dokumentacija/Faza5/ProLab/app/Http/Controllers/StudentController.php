@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\SubjectJoinRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 
 class StudentController extends Controller
@@ -667,7 +668,7 @@ class StudentController extends Controller
         $otherTeachers = $subject->teachers()->getResults();
 
         foreach ($otherTeachers as $otherTeacher) {
-            $teacherList[] = $otherTeacher->user()->sole();
+            $teacherList[] = $otherTeacher->user()->first();
         }
 
         return view("student/subject_index", ["subjectTitle"=> $subjectTitle, "teacherList"=> $teacherList]);
@@ -684,7 +685,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return redirect()->to(route('student.index'));
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             $project = new stdClass();
             $project->notExist = true;
@@ -705,7 +706,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["message"=> "subject not exist"], 400);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["message"=> "project not exist"], 400);
         }
@@ -747,7 +748,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["status"=>"not_ok","message"=> "subject not exist"], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
@@ -796,7 +797,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["message"=> "subject not exist"], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["message"=> "project not exist"], 200);
         }
@@ -815,7 +816,7 @@ class StudentController extends Controller
             Team::destroy($teamId);
             return response()->json(["message"=>"team deleted"], 200);
         }
-        //$mmn = (int)$team->project()->sole()->minMemberNumber;
+        //$mmn = (int)$team->project()->first()->minMemberNumber;
         //$members = $team->members();
         // TODO da li da brišemo kad je minMember veci od broja clanova
         // treba dogovoriti na sastanku
@@ -872,7 +873,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["status"=>"not_ok","message"=> "subject not exist", "error_number"=>2], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["status"=>"not_ok","message"=> "project not exist", "error_number"=>3], 200);
         }
@@ -909,7 +910,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["message"=> "subject not exist"], 400);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["message"=> "project not exist"], 400);
         }
@@ -934,7 +935,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["message"=> "subject not exist"], 400);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["message"=> "project not exist"], 400);
         }

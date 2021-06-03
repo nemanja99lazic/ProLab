@@ -5,7 +5,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +26,7 @@ use App\Http\Controllers\HomeController;
 //Funkcionalnosti :
 // Login, Logout, Register, Index
 //
-Route::get("/testAdmin", [HomeController::class, "testAdmin"])->name("testadmin");
+
 
 //Guest
 
