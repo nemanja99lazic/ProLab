@@ -28,8 +28,9 @@ $(document).ready(function(){
                 $("#alert-ispis").html(response.message);
                 document.getElementById(response.idProject).remove(); // izbrisi red iz tabele
                 $(".alert").show().delay(3000).fadeOut(400);
-            }).fail(function(response){
-                $("#alert-ispis").html(response.message);
+            }).fail(function(responseObject, textStatus, error){
+                let poruka = 'GREŠKA! ' + responseObject.responseJSON['message'];
+                $("#alert-ispis").text(poruka);
                 $(".alert").show().delay(3000).fadeOut(400);
             });
         }

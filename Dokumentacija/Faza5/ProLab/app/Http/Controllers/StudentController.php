@@ -111,11 +111,16 @@ class StudentController extends Controller
         $idStudent = Session::get("user")["userObject"]->idUser;
         $idSubject = $request->get('idSubject');
 
-        $joinRequest = new SubjectJoinRequest;
-        $joinRequest->idSubject = $idSubject;
-        $joinRequest->idStudent = $idStudent;
+        // Provera da li je rucno poslao POST zahtev -- ako nije, poslace zahtev, ako jeste nece ubaciti, samo ce ga preusmeriti
+        if(Attends::studentAttendsSubjectTest($idStudent, $idSubject) == false &&
+                SubjectJoinRequest::studentRequestedToJoinTest($idStudent, $idSubject) == false)
+        {
+            $joinRequest = new SubjectJoinRequest;
+            $joinRequest->idSubject = $idSubject;
+            $joinRequest->idStudent = $idStudent;
 
-        $joinRequest->save();
+            $joinRequest->save();
+        }
 
         return redirect()->route('student.showAllSubjectsList');
     }
