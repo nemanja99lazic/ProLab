@@ -8,6 +8,13 @@ const $ = require("jquery");
 class Project {
     static projectData = {};
     static myTeamData = null;
+    static instance = null;
+    static getInstance() {
+        if (Project.instance == null) {
+            Project.instance = new Project();
+        }
+        return Project.instance;
+    }
     static setProjectData(pData) {
         Project.projectData = pData;
     }
@@ -140,6 +147,7 @@ class Project {
         console.log("update my team")
         let $showLeader = $(".show-leader");
         let $teamMembers = $("#my-team-members");
+        let $myTeamName = $("#my-team-name");
         let mtd = Project.getMyTeamData();
         let $myTeam = $("#my-team");
         let $exitButton = $("#delete-exit-my-team");
@@ -151,7 +159,7 @@ class Project {
         } else {
             $myTeam.removeClass(hideClass);
         }
-
+        $myTeamName.text(mtd.myTeam.teamName);
         console.log(mtd)
         if (!mtd.isLeader) {
             $showLeader.addClass(hideClass);
@@ -229,7 +237,7 @@ class CreateTeam {
      */
     submit() {
         console.log("submit")
-        let ref = this;
+        let project = Project.getInstance();
         let teamName = this.$teamName.val();
         //console.log(teamName)
         let errorMessage = "";
@@ -266,7 +274,7 @@ class CreateTeam {
                 throw json;
             }
             this.writeSuccess("Uspešno ste kreirali tim");
-            this.loadData();
+            project.loadData();
         }).catch(error=>{
             console.log("catch");
             let errorMessage = "";
@@ -317,7 +325,7 @@ $(document).ready(()=>{
     }
     //console.log();
     Project.setProjectData(window.projectData);
-    let p = new Project();
+    let p = Project.getInstance();
     p.loadData();
     $(".project-tab-button").each((i, ele)=>{
         let $button = $(ele);
@@ -337,7 +345,7 @@ $(document).ready(()=>{
     new CreateTeam();
     let fetchOptions = {
         headers: {
-            "X-CSRF-TOKEN": pd.csrf
+            "X-CSRF-TOKEN": Project.getProjectData().csrf
         },
         'Content-Type': 'application/x-www-form-urlencoded',
         method: "POST"
@@ -356,5 +364,34 @@ $(document).ready(()=>{
 
             });
 
+    });
+
+    $("#lock-team-button").on("click", ()=> {
+        let mtd = Project.getMyTeamData();
+        let pd = Project.getProjectData();
+        fetch("/student/subject/" + pd.code + "/team/" + mtd.myTeamId + "/lock", fetchOptions)
+            .then(response => response.json())
+            .then(json=>{
+                if (json.status != "ok") {
+
+                }
+                p.loadData();
+            }).catch(error=>{
+
+        });
+    });
+    $("#unlock-team-button").on("click", ()=> {
+        let mtd = Project.getMyTeamData();
+        let pd = Project.getProjectData();
+        fetch("/student/subject/" + pd.code + "/team/" + mtd.myTeamId + "/unlock", fetchOptions)
+            .then(response => response.json())
+            .then(json=>{
+                if (json.status != "ok") {
+
+                }
+                p.loadData();
+            }).catch(error=>{
+
+        });
     });
 });

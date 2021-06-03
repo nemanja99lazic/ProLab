@@ -158,11 +158,11 @@ $userName = $user->forename . " " . $user->surname;
                                 <td colspan="2">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-4 text-left show-leader">
-                                            <button class="btn-dark btn" id="lock-team">Zaključaj</button>
+                                            <button class="btn-dark btn" id="lock-team-button">Zaključaj</button>
                                         </div>
                                         <div class="col-4 text-center font-weight-bold" id="locked-status">Zaključan</div>
                                         <div class="col-4 text-right show-leader">
-                                            <button class="btn-dark btn" id="unlock-team">Otključaj</button>
+                                            <button class="btn-dark btn" id="unlock-team-button">Otključaj</button>
                                         </div>
                                     </div>
                                 </td>
