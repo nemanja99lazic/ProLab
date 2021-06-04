@@ -26,6 +26,8 @@ $button-text-color: white;
 .my-btn-tab.active {
     border-bottom: 5px solid $button-active-color;
 }
-.header {
-    height: 200px;
+
+.btn-outline-dark:focus {
+    box-shadow:none!important;
 }
+

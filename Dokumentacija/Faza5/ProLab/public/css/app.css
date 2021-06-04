@@ -10031,8 +10031,8 @@ h3 {
   border-bottom: 5px solid #254cff;
 }
 
-.header {
-  height: 200px;
+.btn-outline-dark:focus {
+  box-shadow: none !important;
 }
 
 table.dataTable thead .sorting:after,

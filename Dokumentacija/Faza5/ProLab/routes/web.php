@@ -17,16 +17,6 @@ use App\Http\Controllers\GuestController;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-// Route::get('/', [HomeController::class, 'index']);
-
-//Funkcionalnosti :
-// Login, Logout, Register, Index
-//
-
 
 //Guest
 
@@ -45,8 +35,6 @@ Route::get('/student/logout',[StudentController::class, 'logout'])->name('studen
 Route::get('/student/subject/enroll', [StudentController::class, 'showAllSubjectsList'])->name('student.showAllSubjectsList');
 Route::post('/student/subject/enroll', [StudentController::class, 'sendJoinRequest'])->name('student.sendJoinRequest');
 
-// IZBRISI OVO
-Route::get('/student/test', [StudentController::class, 'test'])->name('student.test');
 
 Route::get('/student/chosen',[StudentController::class, 'chosen'])->name('student.chosen');
 Route::get('/student/subject/{code}/index',[StudentController::class, 'subjectIndex'])->name('student.subject.index');
@@ -65,13 +53,12 @@ Route::post('/student/subject/{code}/lab/{idLab}/request',[StudentController::cl
 //PROJECTS restful
 Route::get("/student/subject/{code}/project", [StudentController::class, "projectIndexPage"])->name("student.project.index");
 Route::get("/student/subject/{code}/team/available", [StudentController::class, "availableTeams"])->name("student.team.availableTeams");
-//TODO prebaciti na post rutu ispod
 Route::post("/student/subject/{code}/team/{teamId}/join", [StudentController::class, "joinTeam"])->name("student.team.join");
 Route::post("/student/subject/{code}/team/{teamId}/exit", [StudentController::class, "exitTeam"])->name("student.team.exit");
 Route::post("/student/subject/{code}/team/create", [StudentController::class, "createTeam"])->name("student.team.create");
 Route::post("/student/subject/{code}/team/{idTeam}/lock", [StudentController::class, "lockTeam"])->name("student.team.lock");
 Route::post("/student/subject/{code}/team/{idTeam}/unlock", [StudentController::class, "unlockTeam"])->name("student.team.unlock");
-//Route::get("/student/subject/{code}/team/{idTeam}/isLocked", [StudentController::class, "isTeamLocked"])->name("student.team.isLocked");
+
 //Teacher
 
 Route::get('/teacher',[TeacherController::class, 'index'])->name('teacher.index');
@@ -102,27 +89,27 @@ Route::get('/admin/requests/newSubjects',[AdminController::class, 'newSubjectReq
 Route::post('/admin/requests/newSubjects/addSubject', [AdminController::class, 'addSubject'])->name('admin.addSubject');
 Route::post('/admin/requests/newSubjects/delete', [AdminController::class, 'deleteSubjectRequest'])->name('admin.deleteRequest.subject');
 
-Route::get('/admin/subjects/list', [App\Http\Controllers\AdminController::class, 'subjectList'])->name('admin.subjects.list');
-Route::get('/admin/subjects/{subjectCode}', [App\Http\Controllers\AdminController::class, 'subjectIndex'])->name('admin.subject.index');
-Route::post('/admin/subjects/{subjectCode}/delete', [App\Http\Controllers\AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
+Route::get('/admin/subjects/list', [AdminController::class, 'subjectList'])->name('admin.subjects.list');
+Route::get('/admin/subjects/{subjectCode}', [AdminController::class, 'subjectIndex'])->name('admin.subject.index');
+Route::post('/admin/subjects/{subjectCode}/delete', [AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
 
-Route::post('/admin/subjects/{subjectCode}/deleteTeacher/{idT}', [App\Http\Controllers\AdminController::class, 'deleteTeacherFromSubject'])->name('admin.delete.teacher');
-Route::post('/admin/subjects/{subjectCode}/deleteStudent/{idSt}', [App\Http\Controllers\AdminController::class, 'deleteStudentFromSubject'])->name('admin.delete.student');
+Route::post('/admin/subjects/{subjectCode}/deleteTeacher/{idT}', [AdminController::class, 'deleteTeacherFromSubject'])->name('admin.delete.teacher');
+Route::post('/admin/subjects/{subjectCode}/deleteStudent/{idSt}', [AdminController::class, 'deleteStudentFromSubject'])->name('admin.delete.student');
 
-Route::get('/admin/subjects/{subjectCode}/lab/list', [App\Http\Controllers\AdminController::class, 'labExercisesIndex'])->name('admin.subject.lab');
-Route::get('/admin/subjects/{subjectCode}/lab', [App\Http\Controllers\AdminController::class, 'labExerciseIndex'])->name('admin.subject.lab.show');
-Route::post('/admin/subjects/{subjectCode}/lab/delete', [App\Http\Controllers\AdminController::class, 'labExerciseDelete'])->name('admin.subject.lab.delete');
-Route::post('/admin/subjects/{subjectCode}/lab/appointment/{idApp}/delete', [App\Http\Controllers\AdminController::class, 'deleteAppointment'])->name('admin.subject.lab.app.delete');
+Route::get('/admin/subjects/{subjectCode}/lab/list', [AdminController::class, 'labExercisesIndex'])->name('admin.subject.lab');
+Route::get('/admin/subjects/{subjectCode}/lab', [AdminController::class, 'labExerciseIndex'])->name('admin.subject.lab.show');
+Route::post('/admin/subjects/{subjectCode}/lab/delete', [AdminController::class, 'labExerciseDelete'])->name('admin.subject.lab.delete');
+Route::post('/admin/subjects/{subjectCode}/lab/appointment/{idApp}/delete', [AdminController::class, 'deleteAppointment'])->name('admin.subject.lab.app.delete');
 
-Route::get('/admin/subjects/{subjectCode}/project', [App\Http\Controllers\AdminController::class, 'projectIndex'])->name('admin.subject.project.index');
-Route::post('/admin/subjects/{subjectCode}/project/team/{idTeam}/delete', [App\Http\Controllers\AdminController::class, 'deleteTeam'])->name('admin.subject.team.delete');
-Route::post('/admin/subjects/{subjectCode}/project/delete', [App\Http\Controllers\AdminController::class, 'deleteProject'])->name('admin.subject.project.delete');
+Route::get('/admin/subjects/{subjectCode}/project', [AdminController::class, 'projectIndex'])->name('admin.subject.project.index');
+Route::post('/admin/subjects/{subjectCode}/project/team/{idTeam}/delete', [AdminController::class, 'deleteTeam'])->name('admin.subject.team.delete');
+Route::post('/admin/subjects/{subjectCode}/project/delete', [AdminController::class, 'deleteProject'])->name('admin.subject.project.delete');
 
-Route::get('/admin/users/search', [App\Http\Controllers\AdminController::class, 'searchUsers'])->name('admin.users.search.index');
-Route::get('/admin/users/search/results', [App\Http\Controllers\AdminController::class, 'searchUsersResults'])->name('admin.users.search.results');
-Route::post('/admin/users/student/{idS}/delete', [App\Http\Controllers\AdminController::class, 'deleteStudentFromSystem'])->name('admin.users.delete.student');
-Route::post('/admin/users/teacher/{idT}/delete', [App\Http\Controllers\AdminController::class, 'deleteTeacherFromSystem'])->name('admin.users.delete.teacher');
-Route::post('/admin/users/admin/{idA}/delete', [App\Http\Controllers\AdminController::class, 'deleteAdminFromSystem'])->name('admin.users.delete.admin');
+Route::get('/admin/users/search', [AdminController::class, 'searchUsers'])->name('admin.users.search.index');
+Route::get('/admin/users/search/results', [AdminController::class, 'searchUsersResults'])->name('admin.users.search.results');
+Route::post('/admin/users/student/{idS}/delete', [AdminController::class, 'deleteStudentFromSystem'])->name('admin.users.delete.student');
+Route::post('/admin/users/teacher/{idT}/delete', [AdminController::class, 'deleteTeacherFromSystem'])->name('admin.users.delete.teacher');
+Route::post('/admin/users/admin/{idA}/delete', [AdminController::class, 'deleteAdminFromSystem'])->name('admin.users.delete.admin');
 
 Route::get('/admin/logout', [App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 

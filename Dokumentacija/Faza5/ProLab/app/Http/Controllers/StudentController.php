@@ -8,7 +8,6 @@ use App\HasAppointment;
 use App\LabExercise;
 use App\Student;
 use App\Subject;
-use App\Project;
 use App\Team;
 use App\TeamMember;
 use Carbon\Carbon;
@@ -67,26 +66,7 @@ class StudentController extends Controller
         return view('student.show_all_subjects', ['subjects' => $paginatorSubjects]);
     }
 
-    /*
-    Funkcija za testiranje - TREBA DA SE IZBRISE
-     */
-    public function test(Request $request)
-    {
-        //dd($request->session()->all());
-        //dd(Session::get("user")["userObject"]->idUser);
-        //dd($request);
-       // $results = Subject::paginate(2);
-        //dd($results);
-        $agent=FreeAgent::where('idStudent','=',2)->
-                            where('idAppointment','=',2)->
-                            where('idDesiredAppointment','=',1)->first();
-       // $agent->idStudent=2;
-        //$agent->idAppointment=2;
-       // $agent->idDesiredAppointment=1;
-       // $agent->save();
-        dd($agent->DesiredAppointment);
 
-    }
 
     /**
      * Slanje zahteva za pracenje predmeta. Poziva se za rutu '/student/subject/enroll' (POST)
@@ -654,7 +634,7 @@ class StudentController extends Controller
     }
     /**
      * @note Indeksna strana predmeta iz pogleda studenta
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function subjectIndex($code, Request $request) {
@@ -675,10 +655,11 @@ class StudentController extends Controller
     }
 
     /**
-     * @note Prikaz stranice za upravljanje projektima iz uloge studenta
-     * @param $code
+     * Prikaz stranice za upravljanje projektima iz uloge studenta
+     *
+     * @param String $code
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
     public function projectIndexPage($code) {
         $subject = Subject::where("code", "=", $code)->first();
@@ -845,10 +826,11 @@ class StudentController extends Controller
 
 
     /**
-     * @note kreiranje tima restful POST
-     * @param $code
+     *  Kreiranje tima POST metoda
+     * @param String $code
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
      */
     public function createTeam($code, Request $request) {
         $post = $request->post();
@@ -900,6 +882,7 @@ class StudentController extends Controller
      * @param $code
      * @param $idTeam
      * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
      */
     public function lockTeam($code, $idTeam) {
         $user = request()->session()->get("user")["userObject"];
@@ -928,9 +911,11 @@ class StudentController extends Controller
     }
 
     /**
-     * @param $code
-     * @param $idTeam
+     *
+     * @param String $code
+     * @param int $idTeam
      * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
      */
     public function unlockTeam($code, $idTeam) {
         $user = request()->session()->get("user")["userObject"];
@@ -957,11 +942,11 @@ class StudentController extends Controller
         return response()->json(["status"=> "ok"], 200);
     }
     /**
-     * @note da li je student vec u nekom timu na datom projektu
-     * @param $code
+     * Proverava da li je student vec u nekom timu na datom projektu
+     * @param String $code
      * @param $idUser
      * @return bool
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
     private function alreadyInTeam($code, $idUser):bool {
         $teamsTable = $this->getTeamsTable()
@@ -972,10 +957,11 @@ class StudentController extends Controller
     }
 
     /**
-     * @note da li student prati dati predmet
-     * @param $subject
-     * @param $user
+     * Da li student prati dati predmet
+     * @param Subject $subject
+     * @param User $user
      * @return bool
+     * @author Sreten Živković 0008/2018
      */
     private function notAttends($subject, $user): bool{
         $students = $subject->students()->getResults();

@@ -71,7 +71,7 @@ class Project {
             lockStatus = "Otključan";
         }
         $table.append(
-          $("<tr>").addClass("text-center").append($("<td>").text(lockStatus))
+          $("<tr>").addClass("text-center").append($("<td>").attr("colspan", "3").text(lockStatus))
         );
         if (!team.isLocked && !mtd.inTeam) {//!team.isLocked
             let $join = $("<button>").text("Pridruži se").addClass("btn btn-dark");

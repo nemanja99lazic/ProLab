@@ -32,11 +32,11 @@
                     </div>
                 </div>
             @endif
-            <div class="row">
-                <div class="col-5 offset-3 m-auto">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-10 col-lg-6 col-xl-5">
                     <form action="{{ route('guest.register.post') }}" method="post">
                         @csrf
-                        <table class="table text-center w-100">
+                        <table class="table text-center w-100 border">
                             <tr class="text-center">
                                 <td colspan="2" class="font-weight-bold h3">Kreiranje novog naloga</td>
                             </tr>
