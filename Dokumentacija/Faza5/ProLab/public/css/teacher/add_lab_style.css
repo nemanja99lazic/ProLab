@@ -1,0 +1,28 @@
+#btn-dodaj-termin{
+    background-color: rgb(0, 119, 255);
+    color: white;
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: white;
+}
+
+#alert{
+    display: none;
+    margin-top: 50px;
+}
+
+#btn-nazad{
+    margin-right: 50px;
+    margin-bottom: 40px;
+}
+
+#btn-definisi-lab{
+    margin-left: 70px;
+    margin-bottom: 40px;
+}
+

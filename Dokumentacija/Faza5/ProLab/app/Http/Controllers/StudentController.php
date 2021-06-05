@@ -8,6 +8,7 @@ use App\HasAppointment;
 use App\LabExercise;
 use App\Student;
 use App\Subject;
+use App\User;
 use App\Team;
 use App\TeamMember;
 use Carbon\Carbon;
@@ -27,9 +28,18 @@ class StudentController extends Controller
         $this->middleware('studentMiddleware');
     }
 
-
-    public function index(Request $request) {
-        return view('student/index');
+    /**
+     * Prikaz pocetne stranice studenta
+     *
+     * @return view
+     *
+     * - Nemanja Lazic 2018/0004
+     */
+    public function index() {
+        $myId = Session::get("user")["userObject"]->idUser;
+        $userInfo = User::find($myId);
+        $studentInfo = Student::find($myId);
+        return view('student.index', ['forename' => $userInfo->forename, 'surname' => $userInfo->surname, 'email' => $userInfo->email, 'index' => $studentInfo->index]);
     }
 
     public function logout(Request $request) {
@@ -81,11 +91,16 @@ class StudentController extends Controller
         $idStudent = Session::get("user")["userObject"]->idUser;
         $idSubject = $request->get('idSubject');
 
-        $joinRequest = new SubjectJoinRequest;
-        $joinRequest->idSubject = $idSubject;
-        $joinRequest->idStudent = $idStudent;
+        // Provera da li je rucno poslao POST zahtev -- ako nije, poslace zahtev, ako jeste nece ubaciti, samo ce ga preusmeriti
+        if(Attends::studentAttendsSubjectTest($idStudent, $idSubject) == false &&
+                SubjectJoinRequest::studentRequestedToJoinTest($idStudent, $idSubject) == false)
+        {
+            $joinRequest = new SubjectJoinRequest;
+            $joinRequest->idSubject = $idSubject;
+            $joinRequest->idStudent = $idStudent;
 
-        $joinRequest->save();
+            $joinRequest->save();
+        }
 
         return redirect()->route('student.showAllSubjectsList');
     }

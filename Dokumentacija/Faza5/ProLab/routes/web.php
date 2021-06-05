@@ -76,7 +76,13 @@ Route::post('/teacher/subject/request/list/reject', [TeacherController::class, '
 
 Route::get('/teacher/subject/{code}/project', [TeacherController::class, 'showProjects'])->name('teacher.showProjects');
 Route::get('/teacher/subject/{code}/project/define', [TeacherController::class, 'showProjectForm'])->name('teacher.showProjectForm');
+Route::post('/teacher/subject/{code}/project/define', [TeacherController::class, 'defineProject'])->name('teacher.defineProject');
 Route::post('/teacher/subject/{code}/project/removeProject', [TeacherController::class, 'removeProject'])->name('teacher.removeProject');
+
+Route::get('/teacher/subject/{code}/lab', [TeacherController::class, 'showLabs'])->name('teacher.showLabs');
+Route::get('/teacher/subject/{code}/lab/{idLab}/appointments', [TeacherController::class, 'showLabAppointments'])->name('teacher.showLabAppointments');
+Route::get('/teacher/subject/{code}/lab/addLab', [TeacherController::class, 'showAddLabForm'])->name('teacher.showAddLabForm');
+Route::post('/teacher/subject/{code}/lab/addLab', [TeacherController::class, 'defineLab'])->name('teacher.defineLab');
 
 //Admin
 
@@ -93,8 +99,11 @@ Route::get('/admin/subjects/list', [AdminController::class, 'subjectList'])->nam
 Route::get('/admin/subjects/{subjectCode}', [AdminController::class, 'subjectIndex'])->name('admin.subject.index');
 Route::post('/admin/subjects/{subjectCode}/delete', [AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
 
+
 Route::post('/admin/subjects/{subjectCode}/deleteTeacher/{idT}', [AdminController::class, 'deleteTeacherFromSubject'])->name('admin.delete.teacher');
 Route::post('/admin/subjects/{subjectCode}/deleteStudent/{idSt}', [AdminController::class, 'deleteStudentFromSubject'])->name('admin.delete.student');
+
+
 
 Route::get('/admin/subjects/{subjectCode}/lab/list', [AdminController::class, 'labExercisesIndex'])->name('admin.subject.lab');
 Route::get('/admin/subjects/{subjectCode}/lab', [AdminController::class, 'labExerciseIndex'])->name('admin.subject.lab.show');
@@ -112,11 +121,3 @@ Route::post('/admin/users/teacher/{idT}/delete', [AdminController::class, 'delet
 Route::post('/admin/users/admin/{idA}/delete', [AdminController::class, 'deleteAdminFromSystem'])->name('admin.users.delete.admin');
 
 Route::get('/admin/logout', [App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
-
-//Route::get('/admin/subjects/list', [AdminController::class, 'subjectList'])->name('admin.subjects.list');
-//Route::post('/admin/requests/subjects/{id}/delete', [AdminController::class, 'deleteSubject'])->name('admin.delete.subject');
-//Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
-
-//Route::post('/admin/addUser',[AdminController::class, 'addUser'])->name('admin.adduser');
-//Route::post('/admin/deleteRequest',[AdminController::class, 'deleteRequest'])->name('admin.deleterequest');
-

@@ -34,4 +34,20 @@ class Teaches extends Model
     {
         return $this->belongsTo('App\Teacher', 'idTeacher', 'idTeacher');
     }
+
+    /**
+     * Provera da li profesor predaje predmet
+     * 
+     * @param int idTeacher 
+     * @param int idSubject
+     * 
+     * @return boolean true - predaje; false - ne predaje
+     */
+    public static function teachesCheck($idTeacher, $idSubject)
+    {
+        $queryResult = Teaches::where('idTeacher', '=', $idTeacher)->where('idSubject', '=', $idSubject)->get();
+        if(!($queryResult->isEmpty()))
+            return true;
+        return false;
+    }
 }

@@ -1,33 +1,33 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <title>Home</title>
-    </head>
+<!-- Student index strana
+    - Nemanja Lazic 2018/0004
+-->
 
-    <body>
-        <div class="jumbotron">
-            <div class="container">
-                <h1>ProLab</h1>
-                <a href="{{route("student.showAllSubjectsList")}}">Lista predmeta</a>
-                <a href="{{ route(Session::get('user')['userType'].'.logout') }}">Logout</a>
-            </div>
+
+@extends('layout.main')
+@section('content')
+
+    <link rel="stylesheet" href="{{asset('css/student/index_style.css')}}">
+    <script src="{{asset('js/student/index_script.js')}}"></script>
+
+    <div class="row">
+        <div class="col-md-2" id="prazno-1"></div>
+        <div class="col-xs-12 col-md-4 levo">
+            <table class="table table-borderless" id='table-student-info'>
+                <tr>
+                    <td><label for="" id="label-email">E-mail:</label></td>
+                    <td class="info"><label for="">{{$email}}</label></td>
+                </tr>
+                <tr>
+                    <td><label for="" id="label-index">Broj indeksa:</label></td>
+                    <td class="info">{{$index}}</td>
+                </tr>
+            </table>
         </div>
-        <div class="container">
-            <div clas="row">
-                <div class="col">
-                    @if(Session::get('user') != null)
-                        {{ Session::get('user')['userObject']->forename." ".Session::get('user')['userObject']->surname }}
-                    @endisset
-                </div>
-            </div>
+        <div class="col-xs-12 col-md-4 desno">
+            <h1 id="desno-ime-prezime">{{$forename}} {{$surname}}</h1>
+            <h4 id="natpis-student">Student</h4>
+            <div id="student-circle-inicijali"></div>
         </div>
-
-    </body>
-</html>
-
+        <div class="col-md-2" id="prazno-2"></div>
+    </div>
+@endsection
