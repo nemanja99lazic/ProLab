@@ -364,10 +364,10 @@ class CreateTeam {
 
 
 $(document).ready(()=>{
-    //const project = window.project;
-    //console.log(project);
+
     let $csrf = $("#csrf> input");
     window.projectData.csrf = $csrf.val();
+
     //ako projekat ne postoji
     //nema potrebe da se učitava stranica
     if (window.projectData.notExist) {

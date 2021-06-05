@@ -16,7 +16,7 @@ $userName = $user->forename . " " . $user->surname;
 @endsection
 @section("page-nav")
     <a href="{{route("student.subject.index", $code)}}" class="project-tab-button nav-item ml-3 mr-1 nav-link btn-outline-dark">Stranica predmeta</a>
-    <a href="#" class="project-tab-button active nav-item ml-1 mr-1 nav-link btn-outline-dark" data-tab-id="#project-info">O projektu</a>
+    <a href="#" class="project-tab-button active nav-item mr-1 nav-link btn-outline-dark" data-tab-id="#project-info">O projektu</a>
     <a href="#" class="project-tab-button nav-item mr-1 nav-link btn-outline-dark" data-tab-id="#team-list">Timovi</a>
     <a href="#" class="project-tab-button nav-item  mr-1 nav-link btn-outline-dark" data-tab-id="#team-create">Kreiraj tim</a>
 @endsection

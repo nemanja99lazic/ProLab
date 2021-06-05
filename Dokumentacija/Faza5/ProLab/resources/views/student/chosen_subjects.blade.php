@@ -1,5 +1,6 @@
 <?php
 //Autor: Valerijan Matvejev 2018/0257 ;   Ispis svih odabranih predmeta
+//Izmenio: Sreten Živković 0008/2018; Stranica prebačena na student_main layout
 ?>
 @extends('layout.student_main')
 
