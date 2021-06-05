@@ -1,5 +1,17 @@
-<?php //Autor: Valerijan Matvejev 2018/0257 ;  Ispis svih odabranih predmeta?>
-@extends('layout.main')
+<?php
+//Autor: Valerijan Matvejev 2018/0257 ;  Ispis svih odabranih predmeta
+?>
+@extends('layout.student_main')
+
+@section("page-title")
+    Izabrani predmeti
+@endsection
+
+
+@section("page-nav")
+    <a href="#" class="project-tab-button active nav-item ml-3 mr-1 nav-link btn-outline-dark">Izabrani predmeti</a>
+    <a href="{{route("student.showAllSubjectsList")}}" class="project-tab-button nav-item mr-1 nav-link btn-outline-dark">Prijava predmeta</a>
+@endsection
 @section('content')
 
 

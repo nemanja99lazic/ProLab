@@ -36,7 +36,7 @@ Route::get('/student/subject/enroll', [StudentController::class, 'showAllSubject
 Route::post('/student/subject/enroll', [StudentController::class, 'sendJoinRequest'])->name('student.sendJoinRequest');
 
 
-Route::get('/student/chosen',[StudentController::class, 'chosen'])->name('student.chosen');
+Route::get('/student/subject/chosen',[StudentController::class, 'chosen'])->name('student.chosen');
 Route::get('/student/subject/{code}/index',[StudentController::class, 'subjectIndex'])->name('student.subject.index');
 
 Route::get('/student/subject/{code}/lab',[StudentController::class, 'lab'])->name('student.subject.lab');

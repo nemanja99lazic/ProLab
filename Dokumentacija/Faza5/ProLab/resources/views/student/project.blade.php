@@ -1,7 +1,7 @@
 <?php
 /**
  * @note stranica za upravljanje projektima
- * @author  zvk17
+ * @author  Sreten Živković 0008/2018
  */
 $user = Session::get('user')["userObject"];
 $userName = $user->forename . " " . $user->surname;
@@ -38,12 +38,6 @@ $userName = $user->forename . " " . $user->surname;
             {{$subjectName}} - Projekti
         @endif
     </title>
-    <style>
-
-
-
-
-    </style>
 </head>
 <body>
 <span class ="d-none" id="csrf">@csrf</span>
@@ -71,8 +65,6 @@ $userName = $user->forename . " " . $user->surname;
                 </div>
             </nav>
         </div>
-
-
     </div>
     <main id="main">
         <div class="project-tab" id="project-info">
@@ -212,14 +204,9 @@ $userName = $user->forename . " " . $user->surname;
                     <br/>
                     Elektrotehnički fakultet, Univerzitet u Beogradu
                 </p>
-
-
             </div>
-
         </footer>
     </div>
-
-
 </div>
 
 <script src="{{ asset('js/project.js') }}"></script>

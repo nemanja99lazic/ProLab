@@ -28,12 +28,8 @@ main {
     padding-bottom: 0px;
     background-color: #efefef;
 }
-footer hr{
-    height: 20px;
-    background-color: #000066;
-    border: none;
-    padding: 0;
-    width: 100%;
+footer {
+    padding-top: 15px;
+    border-top: 20px solid #000066;
 }
-
 
