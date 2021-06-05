@@ -1,5 +1,5 @@
 <?php
-//Autor: Valerijan Matvejev 2018/0257 ;  Ispis svih odabranih predmeta
+//Autor: Valerijan Matvejev 2018/0257 ;   Ispis svih odabranih predmeta
 ?>
 @extends('layout.student_main')
 
@@ -13,13 +13,9 @@
     <a href="{{route("student.showAllSubjectsList")}}" class="project-tab-button nav-item mr-1 nav-link btn-outline-dark">Prijava predmeta</a>
 @endsection
 @section('content')
-
-
-
     <br>
     <h3 class="font-weight-bold text-center border-bottom-12"  >Spisak predmeta koje ste izabrali</h3>
     <br>
-
     <div class="row justify-content-center">
         <div class="col-auto">
             <table class="table table-bordered"style="width: 80vh" >
@@ -49,9 +45,4 @@
 
         </div>
     </div>
-
-
-
-
-
 @endsection
