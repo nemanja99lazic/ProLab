@@ -107,6 +107,11 @@ class Project {
 
 
     }
+
+    /**
+     * Učitava podatke pomoću AJAX-a sa putanje /student/subject/{code}/team/available
+     *
+     */
     loadData() {
         let code = Project.projectData.code;
         let ref = this;
@@ -172,6 +177,11 @@ class Project {
                 console.error('Error:', error);
             });
     }
+
+    /**
+     * Ažurira deo stranice namenjenom timu u kojem je student učlanjen
+     * Kreira formu za upravljanje timom
+     */
     updateMyTeam() {
         console.log("update my team")
         let $showLeader = $(".show-leader");
@@ -210,6 +220,11 @@ class Project {
         Project.getTeamTableMemberList(mtd.myTeam).forEach($el=>$table.append($el));
         $teamMembers.append($table);
     }
+
+    /**
+     * Ažurira stranicu po prijemu novog stanja sa servera
+     * @param obj
+     */
     updateTeams(obj) {
         console.log(obj)
         let {teams, myTeamData} = obj;
@@ -239,22 +254,38 @@ class CreateTeam {
            ref.submit();
         });
     }
+
+    /**
+     * Ispisuje gresku prilikom kreiranja novog tima
+     * @param message
+     */
     writeError(message) {
         this.$message.removeClass("text-success");
         this.$message.addClass("text-danger");
         this.$message.html(message);
     }
+
+    /**
+     * ispisuje poruku o uspesnom kreiranju tima
+     * @param message
+     */
     writeSuccess(message) {
         this.$message.removeClass("text-danger");
         this.$message.addClass("text-success");
         this.$message.html(message);
     }
+
+    /**
+     * Resetuje stanje polja za obaveštenja
+     */
     clearInfo() {
         this.$message.empty();
     }
 
     /**
-     * @note obradjuje unos imena, i salje na server zahtev za kreiranje tima
+     *  obradjuje unos imena, i šalje na server zahtev za kreiranje tima
+     *  ispisuje grešku u slučaju lošeg formata imena tima
+     *  ispisuje grešku, ako se ona desi na serveru
      */
     submit() {
         console.log("submit")
@@ -319,7 +350,7 @@ class CreateTeam {
                     errorMessage = "Niste prijavljeni na predmet";
                     break;
                 default:
-                    console.error(error.error_number);
+                    //errorMessage = "Greška na serveru";
                     return;
 
             }

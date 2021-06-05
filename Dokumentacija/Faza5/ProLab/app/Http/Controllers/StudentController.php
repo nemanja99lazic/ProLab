@@ -633,8 +633,9 @@ class StudentController extends Controller
         ]);
     }
     /**
-     * @note Indeksna strana predmeta iz pogleda studenta
+     * Indeksna strana pojedinačnog predmeta iz pogleda studenta
      * @author Sreten Živković 0008/2018
+     * GET zahtev
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function subjectIndex($code, Request $request) {
@@ -656,7 +657,7 @@ class StudentController extends Controller
 
     /**
      * Prikaz stranice za upravljanje projektima iz uloge studenta
-     *
+     * GET zahtev
      * @param String $code
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @author Sreten Živković 0008/2018
@@ -677,7 +678,8 @@ class StudentController extends Controller
     }
 
     /**
-     * @note JSON lista dostupnih timova za dati predmet (GET)
+     * vraća JSON listu dostupnih timova za dati predmet
+     * GET zahtev
      * @param $code
      * @author zvk17
      */
@@ -719,11 +721,14 @@ class StudentController extends Controller
     }
 
     /***
-     * @note dodaje studenta u tim
+     * Dodaje studenta u tim
+     * POST zahtev
      * @param String $code sifra predmeta
      * @param int $teamId id tima
+     * @return \Illuminate\Http\JsonResponse
      * @author zvk17
      */
+
     public function joinTeam($code, $teamId) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
@@ -768,11 +773,14 @@ class StudentController extends Controller
     }
 
     /**
-     * @note izlazak iz tima
+     * Izlazak iz tima
+     * POST zahtev
      * @param $subjectId
      * @param $teamId
-     * @return \Illuminate\Http\JsonResponse|void
+     * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
      */
+
     public function exitTeam($code, $teamId) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
@@ -808,9 +816,11 @@ class StudentController extends Controller
     }
 
     /**
-     * @note vraća query nekoliko spojenih tabela na koje mogu da se primene filteri
+     * Kao rezultat vraća query od nekoliko spojenih tabela na koje mogu da se primene filteri
      * @return \Illuminate\Database\Query\Builder
+     * @author Sreten Živković 0008/2018
      */
+
     private function getTeamsTable() {
         return DB::table('subjects')
             ->join('projects', 'subjects.idSubject', '=', 'projects.idSubject')
@@ -826,7 +836,8 @@ class StudentController extends Controller
 
 
     /**
-     *  Kreiranje tima POST metoda
+     * Zahtev za kreiranje tima
+     * POST zahtev
      * @param String $code
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -834,7 +845,8 @@ class StudentController extends Controller
      */
     public function createTeam($code, Request $request) {
         $post = $request->post();
-        // mala velika slova, cifre, razmaci, _, -
+
+        //dozvoljena mala velika slova, cifre, razmaci, _, -
 
         $validator = Validator::make($post, [
             'teamname' => 'required|min:4|max:60|regex:/^[a-zA-Z0-9\s_\-]+$/'
@@ -879,6 +891,8 @@ class StudentController extends Controller
     }
 
     /**
+     * Zahtev za otključavanje tima
+     * POST zahtev
      * @param $code
      * @param $idTeam
      * @return \Illuminate\Http\JsonResponse
@@ -911,7 +925,8 @@ class StudentController extends Controller
     }
 
     /**
-     *
+     * Zahtev za otključavanje tima
+     * POST zahtev
      * @param String $code
      * @param int $idTeam
      * @return \Illuminate\Http\JsonResponse
@@ -942,7 +957,7 @@ class StudentController extends Controller
         return response()->json(["status"=> "ok"], 200);
     }
     /**
-     * Proverava da li je student vec u nekom timu na datom projektu
+     * Proverava da li je student već u nekom timu na datom projektu
      * @param String $code
      * @param $idUser
      * @return bool
@@ -957,7 +972,8 @@ class StudentController extends Controller
     }
 
     /**
-     * Da li student prati dati predmet
+     * Funkcija ispituje da li student prati dati predmet
+     *
      * @param Subject $subject
      * @param User $user
      * @return bool

@@ -213,33 +213,32 @@ class TeacherController extends Controller {
 
     /**
      *
-     * @note Funkcija prikazuje sve predmete na kojima profesor predaje.
-     *
+     * Prikazuje spisak svih predmeta na kojima profesor predaje.
+     * GET metoda
      * @return \Illuminate\Contracts\View\View
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
-    public function getSubjects(Request $request){
+    public function getSubjects(Request $request) {
+
         $userData = $request->session()->get("user");
         $user = $userData["userObject"];
         $teacher = $user->teacher()->first();
-        //$subjects = $teacher->subjects()->getResults();
-        $list = [];
-        //foreach ($subjects as $subject)
-        //    $list[] = $subject;
 
-        $teaches = $teacher->teachesSubjects()->getResults();
-        foreach ($teaches as $teach) {
-            $list[] = $teach;
+        $list = [];
+
+        $subjects = $teacher->teachesSubjects()->getResults();
+        foreach ($subjects as $subject) {
+            $list[] = $subject;
         }
         return view("teacher.subject_list", ["subjectList" => $list]);
 
     }
     /**
      *
-     * @note Funkcija prikazuje predmet iz pogleda profesora
-     *
+     * Prikazuje predmet iz pogleda profesora
+     * GET metoda
      * @return \Illuminate\Contracts\View\View
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
     public function subjectIndexPage($code) {
         $subject = Subject::where("code", "=", $code)->first();

@@ -24,6 +24,7 @@ class GuestMiddleware
                 $request->session()->forget('user');
                 return $next($request);
             } else {
+                $userType = request()->session()->get("user")["userType"];
                 return redirect()->to(url("/". $userType));
             }
         }
