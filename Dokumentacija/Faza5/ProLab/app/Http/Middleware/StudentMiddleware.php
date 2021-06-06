@@ -1,6 +1,9 @@
 <?php
-
-// Autor: Slobodan Katanic 2018/0133
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
 
 namespace App\Http\Middleware;
 
@@ -9,7 +12,7 @@ use Illuminate\Http\Request;
 use App\User;
 
 /**
- * Klasa koja upravlja zahtevima koji su pristgli StudentController-u.
+ * StudentMiddleware - Klasa koja upravlja zahtevima koji su pristgli StudentController-u.
  *
  * @package App\Http\Middleware
  * @version 1.0
@@ -17,7 +20,7 @@ use App\User;
 class StudentMiddleware
 {
     /**
-     * Upravlja zahtevom koji je pristigao StudentController-u.
+     * Funkcija koja upravlja zahtevom koji je pristigao StudentController-u.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next

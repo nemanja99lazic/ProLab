@@ -10,6 +10,12 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * UsernameCheck - klasa koja proverava da li je korisnicko ime u odgovarajucem formatu.
+ *
+ * @package App\Rules
+ * @version
+ */
 class UsernameCheck implements Rule
 {
     /**
@@ -45,6 +51,6 @@ class UsernameCheck implements Rule
      */
     public function message()
     {
-        return 'Username can contain digits, dots and _ and at least one letter';
+        return 'Korisničko ime može da sadrži cifre, tačke, znak _ i bar jedno slovo';
     }
 }

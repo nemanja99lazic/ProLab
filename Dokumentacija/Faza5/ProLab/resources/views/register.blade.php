@@ -11,15 +11,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('js/app.js') }}" defer></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-{{--        <script src="{{ asset('js/guest/register_info.js') }}" defer></script>--}}
         <title>Regstracija</title>
     </head>
     <body>
-{{--        <div class="jumbotron p-5">--}}
-{{--            <div class="container text-center">--}}
-{{--                <img src="images\ProLabLOGO.jpg" class="rounded img-thumbnail img-fluid" width="15%">--}}
-{{--            </div>--}}
-{{--        </div>--}}
         <div class="container pt-5">
             @if(!empty(Session::get('success')))
                 {{ Session::forget('success') }}
@@ -27,7 +21,7 @@
                     <div class="col">
                         <div class="alert alert-success alert-dismissible" id="alert-register-info" role="alert">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            Vas zahtev za kreiranje naloga je uspesno poslat.
+                            Vaš zahtev za kreiranje naloga je uspešno poslat.
                         </div>
                     </div>
                 </div>
@@ -61,13 +55,13 @@
                             <tr>
                                 <td colspan="2">
                                     @if($errors->first('username'))
-                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisničko ime" value="{{old("username")}}">
                                         <div class="text-danger text-left h6 small">{{ $errors->first('username') }}</div>
                                     @elseif(Session::get('errorUsername') != null)
-                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisničko ime" value="{{old("username")}}">
                                         <div class="text-danger text-left h6 small">{{Session::get('errorUsername')}}</div>
                                     @else
-                                        <input type="text" class="form-control m-1" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1" name="username" id="username" autocomplete="off" placeholder="korisničko ime" value="{{old("username")}}">
                                     @endif
                                 </td>
                             </tr>

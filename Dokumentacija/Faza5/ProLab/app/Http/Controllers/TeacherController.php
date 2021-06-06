@@ -79,7 +79,7 @@ class TeacherController extends Controller {
         ],
         [
             'required' => 'Obavezno polje',
-            'alpha_num' => 'Sifra se mora sastojati samo od slova i cifara'
+            'alpha_num' => 'Šifra se mora sastojati samo od slova i cifara'
         ]);
         $teachers = $request->get('teachers_select');
         $teacher = $request->session()->get('user')['userObject'];
