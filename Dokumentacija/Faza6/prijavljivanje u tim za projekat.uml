@@ -11,22 +11,14 @@
 </XPD:HEADER>
 <XPD:BODY>
 <XPD:OBJ name="DocumentElement" type="UMLProject" guid="VhOc7fS3i0WGUXgjCBP6wQAA">
-<<<<<<< HEAD
-<XPD:ATTR name="Title" type="string">Untitled</XPD:ATTR>
-=======
 <XPD:ATTR name="Title" type="string">SSU - Prijavljivanje u tim za projekat</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:ATTR name="#OwnedElements" type="integer">4</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLModel" guid="ZT0/7koZG0OKpXFi0MZs7wAA">
 <XPD:ATTR name="Name" type="string">Use Case View</XPD:ATTR>
 <XPD:REF name="Namespace">VhOc7fS3i0WGUXgjCBP6wQAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLUseCaseDiagram" guid="iOZ9dNLv1k66C6e96SHYHAAA">
-<<<<<<< HEAD
-<XPD:ATTR name="Name" type="string">Main</XPD:ATTR>
-=======
 <XPD:ATTR name="Name" type="string">DijagramSlucajevaKoriscenja</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="DiagramOwner">ZT0/7koZG0OKpXFi0MZs7wAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLUseCaseDiagramView" guid="xQMqx31Ej0isKZGCTZu7wQAA">
 <XPD:REF name="Diagram">iOZ9dNLv1k66C6e96SHYHAAA</XPD:REF>
@@ -36,21 +28,13 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">496</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">136</XPD:ATTR>
-<<<<<<< HEAD
-<XPD:ATTR name="Width" type="integer">165</XPD:ATTR>
-=======
 <XPD:ATTR name="Width" type="integer">261</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:ATTR name="Height" type="integer">45</XPD:ATTR>
 <XPD:REF name="Model">D2ok6Ll6b0mSTOAlGS3jfQAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="ZhmObd85BkKuEzfjs0JRGgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="ULKFt0qZQU6nYit64l20XQAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<<<<<<< HEAD
-<XPD:ATTR name="Text" type="string">prijavljivanje u tim</XPD:ATTR>
-=======
 <XPD:ATTR name="Text" type="string">Prijavljivanje u tim za projekat</XPD:ATTR>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="5z8awGfPtUSGqsjQZVDu9wAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -104,11 +88,7 @@
 <XPD:OBJ name="OwnedViews[2]" type="UMLAssociationView" guid="Ql30xlkw3kShymGB3BpuWgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<<<<<<< HEAD
-<XPD:ATTR name="Points" type="Points">341,165;496,160</XPD:ATTR>
-=======
 <XPD:ATTR name="Points" type="Points">341,165;496,161</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="Model">KLm9XB3Fu0Sh3ILBHUn+dgAA</XPD:REF>
 <XPD:REF name="Head">e9QDtAgXZUGkyts57+3aXQAA</XPD:REF>
 <XPD:REF name="Tail">59VeiJHYyUSRjxepZyJbvwAA</XPD:REF>
@@ -193,11 +173,7 @@
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedElements" type="integer">3</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLUseCase" guid="D2ok6Ll6b0mSTOAlGS3jfQAA">
-<<<<<<< HEAD
-<XPD:ATTR name="Name" type="string">prijavljivanje u tim</XPD:ATTR>
-=======
 <XPD:ATTR name="Name" type="string">Prijavljivanje u tim za projekat</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="Namespace">ZT0/7koZG0OKpXFi0MZs7wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">e9QDtAgXZUGkyts57+3aXQAA</XPD:REF>
@@ -250,11 +226,7 @@
 <XPD:REF name="Namespace">VhOc7fS3i0WGUXgjCBP6wQAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLClassDiagram" guid="v0iF6hCxCU6wQojx1UZiGwAA">
-<<<<<<< HEAD
-<XPD:ATTR name="Name" type="string">Main</XPD:ATTR>
-=======
 <XPD:ATTR name="Name" type="string">KlasniDijagram</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:ATTR name="DefaultDiagram" type="boolean">True</XPD:ATTR>
 <XPD:REF name="DiagramOwner">jiRG7XWF/UWJjF+SS+FmAgAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="3lUBafEg2UOoce+JVbMccQAA">
@@ -1719,11 +1691,7 @@
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[20]" type="UMLPackage" guid="0OL/gDV56Ua1UBTpewEpCQAA">
-<<<<<<< HEAD
-<XPD:ATTR name="Name" type="string">prijavljivanje u tim za projekat</XPD:ATTR>
-=======
 <XPD:ATTR name="Name" type="string">prijavljivanje u tim za projekat - realizacija</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="Namespace">jiRG7XWF/UWJjF+SS+FmAgAA</XPD:REF>
 <XPD:ATTR name="#OwnedElements" type="integer">6</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="DI6YGL80MEuihdlYlUZ15AAA">
@@ -1764,21 +1732,13 @@
 <XPD:OBJ name="OwnedCollaborationInstanceSets[0]" type="UMLCollaborationInstanceSet" guid="fOYLL8cwIUybOsVoQEOZHwAA">
 <XPD:ATTR name="Name" type="string">CollaborationInstanceSet1</XPD:ATTR>
 <XPD:REF name="RepresentedClassifier">0OL/gDV56Ua1UBTpewEpCQAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:ATTR name="#InteractionInstanceSets" type="integer">1</XPD:ATTR>
-=======
 <XPD:ATTR name="#InteractionInstanceSets" type="integer">2</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:OBJ name="InteractionInstanceSets[0]" type="UMLInteractionInstanceSet" guid="Ml/k8x9yu0CnV2YTPi9hRAAA">
 <XPD:ATTR name="Name" type="string">InteractionInstanceSet1</XPD:ATTR>
 <XPD:REF name="Context">fOYLL8cwIUybOsVoQEOZHwAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLSequenceDiagram" guid="iFyic8J8yUuS5Zp4B48LxwAA">
-<<<<<<< HEAD
-<XPD:ATTR name="Name" type="string">prijavljivanje u tim za projekat</XPD:ATTR>
-=======
 <XPD:ATTR name="Name" type="string">prijavljivanje u tim za projekat - USPEH</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:ATTR name="DiagramType" type="string">WAE Sequence Diagram</XPD:ATTR>
 <XPD:REF name="DiagramOwner">Ml/k8x9yu0CnV2YTPi9hRAAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLSequenceDiagramView" guid="UGsPqJSLGkmDofVTtSRcyQAA">
@@ -1975,11 +1935,7 @@
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="JscsJbSknU+xBedky7ANgQAA">
 <XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<<<<<<< HEAD
-<XPD:ATTR name="Text" type="string">2</XPD:ATTR>
-=======
 <XPD:ATTR name="Text" type="string">2 : where()</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="Model">W8fpxhwpnE+bvMX3k1zuAgAA</XPD:REF>
 <XPD:REF name="HostEdge">mouwsNfqakmdYwk/bW2OigAA</XPD:REF>
 </XPD:OBJ>
@@ -2015,11 +1971,7 @@
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="pPanclxjlk6+eKhrHy2i/QAA">
 <XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<<<<<<< HEAD
-<XPD:ATTR name="Text" type="string">3</XPD:ATTR>
-=======
 <XPD:ATTR name="Text" type="string">3 : where()</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="Model">b+rIPEyblkGnN1/SXxbB1QAA</XPD:REF>
 <XPD:REF name="HostEdge">QF6FLVicU0uE4ijh3vhfvwAA</XPD:REF>
 </XPD:OBJ>
@@ -2170,15 +2122,9 @@
 <XPD:REF name="HostEdge">HIPr8NencUGQSmxXPDSqvAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="EdgeLabelView" guid="O5dbNAOFkkmPVc9feMkJjgAA">
-<<<<<<< HEAD
-<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
-<XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">25</XPD:ATTR>
-=======
 <XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">25</XPD:ATTR>
 <XPD:ATTR name="Text" type="string">&lt;&lt;create&gt;&gt;</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="Model">Xyr6RpZSdk6mzDJzB8S4XgAA</XPD:REF>
 <XPD:REF name="HostEdge">HIPr8NencUGQSmxXPDSqvAAA</XPD:REF>
 </XPD:OBJ>
@@ -2196,40 +2142,6 @@
 <XPD:ATTR name="Height" type="integer">45</XPD:ATTR>
 </XPD:OBJ>
 </XPD:OBJ>
-<<<<<<< HEAD
-<XPD:OBJ name="OwnedViews[13]" type="UMLSeqStimulusView" guid="QLO8x77vUkWXVaAf25xiMgAA">
-<XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
-<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="LineStyle" type="LineStyleKind">lsRectilinear</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">839,240;253,240</XPD:ATTR>
-<XPD:REF name="Model">YWM96OJXBk2G5/OaRjDqxAAA</XPD:REF>
-<XPD:REF name="Head">3k2cTAaHZUShZUvmYpGHXAAA</XPD:REF>
-<XPD:REF name="Tail">UkataHCUyUiT1ymfstrMdQAA</XPD:REF>
-<XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="17gjB6gWl0C3BHaZo2q+PgAA">
-<XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">8 : joinTeam()</XPD:ATTR>
-<XPD:REF name="Model">YWM96OJXBk2G5/OaRjDqxAAA</XPD:REF>
-<XPD:REF name="HostEdge">QLO8x77vUkWXVaAf25xiMgAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="StereotypeLabel" type="EdgeLabelView" guid="j0sl4W4bbE+s5PLS2FJS/AAA">
-<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
-<XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">25</XPD:ATTR>
-<XPD:REF name="Model">YWM96OJXBk2G5/OaRjDqxAAA</XPD:REF>
-<XPD:REF name="HostEdge">QLO8x77vUkWXVaAf25xiMgAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="PropertyLabel" type="EdgeLabelView" guid="H4KnTK1F+ESvQsBEpXyk1wAA">
-<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
-<XPD:ATTR name="Alpha" type="real">-1.5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:REF name="Model">YWM96OJXBk2G5/OaRjDqxAAA</XPD:REF>
-<XPD:REF name="HostEdge">QLO8x77vUkWXVaAf25xiMgAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Activation" type="UMLActivationView" guid="vGKoVZ1cO0WGyUZbxA/aXAAA">
-<XPD:ATTR name="Left" type="integer">240</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">240</XPD:ATTR>
-=======
 <XPD:OBJ name="OwnedViews[13]" type="UMLSeqStimulusView" guid="zUA/lxqRl0iOuSWOT+EdjgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
@@ -2263,7 +2175,6 @@
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">96</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">244</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:ATTR name="Width" type="integer">14</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">29</XPD:ATTR>
 </XPD:OBJ>
@@ -2290,10 +2201,7 @@
 <XPD:REF name="Receiver">9ljiRB7AykO5LbFF7QQT/QAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="k21KwQJGLkiF227f7sQ+dwAA">
 <XPD:REF name="Stimulus">W8fpxhwpnE+bvMX3k1zuAgAA</XPD:REF>
-<<<<<<< HEAD
-=======
 <XPD:REF name="Operation">Tge4phaNwUK/4yKvkM+sUwAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:REF name="InteractionInstanceSet">Ml/k8x9yu0CnV2YTPi9hRAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
@@ -2303,10 +2211,7 @@
 <XPD:REF name="Views[3]">f6c4ICnal0C8GeJ43jfGRgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingStimuli[2]" type="UMLStimulus" guid="b+rIPEyblkGnN1/SXxbB1QAA">
-<<<<<<< HEAD
-=======
 <XPD:ATTR name="Name" type="string">where</XPD:ATTR>
->>>>>>> origin/SloboGrana
 <XPD:REF name="Sender">9ljiRB7AykO5LbFF7QQT/QAA</XPD:REF>
 <XPD:REF name="Receiver">0TWM8jJ5lk6U60kcYzEOUgAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="i4LrK3dftEOWGSe0NPfyjgAA">
@@ -2362,11 +2267,7 @@
 <XPD:OBJ name="ParticipatingStimuli[6]" type="UMLStimulus" guid="Xyr6RpZSdk6mzDJzB8S4XgAA">
 <XPD:REF name="Sender">bG41l5E2j0yqTMIOEdbIZAAA</XPD:REF>
 <XPD:REF name="Receiver">foTvgnYuVky6rO8KkST3igAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:OBJ name="Action" type="UMLCallAction" guid="joc8RY4eIUSYdAAAc5lc3QAA">
-=======
 <XPD:OBJ name="Action" type="UMLCreateAction" guid="H/YX88jcDk+dyBMbzCDhJwAA">
->>>>>>> origin/SloboGrana
 <XPD:REF name="Stimulus">Xyr6RpZSdk6mzDJzB8S4XgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:REF name="InteractionInstanceSet">Ml/k8x9yu0CnV2YTPi9hRAAA</XPD:REF>
@@ -2376,21 +2277,6 @@
 <XPD:REF name="Views[2]">O5dbNAOFkkmPVc9feMkJjgAA</XPD:REF>
 <XPD:REF name="Views[3]">4qRJxznInkOS9lGR+WUdJgAA</XPD:REF>
 </XPD:OBJ>
-<<<<<<< HEAD
-<XPD:OBJ name="ParticipatingStimuli[7]" type="UMLStimulus" guid="YWM96OJXBk2G5/OaRjDqxAAA">
-<XPD:ATTR name="Name" type="string">joinTeam</XPD:ATTR>
-<XPD:REF name="Sender">foTvgnYuVky6rO8KkST3igAA</XPD:REF>
-<XPD:REF name="Receiver">F1RyMggomUy2N4RmN1WH2wAA</XPD:REF>
-<XPD:OBJ name="Action" type="UMLCallAction" guid="mSLBn9hEIUSR0crSWtEUTQAA">
-<XPD:REF name="Stimulus">YWM96OJXBk2G5/OaRjDqxAAA</XPD:REF>
-</XPD:OBJ>
-<XPD:REF name="InteractionInstanceSet">Ml/k8x9yu0CnV2YTPi9hRAAA</XPD:REF>
-<XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
-<XPD:REF name="Views[0]">QLO8x77vUkWXVaAf25xiMgAA</XPD:REF>
-<XPD:REF name="Views[1]">17gjB6gWl0C3BHaZo2q+PgAA</XPD:REF>
-<XPD:REF name="Views[2]">j0sl4W4bbE+s5PLS2FJS/AAA</XPD:REF>
-<XPD:REF name="Views[3]">H4KnTK1F+ESvQsBEpXyk1wAA</XPD:REF>
-=======
 <XPD:OBJ name="ParticipatingStimuli[7]" type="UMLStimulus" guid="VRpsU+kBwU2XBKLfmr0qyAAA">
 <XPD:REF name="Sender">foTvgnYuVky6rO8KkST3igAA</XPD:REF>
 <XPD:REF name="Receiver">4wmI+GF5p0mXYKM5YoW8YwAA</XPD:REF>
@@ -2961,20 +2847,12 @@
 <XPD:REF name="Views[1]">L2/sdTa9QkSISYqHYqmDyAAA</XPD:REF>
 <XPD:REF name="Views[2]">Kw1W1EckBE6XeGulhYMwYgAA</XPD:REF>
 <XPD:REF name="Views[3]">SG7hJME/FkWR+eU1FJWB0gAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:ATTR name="#ParticipatingInstances" type="integer">6</XPD:ATTR>
 <XPD:OBJ name="ParticipatingInstances[0]" type="UMLObject" guid="4wmI+GF5p0mXYKM5YoW8YwAA">
 <XPD:REF name="Classifier">gblZbq5CaU+eQOpoCYuKSQAA</XPD:REF>
 <XPD:REF name="CollaborationInstanceSet">fOYLL8cwIUybOsVoQEOZHwAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">Hqr/yfXaY0ahMf5Vm3875gAA</XPD:REF>
-<XPD:REF name="Views[1]">wfE4dPm5RE+52lBKuZw3VwAA</XPD:REF>
-<XPD:ATTR name="#SendingStimuli" type="integer">1</XPD:ATTR>
-<XPD:REF name="SendingStimuli[0]">5b2uTmZQ8EiIW1RAw7CnqgAA</XPD:REF>
-=======
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">Hqr/yfXaY0ahMf5Vm3875gAA</XPD:REF>
 <XPD:REF name="Views[1]">wfE4dPm5RE+52lBKuZw3VwAA</XPD:REF>
@@ -2985,23 +2863,10 @@
 <XPD:REF name="SendingStimuli[1]">Z77q/XUX/0SWrbBSYQuWLwAA</XPD:REF>
 <XPD:ATTR name="#ReceivingStimuli" type="integer">1</XPD:ATTR>
 <XPD:REF name="ReceivingStimuli[0]">VRpsU+kBwU2XBKLfmr0qyAAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[1]" type="UMLObject" guid="F1RyMggomUy2N4RmN1WH2wAA">
 <XPD:REF name="Classifier">DI6YGL80MEuihdlYlUZ15AAA</XPD:REF>
 <XPD:REF name="CollaborationInstanceSet">fOYLL8cwIUybOsVoQEOZHwAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">Hb4hnSyTTUyEjGpJVD1sdwAA</XPD:REF>
-<XPD:REF name="Views[1]">3k2cTAaHZUShZUvmYpGHXAAA</XPD:REF>
-<XPD:ATTR name="#SendingStimuli" type="integer">2</XPD:ATTR>
-<XPD:REF name="SendingStimuli[0]">W8fpxhwpnE+bvMX3k1zuAgAA</XPD:REF>
-<XPD:REF name="SendingStimuli[1]">LLaYzKx3WEyF1aQE17ZmIwAA</XPD:REF>
-<XPD:ATTR name="#ReceivingStimuli" type="integer">3</XPD:ATTR>
-<XPD:REF name="ReceivingStimuli[0]">5b2uTmZQ8EiIW1RAw7CnqgAA</XPD:REF>
-<XPD:REF name="ReceivingStimuli[1]">vn+KCdvFn0uAmDzZ7HH4tAAA</XPD:REF>
-<XPD:REF name="ReceivingStimuli[2]">YWM96OJXBk2G5/OaRjDqxAAA</XPD:REF>
-=======
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">Hb4hnSyTTUyEjGpJVD1sdwAA</XPD:REF>
 <XPD:REF name="Views[1]">3k2cTAaHZUShZUvmYpGHXAAA</XPD:REF>
@@ -3018,22 +2883,10 @@
 <XPD:REF name="ReceivingStimuli[2]">Z77q/XUX/0SWrbBSYQuWLwAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[3]">XWu/EnKNmEe9lF3S2Pcl4gAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[4]">6asxVMBHH0eNU4C6LBLF7QAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[2]" type="UMLObject" guid="9ljiRB7AykO5LbFF7QQT/QAA">
 <XPD:REF name="Classifier">7zuqcImUzUWASXpYiKVloQAA</XPD:REF>
 <XPD:REF name="CollaborationInstanceSet">fOYLL8cwIUybOsVoQEOZHwAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">9/SbH76xnk+Irw82IE9fxAAA</XPD:REF>
-<XPD:REF name="Views[1]">TD1Hvol2wUWVVDy/xPVbIAAA</XPD:REF>
-<XPD:ATTR name="#SendingStimuli" type="integer">2</XPD:ATTR>
-<XPD:REF name="SendingStimuli[0]">b+rIPEyblkGnN1/SXxbB1QAA</XPD:REF>
-<XPD:REF name="SendingStimuli[1]">vn+KCdvFn0uAmDzZ7HH4tAAA</XPD:REF>
-<XPD:ATTR name="#ReceivingStimuli" type="integer">2</XPD:ATTR>
-<XPD:REF name="ReceivingStimuli[0]">W8fpxhwpnE+bvMX3k1zuAgAA</XPD:REF>
-<XPD:REF name="ReceivingStimuli[1]">neVCTlV1wUqDntl6SHTAxAAA</XPD:REF>
-=======
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">9/SbH76xnk+Irw82IE9fxAAA</XPD:REF>
 <XPD:REF name="Views[1]">TD1Hvol2wUWVVDy/xPVbIAAA</XPD:REF>
@@ -3049,20 +2902,10 @@
 <XPD:REF name="ReceivingStimuli[1]">neVCTlV1wUqDntl6SHTAxAAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[2]">8yL8sF2PQkqJW36ttuGMzgAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[3]">MGGGjTI6vEe7uObcIhHmSAAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[3]" type="UMLObject" guid="0TWM8jJ5lk6U60kcYzEOUgAA">
 <XPD:REF name="Classifier">KBKWSUntSUe0+C/3BkwvTwAA</XPD:REF>
 <XPD:REF name="CollaborationInstanceSet">fOYLL8cwIUybOsVoQEOZHwAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">HKPOAT8BQEG9enl7YgZWRgAA</XPD:REF>
-<XPD:REF name="Views[1]">PRxenD1RJkKi95jrdiIttQAA</XPD:REF>
-<XPD:ATTR name="#SendingStimuli" type="integer">1</XPD:ATTR>
-<XPD:REF name="SendingStimuli[0]">neVCTlV1wUqDntl6SHTAxAAA</XPD:REF>
-<XPD:ATTR name="#ReceivingStimuli" type="integer">1</XPD:ATTR>
-<XPD:REF name="ReceivingStimuli[0]">b+rIPEyblkGnN1/SXxbB1QAA</XPD:REF>
-=======
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">HKPOAT8BQEG9enl7YgZWRgAA</XPD:REF>
 <XPD:REF name="Views[1]">PRxenD1RJkKi95jrdiIttQAA</XPD:REF>
@@ -3074,20 +2917,10 @@
 <XPD:ATTR name="#ReceivingStimuli" type="integer">2</XPD:ATTR>
 <XPD:REF name="ReceivingStimuli[0]">b+rIPEyblkGnN1/SXxbB1QAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[1]">Hrp4Zg14kkqo8cros6pYRAAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[4]" type="UMLObject" guid="bG41l5E2j0yqTMIOEdbIZAAA">
 <XPD:REF name="Classifier">mVMTXmzHrkWdiHcrWMxVDgAA</XPD:REF>
 <XPD:REF name="CollaborationInstanceSet">fOYLL8cwIUybOsVoQEOZHwAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">Z8er58m/OECve87233RYeAAA</XPD:REF>
-<XPD:REF name="Views[1]">CUKvtUgJokO+1ym3L7N3AAAA</XPD:REF>
-<XPD:ATTR name="#SendingStimuli" type="integer">1</XPD:ATTR>
-<XPD:REF name="SendingStimuli[0]">Xyr6RpZSdk6mzDJzB8S4XgAA</XPD:REF>
-<XPD:ATTR name="#ReceivingStimuli" type="integer">1</XPD:ATTR>
-<XPD:REF name="ReceivingStimuli[0]">LLaYzKx3WEyF1aQE17ZmIwAA</XPD:REF>
-=======
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">Z8er58m/OECve87233RYeAAA</XPD:REF>
 <XPD:REF name="Views[1]">CUKvtUgJokO+1ym3L7N3AAAA</XPD:REF>
@@ -3099,20 +2932,10 @@
 <XPD:ATTR name="#ReceivingStimuli" type="integer">2</XPD:ATTR>
 <XPD:REF name="ReceivingStimuli[0]">LLaYzKx3WEyF1aQE17ZmIwAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[1]">hxkOF7IlQk6Ju8PiKwJKhwAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[5]" type="UMLObject" guid="foTvgnYuVky6rO8KkST3igAA">
 <XPD:REF name="Classifier">wNVcTSSKdEu6Nm4PFvYkXgAA</XPD:REF>
 <XPD:REF name="CollaborationInstanceSet">fOYLL8cwIUybOsVoQEOZHwAA</XPD:REF>
-<<<<<<< HEAD
-<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
-<XPD:REF name="Views[0]">uaesAk2Enkqnk8QLcd98HwAA</XPD:REF>
-<XPD:REF name="Views[1]">UkataHCUyUiT1ymfstrMdQAA</XPD:REF>
-<XPD:ATTR name="#SendingStimuli" type="integer">1</XPD:ATTR>
-<XPD:REF name="SendingStimuli[0]">YWM96OJXBk2G5/OaRjDqxAAA</XPD:REF>
-<XPD:ATTR name="#ReceivingStimuli" type="integer">1</XPD:ATTR>
-<XPD:REF name="ReceivingStimuli[0]">Xyr6RpZSdk6mzDJzB8S4XgAA</XPD:REF>
-=======
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">uaesAk2Enkqnk8QLcd98HwAA</XPD:REF>
 <XPD:REF name="Views[1]">UkataHCUyUiT1ymfstrMdQAA</XPD:REF>
@@ -3124,7 +2947,6 @@
 <XPD:ATTR name="#ReceivingStimuli" type="integer">2</XPD:ATTR>
 <XPD:REF name="ReceivingStimuli[0]">Xyr6RpZSdk6mzDJzB8S4XgAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[1]">3xVyw8o99kys889Z8q0PCgAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -3159,12 +2981,9 @@
 <XPD:ATTR name="Name" type="string">value</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">Tge4phaNwUK/4yKvkM+sUwAA</XPD:REF>
 </XPD:OBJ>
-<<<<<<< HEAD
-=======
 <XPD:ATTR name="#CallActions" type="integer">2</XPD:ATTR>
 <XPD:REF name="CallActions[0]">FVo4KAYCwEyoJ5rLEhSQvwAA</XPD:REF>
 <XPD:REF name="CallActions[1]">k21KwQJGLkiF227f7sQ+dwAA</XPD:REF>
->>>>>>> origin/SloboGrana
 </XPD:OBJ>
 <XPD:ATTR name="#Instances" type="integer">1</XPD:ATTR>
 <XPD:REF name="Instances[0]">9ljiRB7AykO5LbFF7QQT/QAA</XPD:REF>
@@ -3217,7 +3036,3 @@
 </XPD:OBJ>
 </XPD:BODY>
 </XPD:PROJECT>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/SloboGrana
