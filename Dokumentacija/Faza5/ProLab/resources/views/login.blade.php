@@ -32,13 +32,13 @@
                             <tr>
                                 <td>
                                     @if($errors->first('username'))
-                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisničko ime" value="{{old("username")}}">
                                         <div class="text-danger text-left h6 small">{{ $errors->first('username') }}</div>
                                     @elseif(Session::get('errorUsername') != null)
-                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisničko ime" value="{{old("username")}}">
                                         <div class="text-danger text-left h6 small">{{Session::get('errorUsername')}}</div>
                                     @else
-                                        <input type="text" class="form-control m-1" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1" name="username" id="username" autocomplete="off" placeholder="korisničko ime" value="{{old("username")}}">
                                     @endif
                                 </td>
                             </tr>

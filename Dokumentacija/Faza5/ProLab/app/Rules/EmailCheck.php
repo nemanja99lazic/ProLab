@@ -63,6 +63,6 @@ class EmailCheck implements Rule
      * @return string
      */
     public function message() {
-        return 'Email format is not correct.';
+        return 'Format mejla je neispravan.';
     }
 }

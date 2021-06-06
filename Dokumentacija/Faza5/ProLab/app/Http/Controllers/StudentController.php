@@ -67,7 +67,7 @@ class StudentController extends Controller
                 $filteredSubjects[] = $subject;
         }
 
-        $maxItemsPerPage = 2;
+        $maxItemsPerPage = 5;
         $paginatorSubjects = new LengthAwarePaginator
             (array_slice($filteredSubjects, (LengthAwarePaginator::resolveCurrentPage() - 1) * $maxItemsPerPage, $maxItemsPerPage)
             ,count($filteredSubjects), $maxItemsPerPage, null, []);
