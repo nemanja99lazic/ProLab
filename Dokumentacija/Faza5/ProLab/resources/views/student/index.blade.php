@@ -3,11 +3,24 @@
 -->
 
 
-@extends('layout.main')
+@extends('layout.student_main')
+
+@section("page-import")
+    <link rel="stylesheet" href="{{asset('css/student/index_style.css')}}">
+    <script src="{{asset('js/student/index_script.js')}}" defer></script>
+    <style>
+        main {
+            min-height: 65vh;
+        }
+    </style>
+@endsection
+@section("page-nav")
+    <a href="{{route("student.chosen")}}" class="project-tab-button nav-item ml-3 mr-1 nav-link btn-outline-dark">Izabrani predmeti</a>
+    <a href="{{route("student.showAllSubjectsList")}}" class="project-tab-button nav-item mr-1 nav-link btn-outline-dark">Prijava predmeta</a>
+@endsection
 @section('content')
 
-    <link rel="stylesheet" href="{{asset('css/student/index_style.css')}}">
-    <script src="{{asset('js/student/index_script.js')}}"></script>
+
 
     <div class="row">
         <div class="col-md-2" id="prazno-1"></div>
