@@ -456,7 +456,11 @@ class StudentController extends Controller
         //svi termini za ovaj lab
         $appointments=Appointment::where('idLabExercise','=',$request->idLab)->get();
 
+        if(count($appointments)==0){
+            Session::put("nemaTermina",1);
+            return redirect()->route('student.subject.lab.idlab.join.get', [$request->code,$request->idLab]);
 
+        }
         $myAppointmentArray=[];
         //trazim svoj termin
         $appointment=$appointments[0];

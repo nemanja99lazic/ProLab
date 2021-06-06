@@ -2,7 +2,7 @@
     Autor: Slobodan Katanic 2018/0133
  */
 
-.container {
+.container-fluid {
     min-height: 100vh;
     display: flex;
     flex-direction: column;

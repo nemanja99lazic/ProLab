@@ -21,6 +21,7 @@ $userName = $user->forename . " " . $user->surname;
     <link href="{{ asset('css/temp.css') }}" rel="stylesheet">
     <link href="{{ asset('css/student/show_appointments.css') }}" rel="stylesheet">
     <link href="{{asset("css/project.css")}}" rel="stylesheet">
+
     @yield("page-import", "")
     <title>
         @yield('page-title')
@@ -44,29 +45,40 @@ $userName = $user->forename . " " . $user->surname;
         </div>
         <div class="col-12 tabs d-flex align-bottom  nav nav-tabs justify-content-start pt-4" id="nav-div">
             <nav class="">
-                <div clsas="d-flex align-self-end" class="nav">
+                <div class="d-flex align-self-end" class="nav">
                     @yield("page-nav")
                 </div>
             </nav>
         </div>
-    <div class="row header mb-5">
-
-        @include('layout/subject_header')
-
     </div>
-    <main>
-        @yield('content')
-    </main>
-    <div class="row">
-        <footer class="page-footer bg-light col-12" >
-            <div class="text-lg-center text-md-center text-sm-center"  >
-                <p class="justify-content-center">© ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008
-                    <br/>
-                    Elektrotehnički fakultet, Univerzitet u Beogradu
-                </p>
-            </div>
-        </footer>
+
+
+
+    @yield('content')
+
+    <div class="row footer">
+        <div class="col ">
+            <hr style="width: 100%; color: #6c757d;height: 1px" >
+
+
+
+                <div class="text-lg-center text-md-center text-sm-center"  >
+                    <p class="justify-content-center">© ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008
+                    </p>
+                    <p>
+                        Elektrotehnički fakultet, Univerzitet u Beogradu
+                    </p>
+
+                </div>
+
+
+        </div>
     </div>
+
+
 </div>
+
+
+
 </body>
 </html>

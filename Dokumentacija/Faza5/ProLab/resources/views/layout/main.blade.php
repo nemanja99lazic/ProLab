@@ -13,12 +13,7 @@
     <link href="{{ asset('css/temp.css') }}" rel="stylesheet">
     <title>Document</title>
     <style>
-        hr{
-            height: 20px;
-            background-color: #000066;
-            border: none;
-            padding: 0;
-        }
+
 
     </style>
 </head>

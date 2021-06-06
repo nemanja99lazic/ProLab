@@ -18,3 +18,12 @@
     background-color: #343a40;
     color: white;
 }
+.container-fluid {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer{
+    margin-top: auto;
+}
