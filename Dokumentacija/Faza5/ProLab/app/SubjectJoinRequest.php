@@ -43,6 +43,16 @@ class SubjectJoinRequest extends Model
         return $this->belongsTo('App\Subject', 'idSubject', 'idSubject');
     }
 
+    /**
+     *  Proverava da li je student vec poslao zahtev za prijavu na predmet
+     * 
+     * @param int idStudentCheck - id studenta za proveru
+     * @param int idSubjectCheck - id predmeta za proveru
+     * 
+     * @return boolean - true - vec poslao zahtev; false - nije poslao zahtev;
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
     public static function studentRequestedToJoinTest($idStudentCheck, $idSubjectCheck)
     {
         $queryResult = SubjectJoinRequest::where('idStudent', '=', $idStudentCheck)->where('idSubject', "=", $idSubjectCheck)->get(); 

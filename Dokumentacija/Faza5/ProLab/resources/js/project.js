@@ -8,6 +8,13 @@ const $ = require("jquery");
 class Project {
     static projectData = {};
     static myTeamData = null;
+    static instance = null;
+    static getInstance() {
+        if (Project.instance == null) {
+            Project.instance = new Project();
+        }
+        return Project.instance;
+    }
     static setProjectData(pData) {
         Project.projectData = pData;
     }
@@ -37,15 +44,16 @@ class Project {
         });
     }
     static getTeamTable(team) {
-        let $div = $("<div>").addClass("col-6 pt-2");
-        let $header = $("<div>");
-        $header.append($("<h3>").text(team.teamName));
-
-        let $join = $("<button>").text("Pridruži se").addClass("btn btn-dark");
-        let $exit = $("<button>").text("Izađi").addClass("btn btn-dark");
-        $div.append($join).append($exit).append($header);
+        let mtd = Project.getMyTeamData();
+        let $div = $("<div>").addClass("col-md-6 col-12 pt-2");
         let $table = $("<table>");
-        $
+        $table.append(
+          $("<tr>").addClass("text-center").append(
+                $("<td>").attr("colspan", "3").append(
+                                    $("<h3>").text(team.teamName)
+                )
+              )
+        );
         let $tbody = $("<tbody>");
         let $rh = $("<tr class='w-100 d-flex'><th class='col-4'>Ime</th><th class='col-4'>Prezime</th><th class='col-4'>Indeks</th></tr>");
         $tbody.append($rh);
@@ -53,29 +61,62 @@ class Project {
         Project.getTeamTableMemberList(team).forEach($el=>{
             $tbody.append($el);
         })
-        /*team.students.forEach(student => {
-            let $rt = $("<tr>");
-            //console.log(student.idStudent, team.idLeader)
-            if (student.idStudent == team.idLeader) {
-                $rt.addClass("team-leader");
-            }
-            $rt.attr("data-id", student.idStudent);
-            $rt.append($("<td>").text(student.forename));
-            $rt.append($("<td>").text(student.surname));
-            $rt.append($("<td>").text(student.index));
-            $tbody.append($rt);
-        });*/
+
         $table.append($tbody);
-        $table.addClass("table table-striped table-hover text-center");
-        $div.append($table)
+        $table.addClass("table border text-center");
+        let lockStatus = "";
+        if (team.isLocked) {
+            lockStatus = "Zaključan";
+        } else {
+            lockStatus = "Otključan";
+        }
+        $table.append(
+          $("<tr>").addClass("text-center").append($("<td>").attr("colspan", "3").text(lockStatus))
+        );
+        if (!team.isLocked && !mtd.inTeam) {//!team.isLocked
+            let $join = $("<button>").text("Pridruži se").addClass("btn btn-dark");
+            let teamId = team.idTeam;
+            $join.on("click",()=>{
+                let pData = Project.getProjectData();
+                console.log("join")
+                fetch("/student/subject/"+ pData.code +"/team/"+ teamId +"/join",{
+                    headers: {
+                        "X-CSRF-TOKEN": pData.csrf
+                    },
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    method: "POST"
+                })
+                .then(response=>response.json())
+                .then(json=>{
+                    if (json.status != "ok") {
+
+                        return;
+                    }
+                    Project.getInstance().loadData();
+                })
+            });
+            $table.append(
+                $("<tr>")
+                    .append($("<td>").attr("colspan", "3").append($join)).addClass("text-center p-2")
+            );
+        }
+
+        $div.append($table);
         return $div;
+
+
+
     }
+
+    /**
+     * Učitava podatke pomoću AJAX-a sa putanje /student/subject/{code}/team/available
+     *
+     */
     loadData() {
         let code = Project.projectData.code;
         let ref = this;
         fetch("/student/subject/"+ code +"/team/available")
             .then(response => {
-                //console.log("hello world fetch");
                 return response.json()
             })
             .then(data => {
@@ -129,17 +170,23 @@ class Project {
                 }
 
                 ref.updateTeams({teams,myTeamData:{myId,isLeader,inTeam, myTeamId, myTeam}});
-                return;
+
             })
             .catch((error) => {
                 //TODO ako server pukne
                 console.error('Error:', error);
             });
     }
+
+    /**
+     * Ažurira deo stranice namenjenom timu u kojem je student učlanjen
+     * Kreira formu za upravljanje timom
+     */
     updateMyTeam() {
         console.log("update my team")
         let $showLeader = $(".show-leader");
         let $teamMembers = $("#my-team-members");
+        let $myTeamName = $("#my-team-name");
         let mtd = Project.getMyTeamData();
         let $myTeam = $("#my-team");
         let $exitButton = $("#delete-exit-my-team");
@@ -151,7 +198,7 @@ class Project {
         } else {
             $myTeam.removeClass(hideClass);
         }
-
+        $myTeamName.text(mtd.myTeam.teamName);
         console.log(mtd)
         if (!mtd.isLeader) {
             $showLeader.addClass(hideClass);
@@ -173,6 +220,11 @@ class Project {
         Project.getTeamTableMemberList(mtd.myTeam).forEach($el=>$table.append($el));
         $teamMembers.append($table);
     }
+
+    /**
+     * Ažurira stranicu po prijemu novog stanja sa servera
+     * @param obj
+     */
     updateTeams(obj) {
         console.log(obj)
         let {teams, myTeamData} = obj;
@@ -182,24 +234,16 @@ class Project {
         let $teamList = $("#other-teams");
         $teamList.empty();
         teams.forEach(team=>{
-            //if (team.idTeam != myTeamData.myTeamId)
+            if (team.idTeam != myTeamData.myTeamId)
                 $teamList.append(Project.getTeamTable(team, myTeamData));
         });
-        //console.log(teams);
-
     }
-    tabs() {
 
-    }
     static getProjectData() {
         return Project.projectData;
     }
 }
-class MyTeam {
-    constructor(myTeamData) {
 
-    }
-}
 class CreateTeam {
     constructor() {
         this.$teamName = $("#form-team-name");
@@ -210,26 +254,42 @@ class CreateTeam {
            ref.submit();
         });
     }
+
+    /**
+     * Ispisuje gresku prilikom kreiranja novog tima
+     * @param message
+     */
     writeError(message) {
         this.$message.removeClass("text-success");
         this.$message.addClass("text-danger");
         this.$message.html(message);
     }
+
+    /**
+     * ispisuje poruku o uspesnom kreiranju tima
+     * @param message
+     */
     writeSuccess(message) {
         this.$message.removeClass("text-danger");
         this.$message.addClass("text-success");
         this.$message.html(message);
     }
+
+    /**
+     * Resetuje stanje polja za obaveštenja
+     */
     clearInfo() {
         this.$message.empty();
     }
 
     /**
-     * @note obradjuje unos imena, i salje na server zahtev za kreiranje tima
+     *  obradjuje unos imena, i šalje na server zahtev za kreiranje tima
+     *  ispisuje grešku u slučaju lošeg formata imena tima
+     *  ispisuje grešku, ako se ona desi na serveru
      */
     submit() {
         console.log("submit")
-        let ref = this;
+        let project = Project.getInstance();
         let teamName = this.$teamName.val();
         //console.log(teamName)
         let errorMessage = "";
@@ -266,7 +326,7 @@ class CreateTeam {
                 throw json;
             }
             this.writeSuccess("Uspešno ste kreirali tim");
-            this.loadData();
+            project.loadData();
         }).catch(error=>{
             console.log("catch");
             let errorMessage = "";
@@ -290,7 +350,7 @@ class CreateTeam {
                     errorMessage = "Niste prijavljeni na predmet";
                     break;
                 default:
-                    console.error(error.error_number);
+                    //errorMessage = "Greška na serveru";
                     return;
 
             }
@@ -298,18 +358,16 @@ class CreateTeam {
             console.log(error);
         });
 
-
-
     }
 
 }
 
 
 $(document).ready(()=>{
-    //const project = window.project;
-    //console.log(project);
+
     let $csrf = $("#csrf> input");
     window.projectData.csrf = $csrf.val();
+
     //ako projekat ne postoji
     //nema potrebe da se učitava stranica
     if (window.projectData.notExist) {
@@ -317,7 +375,7 @@ $(document).ready(()=>{
     }
     //console.log();
     Project.setProjectData(window.projectData);
-    let p = new Project();
+    let p = Project.getInstance();
     p.loadData();
     $(".project-tab-button").each((i, ele)=>{
         let $button = $(ele);
@@ -337,7 +395,7 @@ $(document).ready(()=>{
     new CreateTeam();
     let fetchOptions = {
         headers: {
-            "X-CSRF-TOKEN": pd.csrf
+            "X-CSRF-TOKEN": Project.getProjectData().csrf
         },
         'Content-Type': 'application/x-www-form-urlencoded',
         method: "POST"
@@ -356,5 +414,34 @@ $(document).ready(()=>{
 
             });
 
+    });
+
+    $("#lock-team-button").on("click", ()=> {
+        let mtd = Project.getMyTeamData();
+        let pd = Project.getProjectData();
+        fetch("/student/subject/" + pd.code + "/team/" + mtd.myTeamId + "/lock", fetchOptions)
+            .then(response => response.json())
+            .then(json=>{
+                if (json.status != "ok") {
+
+                }
+                p.loadData();
+            }).catch(error=>{
+
+        });
+    });
+    $("#unlock-team-button").on("click", ()=> {
+        let mtd = Project.getMyTeamData();
+        let pd = Project.getProjectData();
+        fetch("/student/subject/" + pd.code + "/team/" + mtd.myTeamId + "/unlock", fetchOptions)
+            .then(response => response.json())
+            .then(json=>{
+                if (json.status != "ok") {
+
+                }
+                p.loadData();
+            }).catch(error=>{
+
+        });
     });
 });

@@ -37,10 +37,10 @@
                 </div>
             </div>
         @else
-            <div class="col mt-5">
+            <div class="col mt-0">
                 <div class="row">
                     <div class="col">
-                        <div class="alert alert-danger alert-dismissible" role="alert">
+                        <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
                             <span class="h4">Projekat nije definisan</span>
                         </div>
@@ -49,7 +49,9 @@
             </div>
         @endisset
     </div>
-    <hr>
+    @isset($project)
+        <hr>
+    @endisset
     @isset($teams)
         @for($i = 0; $i < count($teams); $i += 2)
             <div class="row">
@@ -102,7 +104,7 @@
                 </div>
                 @if($i + 1 < count($teams))
                     <div class="col-6">
-                        <table class="table table-bordered table-striped>
+                        <table class="table table-bordered table-striped">
                             <tr>
                                 <th colspan="3" class="text-center">
                                     @if($teams[$i + 1]->locked)
@@ -131,7 +133,7 @@
                                         </div>
                                     </div>
                                 </th>
-                            <tr>
+                            </tr>
                             @foreach($teams[$i + 1]->students as $student)
                                 <tr>
                                     <td>

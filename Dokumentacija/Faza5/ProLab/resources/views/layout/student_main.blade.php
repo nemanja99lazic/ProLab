@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @author zvk17 koristi Valerijanov footer
+ * @author Sreten Živković 0008/2018
  */
 $user = Session::get('user')["userObject"];
 $userName = $user->forename . " " . $user->surname;
@@ -20,69 +20,53 @@ $userName = $user->forename . " " . $user->surname;
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/temp.css') }}" rel="stylesheet">
     <link href="{{ asset('css/student/show_appointments.css') }}" rel="stylesheet">
+    <link href="{{asset("css/project.css")}}" rel="stylesheet">
+    @yield("page-import", "")
     <title>
         @yield('page-title')
     </title>
-    <style>
-        hr{
-            height: 20px;
-            background-color: #000066;
-            border: none;
-            padding: 0;
-        }
-        .blueHeader{
-            background-color: #3d7cba;
-        }
-
-
-
-
-    </style>
 </head>
 <body>
 <div class="container-fluid">
+    <div class="row header-with-background pt-3">
+        <div class="col-12 d-flex  justify-content-end pb-2 pt-0 ">
+            <ul class="nav d-flex align-items-center">
+                <li class="nav-item ml-1 mr-1">
+                    {{$userName}}
+                </li>
+                <li class="nav-item ml-1 mr-1">
+                    <a class="nav-link btn btn-dark rounded-pill" href="{{ route(Session::get('user')['userType'].'.index') }}">Početna</a>
+                </li>
+                <li class="nav-item ml-1 mr-1">
+                    <a class="nav-link btn btn-dark rounded-pill" href="{{ route(Session::get('user')['userType'].'.logout') }}">Odjavi se</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 tabs d-flex align-bottom  nav nav-tabs justify-content-start pt-4" id="nav-div">
+            <nav class="">
+                <div clsas="d-flex align-self-end" class="nav">
+                    @yield("page-nav")
+                </div>
+            </nav>
+        </div>
     <div class="row header mb-5">
 
         @include('layout/subject_header')
 
     </div>
-
-
-
-    @yield('content')
-
-
-
-
-
+    <main>
+        @yield('content')
+    </main>
     <div class="row">
-        <div class="col fixed-bottom">
-            <hr style="width: 100%; color: #6c757d;height: 1px" >
-
-
-
-
-
-
-            <footer class="page-footer bg-light " >
-
-                <div class="text-lg-center text-md-center text-sm-center"  >
-                    <p class="justify-content-center">© ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008
-                    </p>
-                    <p>
-                        Elektrotehnički fakultet, Univerzitet u Beogradu
-                    </p>
-
-                </div>
-
-            </footer>
-        </div>
+        <footer class="page-footer bg-light col-12" >
+            <div class="text-lg-center text-md-center text-sm-center"  >
+                <p class="justify-content-center">© ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008
+                    <br/>
+                    Elektrotehnički fakultet, Univerzitet u Beogradu
+                </p>
+            </div>
+        </footer>
     </div>
-
-
 </div>
-
-
-
 </body>
 </html>

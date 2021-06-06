@@ -9,6 +9,8 @@ use App\LabExercise;
 use App\Student;
 use App\Subject;
 use App\User;
+use App\Team;
+use App\TeamMember;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\SubjectJoinRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 
 class StudentController extends Controller
@@ -73,26 +76,7 @@ class StudentController extends Controller
         return view('student.show_all_subjects', ['subjects' => $paginatorSubjects]);
     }
 
-    /*
-    Funkcija za testiranje - TREBA DA SE IZBRISE
-     */
-    public function test(Request $request)
-    {
-        //dd($request->session()->all());
-        //dd(Session::get("user")["userObject"]->idUser);
-        //dd($request);
-       // $results = Subject::paginate(2);
-        //dd($results);
-        $agent=FreeAgent::where('idStudent','=',2)->
-                            where('idAppointment','=',2)->
-                            where('idDesiredAppointment','=',1)->first();
-       // $agent->idStudent=2;
-        //$agent->idAppointment=2;
-       // $agent->idDesiredAppointment=1;
-       // $agent->save();
-        dd($agent->DesiredAppointment);
 
-    }
 
     /**
      * Slanje zahteva za pracenje predmeta. Poziva se za rutu '/student/subject/enroll' (POST)
@@ -107,11 +91,16 @@ class StudentController extends Controller
         $idStudent = Session::get("user")["userObject"]->idUser;
         $idSubject = $request->get('idSubject');
 
-        $joinRequest = new SubjectJoinRequest;
-        $joinRequest->idSubject = $idSubject;
-        $joinRequest->idStudent = $idStudent;
+        // Provera da li je rucno poslao POST zahtev -- ako nije, poslace zahtev, ako jeste nece ubaciti, samo ce ga preusmeriti
+        if(Attends::studentAttendsSubjectTest($idStudent, $idSubject) == false &&
+                SubjectJoinRequest::studentRequestedToJoinTest($idStudent, $idSubject) == false)
+        {
+            $joinRequest = new SubjectJoinRequest;
+            $joinRequest->idSubject = $idSubject;
+            $joinRequest->idStudent = $idStudent;
 
-        $joinRequest->save();
+            $joinRequest->save();
+        }
 
         return redirect()->route('student.showAllSubjectsList');
     }
@@ -656,8 +645,9 @@ class StudentController extends Controller
         ]);
     }
     /**
-     * @note Indeksna strana predmeta iz pogleda studenta
-     * @author zvk17
+     * Indeksna strana pojedinačnog predmeta iz pogleda studenta
+     * @author Sreten Živković 0008/2018
+     * GET zahtev
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function subjectIndex($code, Request $request) {
@@ -673,24 +663,25 @@ class StudentController extends Controller
         $otherTeachers = $subject->teachers()->getResults();
 
         foreach ($otherTeachers as $otherTeacher) {
-            $teacherList[] = $otherTeacher->user()->sole();
+            $teacherList[] = $otherTeacher->user()->first();
         }
 
         return view("student/subject_index", ["subjectTitle"=> $subjectTitle, "teacherList"=> $teacherList,"code"=>$code]);
     }
 
     /**
-     * @note Prikaz stranice za upravljanje projektima iz uloge studenta
-     * @param $code
+     * Prikaz stranice za upravljanje projektima iz uloge studenta
+     * GET zahtev
+     * @param String $code
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
     public function projectIndexPage($code) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
             return redirect()->to(route('student.index'));
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             $project = new stdClass();
             $project->notExist = true;
@@ -701,7 +692,8 @@ class StudentController extends Controller
     }
 
     /**
-     * @note JSON lista dostupnih timova za dati predmet (GET)
+     * vraća JSON listu dostupnih timova za dati predmet
+     * GET zahtev
      * @param $code
      * @author zvk17
      */
@@ -711,7 +703,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["message"=> "subject not exist"], 400);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["message"=> "project not exist"], 400);
         }
@@ -743,17 +735,20 @@ class StudentController extends Controller
     }
 
     /***
-     * @note dodaje studenta u tim
+     * Dodaje studenta u tim
+     * POST zahtev
      * @param String $code sifra predmeta
      * @param int $teamId id tima
+     * @return \Illuminate\Http\JsonResponse
      * @author zvk17
      */
+
     public function joinTeam($code, $teamId) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
             return response()->json(["status"=>"not_ok","message"=> "subject not exist"], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
@@ -763,7 +758,7 @@ class StudentController extends Controller
 
         $user = request()->session()->get("user")["userObject"];
         if ($this->notAttends($subject, $user)) {
-            return response()->json(["status"=>"not_ok","message"=> "not attends"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "not attends"], 200);
         }
         $team = Team::find($teamId);
         if (is_null($team)) {
@@ -792,17 +787,20 @@ class StudentController extends Controller
     }
 
     /**
-     * @note izlazak iz tima
+     * Izlazak iz tima
+     * POST zahtev
      * @param $subjectId
      * @param $teamId
-     * @return \Illuminate\Http\JsonResponse|void
+     * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
      */
+
     public function exitTeam($code, $teamId) {
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
             return response()->json(["message"=> "subject not exist"], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["message"=> "project not exist"], 200);
         }
@@ -821,27 +819,22 @@ class StudentController extends Controller
             Team::destroy($teamId);
             return response()->json(["message"=>"team deleted"], 200);
         }
-        //$mmn = (int)$team->project()->sole()->minMemberNumber;
-        //$members = $team->members();
-        // TODO da li da brišemo kad je minMember veci od broja clanova
-        // treba dogovoriti na sastanku
-        // ili to samo znači da tim nije validan
-        //if ($members->count() <= $mmn) {
-        //   return response()->json(["message"=>"cannot exit"], 409);
-        //}
+
         $result = TeamMember::where("team_members.idStudent", "=", $user->idUser)
                 ->where("team_members.idTeam", "=", $teamId)
                 ->delete();
         if ($result) {
-            return response()->json(["message"=>"ok"], 200);
+            return response()->json(["status"=>"ok"]);
         }
-        return response()->json(["message"=>"not deleted"], 400);
+        return response()->json(["message"=>"not deleted"]);
     }
 
     /**
-     * @note vraća query nekoliko spojenih tabela na koje mogu da se primene filteri
+     * Kao rezultat vraća query od nekoliko spojenih tabela na koje mogu da se primene filteri
      * @return \Illuminate\Database\Query\Builder
+     * @author Sreten Živković 0008/2018
      */
+
     private function getTeamsTable() {
         return DB::table('subjects')
             ->join('projects', 'subjects.idSubject', '=', 'projects.idSubject')
@@ -857,14 +850,17 @@ class StudentController extends Controller
 
 
     /**
-     * @note kreiranje tima restful POST
-     * @param $code
+     * Zahtev za kreiranje tima
+     * POST zahtev
+     * @param String $code
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
      */
     public function createTeam($code, Request $request) {
         $post = $request->post();
-        // mala velika slova, cifre, razmaci, _, -
+
+        //dozvoljena mala velika slova, cifre, razmaci, _, -
 
         $validator = Validator::make($post, [
             'teamname' => 'required|min:4|max:60|regex:/^[a-zA-Z0-9\s_\-]+$/'
@@ -878,7 +874,7 @@ class StudentController extends Controller
         if (is_null($subject)) {
             return response()->json(["status"=>"not_ok","message"=> "subject not exist", "error_number"=>2], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
             return response()->json(["status"=>"not_ok","message"=> "project not exist", "error_number"=>3], 200);
         }
@@ -908,62 +904,78 @@ class StudentController extends Controller
         return response()->json(["status"=> "ok","message"=>"team created"], 200);
     }
 
-    ///student/subject/{code}/project/team/{idTeam}/lock
+    /**
+     * Zahtev za otključavanje tima
+     * POST zahtev
+     * @param $code
+     * @param $idTeam
+     * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
+     */
     public function lockTeam($code, $idTeam) {
         $user = request()->session()->get("user")["userObject"];
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "subject not exist"], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project expired"], 200);
         }
         $team = Team::find($idTeam);
         if (is_null($team)) {
-            return response()->json(["message"=>"team doesnt exist"], 409);
+            return response()->json(["status"=>"not_ok","message"=>"team doesnt exist"], 200);
         }
         if ($team->idLeader !== $user->idUser) {
-            return response()->json(["message"=> "not a leader"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "not a leader"], 200);
         }
         $team->locked = 1;
         $team->save();
-        return response()->json(["message"=> "ok"], 200);
+        return response()->json(["status"=> "ok"], 200);
 
     }
+
+    /**
+     * Zahtev za otključavanje tima
+     * POST zahtev
+     * @param String $code
+     * @param int $idTeam
+     * @return \Illuminate\Http\JsonResponse
+     * @author Sreten Živković 0008/2018
+     */
     public function unlockTeam($code, $idTeam) {
         $user = request()->session()->get("user")["userObject"];
         $subject = Subject::where("code", "=", $code)->first();
         if (is_null($subject)) {
-            return response()->json(["message"=> "subject not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "subject not exist"], 200);
         }
-        $project = $subject->projects()->sole();
+        $project = $subject->projects()->first();
         if (is_null($project)) {
-            return response()->json(["message"=> "project not exist"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
         if ($project->hasExpired()) {
-            return response()->json(["message"=> "project expired"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "project expired"], 200);
         }
         $team = Team::find($idTeam);
         if (is_null($team)) {
-            return response()->json(["message"=>"team doesnt exist"], 409);
+            return response()->json(["status"=>"not_ok","message"=>"team doesnt exist"], 200);
         }
         if ($team->idLeader !== $user->idUser) {
-            return response()->json(["message"=> "not a leader"], 400);
+            return response()->json(["status"=>"not_ok","message"=> "not a leader"], 200);
         }
         $team->locked = 0;
         $team->save();
-        return response()->json(["message"=> "ok"], 200);
+        return response()->json(["status"=> "ok"], 200);
     }
     /**
-     * @note da li je student vec u nekom timu na datom projektu
-     * @param $code
+     * Proverava da li je student već u nekom timu na datom projektu
+     * @param String $code
      * @param $idUser
      * @return bool
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
     private function alreadyInTeam($code, $idUser):bool {
         $teamsTable = $this->getTeamsTable()
@@ -974,10 +986,12 @@ class StudentController extends Controller
     }
 
     /**
-     * @note da li student prati dati predmet
-     * @param $subject
-     * @param $user
+     * Funkcija ispituje da li student prati dati predmet
+     *
+     * @param Subject $subject
+     * @param User $user
      * @return bool
+     * @author Sreten Živković 0008/2018
      */
     private function notAttends($subject, $user): bool{
         $students = $subject->students()->getResults();
@@ -1008,8 +1022,8 @@ class StudentController extends Controller
         $nizOdabranih=$request->get('zahtevi');
 
         foreach($nizOdabranih as $odabraniData){
-            $myidAppointment=explode(',',$odabraniData)[0];
-            $myId=explode(',',$odabraniData)[1];
+            $myidAppointment = explode(',',$odabraniData)[0];
+            $myId = explode(',', $odabraniData)[1];
             $desiredIdAppointment=explode(',',$odabraniData)[2];
 
             //ako vec postojim u FreeAgents, nista ne radi . Na kraju ispis ako je uspesno dodat u FreeAgent

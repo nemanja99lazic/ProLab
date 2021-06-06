@@ -35,6 +35,16 @@ class Attends extends Model
         return $this->belongsTo('App\Subject', 'idSubject', 'idSubject');
     }
 
+    /**
+     *  Proverava da li student pohadja predmet
+     * 
+     * @param int idStudentCheck id studenta za proveru
+     * @param int idSubjectCheck id predmeta za proveru
+     * 
+     * @return boolean true - pohadja predmet; false- ne pohadja predmet
+     * 
+     * - Nemanja Lazic 2018/0004
+     */
     public static function studentAttendsSubjectTest($idStudentCheck, $idSubjectCheck)
     {
         $queryResult = Attends::where('idStudent', '=', $idStudentCheck)->where('idSubject', "=", $idSubjectCheck)->get();

@@ -46,7 +46,7 @@ $(document).ready(function (){
                 $(".alert").show().delay(3000).fadeOut(300);
                 return;
             }).fail(function(responseObject, textStatus, error){
-                let porukaGreska = "Greška na serveru!"
+                let porukaGreska = responseObject.responseJSON['message'];
                 $("#alert").removeClass(); // Izbrisace sve klase
                 $("#alert").addClass('alert alert-danger alert-dismissible');
                 $("#alert-tekst").text(porukaGreska);

@@ -44,28 +44,27 @@ $(document).ready(function () {
     });
 
     let idTableRow = "";
-    let idStudent = "";
+    let idUser = "";
+    let userType = "";
 
     $(".remove").click(function () {
-        idTableRow = $(this).attr("name");
+        idUser = idTableRow = $(this).attr("name");
     });
 
-    $(".delete-student").click(function (e) {
-        idStudent = $(this).attr("name");
+    $(".delete-user").click(function (event) {
+        event.preventDefault();
+        userType = $(this).attr("name");
         $.ajax({
             type: "POST",
-            url: '/admin/users/student/'+ idStudent +'/delete',
+            url: '/admin/users/' + userType + '/'+ idUser +'/delete/',
         }).done(function(response) {
-            $("#modal" + idStudent).modal('hide');
+            $("#modal" + idUser).modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
             $("#" + idTableRow).remove();
         });
     });
 
-    $("#search-button").click(function () {
-        localStorage.setItem('searchInput', $("#search-field").val());
-    })
 });
 
 function setAjaxHeader() {

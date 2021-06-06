@@ -8,7 +8,6 @@ use App\Rules\SubjectNameCheck;
 use App\Rules\SubjectCodeCheck;
 use App\NewSubjectRequest;
 use App\NewSubjectRequestTeaches;
-use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
 use App\Teacher;
@@ -20,6 +19,7 @@ use App\LabExercise;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Appointment;
 use App\HasAppointment;
+use App\Teaches;
 
 /**
  * TeacherController - klasa koja implemenitra logiku funckionalnosti za tip korisnika profesor.
@@ -145,13 +145,16 @@ class TeacherController extends Controller
     public function showRequestsList(Request $request)
     {
         $myId = $request->session()->get('user')['userObject']->idUser;
+
+        $maxItemsPerPage = 10;
+
         $myRequests = SubjectJoinRequest::whereIn('subject_join_requests.idSubject', function($query) use ($myId) {
             $query  ->select('idSubject')
                     ->from('teaches')
                     ->where('teaches.idTeacher', $myId);
         })->join('users', 'users.idUser', '=', 'subject_join_requests.idStudent')
         ->join('subjects', 'subjects.idSubject', '=', 'subject_join_requests.idSubject')
-        ->paginate(2);
+        ->paginate($maxItemsPerPage);
 
         //dd($myRequests);
 
@@ -169,23 +172,30 @@ class TeacherController extends Controller
      */
     public function acceptRequest(Request $request)
     {
+        $myId = $request->session()->get('user')['userObject']->idUser;
         $idRequest = $request->get('idRequest');
         $acceptingRequest = SubjectJoinRequest::where('idRequest', '=', $idRequest)->first();
 
-        $attendsEntity = new Attends;
-        $attendsEntity->idStudent = $acceptingRequest->idStudent;
-        $attendsEntity->idSubject = $acceptingRequest->idSubject;
-        $attendsEntity->save();
+        if(Teaches::teachesCheck($myId, $acceptingRequest->idSubject)) // samo ako profesor predaje predmet moze da prihvati zahtev
+        {
+            $attendsEntity = new Attends;
+            $attendsEntity->idStudent = $acceptingRequest->idStudent;
+            $attendsEntity->idSubject = $acceptingRequest->idSubject;
+            $attendsEntity->save();
 
-        $acceptingRequest->delete();
-
+            $acceptingRequest->delete();
+        }
         return redirect()->route('teacher.showRequestsList');
     }
 
     public function rejectRequest(Request $request)
     {
+        $myId = $request->session()->get('user')['userObject']->idUser;
         $idRequest = $request->get('idRequest');
-        SubjectJoinRequest::destroy($idRequest);
+        $rejectingRequest = SubjectJoinRequest::where('idRequest', '=', $idRequest)->first();
+        
+        if(Teaches::teachesCheck($myId, $rejectingRequest->idSubject)) // samo ako profesor predaje predmet moze da prihvati zahtev
+            SubjectJoinRequest::destroy($idRequest);
 
         return redirect()->route('teacher.showRequestsList');
     }
@@ -239,6 +249,15 @@ class TeacherController extends Controller
      */
     public function removeProject(Request $request)
     {
+        $myId = $request->session()->get('user')['userObject']->idUser;
+        $subjectCode = $request->code;
+        $idSubject = Subject::where('code', '=', $subjectCode)->first()->idSubject;
+        if(!Teaches::teachesCheck($myId, $idSubject))
+        {
+            $message = "Ne možete da izbrišete projekat za predmet na kom ne predajete.";
+            return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_ERROR_SERVER_ERROR);
+        }
+
         $idProject = $request->get('idProject');
         $success = Project::destroy($idProject);
 
@@ -264,12 +283,19 @@ class TeacherController extends Controller
      */
     public function defineProject(Request $request){
 
+        $myId = $request->session()->get('user')['userObject']->idUser;
         $name = $request->get('nazivProjekta');
         $minMemberNumber = $request->get('minBrojClanova');
         $maxMemberNumber = $request->get('maxBrojClanova');
         $expirationDate = $request->get('rok');
         $subjectCode = $request->get('code');
         $idSubject = Subject::where('code', '=', $subjectCode)->first()->idSubject;
+
+        if(!Teaches::teachesCheck($myId, $idSubject))
+        {
+            $message = "Ne možete da definišete projekat za predmet na kom ne predajete.";
+            return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_ERROR_SERVER_ERROR);
+        }
 
         if(Project::where('idSubject', '=', $idSubject)->exists())
         {
@@ -386,6 +412,9 @@ class TeacherController extends Controller
      */
     public function defineLab(Request $request)
     {
+
+        $myId = $request->session()->get('user')['userObject']->idUser;
+
         $subjectCode = $request->code;
         $labExerciseName = $request->get('name');
         $labExerciseDescription = $request->get('description');
@@ -393,8 +422,11 @@ class TeacherController extends Controller
         $labExerciseAppointmentsArray = $request->get('appointments');
         $idSubject = Subject::where('code', '=', $subjectCode)->first()->idSubject;
 
-        $savedLabId = LabExercise::create(array('name' => $labExerciseName,
-                                                    'description' => $labExerciseDescription,
+        if(!Teaches::teachesCheck($myId, $idSubject)) // provera da li predaje predmet
+            return response()->json(array('message' => 'Ne možete da kreirate laboratorijsku vežbu na predmetu koji ne predajete.'), TeacherController::HTTP_STATUS_ERROR_SERVER_ERROR);
+
+        $savedLabId = LabExercise::create(array('name' => $labExerciseName, 
+                                                    'description' => $labExerciseDescription, 
                                                     'expiration' => $labExerciseExpiration,
                                                     'idSubject' => $idSubject)) -> idLabExercise;
 
@@ -422,33 +454,32 @@ class TeacherController extends Controller
 
     /**
      *
-     * @note Funkcija prikazuje sve predmete na kojima profesor predaje.
-     *
+     * Prikazuje spisak svih predmeta na kojima profesor predaje.
+     * GET metoda
      * @return \Illuminate\Contracts\View\View
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
-    public function getSubjects(Request $request){
+    public function getSubjects(Request $request) {
+
         $userData = $request->session()->get("user");
         $user = $userData["userObject"];
-        $teacher = $user->teacher()->sole();
-        //$subjects = $teacher->subjects()->getResults();
-        $list = [];
-        //foreach ($subjects as $subject)
-        //    $list[] = $subject;
+        $teacher = $user->teacher()->first();
 
-        $teaches = $teacher->teachesSubjects()->getResults();
-        foreach ($teaches as $teach) {
-            $list[] = $teach;
+        $list = [];
+
+        $subjects = $teacher->teachesSubjects()->getResults();
+        foreach ($subjects as $subject) {
+            $list[] = $subject;
         }
         return view("teacher.subject_list", ["subjectList" => $list]);
 
     }
     /**
      *
-     * @note Funkcija prikazuje predmet iz pogleda profesora
-     *
+     * Prikazuje predmet iz pogleda profesora
+     * GET metoda
      * @return \Illuminate\Contracts\View\View
-     * @author zvk17
+     * @author Sreten Živković 0008/2018
      */
     public function subjectIndexPage($code) {
         $subject = Subject::where("code", "=", $code)->first();
@@ -459,7 +490,7 @@ class TeacherController extends Controller
         $otherTeachers = $subject->teachers()->getResults();
 
         foreach ($otherTeachers as $otherTeacher) {
-            $teacherList[] = $otherTeacher->user()->sole();
+            $teacherList[] = $otherTeacher->user()->first();
         }
         return view("teacher/subject_index", ["subjectTitle"=> $subject->name, "teacherList"=> $teacherList]);
     }

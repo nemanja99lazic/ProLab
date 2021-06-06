@@ -22,7 +22,11 @@
                 </select>
             </div>
             <div class="col-1">
-                <button disabled={{ count($labs) == 0 ? "true" : "false" }} type="submit" class="btn btn-dark rounded-pill" formaction="{{ route('admin.subject.lab.show', request()->subjectCode) }}" formmethod="get">Prikazi</button>
+                @if(count($labs) > 0)
+                    <button type="submit" class="btn btn-dark rounded-pill" formaction="{{ route('admin.subject.lab.show', request()->subjectCode) }}" formmethod="get">Prikazi</button>
+                @else
+                    <button disabled type="submit" class="btn btn-dark rounded-pill" formaction="{{ route('admin.subject.lab.show', request()->subjectCode) }}" formmethod="get">Prikazi</button>
+                @endif
             </div>
             @isset($lab)
                 <div class="col-4 offset-1 h4">

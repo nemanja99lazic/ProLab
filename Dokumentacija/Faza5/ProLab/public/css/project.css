@@ -1,26 +1,9 @@
 /*
 Autor: Sreten Živković 0008/2018
 */
-.header {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100px 100px;
-    background-image: url(/images/ProLabLOGO.jpg?50a1116a3efaab43bd490158a3e43e3f);
-    padding-bottom: 0px;
-    background-position-y: 10px;
-}
+
 main {
-    min-height: 45vh;
-}
-.project-tab-button {
-    border-size: 3px 0;
-    border-bottom: 3px solid black;
-}
-.project-tab-button.active {
-    border-bottom: 3px solid blue!important;
-}
-#nav-div {
-    border-bottom: 2px solid grey;
+    min-height: 55vh;
 }
 .team-leader {
 
@@ -35,5 +18,18 @@ main {
 #my-team-table {
     border-width: 3px !important;
     border-color: black!important;
+}
+
+.header-with-background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:  150px 125px;
+    background-image: url(/images/ProLabLOGO.png?ae8b465c3bd17cfd19efbb47c79818dc);
+    padding-bottom: 0px;
+    background-color: #efefef;
+}
+footer {
+    padding-top: 15px;
+    border-top: 20px solid #000066;
 }
 

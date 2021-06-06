@@ -24,6 +24,7 @@ class Student extends Model
      */
     protected $primaryKey = 'idStudent';
 
+
     /**
      * @var array
      */

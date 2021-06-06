@@ -1,3 +1,13 @@
+.container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer{
+    margin-top: auto;
+}
+
 .mytable {
     font-size: 15px;
     text-align: left;
@@ -9,23 +19,33 @@
 }
 
 .nav-pills #pill-reg .nav-link:not(.active) {
+    /*border-left: none;*/
+
     background: none;
     color: black;
 }
 
 .nav-pills #pill-new .nav-link:not(.active) {
+    /*border-left: none;*/
+
     background: none;
     color: black;
 }
 
 .nav-pills #pill-reg .nav-link {
-    background-color: #17a2b8;
+    background-color: #343a40;
     color: white;
+    /*border-left: 2px solid #343a40;*/
+    /*background-color: transparent;*/
+    /*color: black;*/
 }
 
 .nav-pills #pill-new .nav-link {
-    background-color: #17a2b8;
+    background-color: #343a40;
     color: white;
+    /*border-left: 2px solid #343a40;*/
+    /*background-color: transparent;*/
+    /*color: black;*/
 }
 
 .header {

@@ -2,35 +2,39 @@
 
 @section('admin_content')
 
-    <div class="row mt-3 d-flex flex-row justify-content-center">
+    <div class="row mt-3 mb-3 d-flex flex-row justify-content-center">
         <div class="col-4">
-            <div class="input-group">
-                <form action=" {{ route('admin.users.search.results') }}" method="get">
-                    Pretraga:
-                    <input type="radio" name="search" value="student" id="student" checked> studenata
+            <form action=" {{ route('admin.users.search.results') }}" method="get">
+                <div class="text-center mb-2">
+                    <input type="radio" name="search" value="student" id="student" checked> studenti
                     @isset($teachers)
-                        <input type="radio" name="search" value="teacher" id="teacher" checked> profesora
+                        <input class="ml-2" type="radio" name="search" value="teacher" id="teacher" checked> profesori
                     @else
-                        <input type="radio" name="search" value="teacher" id="teacher"> profesora
+                        <input class="ml-2" type="radio" name="search" value="teacher" id="teacher"> profesori
                     @endisset
                     @isset($admins)
-                        <input type="radio" name="search" value="admin" id="admin" checked> admina
+                        <input class="ml-2" type="radio" name="search" value="admin" id="admin" checked> admini
                     @else
-                        <input type="radio" name="search" value="admin" id="admin"> admina
+                        <input class="ml-2" type="radio" name="search" value="admin" id="admin"> admini
                     @endisset
-                    <input id="search-field" type="search" name="search-input" class="form-control rounded" placeholder="Ime, prezime, broj indeksa" aria-label="Search"
-                           aria-describedby="search-addon">
-                    <button type="submit" id="search-button" class="btn btn-outline-info ml-1">trazi</button>
-                </form>
-            </div>
+                </div>
+                <div class="input-group">
+                    @if(!empty(Session::get('searchInput')))
+                        <input value="{{ Session::get('searchInput') }}" id="search-field" type="search" name="search-input" class="form-control rounded" placeholder="Ime, prezime, broj indeksa" aria-label="Search"
+                               aria-describedby="search-addon">
+                    @else
+                        <input id="search-field" type="search" name="search-input" class="form-control rounded" placeholder="Pretraga po korisnickom imenu, imenu i prezimenu" aria-label="Search"
+                               aria-describedby="search-addon">
+                    @endif
+                    <button type="submit" id="search-button" class="btn btn-outline-primary ml-1">Trazi</button>
+                </div>
+            </form>
         </div>
     </div>
 
+    <hr>
 
     @isset($teachers)
-        <script>
-            document.getElementById("search-field").value = localStorage.getItem('searchInput');
-        </script>
         <div class="row">
             <div class="col">
                 @if(count($teachers) > 0)
@@ -44,15 +48,15 @@
                             <th>Ukloni</th>
                         </tr>
                         @foreach($teachers as $teacher)
-                            <tr>
+                            <tr id="{{ $teacher->user->idUser }}">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $teacher->user->forename }}</td>
                                 <td>{{ $teacher->user->surname }}</td>
                                 <td>{{ $teacher->user->username }}</td>
                                 <td>{{ $teacher->user->email }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-dark rounded-pill p-1 ml-5" data-toggle="modal" data-target="#modal1">&times;</button>
-                                    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <button type="button" name="{{ $teacher->user->idUser }}" class="remove btn btn-outline-dark rounded-pill p-1 ml-5" data-toggle="modal" data-target="{{ '#modal'.$teacher->user->idUser }}">&times;</button>
+                                    <div class="modal fade" id="{{ 'modal'.$teacher->user->idUser }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -65,10 +69,8 @@
                                                     Da li zaista zelite trajno da uklonite profesora?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="{{ route('admin.users.delete.teacher', [$teacher->user->idUser]) }}" method="post">
-                                                        <button type="submit" class="btn btn-danger">Ukloni profesora</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
-                                                    </form>
+                                                    <button type="button" name="teacher" class="delete-user btn btn-danger">Ukloni profesora</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,9 +90,6 @@
     @endisset
 
     @isset($admins)
-        <script>
-            document.getElementById("search-field").value = localStorage.getItem('searchInput');
-        </script>
         <div class="row">
             <div class="col">
                 @if(count($admins) > 0)
@@ -104,15 +103,15 @@
                             <th>Ukloni</th>
                         </tr>
                         @foreach($admins as $admin)
-                            <tr>
+                            <tr id="{{ $admin->user->idUser }}">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $admin->user->forename }}</td>
                                 <td>{{ $admin->user->surname }}</td>
                                 <td>{{ $admin->user->username }}</td>
                                 <td>{{ $admin->user->email }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-dark rounded-pill p-1 ml-5" data-toggle="modal" data-target="#modal2">&times;</button>
-                                    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <button type="button" name="{{ $admin->user->idUser }}" class="remove btn btn-outline-dark rounded-pill p-1 ml-5" data-toggle="modal" data-target="{{ '#modal'.$admin->user->idUser }}">&times;</button>
+                                    <div class="modal fade" id="{{ 'modal'.$admin->user->idUser }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -125,10 +124,8 @@
                                                     Da li zaista zelite trajno da uklonite admina?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="{{ route('admin.users.delete.admin', [$admin->user->idUser]) }}" method="post">
-                                                        <button type="submit" class="btn btn-danger">Ukloni admina</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
-                                                    </form>
+                                                    <button type="button" class="delete-user btn btn-danger" name="admin">Ukloni admina</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,9 +145,6 @@
     @endisset
 
     @isset($students)
-        <script>
-            document.getElementById("search-field").value = localStorage.getItem('searchInput');
-        </script>
         <div class="row">
             <div class="col">
                 @if(count($students) > 0)
@@ -187,11 +181,7 @@
                                                     Da li zaista zelite trajno da uklonite studenta?
                                                 </div>
                                                 <div class="modal-footer">
-{{--                                                    <form action="{{ route('admin.users.delete.student', [$student->user->idUser]) }}" method="post">--}}
-{{--                                                        <button type="submit" class="btn btn-danger">Ukloni studenta</button>--}}
-{{--                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>--}}
-{{--                                                    </form>--}}
-                                                    <button type="button" class="delete-student btn btn-danger" name="{{ $student->user->idUser }}">Ukloni studenta</button>
+                                                    <button type="button" class="delete-user btn btn-danger" name="student">Ukloni studenta</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
                                                 </div>
                                             </div>
