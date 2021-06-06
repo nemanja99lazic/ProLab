@@ -1,7 +1,10 @@
 <!-- Nemanja Lazic 2018/0004 -->
 
-@extends('layout.nemanja_main_layout')
-@section('contentInsideTheContainer')
+@extends('layout.profesor.main_stranica_predmeta')
+@section('page-title')
+    Projekat
+@endsection
+@section('content')
 
 <link rel="stylesheet" href="{{asset('css/teacher/show_projects_style.css')}}">
 <script src="{{asset('js/teacher/show_projects_script.js')}}"></script>

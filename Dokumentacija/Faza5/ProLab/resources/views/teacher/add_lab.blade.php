@@ -1,6 +1,9 @@
 <!-- Nemanja Lazic 2018/0004 -->
 
-@extends('layout.main')
+@extends('layout.profesor.main_stranica_predmeta')
+@section('page-title')
+    Dodavanje laboratorijske vežbe
+@endsection
 @section('content')
     
     <link rel="stylesheet" href="{{asset("css/teacher/add_lab_style.css")}}">

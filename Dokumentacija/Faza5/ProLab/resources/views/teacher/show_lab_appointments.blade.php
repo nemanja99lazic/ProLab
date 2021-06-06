@@ -2,7 +2,10 @@
     Nemanja Lazic 2018/0004
 -->
 
-@extends('layout.main')
+@extends('layout.profesor.main_stranica_predmeta')
+@section('page-title')
+    Termini laboratorijske vežbe
+@endsection
 @section('content')
     <br>
     <div class="row justify-content-center">

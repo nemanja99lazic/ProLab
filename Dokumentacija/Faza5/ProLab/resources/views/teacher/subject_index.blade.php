@@ -5,7 +5,10 @@
  */
 
 ?>
-@extends('layout.main')
+@extends('layout.profesor.main_stranica_predmeta')
+@section('page-title')
+    Stranica predmeta
+@endsection
 @section('content')
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-xl-8 col-lg-10">

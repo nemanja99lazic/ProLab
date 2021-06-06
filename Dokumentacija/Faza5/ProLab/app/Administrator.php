@@ -1,5 +1,11 @@
 <?php
 
+/**
+ *
+ * Autor: autogenerisan kod (izuzev komenatara)
+ *
+ */
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,20 +17,29 @@ use Illuminate\Database\Eloquent\Model;
 class Administrator extends Model
 {
     /**
-     * The primary key for the model.
+     * Primarni kljuc za administratora.
      *
      * @var string
      */
     protected $primaryKey = 'idAdministrator';
 
+    /**
+     * Govori da li je potrebno ubacivati u bazu vremenske odrednice pri ubacivanju podataka.
+     *
+     * @var bool
+     */
     public $timestamps = false;
 
     /**
+     * Polja koja je moguce izmeniti u datom modelu.
+     *
      * @var array
      */
     protected $fillable = ['idAdministrator'];
 
     /**
+     * Vraca objekat korisnika za datog administratora.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

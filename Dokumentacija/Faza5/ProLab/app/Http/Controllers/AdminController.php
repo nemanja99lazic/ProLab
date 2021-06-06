@@ -1,7 +1,9 @@
 <?php
 
 /**
+ *
  * Autor: Slobodan Katanic 2018/0133
+ *
  */
 
 namespace App\Http\Controllers;
@@ -20,8 +22,6 @@ use App\SubjectJoinRequest;
 use App\Teaches;
 use App\Team;
 use App\TeamMember;
-use GuzzleHttp\HandlerStack;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\User;
 use App\Student;
@@ -44,7 +44,7 @@ class AdminController extends Controller {
     }
 
     /**
-     * Fukcija koja dohvata iz baze sve zahteve za registracijom koji nisu jos uvek obadjeni i poziva
+     * Fukcija koja dohvata iz baze sve zahteve za registracijom koji nisu jos uvek obradjeni i poziva
      * pogled koji te zahteve prikazuje adminu.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -55,7 +55,8 @@ class AdminController extends Controller {
     }
 
     /**
-     * Funckija koja prikazuje
+     * Funckija koja dohvata iz baze sve zahteve za kreiranje novih predmeta koji jos uvek nisu obradjeni
+     * i poziva pogled koji te zahteve prikazuje adminu.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -64,11 +65,24 @@ class AdminController extends Controller {
         return view('admin/admin_subject_requests', ['newSubjectRequests' => $requests]);
     }
 
+    /**
+     * Funkcija koja odjavljuje prijavljenog korisnika sa sistema i redirektuje ga na login stranicu.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request) {
         $request->session()->forget('user');
         return redirect()->to(url('/'));
     }
 
+    /**
+     * Funkcija koja dodaje u bazu novog korisnika, ciji zahtev za registraciju je prihvacen od strane
+     * admina.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addUser(Request $request) {
         $regReq = RegistrationRequest::where('email', '=', $request->get('email'))->first();
 
@@ -102,6 +116,12 @@ class AdminController extends Controller {
         return redirect()->to(url('admin'));
     }
 
+    /**
+     * Funkcija koja brise iz baze zahtev za registracijom.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteRegisterRequest(Request $request) {
         $regReq = RegistrationRequest::where('email', '=', $request['email']);
         $regReq->delete();
@@ -109,6 +129,13 @@ class AdminController extends Controller {
         return redirect()->to(url('admin'));
     }
 
+    /**
+     * Funkcija koja dodaje novi predmet u bazu, nakon prihvatanja zahteva za kreiranje
+     * predmeta od strane admina.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addSubject(Request $request) {
         $idRequest = $request->get('idRequest');
         $subjectRequest = NewSubjectRequest::where('idRequest', '=', $idRequest)->first();
@@ -134,6 +161,12 @@ class AdminController extends Controller {
         return redirect()->to(url('admin/requests/newSubjects'));
     }
 
+    /**
+     * Funkcija koja brise iz baze zahtev za kreiranje novog predmeta.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteSubjectRequest(Request $request) {
         $idRequest = $request->get('idRequest');
 
@@ -143,16 +176,21 @@ class AdminController extends Controller {
         return redirect()->to(url('admin/requests/newSubjects'));
     }
 
+
+    /**
+     * Funkcija koja poziva pogled za prikaz svih predmeta koji postoje u sistemu.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function subjectList() {
         $subjects = Subject::all();
         return view('/admin/admin_subjects_list', ['subjects' => $subjects]);
     }
 
     /**
-     * Funkcija koja brise odredjeni predmet (ukljucujuci i sve entiteta sa kojima je u vezi dati predmet).
+     * Funkcija koja brise odredjeni predmet (ukljucujuci i sve entitete sa kojima je u vezi dati predmet).
      *
      * @param Request $request
-     *
      * @return void
      */
     public function deleteSubject(Request $request) {
@@ -161,6 +199,12 @@ class AdminController extends Controller {
         return redirect()->to(url('admin/subjects/list'));
     }
 
+    /**
+     * Funkcija koja poziva pogled za prikaz pocetne stranice predmeta.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+     */
     public function subjectIndex(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
@@ -171,6 +215,14 @@ class AdminController extends Controller {
         }
     }
 
+    /**
+     * Funkcija koja brise datog profesora sa datog predmeta i ukoliko je on jedini ostao na predmetu
+     * od profesora u tom slucaju ce biti i ceo predmet obrisan iz sistema, a ako to nije slucaj, ali je dati
+     * profesor kreirao dati predmet onda ce se neki drugi profesor od preostalih proglasiti za kreatora.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteTeacherFromSubject(Request $request) {
         $idTeacher = $request->idT;
         $subjectCode = $request->subjectCode;
@@ -184,9 +236,19 @@ class AdminController extends Controller {
         }
     }
 
+    /**
+     * Funkcija koja brise datog studenta sa datog predmeta, ukljucujuci i izbacivanje sa svih aktivnosti
+     * na kojima je bio.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|void
+     */
     public function deleteStudentFromSubject(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
         $idSubject = $subject->idSubject;
         $idStudent = $request->idSt;
 
@@ -196,13 +258,13 @@ class AdminController extends Controller {
 
         $labs = $subject->labExercises;
 
-        if ($labs == null) {
+        if (count($labs) == 0) {
             return redirect()->route('admin.subject.index', [$subjectCode]);
         }
 
         foreach ($labs as $lab) {
             $appointments = $lab->appointments;
-            if ($appointments == null) {
+            if (count($appointments) == 0) {
                 continue;
             }
             foreach ($appointments as $appointment) {
@@ -217,7 +279,7 @@ class AdminController extends Controller {
         }
 
         $projects = $subject->projects;
-        if ($projects == null) {
+        if (count($projects) == 0) {
             return redirect()->route('admin.subject.index', [$subjectCode]);
         }
 
@@ -226,7 +288,6 @@ class AdminController extends Controller {
         foreach ($teams as $team) {
             $teamMember = TeamMember::where('idStudent', '=', $idStudent)->where('idTeam', '=', $team->idTeam)->first();
             if ($teamMember != null) {
-                // provera za datum, ako je ok onda idi dalje
                 if ($team->idLeader == $idStudent || count($team->students) == 1) {
                     TeamMember::where('idTeam', '=', $team->idTeam)->delete();
                     $team->delete();
@@ -240,8 +301,19 @@ class AdminController extends Controller {
         return redirect()->route('admin.subject.index', [$subjectCode]);
     }
 
+    /**
+     * Funkcija koja dodeljuje slobodan termin nekom od studenata koji zele kao zamenu dati termin ciji
+     * id je prosledjen kao parametar.
+     *
+     * @param int $idFreeAppointment
+     * @return void
+     */
     protected function swapStudents($idFreeAppointment) {
-        // dodaj if za datum
+        $app = Appointment::where('idAppointment', '=', $idFreeAppointment)->first();
+        $deadline = Carbon::parse($app->datetime);
+        if ($deadline->isPast()) {
+            return;
+        }
 
         $freeAgent = FreeAgent::where('idDesiredAppointment', '=', $idFreeAppointment)->first();
         if ($freeAgent == null) {
@@ -258,6 +330,12 @@ class AdminController extends Controller {
         $this->swapStudents($newFreeAppointment);
     }
 
+    /**
+     * Funkcija koja poziva progled za prikaz pocetne stranice datog projekta na odredjenom predmetu.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function projectIndex(Request $request) {
         $subjectCode = $request->subjectCode;
         $project = Subject::where('code', '=', $subjectCode)->first()->projects;
@@ -267,15 +345,30 @@ class AdminController extends Controller {
         return view('admin/admin_project_index', ['project' => $project[0], 'teams' => $project[0]->teams]);
     }
 
+    /**
+     * Funckija koja brise odredjeni tim sa odredjenog projekta.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteTeam(Request $request) {
         $idTeam = $request->idTeam;
         $this->deleteTeamHelper($request, $idTeam);
         return redirect()->route('admin.subject.project.index', $request->subjectCode);
     }
 
+    /**
+     * Funcija koja brise projekat sa datog predmeta.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public  function deleteProject(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
         $project = $subject->projects;
         $teams = $project[0]->teams;
         foreach ($teams as $team) {
@@ -289,7 +382,6 @@ class AdminController extends Controller {
      * Funkcija koja prikazuje pocetnu stranicu za prikaz laboratorijskih vezbi.
      *
      * @param Request $request
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function labExercisesIndex(Request $request) {
@@ -304,11 +396,19 @@ class AdminController extends Controller {
         return view('admin/admin_lab_list', ['labs' => $labs]);
     }
 
+    /**
+     * Funckija koja prikazuje pocetnu stranicu odredjne laboratorijske vezbe na nekom predmetu.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+     */
     public function labExerciseIndex(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
         $idSubject = $subject->idSubject;
-        // $idLab = $request->idL;
         $idLab = $request->input('labs_list');
         $lab = LabExercise::where('idLabExercise', '=', $idLab)->where('idSubject', '=', $idSubject)->first();
         if ($lab == null) {
@@ -319,9 +419,18 @@ class AdminController extends Controller {
         return view('admin/admin_lab_list', ['idLab' => $idLab,'labs' => $labs, 'lab' => $lab]);
     }
 
+    /**
+     * Funkcija koja brise odredjeni termin sa odredjene laboratorijske vezbe na nekom predmetu.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function deleteAppointment(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
         $idSubject = $subject->idSubject;
         $idLab = $request->input('labs_list');
 
@@ -331,17 +440,29 @@ class AdminController extends Controller {
 
         $lab = LabExercise::where('idLabExercise', '=', $idLab)->where('idSubject', '=', $idSubject)->first();
         $labs = LabExercise::where('idSubject', '=', $idSubject)->get();
-        return view('admin/admin_lab_list', ['idLab' => $idLab,'labs' => $labs, 'lab' => $lab]);
+        return view('admin/admin_lab_list', ['idLab' => $idLab, 'labs' => $labs, 'lab' => $lab]);
     }
 
+    /**
+     * Funckcija koja brise odredjenu laboratorijsku vezbu sa nekog predmeta.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function labExerciseDelete(Request $request) {
         $subjectCode = $request->subjectCode;
         $subject = Subject::where('code', '=', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
         $idSubject = $subject->idSubject;
 
         $idLab = $request->input('labs_list');
 
         $lab = LabExercise::where('idLabExercise', '=', $idLab)->first();
+        if ($lab == null) {
+            return abort(404);
+        }
         $apps = $lab->appointments;
 
         foreach ($apps as $app) {
@@ -359,6 +480,13 @@ class AdminController extends Controller {
         Team::where('idTeam', '=', $idTeam)->delete();
     }
 
+    /**
+     * Pomocna funkcija koja brise odredjeni termin na nekoj laboratorijskoj vezbi odredjenog predmeta.
+     *
+     * @param Request $request
+     * @param int $idAppointment
+     * @return void
+     */
     protected function deleteAppointmentHelper(Request $request, $idAppointment) {
         $app = Appointment::where('idAppointment', '=', $idAppointment)->first();
         if ($app == null) {
@@ -374,11 +502,24 @@ class AdminController extends Controller {
         return $app->delete();
     }
 
+    /**
+     * Funkcija koja poziva pogled za prikaz stranice za pretragu korisnika.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function searchUsers(Request $request) {
         $request->session()->forget('searchInput');
         return view('admin/admin_users_search');
     }
 
+    /**
+     * Funckija koja nalazi sve korisnike cije ime i prezime se uparuje sa unetim
+     * tekstom za pretragu i nakon toga poziva pogled za prikaz nadjenih korisnika.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function searchUsersResults(Request $request) {
         $searchInput = $request->get('search-input');
         $request->session()->put('searchInput', $searchInput);
@@ -412,12 +553,22 @@ class AdminController extends Controller {
         }
     }
 
+    /**
+     * Funckija koja brise datog studenta iz sistema (ukljucujuci i sve entitete sa kojima je bio u vezi
+     * dati student).
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteStudentFromSystem(Request $request) {
         $idStudent = $request->idS;
 
         SubjectJoinRequest::where('idStudent', '=', $idStudent)->delete();
 
         $hasApps = HasAppointment::where('idStudent', '=', $idStudent)->get();
+        if ($hasApps == null) {
+            return abort(404);
+        }
         foreach ($hasApps as $hasApp) {
             $idAppointment = $hasApp->idAppointment;
             if ($hasApp != null) {
@@ -431,6 +582,9 @@ class AdminController extends Controller {
         Attends::where('idStudent', '=', $idStudent)->delete();
 
         $teamMembers = TeamMember::where('idStudent', '=', $idStudent)->get();
+        if ($teamMembers == null) {
+            return abort(404);
+        }
         foreach ($teamMembers as $teamMember) {
             $team = $teamMember->team;
             if ($team->idLeader == $idStudent || count($team->students) == 1) {
@@ -447,6 +601,13 @@ class AdminController extends Controller {
         return response()->json(array('message' => 'ok'));
     }
 
+    /**
+     * Funckija koja brise datog profesora iz sistema (ukljucujuci i sve entitete sa kojima je bio u vezi
+     * dati profesor).
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteTeacherFromSystem(Request $request) {
         $idTeacher = $request->idT;
         NewSubjectRequestTeaches::where('idTeacher', '=', $idTeacher)->delete();
@@ -468,8 +629,19 @@ class AdminController extends Controller {
         return response()->json(array('message' => 'ok'));
     }
 
+    /**
+     * Pomocna funkcija koja brise profesora sa datog predmeta (ukljucjuci i sve entitete za koje je
+     * vezan dati profesora).
+     *
+     * @param int $idTeacher
+     * @param string $subjectCode
+     * @return bool
+     */
     protected function deleteTeacherFromSubjectHelper($idTeacher, $subjectCode) {
         $subject = Subject::where('code', '=', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
         $idSubject = $subject->idSubject;
 
         Teaches::where('idTeacher', '=', $idTeacher)->where('idSubject', $idSubject)->delete();
@@ -493,8 +665,18 @@ class AdminController extends Controller {
         // return redirect()->route('admin.subject.index', [$subjectCode]);
     }
 
+    /**
+     * Pomocna funckija koja brise dati predmet iz sistema (ukljucjuci i sve entitete vezane za dati
+     * predmet).
+     *
+     * @param string $subjectCode
+     * @return mixed
+     */
     protected function deleteSubjectHelper($subjectCode) {
         $subject = Subject::where('code', '=', $subjectCode)->first();
+        if ($subject == null) {
+            return abort(404);
+        }
         $idSubject = $subject->idSubject;
 
         Attends::where('idSubject', '=', $idSubject)->delete();
@@ -502,26 +684,37 @@ class AdminController extends Controller {
         Teaches::where('idSubject', '=', $idSubject)->delete();
 
         $projects = Project::where('idSubject', '=', $idSubject)->get();
-
+        if ($projects == null) {
+            return abort(404);
+        }
         foreach ($projects as $project) {
             $teams = Team::where('idProject', '=', $project->idProject)->get();
-
+            if ($projects == null) {
+                continue;
+            }
             foreach ($teams as $team) {
                 TeamMember::where('idTeam', '=', $team->idTeam)->delete();
                 $team->delete();
             }
-
             $project->delete();
         }
 
         $labExercises = LabExercise::where('idSubject', '=', $idSubject)->get();
 
+        if ($labExercises == null) {
+            return abort(404);
+        }
+
         foreach ($labExercises as $labExercise) {
             $appointments = Appointment::where('idLabExercise', '=', $labExercise->idLabExercise)->get();
-
+            if ($appointments == null) {
+                continue;
+            }
             foreach ($appointments as $appointment) {
                 $hasAppointments = HasAppointment::where('idAppointment', '=', $appointment->idAppointment)->get();
-
+                if ($hasAppointments == null) {
+                    continue;
+                }
                 foreach ($hasAppointments as $hasAppointment) {
                     FreeAgent::where('idHasAppointment', '=', $hasAppointment->idHasAppointment)->delete();
                     $hasAppointment->delete();
@@ -545,7 +738,6 @@ class AdminController extends Controller {
      * Funkcija koja trajno brise iz sistema korisnika tipa admin.
      *
      * @param Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function deleteAdminFromSystem(Request $request) {
@@ -562,7 +754,6 @@ class AdminController extends Controller {
      * studenta vraca string reprezentaciju indeksa studenta (gggg/bbbb).
      *
      * @param string $email
-     *
      * @return string
      */
     protected function getIndexFromEmail($email) {

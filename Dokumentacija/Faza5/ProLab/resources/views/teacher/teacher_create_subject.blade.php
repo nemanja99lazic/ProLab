@@ -1,30 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Document</title>
-</head>
-<body>
-    <div class="jumbotron">
-        <div class="container">
-            <h1>ProLab</h1>
-            <a href="{{ route(Session::get('user')['userType'].'.logout') }}">Logout</a><br>
-            <a href="{{ route('teacher.addsubject.get') }}">Logout</a><br>
-        </div>
-    </div>
-    <div class="container">
+@extends('layout.profesor.main_pocetna')
+@section('page-title')
+    Kreiranje predmeta
+@endsection
+@section('content')
         @if(!empty(Session::get('success')))
             {{ Session::forget('success') }}
             <div class="row">
                 <div class="col">
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        Your request for creating new subject successfully sent!
+                        Vas zahtev je uspešno poslat!
                     </div>
                 </div>
             </div>
@@ -81,6 +66,4 @@
                 </form>
             </div>
         </div>
-    </div>
-</body>
-</html>
+@endsection
