@@ -23,6 +23,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Appointment;
 use App\HasAppointment;
 use App\Teaches;
+use Illuminate\Support\Facades\Session;
 
 /**
  * TeacherController - klasa koja implemenitra logiku funckionalnosti za tip korisnika profesor.
@@ -54,7 +55,9 @@ class TeacherController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\
      */
     public function index() {
-        return view('teacher/teacher_index');
+        $myId = Session::get("user")["userObject"]->idUser;
+        $userInfo = User::find($myId);
+        return view('teacher/teacher_index', ['forename' => $userInfo->forename, 'surname' => $userInfo->surname, 'email' => $userInfo->email, 'username' => $userInfo->username]);
     }
 
     /**
@@ -492,7 +495,7 @@ class TeacherController extends Controller
         foreach ($otherTeachers as $otherTeacher) {
             $teacherList[] = $otherTeacher->user()->first();
         }
-        return view("teacher/subject_index", ["subjectTitle"=> $subject->name, "teacherList"=> $teacherList]);
+        return view("teacher/subject_index", ["subjectTitle"=> $subject->name, "teacherList"=> $teacherList, "code" => $code]);
     }
 
 

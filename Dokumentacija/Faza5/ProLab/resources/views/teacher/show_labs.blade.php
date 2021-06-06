@@ -1,5 +1,8 @@
 <?php //Autor1: Valerijan Matvejev 2018/0257, Autor2: Nemanja Lazic 2018/0004; Ispis svih labova za dati predmet ?>
-@extends('layout.main')
+@extends('layout.profesor.main_stranica_predmeta')
+@section('page-title')
+    Laboratorijske vežbe
+@endsection
 @section('content')
 
     <link rel="stylesheet" href="{{asset("css/teacher/show_labs_style.css")}}">

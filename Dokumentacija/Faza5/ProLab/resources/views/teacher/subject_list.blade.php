@@ -5,7 +5,10 @@
  */
 
 ?>
-@extends('layout.main')
+@extends('layout.profesor.main_pocetna')
+@section('page-title')
+    Lista predmeta
+@endsection
 @section('content')
 
 
