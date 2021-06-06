@@ -12,8 +12,9 @@
 @section('content')
 
 
-    <div class="row d-flex justify-content-center">
+    <div class="row pt-5 d-flex justify-content-center">
         <div class="col-12 col-xl-6 col-lg-8">
+            <h2 class="text-center font-weight-bold">Lista predmeta na kojima predajete</h2>
             <table class="table table-striped table-hover">
                 <tr>
                     <th>Predmet</th>
