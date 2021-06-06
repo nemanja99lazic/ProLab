@@ -150,8 +150,8 @@ class GuestController extends Controller
         $customMessages = [
             //'required' => 'Polje za :attribute je obavezno.'
             'required' => 'Polje je obavezno',
-            'min' => 'Sifra mora sadrzati najmanje 8 karaktera',
-            'alpha' => 'Polje mora sadrzati samo slova'
+            'min' => 'Šifra mora sadržati najmanje 8 karaktera',
+            'alpha' => 'Polje mora sadržati samo slova'
         ];
 
         $this->validate($request, $rules, $customMessages);

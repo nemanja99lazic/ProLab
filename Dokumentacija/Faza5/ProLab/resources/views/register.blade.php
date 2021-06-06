@@ -12,7 +12,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 {{--        <script src="{{ asset('js/guest/register_info.js') }}" defer></script>--}}
-        <title>Regstracija</title>
+        <title>Registracija</title>
     </head>
     <body>
 {{--        <div class="jumbotron p-5">--}}
@@ -74,10 +74,10 @@
                             <tr>
                                 <td colspan="2">
                                     @if($errors->first('password'))
-                                        <input type="password" class="form-control m-1 is-invalid" name="password" id="password" autocomplete="off" placeholder="loznika">
+                                        <input type="password" class="form-control m-1 is-invalid" name="password" id="password" autocomplete="off" placeholder="lozinka">
                                         <div class="text-danger text-left h6 small">{{ $errors->first('password') }}</div>
                                     @else
-                                        <input type="password" class="form-control m-1" name="password" id="password" autocomplete="off" placeholder="loznika">
+                                        <input type="password" class="form-control m-1" name="password" id="password" autocomplete="off" placeholder="lozinka">
                                     @endif
                                 </td>
                             </tr>
@@ -97,13 +97,13 @@
                             <tr>
                                 <td class="text-left" colspan="2">
                                     <span class="mr-5 ml-2 pr-5">Tip korisnika:</span>
-                                    <input type="radio" name="usertype" id="student" value="student" checked>
+                                    <input type="radio" name="usertype" id="student" value="student" {{old("usertype") == "student" ? "checked": ""}}>
                                     <label for="student">student</label>
                                     &nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="usertype" id="teacher" value="teacher">
+                                    <input type="radio" name="usertype" id="teacher" value="teacher" {{old("usertype") == "teacher" ? "checked": ""}}>
                                     <label for="teacher">teacher</label>
                                     &nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="usertype" id="adimin" value="admin">
+                                    <input type="radio" name="usertype" id="adimin" value="admin" {{old("usertype") == "admin" ? "checked": ""}}>
                                     <label for="adimin">admin</label>
                                 </td>
                             </tr>
