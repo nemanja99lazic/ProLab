@@ -17,7 +17,7 @@ use App\Teacher;
 use App\SubjectJoinRequest;
 use App\Attends;
 use App\Project;
-
+use App\Subject;
 use App\LabExercise;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Appointment;
@@ -196,7 +196,7 @@ class TeacherController extends Controller
         $myId = $request->session()->get('user')['userObject']->idUser;
         $idRequest = $request->get('idRequest');
         $rejectingRequest = SubjectJoinRequest::where('idRequest', '=', $idRequest)->first();
-        
+
         if(Teaches::teachesCheck($myId, $rejectingRequest->idSubject)) // samo ako profesor predaje predmet moze da prihvati zahtev
             SubjectJoinRequest::destroy($idRequest);
 
@@ -428,8 +428,8 @@ class TeacherController extends Controller
         if(!Teaches::teachesCheck($myId, $idSubject)) // provera da li predaje predmet
             return response()->json(array('message' => 'Ne možete da kreirate laboratorijsku vežbu na predmetu koji ne predajete.'), TeacherController::HTTP_STATUS_ERROR_SERVER_ERROR);
 
-        $savedLabId = LabExercise::create(array('name' => $labExerciseName, 
-                                                    'description' => $labExerciseDescription, 
+        $savedLabId = LabExercise::create(array('name' => $labExerciseName,
+                                                    'description' => $labExerciseDescription,
                                                     'expiration' => $labExerciseExpiration,
                                                     'idSubject' => $idSubject)) -> idLabExercise;
 

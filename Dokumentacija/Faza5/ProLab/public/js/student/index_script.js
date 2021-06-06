@@ -3,10 +3,12 @@
 */
 
 $(document).ready(function(){
-
-    let color = "#" + Math.floor(Math.random()*16777215).toString(16); // Generisi random boju od #000000 do #FFFFFF
+    //let max = 16777215;
+    let max =   10000000;
+    let colorNumber = Math.floor(Math.random() * max);
+    let color = "#" + colorNumber.toString(16); // Generisi random boju od #000000 do #FFFFFF
     let width = $("#student-circle-inicijali").css("width");
-    $("#student-circle-inicijali").css({"height" : width, 
+    $("#student-circle-inicijali").css({"height" : width,
                                         "font-size": (0.5 * parseFloat(width) + "px"),
                                         "line-height": width,
                                         "background-color": color});
@@ -14,7 +16,7 @@ $(document).ready(function(){
 
     $(window).resize(function(){
         let width = $("#student-circle-inicijali").css("width");
-        $("#student-circle-inicijali").css({"height" : width, 
+        $("#student-circle-inicijali").css({"height" : width,
                                         "font-size": (0.5 * parseFloat(width) + "px"),
                                         "line-height": width,
                                         "background-color": color});

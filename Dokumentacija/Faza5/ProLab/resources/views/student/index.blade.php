@@ -1,7 +1,11 @@
 <!-- Student index strana
     - Nemanja Lazic 2018/0004
 -->
+<?php
 
+$user = Session::get('user')["userObject"];
+$userName = $user->forename . " " . $user->surname;
+?>
 
 @extends('layout.student_main')
 
@@ -17,6 +21,9 @@
 @section("page-nav")
     <a href="{{route("student.chosen")}}" class="project-tab-button nav-item ml-3 mr-1 nav-link btn-outline-dark">Izabrani predmeti</a>
     <a href="{{route("student.showAllSubjectsList")}}" class="project-tab-button nav-item mr-1 nav-link btn-outline-dark">Prijava predmeta</a>
+@endsection
+@section("page-title")
+    {{$userName}} - Početna strana
 @endsection
 @section('content')
 
