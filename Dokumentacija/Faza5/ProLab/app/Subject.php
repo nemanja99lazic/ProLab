@@ -1,5 +1,10 @@
 <?php
-
+/**
+ *
+ * Autor: autogenerisan kod (izuzev komenatara)
+ * kod generisan pomoću biblioteke sa sledećeg linka:
+ * https://tony-stark.medium.com/laravel-generate-model-from-database-table-d6ab72e852ce
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -20,10 +25,11 @@ class Subject extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idSubject';
+    public $timestamps = false;
 
     /**
      * @var array

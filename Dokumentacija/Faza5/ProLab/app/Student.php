@@ -1,5 +1,10 @@
 <?php
-
+/**
+ *
+ * Autor: autogenerisan kod (izuzev komenatara)
+ * kod generisan pomoću biblioteke sa sledećeg linka:
+ * https://tony-stark.medium.com/laravel-generate-model-from-database-table-d6ab72e852ce
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,12 +14,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $index
  * @property User $user
  * @property Subject[] $subjects
- * @property Appointment[] $appointments
+ * @property HasAppointment[] $hasAppointments
  * @property SubjectJoinRequest[] $subjectJoinRequests
  * @property Team[] $teams
+ * @property Team[] $teamss
  */
 class Student extends Model
 {
+    public $timestamps = false;
     /**
      * The primary key for the model.
      *
@@ -22,12 +29,11 @@ class Student extends Model
      */
     protected $primaryKey = 'idStudent';
 
-    public $timestamps = false;
 
     /**
      * @var array
      */
-    protected $fillable = ['idStudent', 'index'];
+    protected $fillable = ['index'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -46,11 +52,11 @@ class Student extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function appointments()
+    public function hasAppointments()
     {
-        return $this->belongsToMany('App\Appointment', 'has_appointment', 'idStudent', 'idAppointment');
+        return $this->hasMany('App\HasAppointment', 'idStudent', 'idStudent');
     }
 
     /**
@@ -67,5 +73,13 @@ class Student extends Model
     public function teams()
     {
         return $this->belongsToMany('App\Team', 'team_members', 'idStudent', 'idTeam');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function leaderInTeams()
+    {
+        return $this->hasMany('App\Team', 'idLeader', 'idStudent');
     }
 }

@@ -13,7 +13,8 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                Vas zahtev za registraciju je uspesno poslat!
+                <h1>Vas zahtev za registraciju je uspesno poslat!</h1>
+                <a href="{{ route('guest.login.get') }}">Back</a>
             </div>
         </div>
     </div>

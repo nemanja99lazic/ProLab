@@ -1,0 +1,13 @@
+#btn-definisi-projekat{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.modal {
+    display: none;
+}
+
+.alert{
+    width: 100%;
+    display: none;
+}

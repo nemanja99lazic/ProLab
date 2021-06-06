@@ -1,5 +1,10 @@
 <?php
-
+/**
+ *
+ * Autor: autogenerisan kod (izuzev komenatara)
+ * kod generisan pomoću biblioteke sa sledećeg linka:
+ * https://tony-stark.medium.com/laravel-generate-model-from-database-table-d6ab72e852ce
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +19,7 @@ class NewSubjectRequestTeaches extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'new_subject_requests_teaches';
@@ -22,7 +27,9 @@ class NewSubjectRequestTeaches extends Model
     /**
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['idRequest', 'idTeacher'];
+
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

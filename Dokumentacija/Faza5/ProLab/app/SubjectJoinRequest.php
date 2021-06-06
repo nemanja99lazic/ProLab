@@ -1,5 +1,10 @@
 <?php
-
+/**
+ *
+ * Autor: autogenerisan kod (izuzev komenatara)
+ * kod generisan pomoću biblioteke sa sledećeg linka:
+ * https://tony-stark.medium.com/laravel-generate-model-from-database-table-d6ab72e852ce
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +20,7 @@ class SubjectJoinRequest extends Model
 {
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'idRequest';
@@ -24,6 +29,8 @@ class SubjectJoinRequest extends Model
      * @var array
      */
     protected $fillable = ['idSubject', 'idStudent'];
+
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -39,5 +46,23 @@ class SubjectJoinRequest extends Model
     public function subject()
     {
         return $this->belongsTo('App\Subject', 'idSubject', 'idSubject');
+    }
+
+    /**
+     *  Proverava da li je student vec poslao zahtev za prijavu na predmet
+     *
+     * @param int idStudentCheck - id studenta za proveru
+     * @param int idSubjectCheck - id predmeta za proveru
+     *
+     * @return boolean - true - vec poslao zahtev; false - nije poslao zahtev;
+     *
+     * - Nemanja Lazic 2018/0004
+     */
+    public static function studentRequestedToJoinTest($idStudentCheck, $idSubjectCheck)
+    {
+        $queryResult = SubjectJoinRequest::where('idStudent', '=', $idStudentCheck)->where('idSubject', "=", $idSubjectCheck)->get();
+        if(!($queryResult->isEmpty()))
+            return true;
+        return false;
     }
 }

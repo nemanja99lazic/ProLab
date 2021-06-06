@@ -1,13 +1,25 @@
 <?php
 
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * PasswordCheck - klasa koja vrsi proveru da li je lozinka u odgovarajucem formatu.
+ *
+ * @package App\Rules
+ * @version 1.0
+ */
 class PasswordCheck implements Rule
 {
     /**
-     * Create a new rule instance.
+     * Kreira novu instacu pravila.
      *
      * @return void
      */
@@ -17,7 +29,7 @@ class PasswordCheck implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
+     * Utvrdjuje da li prosledjena vrednost za lozinku korisnika ima odgovarajuci format.
      *
      * @param  string  $attribute
      * @param  mixed  $value
@@ -34,12 +46,12 @@ class PasswordCheck implements Rule
     }
 
     /**
-     * Get the validation error message.
+     * Vraca poruku greske koja se ispisuje u slucaju da validacija ne uspe.
      *
      * @return string
      */
     public function message()
     {
-        return 'Password must containt at least one uppercase letter, lowercase letter and number digit';
+        return 'Lozinka mora da sadrži veliko slovo, malo slovo i broj';
     }
 }

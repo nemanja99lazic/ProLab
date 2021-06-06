@@ -1,25 +1,41 @@
 <?php
 
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * EmailCheck - klasa koja vrsi proveru da li je email adresa u odgovarajucem formatu.
+ *
+ * @package App\Rules
+ * @version 1.0
+ */
 class EmailCheck implements Rule
 {
     /**
-     * Create a new rule instance.
+     * Sadrzi informaciju o tipi korisnika, koji se prosledjuje kroz konstruktor.
      *
-     * @return void
+     * @var string
      */
-
     private $userType;
 
+    /**
+     * Kreiranje nove instance.
+     *
+     * @param string $userType
+     */
     public function __construct($userType) {
         $this->userType = $userType;
     }
 
     /**
-     * Determine if the validation rule passes.
+     * Utvrdjuje da li prosledjena vrednost za email zadovoljava odgovarajuci format.
      *
      * @param  string  $attribute
      * @param  mixed  $value
@@ -40,7 +56,7 @@ class EmailCheck implements Rule
             }
         } else {
             if (!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9\.-_]*[a-zA-Z0-9]@admin.etf(\.bg\.ac)?\.rs$/", $value)) {
-                return Flase;
+                return False;
             } else {
                 return True;
             }
@@ -48,11 +64,13 @@ class EmailCheck implements Rule
     }
 
     /**
-     * Get the validation error message.
+     * Vraca poruku greske koja se ispisuje u slucaju da validacija ne uspe.
      *
      * @return string
      */
     public function message() {
-        return 'Email format is not correct.';
+
+        return 'Neispravan format email adrese.';
+
     }
 }

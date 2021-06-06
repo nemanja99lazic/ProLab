@@ -1,0 +1,17 @@
+/*
+    Nemanja Lazic 2018/0004
+*/
+
+#tabela-definisi-projekat{
+    width: 50%;
+    margin-top: 50px;
+    margin: auto;
+}
+
+.modal{
+    display: none;
+}
+
+#alert{
+    display: none;
+}

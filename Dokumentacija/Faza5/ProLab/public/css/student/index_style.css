@@ -1,0 +1,45 @@
+/*
+ - Nemanja Lazic 2018/0004
+ */
+
+
+#table-student-info{
+    margin-left: 25%;
+    margin-top: 25%;
+    width: 50%;
+    font-size: 15px;
+}
+
+.info{
+    font-style: italic;
+}
+
+#label-email, #label-index{
+    font-weight: bold;
+}
+
+#desno-ime-prezime{
+    margin-top: 10%;
+    font-weight: bold;
+    text-align: center;
+}
+
+#natpis-student{
+    font-weight: bold;
+    text-align: center;
+}
+
+#student-circle-inicijali{
+    width: 50%;
+    /*height: 400px;*/
+    border-radius: 50%;
+
+    text-align: center;
+    color: white;
+
+    margin-top: 5%;
+    margin-right: 23%;
+    margin-left: 23%;
+    position: absolute;
+
+}
