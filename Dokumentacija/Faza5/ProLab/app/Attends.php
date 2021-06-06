@@ -1,5 +1,10 @@
 <?php
-
+/**
+ *
+ * Autor: autogenerisan kod (izuzev komenatara)
+ * kod generisan pomoću biblioteke sa sledećeg linka:
+ * https://tony-stark.medium.com/laravel-generate-model-from-database-table-d6ab72e852ce
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -37,12 +42,12 @@ class Attends extends Model
 
     /**
      *  Proverava da li student pohadja predmet
-     * 
+     *
      * @param int idStudentCheck id studenta za proveru
      * @param int idSubjectCheck id predmeta za proveru
-     * 
+     *
      * @return boolean true - pohadja predmet; false- ne pohadja predmet
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public static function studentAttendsSubjectTest($idStudentCheck, $idSubjectCheck)

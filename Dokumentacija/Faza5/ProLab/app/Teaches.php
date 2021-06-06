@@ -1,5 +1,10 @@
 <?php
-
+/**
+ *
+ * Autor: autogenerisan kod (izuzev komenatara)
+ * kod generisan pomoću biblioteke sa sledećeg linka:
+ * https://tony-stark.medium.com/laravel-generate-model-from-database-table-d6ab72e852ce
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -37,10 +42,10 @@ class Teaches extends Model
 
     /**
      * Provera da li profesor predaje predmet
-     * 
-     * @param int idTeacher 
+     *
+     * @param int idTeacher
      * @param int idSubject
-     * 
+     *
      * @return boolean true - predaje; false - ne predaje
      */
     public static function teachesCheck($idTeacher, $idSubject)

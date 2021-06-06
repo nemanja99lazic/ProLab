@@ -95,12 +95,12 @@
                             <tr>
                                 <td class="text-left" colspan="2">
                                     <span class="mr-5 ml-2 pr-5">Tip korisnika:</span>
-                                    <input type="radio" name="usertype" id="student" value="student" {{old("usertype") == "student" ? "checked": ""}}>
+                                    <input type="radio" name="usertype" id="student" value="student" {{(old("usertype") == "student" || old("usertype") == "") ? "checked": ""}}>
                                     <label for="student">student</label>
-                                    &nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;
                                     <input type="radio" name="usertype" id="teacher" value="teacher" {{old("usertype") == "teacher" ? "checked": ""}}>
-                                    <label for="teacher">teacher</label>
-                                    &nbsp;&nbsp;&nbsp;
+                                    <label for="teacher">profesor</label>
+                                    &nbsp;&nbsp;
                                     <input type="radio" name="usertype" id="adimin" value="admin" {{old("usertype") == "admin" ? "checked": ""}}>
                                     <label for="adimin">admin</label>
                                 </td>

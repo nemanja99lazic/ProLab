@@ -56,6 +56,7 @@ $userName = $user->forename . " " . $user->surname;
     </main>
     <footer class="row">
         <div class="col-12 bg-light">
+
                  <div class="text-center">
                     <p>
                         © ProLab/Valerijan Matvejev 2018/0257, Slobodan Katanić 2018/0133, Nemanja Lazić 2018/0004, Sreten Živković 2018/0008

@@ -10,16 +10,16 @@
         <div class="col-4">
             <form action=" {{ route('admin.users.search.results') }}" method="get">
                 <div class="text-center mb-2">
-                    <input type="radio" name="search" value="student" id="student" checked> studenti
+                    <input type="radio" name="search" value="student" id="student" checked> <label for="student">studenti</label>
                     @isset($teachers)
-                        <input class="ml-2" type="radio" name="search" value="teacher" id="teacher" checked> profesori
+                        <input class="ml-2" type="radio" name="search" value="teacher" id="teacher" checked> <label for="teacher">profesori</label>
                     @else
-                        <input class="ml-2" type="radio" name="search" value="teacher" id="teacher"> profesori
+                        <input class="ml-2" type="radio" name="search" value="teacher" id="teacher"> <label for="teacher">profesori</label>
                     @endisset
                     @isset($admins)
-                        <input class="ml-2" type="radio" name="search" value="admin" id="admin" checked> admini
+                        <input class="ml-2" type="radio" name="search" value="admin" id="admin" checked> <label for="admin">admini</label>
                     @else
-                        <input class="ml-2" type="radio" name="search" value="admin" id="admin"> admini
+                        <input class="ml-2" type="radio" name="search" value="admin" id="admin"> <label for="admin">admini</label>
                     @endisset
                 </div>
                 <div class="input-group">

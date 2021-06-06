@@ -3,7 +3,7 @@ Autor: Sreten Živković 0008/2018
 */
 
 main {
-    min-height: 55vh;
+    min-height: 75vh;
 }
 .team-leader {
 
@@ -30,6 +30,6 @@ main {
 }
 footer {
     padding-top: 15px;
-    border-top: 15px solid black;
+    border-top: 1px solid black;
 }
 

@@ -28,7 +28,7 @@
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <p >
                     <small>
-                        Rok za prijavu na Lab{{Session::get('prosao')}} je prošao.
+                        Rok za prijavu na {{Session::get('prosao')}} je prošao.
                     </small>
                 </p>
             </div>

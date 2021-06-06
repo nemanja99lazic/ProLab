@@ -55,8 +55,8 @@
         {{$requests->links()}}
     </div>
     <div class="row">
-        <div class="alert alert-info alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">x</button>
+        <div class="alert alert-info alert-dismissible d-none">
+            <button type="button" class="close " data-dismiss="alert">x</button>
             <p id="alert-ispis"></p>
         </div>
     </div>

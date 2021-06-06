@@ -26,7 +26,6 @@ Route::post('/',[GuestController::class, 'loginPost'])->name('guest.login.post')
 
 Route::get('/register',[GuestController::class, 'registerGet'])->name('guest.register.get');
 Route::post('/register',[GuestController::class, 'registerPost'])->name('guest.register.post');
-Route::get('/register_info',[GuestController::class, 'registerInfo'])->name('guest.registerinfo');
 
 //Student
 

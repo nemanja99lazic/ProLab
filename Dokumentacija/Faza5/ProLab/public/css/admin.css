@@ -10,6 +10,7 @@
 
 .footer{
     margin-top: auto;
+
 }
 
 .header-with-background {
@@ -64,7 +65,7 @@
 
 hr {
     border: none;
-    border-bottom: 2px solid gainsboro;
+    border-bottom: 1px solid black;
 }
 
 .menu-button {

@@ -1,9 +1,11 @@
 <?php
 
+
 /**
  *
  * Autor: autogenerisan kod (izuzev komenatara)
- *
+ * kod generisan pomoću biblioteke sa sledećeg linka:
+ * https://tony-stark.medium.com/laravel-generate-model-from-database-table-d6ab72e852ce
  */
 
 namespace App;

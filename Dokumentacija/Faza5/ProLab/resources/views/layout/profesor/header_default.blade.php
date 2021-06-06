@@ -14,7 +14,7 @@
     </div>
     <div class="col-12 tabs d-flex align-bottom  nav nav-tabs justify-content-start pt-4" id="nav-div">
         <nav class="">
-            <div clsas="d-flex align-self-end" class="nav">
+            <div class="d-flex align-self-end" class="nav">
                 @yield("page-nav")
             </div>
         </nav>

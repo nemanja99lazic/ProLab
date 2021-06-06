@@ -313,7 +313,7 @@ class StudentController extends Controller
         $date = Carbon::parse($rokZaPrijavu);
 
         if( $date->isPast()){
-            Session::put('prosao',$idLab);
+            Session::put('prosao',$lab->name);
             return true;
         }
         return false;
