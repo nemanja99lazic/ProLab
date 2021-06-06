@@ -2,7 +2,7 @@
 
 /**
  *
- *
+ * Autor: Slobodan Katanic 2018/0133
  *
  */
 
@@ -12,10 +12,16 @@ use Closure;
 use Illuminate\Http\Request;
 use App\User;
 
+/**
+ * AdminMiddleware - klasa za upravljanje zahtevima upucenim AdminConroller-u.
+ *
+ * @package App\Http\Middleware
+ * @version 1.0
+ */
 class AdminMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Funkcija koja upravlja zahtevom koji je pristigao AdminController-u.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

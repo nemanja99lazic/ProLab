@@ -27,6 +27,7 @@ use App\User;
 use App\Student;
 use App\Teacher;
 use App\Administrator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * AdminController - klasa koja implemenitra logiku funckionalnosti za tip korisnika admin.

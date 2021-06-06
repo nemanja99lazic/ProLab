@@ -6,9 +6,9 @@
 
 @section('admin_content')
 
-    <div class="row">
+    <div class="row ml-5 mr-5">
         <div class="col-2 mt-5 d-flex flex-column justify-content-start">
-            <ul class="nav nav-pills">
+            <ul class="nav flex-column nav-pills">
                 <li class="nav-item pill-request" id="pill-reg">
                     <a class="nav-link active" id="v-pill-registerRequest" data-toggle="pill" href="">Registracija</a>
                 </li>
@@ -19,20 +19,20 @@
         </div>
         <div class="col-10 pt-5">
             @if(count($regRequests) > 0)
-                <table class="table table-bordered table-striped mytable" id="registration_requests">
+                <table class="table table-striped table-borderless mytable" id="registration_requests">
                     <tr>
                         <th>#</th>
                         <th>Ime</th>
                         <th>Prezime</th>
-                        <th>Username</th>
+                        <th>Korisničko ime</th>
                         <th>Sifra</th>
                         <th>Email</th>
                         <th>Tip</th>
-                        <th class="text-center" colspan="2">Radnja</th>
+                        <th>Radnja</th>
                     </tr>
                     @foreach($regRequests as $req)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration.'.' }}</td>
                             <td class="align-middle">{{explode(',', $req->username)[1]}}</td>
                             <td class="align-middle">{{explode(',', $req->username)[2]}}</td>
                             <td class="align-middle">{{explode(',', $req->username)[0]}}</td>
@@ -40,7 +40,7 @@
                             <td class="align-middle">{{$req->email}}</td>
                             <td class="align-middle">{{$req->userType == 't' ? 'profesor' : ($req->userType == 's' ? 'student' : 'admin')}}</td>
                             <td class="border-right-0 align-middle">
-                                <button class="btn btn-outline-success p-1 m-0" data-toggle="modal" data-target="{{ '#modal1'.$req->idRequest }}">Prihvati</button>
+                                <button class="btn btn-outline-success p-1" data-toggle="modal" data-target="{{ '#modal1'.$req->idRequest }}">Prihvati</button>
                                 <div class="modal fade" id="{{ 'modal1'.$req->idRequest }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -51,22 +51,20 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Da li zaista zelite da prihvatite zahtev za registraciju?
+                                                Da li zaista želite da prihvatite zahtev za registraciju?
                                             </div>
                                             <div class="modal-footer">
                                                 <form action="{{ route('admin.addUser') }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="email" id="email" value="{{ $req->email }}">
-                                                    <button type="submit" class="btn btn-outline-success">Prihvati zahtev</button>
+                                                    <button type="submit" class="btn btn-success">Prihvati zahtev</button>
                                                 </form>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                            <td class="border-left-0 align-middle">
-                                <button class="btn btn-outline-danger p-1 m-0" data-toggle="modal" data-target="{{ '#modal2'.$req->idRequest }}">Odbij</button>
+                                <button class="btn btn-outline-danger p-1 ml-2" data-toggle="modal" data-target="{{ '#modal2'.$req->idRequest }}">Odbij</button>
                                 <div class="modal fade" id="{{ 'modal2'.$req->idRequest }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -77,15 +75,15 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Da li zaista zelite da odbijete zahtev za registraciju?
+                                                Da li zaista želite da odbijete zahtev za registraciju?
                                             </div>
                                             <div class="modal-footer">
                                                 <form action="{{ route('admin.deleteRequest.register') }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="email" id="email" value="{{ $req->email }}">
-                                                    <button type="submit" class="btn btn-outline-danger">Odbij zahtev</button>
+                                                    <button type="submit" class="btn btn-danger">Odbij zahtev</button>
                                                 </form>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
                                             </div>
                                         </div>
                                     </div>
@@ -108,6 +106,5 @@
             @endif
         </div>
     </div>
-
 @endsection
 

@@ -17,7 +17,7 @@
     <body>
         <div class="jumbotron p-0">
             <div class="container text-center">
-                <img src="/images/ProLabLOGO.png" class="rounded" width="30%">
+                <img src="/images/ProLabLOGO.png" class="rounded" width="22%">
             </div>
         </div>
         <div class="container">

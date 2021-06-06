@@ -12,6 +12,13 @@ use App\NewSubjectRequest;
 use App\Subject;
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * SubjectCodeCheck - klasa koja vrsi proveru da li je je sifra predmeta u odgovarajucem formatu i da li
+ * je jedinstvena.
+ *
+ * @package App\Rules
+ * @version 1.0
+ */
 class SubjectCodeCheck implements Rule
 {
     /**
@@ -54,6 +61,6 @@ class SubjectCodeCheck implements Rule
      * @return string
      */
     public function message() {
-        return 'Uneta sifra vec postoji.';
+        return 'Uneta šifra već postoji.';
     }
 }

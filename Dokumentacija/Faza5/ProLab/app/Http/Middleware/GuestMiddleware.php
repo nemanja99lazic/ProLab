@@ -1,17 +1,28 @@
 <?php
 
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
+
 namespace App\Http\Middleware;
 
 use App\User;
 use Closure;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Session;
 
+
+/**
+ * GuestMiddleware - klasa koja upravlja zahtevima koji su pristgli GuestCotroller-u.
+ *
+ * @package App\Http\Middleware
+ * @version 1.0
+ */
 class GuestMiddleware
 {
     /**
-     * Handle an incoming request.
-     * @note ako je korisnik ulogovan, korisnik se šalje na njegovu početnu stranu
+     * Funkcija koja upravlja zahtevom koji je pristigao GuestCotroller-u.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

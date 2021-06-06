@@ -10,6 +10,12 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * PasswordCheck - klasa koja vrsi proveru da li je lozinka u odgovarajucem formatu.
+ *
+ * @package App\Rules
+ * @version 1.0
+ */
 class PasswordCheck implements Rule
 {
     /**
@@ -46,6 +52,6 @@ class PasswordCheck implements Rule
      */
     public function message()
     {
-        return 'Password must containt at least one uppercase letter, lowercase letter and number digit';
+        return 'Lozinka mora da sadrži veliko slovo, malo slovo i broj';
     }
 }

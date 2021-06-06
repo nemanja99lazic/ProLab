@@ -10,6 +10,12 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * EmailCheck - klasa koja vrsi proveru da li je email adresa u odgovarajucem formatu.
+ *
+ * @package App\Rules
+ * @version 1.0
+ */
 class EmailCheck implements Rule
 {
     /**
@@ -63,6 +69,8 @@ class EmailCheck implements Rule
      * @return string
      */
     public function message() {
-        return 'Format mejla je neispravan.';
+
+        return 'Neispravan format email adrese.';
+
     }
 }

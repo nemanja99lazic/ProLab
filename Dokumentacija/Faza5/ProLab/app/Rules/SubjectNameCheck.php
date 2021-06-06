@@ -10,6 +10,12 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * SubjectNameCheck - klasa koja vrsi proveru da li je naziv predmeta u odgovarajucem formatu.
+ *
+ * @package App\Rules
+ * @version 1.0
+ */
 class SubjectNameCheck implements Rule
 {
     /**
@@ -47,6 +53,6 @@ class SubjectNameCheck implements Rule
      */
     public function message()
     {
-        return 'Naziv predmeta moze sadrzati samo slova i broj predmeta';
+        return 'Naziv predmeta moze sadržati samo slova i broj predmeta';
     }
 }

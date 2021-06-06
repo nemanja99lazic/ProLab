@@ -98,10 +98,10 @@ class GuestController extends Controller
         $user = User::where('username', '=', $request->get('username'))->first();
 
         if ($user == null) {
-            return redirect()->to(url('/'))->withInput()->with('errorUsername', 'Wrong username');
+            return redirect()->to(url('/'))->withInput()->with('errorUsername', 'Pogrešno korisničko ime');
         } else {
             if ($user->password != $request->get('password')) {
-                return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Wrong password');
+                return redirect()->to(url('/'))->withInput()->with('errorPassword', 'Pogrešna lozinka');
             }
         }
 
@@ -169,13 +169,13 @@ class GuestController extends Controller
         $user = User::where('username', '=', $request->get('username'))->first();
         $regUser = RegistrationRequest::where('username', 'like', $request->get('username').",%")->first();
         if ($user != null || $regUser != null) {
-            return redirect()->to(url('register'))->withInput()->with('errorUsername', 'Username already exists.');
+            return redirect()->to(url('register'))->withInput()->with('errorUsername', 'Korisničko ime već postoji.');
         }
 
         $user = User::where('email', '=', $request->get('email'))->first();
         $regUser = RegistrationRequest::where('email', '=', $request->get('email'))->first();
         if ($user != null || $regUser != null) {
-            return redirect()->to(url('register'))->withInput()->with('errorEmail', 'Email address has already been taken.');
+            return redirect()->to(url('register'))->withInput()->with('errorEmail', 'Email adresa je već u upotrebi.');
         }
 
         $reqistrationRequest = new RegistrationRequest;

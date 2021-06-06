@@ -1,9 +1,13 @@
+{{--
+    Autor: Slobodan Katanic 2018/0133
+--}}
+
 @extends('layout/main_admin_subjects')
 
 @section('admin_content')
 <form>
     @csrf
-    <div class="row mt-5 d-flex flex-row justify-content-start">
+    <div class="row mt-5 d-flex flex-row justify-content-start mr-5 ml-5">
         @isset($project)
             <div class="col h3 font-weight-bold">
                 {{ $project->name }}
@@ -26,11 +30,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Da li zaista zelite trajno da uklonite projekat?
+                                Da li zaista želite trajno da uklonite projekat?
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-danger" formmethod="post" formaction="{{ route('admin.subject.project.delete', [request()->subjectCode]) }}">Ukloni projekat</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
                             </div>
                         </div>
                     </div>
@@ -40,9 +44,8 @@
             <div class="col mt-0">
                 <div class="row">
                     <div class="col">
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <span class="h4">Projekat nije definisan</span>
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <span class="h4">Projekat nije definisan.</span>
                         </div>
                     </div>
                 </div>
@@ -60,9 +63,9 @@
                         <tr>
                             <th colspan="3" class="text-center">
                                 @if($teams[$i]->locked)
-                                    <span class="mr-5">Zakljucan</span>
+                                    <span class="mr-5">Zaključan</span>
                                 @else
-                                    <span class="mr-5 font-weight-bold">Otkljucan</span>
+                                    <span class="mr-5 font-weight-bold">Otključan</span>
                                 @endif
                                 <span class="ml-5 mr-5 h4">{{ $teams[$i]->name }}</span>
                                 <button type="button" class="btn btn-outline-dark rounded-pill p-1 ml-5" data-toggle="modal" data-target="#modal2">Ukloni</button>
@@ -76,11 +79,11 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Da li zaista zelite trajno da uklonite tim?
+                                                Da li zaista želite trajno da uklonite tim?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-danger" formmethod="post" formaction="{{ route('admin.subject.team.delete', [request()->subjectCode, $teams[$i]->idTeam]) }}">Ukloni projekat</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
                                             </div>
                                         </div>
                                     </div>
@@ -108,9 +111,9 @@
                             <tr>
                                 <th colspan="3" class="text-center">
                                     @if($teams[$i + 1]->locked)
-                                        <span class="mr-3">Zakljucan</span>
+                                        <span class="mr-3">Zaključan</span>
                                     @else
-                                        <span class="mr-3 font-weight-bold">Otkljucan</span>
+                                        <span class="mr-3 font-weight-bold">Otključan</span>
                                     @endif
                                     <button type="button" class="btn btn-outline-dark rounded-pill p-1 m-0" data-toggle="modal" data-target="#modal2">Ukloni</button>
                                     <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -123,11 +126,11 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Da li zaista zelite trajno da uklonite tim?
+                                                    Da li zaista želite trajno da uklonite tim?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-danger" formmethod="post" formaction="{{ route('admin.subject.team.delete', [request()->subjectCode, $teams[$i + 1]->idTeam]) }}">Ukloni projekat</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkaži</button>
                                                 </div>
                                             </div>
                                         </div>

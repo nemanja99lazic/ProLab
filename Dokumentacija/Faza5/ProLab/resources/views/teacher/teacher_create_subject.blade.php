@@ -1,15 +1,29 @@
+
 @extends('layout.profesor.main_pocetna')
 @section('page-title')
     Kreiranje predmeta
 @endsection
 @section('content')
+
+{{--
+    Autor: Slobodan Katanic 2018/0133
+--}}
+
+{{--<!doctype html>
+<html lang="en">
+<head>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>--}}
+<body>
+    <div class="container">
         @if(!empty(Session::get('success')))
             {{ Session::forget('success') }}
             <div class="row">
                 <div class="col">
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        Vas zahtev je uspešno poslat!
+                        Vaš zahtev za kreiranje predmeta je uspešno poslat!
                     </div>
                 </div>
             </div>
@@ -37,7 +51,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="pl-2 font-weight-bold">Sifra predmeta</div>
+                                <div class="pl-2 font-weight-bold">Šifra predmeta</div>
                                 @if($errors->first('code'))
                                     <input type="m-0 text" class="form-control m-1 is-invalid w-100" name="code" id="code" autocomplete="off" placeholder="" value="{{old("code")}}">
                                     <div class="text-danger text-left mt-1 h6 small">{{ $errors->first('code') }}</div>
@@ -48,7 +62,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="pl-2"><b>Izabrani saradnici</b> (pritisnite <i>ctrl</i> dugme prilikom biranja vise od jednog saradnika)</div>
+                                <div class="pl-2"><b>Izabrani saradnici</b> (pritisnite <i>ctrl</i> dugme prilikom biranja više od jednog saradnika)</div>
                                 <select name="teachers_select[]" id="teachers_select" multiple size="3" class="w-100 form-control">
                                     @foreach($teachers as $teacher)
 {{--                                        <option value="">{{ $teacher->user()->surname.'x'.$teacher->user()->forename }}</option>--}}
