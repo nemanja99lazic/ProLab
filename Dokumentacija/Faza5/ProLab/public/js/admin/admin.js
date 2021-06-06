@@ -1,3 +1,9 @@
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
+
 $(document).ready(function () {
     setAjaxHeader();
 

@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col pt-5">
-            <h4 class="pb-2">Available subjects</h4>
+            <h4 class="pb-2">Spisak svih predmeta</h4>
             <table class="table table-bordered table-striped mytable" id="subject_list">
                 <tr>
                     <th>No.</th>

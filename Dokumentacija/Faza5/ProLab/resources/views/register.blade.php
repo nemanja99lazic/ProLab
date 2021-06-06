@@ -12,7 +12,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 {{--        <script src="{{ asset('js/guest/register_info.js') }}" defer></script>--}}
-        <title>Register</title>
+        <title>Regstracija</title>
     </head>
     <body>
 {{--        <div class="jumbotron p-5">--}}
@@ -43,41 +43,41 @@
                             <tr>
                                 <td class="w-50">
                                     @if($errors->first('firstname'))
-                                        <input type="text" class="form-control m-1 is-invalid" name="firstname" id="firstname" autocomplete="off" placeholder="first name" value="{{old("firstname")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="firstname" id="firstname" autocomplete="off" placeholder="ime" value="{{old("firstname")}}">
                                         <div class="text-danger text-left h6 small">{{ $errors->first('firstname') }}</div>
                                     @else
-                                        <input type="text" class="form-control m-1" name="firstname" id="firstname" autocomplete="off" placeholder="first name" value="{{old("firstname")}}">
+                                        <input type="text" class="form-control m-1" name="firstname" id="firstname" autocomplete="off" placeholder="ime" value="{{old("firstname")}}">
                                     @endif
                                 </td>
                                 <td>
                                     @if($errors->first('lastname'))
-                                        <input type="text" class="form-control m-1 is-invalid" name="lastname" id="lastname" autocomplete="off" placeholder="last name" value="{{old("lastname")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="lastname" id="lastname" autocomplete="off" placeholder="prezime" value="{{old("lastname")}}">
                                         <div class="text-danger text-left h6 small">{{ $errors->first('lastname') }}</div>
                                     @else
-                                        <input type="text" class="form-control m-1" name="lastname" id="lastname" autocomplete="off" placeholder="last name" value="{{old("lastname")}}">
+                                        <input type="text" class="form-control m-1" name="lastname" id="lastname" autocomplete="off" placeholder="prezime" value="{{old("lastname")}}">
                                     @endif
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     @if($errors->first('username'))
-                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="username" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
                                         <div class="text-danger text-left h6 small">{{ $errors->first('username') }}</div>
                                     @elseif(Session::get('errorUsername') != null)
-                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="username" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1 is-invalid" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
                                         <div class="text-danger text-left h6 small">{{Session::get('errorUsername')}}</div>
                                     @else
-                                        <input type="text" class="form-control m-1" name="username" id="username" autocomplete="off" placeholder="username" value="{{old("username")}}">
+                                        <input type="text" class="form-control m-1" name="username" id="username" autocomplete="off" placeholder="korisnicko ime" value="{{old("username")}}">
                                     @endif
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     @if($errors->first('password'))
-                                        <input type="password" class="form-control m-1 is-invalid" name="password" id="password" autocomplete="off" placeholder="password">
+                                        <input type="password" class="form-control m-1 is-invalid" name="password" id="password" autocomplete="off" placeholder="loznika">
                                         <div class="text-danger text-left h6 small">{{ $errors->first('password') }}</div>
                                     @else
-                                        <input type="password" class="form-control m-1" name="password" id="password" autocomplete="off" placeholder="password">
+                                        <input type="password" class="form-control m-1" name="password" id="password" autocomplete="off" placeholder="loznika">
                                     @endif
                                 </td>
                             </tr>
@@ -96,7 +96,7 @@
                             </tr>
                             <tr>
                                 <td class="text-left" colspan="2">
-                                    <span class="mr-5 ml-2 pr-5">User type:</span>
+                                    <span class="mr-5 ml-2 pr-5">Tip korisnika:</span>
                                     <input type="radio" name="usertype" id="student" value="student" checked>
                                     <label for="student">student</label>
                                     &nbsp;&nbsp;&nbsp;
@@ -109,7 +109,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="submit" value="Register" class="btn btn-dark w-100">
+                                    <input type="submit" value="Registruj se" class="btn btn-dark w-100">
                                 </td>
                             </tr>
                             <tr>
