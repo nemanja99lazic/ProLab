@@ -1,5 +1,11 @@
 <?php
 
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
@@ -7,19 +13,23 @@ use Illuminate\Contracts\Validation\Rule;
 class EmailCheck implements Rule
 {
     /**
-     * Create a new rule instance.
+     * Sadrzi informaciju o tipi korisnika, koji se prosledjuje kroz konstruktor.
      *
-     * @return void
+     * @var string
      */
-
     private $userType;
 
+    /**
+     * Kreiranje nove instance.
+     *
+     * @param string $userType
+     */
     public function __construct($userType) {
         $this->userType = $userType;
     }
 
     /**
-     * Determine if the validation rule passes.
+     * Utvrdjuje da li prosledjena vrednost za email zadovoljava odgovarajuci format.
      *
      * @param  string  $attribute
      * @param  mixed  $value
@@ -48,7 +58,7 @@ class EmailCheck implements Rule
     }
 
     /**
-     * Get the validation error message.
+     * Vraca poruku greske koja se ispisuje u slucaju da validacija ne uspe.
      *
      * @return string
      */

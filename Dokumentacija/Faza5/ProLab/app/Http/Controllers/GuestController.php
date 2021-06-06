@@ -1,6 +1,7 @@
 <?php
 
 /**
+ *
  * Autor: Slobodan Katanic 2018/0133
  *
  */
@@ -48,7 +49,6 @@ class GuestController extends Controller
      * Pomocna funkcija koja odredjuje tip korsinika na osnovu objekta tipa User.
      *
      * @param User $user
-     *
      * @return string
      */
     protected function getUserType($user) {
@@ -61,33 +61,39 @@ class GuestController extends Controller
         return "teacher";
        }
 
-//    protected function getUserType($email) {
-//        if (preg_match("/@student/", $email)) {
-//            return 'student';
-//        } else if (preg_match("/@admin/", $email)) {
-//            return 'admin';
-//        } else {
-//            return 'teacher';
-//        }
-//        }
-//    }
-
     /**
      * Funkcija koja poziva pogled za prikaz forme za login korisnika.
      *
      * @param Request $request
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function loginGet(Request &$request) {
         return view('login');
     }
 
+    /**
+     * Funckija koja obradjuje POST zahtev za logovanje korisnika (vodi korinika na njegovu pocetnu
+     * stranicu ili javlja gresku da uneti podaci nisu ispravni).
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function loginPost(Request &$request) {
-        $request->validate([
+        $rules = [
             'username' => 'required',
             'password' => 'required'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Polje je obavezno'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+//        $request->validate([
+//            'username' => 'required',
+//            'password' => 'required'
+//        ]);
 
         $user = User::where('username', '=', $request->get('username'))->first();
 
@@ -113,10 +119,23 @@ class GuestController extends Controller
         return redirect()->to(url("$userType"));
     }
 
+    /**
+     * Funckija koja poziva pogled za prikaz forme za registraciju korisnika.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function registerGet() {
         return view('register');
     }
 
+    /**
+     * Funckija koja obradjuje POST zahtev za registraciju korisnika (kreira nov zahtev za registraciju
+     * ili javlja gresku da uneti podaci nisu ispravni).
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function registerPost(Request $request) {
         $userType = $request->get('usertype');
 
@@ -172,8 +191,8 @@ class GuestController extends Controller
         // return response()->json(array('message' => 'Zahtev za registraciju je uspesno poslat.'), 200); // ADDED
     }
 
-    public function registerInfo(Request $request) {
-        $request->session()->forget('register_request');
-        return view('register_info');
-    }
+//    public function registerInfo(Request $request) {
+//        $request->session()->forget('register_request');
+//        return view('register_info');
+//    }
 }

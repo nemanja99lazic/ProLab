@@ -1,6 +1,9 @@
 <?php
 /**
- * Autor: Slobodan Katanic 2018/0133
+ * Autori: Nemanja Lazic 2018/0004
+ *         Slobodan Katanic 2018/0133
+ *         Zivkovic Sreten 2018/0008
+ *
  */
 namespace App\Http\Controllers;
 
@@ -46,7 +49,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Funkcija koja prikazuje pocetni stranicu profesora.
+     * Funkcija koja poziva pogeld za prikaz pocetne stranice profesora.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\
      */
@@ -55,10 +58,9 @@ class TeacherController extends Controller
     }
 
     /**
-     * Funcikcija koja sluzi za logout profesora.
+     * Funcikcija koja sluzi za odjavu profesora sa sistema.
      *
      * @param Request $request Request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(Request $request) {
@@ -67,10 +69,9 @@ class TeacherController extends Controller
     }
 
     /**
-     * Funcija za prikaz forme za dodavanje novog predmeta.
+     * Funcija koja poziva pogled za prikaz forme za dodavanje novog predmeta.
      *
      * @param Request $request Request
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function addSubjectGet(Request $request) {
@@ -83,7 +84,6 @@ class TeacherController extends Controller
      * od strane profesora.
      *
      * @param Request $request Request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function addSubjectPost(Request $request) {
@@ -126,7 +126,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Fukcija koja prikazuje profesoru informaije od odredjenom predmetu.
+     * Fukcija koja prikazuje profesoru informaije o odredjenom predmetu.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */

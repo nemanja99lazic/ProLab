@@ -1,5 +1,11 @@
 <?php
 
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
@@ -7,7 +13,7 @@ use Illuminate\Contracts\Validation\Rule;
 class UsernameCheck implements Rule
 {
     /**
-     * Create a new rule instance.
+     * Kreira novu instacu pravila.
      *
      * @return void
      */
@@ -17,7 +23,7 @@ class UsernameCheck implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
+     * Utvrdjuje da li prosledjena vrednost za korisnicko ime ima odgovrajuci format.
      *
      * @param  string  $attribute
      * @param  mixed  $value
@@ -33,7 +39,7 @@ class UsernameCheck implements Rule
     }
 
     /**
-     * Get the validation error message.
+     * Vraca poruku greske koja se ispisuje u slucaju da validacija ne uspe.
      *
      * @return string
      */
