@@ -1,0 +1,35 @@
+/*
+Autor: Sreten Živković 0008/2018
+*/
+
+main {
+    min-height: 75vh;
+}
+.team-leader {
+
+    font-weight: bold;
+}
+#tabela-informacija td:first-child {
+    text-align: left;
+}
+#tabela-informacija td:last-child {
+    text-align: right;
+}
+#my-team-table {
+    border-width: 3px !important;
+    border-color: black!important;
+}
+
+.header-with-background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:  150px 125px;
+    background-image: url(/images/ProLabLOGO.png?ae8b465c3bd17cfd19efbb47c79818dc);
+    padding-bottom: 0px;
+    background-color: #efefef;
+}
+footer {
+    padding-top: 15px;
+    border-top: 1px solid black;
+}
+

@@ -1,6 +1,5 @@
 CREATE DATABASE  IF NOT EXISTS `prolab_database` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `prolab_database`;
-
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: prolab_database
@@ -29,8 +28,8 @@ CREATE TABLE `administrators` (
   `idAdministrator` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idAdministrator`),
   UNIQUE KEY `idKorisnika_UNIQUE` (`idAdministrator`),
-  CONSTRAINT `FK_administrators_idAdministrator` FOREIGN KEY (`idAdministrator`) REFERENCES `users` (`idUser`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_administrators_idAdministrator` FOREIGN KEY (`idAdministrator`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +38,7 @@ CREATE TABLE `administrators` (
 
 LOCK TABLES `administrators` WRITE;
 /*!40000 ALTER TABLE `administrators` DISABLE KEYS */;
+INSERT INTO `administrators` VALUES (3);
 /*!40000 ALTER TABLE `administrators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,8 +59,8 @@ CREATE TABLE `appointments` (
   `idLabExercise` int NOT NULL,
   PRIMARY KEY (`idAppointment`),
   KEY `FK_appointment_labExercise_idx` (`idLabExercise`),
-  CONSTRAINT `FK_appointments_idLabExercise` FOREIGN KEY (`idLabExercise`) REFERENCES `lab_exercises` (`idLabExercise`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_appointments_idLabExercise` FOREIGN KEY (`idLabExercise`) REFERENCES `lab_exercises` (`idLabExercise`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,6 +69,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
+INSERT INTO `appointments` VALUES (1,'Termin 1','Sala 65',1,'ETF','2021-05-29 21:56:00',1),(2,'adada','adadad',1,'asdadas','2021-05-07 14:06:03',1),(3,'asd','123',1,'123','2021-05-29 21:43:00',1);
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,8 +85,8 @@ CREATE TABLE `attends` (
   `idSubject` int NOT NULL,
   PRIMARY KEY (`idStudent`,`idSubject`),
   KEY `FK_pohadja_idpredmeta_idx` (`idSubject`),
-  CONSTRAINT `FK_attends_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_attends_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON UPDATE CASCADE
+  CONSTRAINT `FK_attends_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_attends_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -95,6 +96,7 @@ CREATE TABLE `attends` (
 
 LOCK TABLES `attends` WRITE;
 /*!40000 ALTER TABLE `attends` DISABLE KEYS */;
+INSERT INTO `attends` VALUES (4,1);
 /*!40000 ALTER TABLE `attends` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,15 +108,11 @@ DROP TABLE IF EXISTS `free_agents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `free_agents` (
-  `idStudent` int NOT NULL,
-  `idAppointment` int NOT NULL,
+  `idHasAppointment` int NOT NULL,
   `idDesiredAppointment` int NOT NULL,
-  PRIMARY KEY (`idStudent`,`idAppointment`,`idDesiredAppointment`),
-  KEY `FK_freeAgents_hasAppointment_idx` (`idAppointment`),
-  KEY `FK_freeAgents_appointments_idx` (`idDesiredAppointment`),
-  CONSTRAINT `FK_freeAgents_idAppointment` FOREIGN KEY (`idAppointment`) REFERENCES `has_appointment` (`idAppointment`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_freeAgents_idDesiredAppointment` FOREIGN KEY (`idDesiredAppointment`) REFERENCES `appointments` (`idAppointment`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_freeAgents_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `has_appointment` (`idStudent`) ON UPDATE CASCADE
+  PRIMARY KEY (`idHasAppointment`,`idDesiredAppointment`),
+  KEY `FK_freeAgents_idAppointment_idx` (`idDesiredAppointment`),
+  CONSTRAINT `FK_freeAgents_idAppointment` FOREIGN KEY (`idDesiredAppointment`) REFERENCES `appointments` (`idAppointment`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,13 +133,15 @@ DROP TABLE IF EXISTS `has_appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `has_appointment` (
-  `idAppointment` int NOT NULL,
+  `idHasAppointment` int NOT NULL AUTO_INCREMENT,
   `idStudent` int NOT NULL,
-  PRIMARY KEY (`idAppointment`,`idStudent`),
-  KEY `FK_hasAppointment_students_idx` (`idStudent`),
-  CONSTRAINT `FK_hasAppointment_appointments` FOREIGN KEY (`idAppointment`) REFERENCES `appointments` (`idAppointment`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_hasAppointment_students` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `idAppointment` int NOT NULL,
+  PRIMARY KEY (`idHasAppointment`),
+  KEY `FK_hasAppointment_idStudent_idx` (`idStudent`),
+  KEY `FK_hasAppointment_idAppointment_idx` (`idAppointment`),
+  CONSTRAINT `FK_hasAppointment_idAppointment` FOREIGN KEY (`idAppointment`) REFERENCES `appointments` (`idAppointment`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_hasAppointment_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,6 +150,7 @@ CREATE TABLE `has_appointment` (
 
 LOCK TABLES `has_appointment` WRITE;
 /*!40000 ALTER TABLE `has_appointment` DISABLE KEYS */;
+INSERT INTO `has_appointment` VALUES (9,2,2),(11,4,3);
 /*!40000 ALTER TABLE `has_appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,8 +169,8 @@ CREATE TABLE `lab_exercises` (
   `idSubject` int NOT NULL,
   PRIMARY KEY (`idLabExercise`),
   KEY `FK_subject_idx` (`idSubject`),
-  CONSTRAINT `FK_labExercices_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_labExercices_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,6 +179,7 @@ CREATE TABLE `lab_exercises` (
 
 LOCK TABLES `lab_exercises` WRITE;
 /*!40000 ALTER TABLE `lab_exercises` DISABLE KEYS */;
+INSERT INTO `lab_exercises` VALUES (1,'Lab1','opis lab vezbe 1','2021-05-30 22:00:00',2),(2,'Lab2','opis vezbe lab 2','2021-05-22 23:58:17',2);
 /*!40000 ALTER TABLE `lab_exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,8 +221,8 @@ CREATE TABLE `new_subject_requests_teaches` (
   `idTeacher` int NOT NULL,
   PRIMARY KEY (`idRequest`,`idTeacher`),
   KEY `FK_idAssociateTeacher_idx` (`idTeacher`),
-  CONSTRAINT `FK_newSubjectRequestsTeaches_idRequest` FOREIGN KEY (`idRequest`) REFERENCES `new_subject_requests` (`idRequest`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_newSubjectRequestsTeaches_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `teachers` (`idTeacher`) ON UPDATE CASCADE
+  CONSTRAINT `FK_newSubjectRequestsTeaches_idRequest` FOREIGN KEY (`idRequest`) REFERENCES `new_subject_requests` (`idRequest`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_newSubjectRequestsTeaches_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `teachers` (`idTeacher`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -249,8 +251,8 @@ CREATE TABLE `projects` (
   `idSubject` int NOT NULL,
   PRIMARY KEY (`idProject`),
   KEY `FK_project_subject_idx` (`idSubject`),
-  CONSTRAINT `FK_project_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_project_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,6 +261,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
+INSERT INTO `projects` VALUES (1,'asd','2','4','2021-05-31',1);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +279,7 @@ CREATE TABLE `registration_requests` (
   `email` varchar(45) NOT NULL,
   `userType` varchar(1) NOT NULL,
   PRIMARY KEY (`idRegistrationRequest`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,6 +288,7 @@ CREATE TABLE `registration_requests` (
 
 LOCK TABLES `registration_requests` WRITE;
 /*!40000 ALTER TABLE `registration_requests` DISABLE KEYS */;
+INSERT INTO `registration_requests` VALUES (2,'zika,zika,zikic','123','zika@todorovic.com','s');
 /*!40000 ALTER TABLE `registration_requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,8 +305,8 @@ CREATE TABLE `students` (
   PRIMARY KEY (`idStudent`),
   UNIQUE KEY `idKorisnika_UNIQUE` (`idStudent`),
   UNIQUE KEY `index_UNIQUE` (`index`),
-  CONSTRAINT `FK_students_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `users` (`idUser`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_students_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -311,6 +315,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES (5,'2018/0251'),(4,'2018/0255'),(2,'zk180257');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,9 +333,9 @@ CREATE TABLE `subject_join_requests` (
   PRIMARY KEY (`idRequest`),
   KEY `FK_idSubject_idx` (`idSubject`),
   KEY `FK_idStudent_idx` (`idStudent`),
-  CONSTRAINT `FK_subjectJoinRequests_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_subjectJoinRequests_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Mozda kao primary key da se stavi samo (idSubject, idStudent)?';
+  CONSTRAINT `FK_subjectJoinRequests_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_subjectJoinRequests_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Mozda kao primary key da se stavi samo (idSubject, idStudent)?';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,8 +361,8 @@ CREATE TABLE `subjects` (
   `idTeacher` int NOT NULL,
   PRIMARY KEY (`idSubject`),
   KEY `FK_subjects_idTeacher_idx` (`idTeacher`),
-  CONSTRAINT `FK_subjects_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `teachers` (`idTeacher`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_subjects_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `teachers` (`idTeacher`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -366,6 +371,7 @@ CREATE TABLE `subjects` (
 
 LOCK TABLES `subjects` WRITE;
 /*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
+INSERT INTO `subjects` VALUES (1,'ORT','123',1),(2,'ASP1','234',1),(3,'KDP','345',1);
 /*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,8 +385,8 @@ DROP TABLE IF EXISTS `teachers`;
 CREATE TABLE `teachers` (
   `idTeacher` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idTeacher`),
-  CONSTRAINT `FK_teachers_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `users` (`idUser`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FK_teachers_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,6 +395,7 @@ CREATE TABLE `teachers` (
 
 LOCK TABLES `teachers` WRITE;
 /*!40000 ALTER TABLE `teachers` DISABLE KEYS */;
+INSERT INTO `teachers` VALUES (1);
 /*!40000 ALTER TABLE `teachers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,8 +411,8 @@ CREATE TABLE `teaches` (
   `idSubject` int NOT NULL,
   PRIMARY KEY (`idTeacher`,`idSubject`),
   KEY `FK_teaches_idSubject_idx` (`idSubject`),
-  CONSTRAINT `FK_teaches_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_teaches_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `teachers` (`idTeacher`) ON UPDATE CASCADE
+  CONSTRAINT `FK_teaches_idSubject` FOREIGN KEY (`idSubject`) REFERENCES `subjects` (`idSubject`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_teaches_idTeacher` FOREIGN KEY (`idTeacher`) REFERENCES `teachers` (`idTeacher`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -415,6 +422,7 @@ CREATE TABLE `teaches` (
 
 LOCK TABLES `teaches` WRITE;
 /*!40000 ALTER TABLE `teaches` DISABLE KEYS */;
+INSERT INTO `teaches` VALUES (1,1);
 /*!40000 ALTER TABLE `teaches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,8 +438,8 @@ CREATE TABLE `team_members` (
   `idTeam` int NOT NULL,
   PRIMARY KEY (`idStudent`,`idTeam`),
   KEY `FK_teams_members_idTeam_idx` (`idTeam`),
-  CONSTRAINT `FK_teamMembers_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_teamMembers_idTeam` FOREIGN KEY (`idTeam`) REFERENCES `teams` (`idTeam`) ON UPDATE CASCADE
+  CONSTRAINT `FK_teamMembers_idStudent` FOREIGN KEY (`idStudent`) REFERENCES `students` (`idStudent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_teamMembers_idTeam` FOREIGN KEY (`idTeam`) REFERENCES `teams` (`idTeam`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -456,10 +464,13 @@ CREATE TABLE `teams` (
   `name` varchar(45) NOT NULL,
   `locked` tinyint NOT NULL,
   `idProject` int NOT NULL,
+  `idLeader` int NOT NULL,
   PRIMARY KEY (`idTeam`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `gfdgdfg_idx` (`idProject`),
-  CONSTRAINT `fk_teams_idProject` FOREIGN KEY (`idProject`) REFERENCES `projects` (`idProject`) ON UPDATE CASCADE
+  KEY `fk_teams_idLeader_idx` (`idLeader`),
+  CONSTRAINT `fk_teams_idLeader` FOREIGN KEY (`idLeader`) REFERENCES `students` (`idStudent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_teams_idProject` FOREIGN KEY (`idProject`) REFERENCES `projects` (`idProject`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -490,7 +501,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `idKorisnik_UNIQUE` (`idUser`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,6 +510,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'pera','123','pera@detlic.com','pera','detlic'),(2,'zika','1234','zk180257/@student/rs','zika','zikic'),(3,'mika','234','mika@admin.rs','mika','mikic'),(4,'laza','345','laza@student.etf.rs','laza','lazic'),(5,'velja','321','velja@student.rs','velja','veljkovic');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -511,4 +523,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-27 22:53:51
+-- Dump completed on 2021-05-30 14:37:23

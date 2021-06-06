@@ -1,0 +1,29 @@
+
+.nav-pills #pill-reg .nav-link:not(.active) {
+    background: none;
+    color: black;
+}
+
+.nav-pills #pill-new .nav-link:not(.active) {
+    background: none;
+    color: black;
+}
+
+.nav-pills #pill-reg .nav-link {
+    background-color: #343a40;
+    color: white;
+}
+
+.nav-pills #pill-new .nav-link {
+    background-color: #343a40;
+    color: white;
+}
+.container-fluid {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer{
+    margin-top: auto;
+}

@@ -1,13 +1,25 @@
 <?php
 
+/**
+ *
+ * Autor: Slobodan Katanic 2018/0133
+ *
+ */
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * UsernameCheck - klasa koja proverava da li je korisnicko ime u odgovarajucem formatu.
+ *
+ * @package App\Rules
+ * @version
+ */
 class UsernameCheck implements Rule
 {
     /**
-     * Create a new rule instance.
+     * Kreira novu instacu pravila.
      *
      * @return void
      */
@@ -17,7 +29,7 @@ class UsernameCheck implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
+     * Utvrdjuje da li prosledjena vrednost za korisnicko ime ima odgovrajuci format.
      *
      * @param  string  $attribute
      * @param  mixed  $value
@@ -33,12 +45,12 @@ class UsernameCheck implements Rule
     }
 
     /**
-     * Get the validation error message.
+     * Vraca poruku greske koja se ispisuje u slucaju da validacija ne uspe.
      *
      * @return string
      */
     public function message()
     {
-        return 'Username can contain digits, dots and _ and at least one letter';
+        return 'Korisničko ime može da sadrži cifre, tačke, znak _ i bar jedno slovo';
     }
 }
