@@ -38,9 +38,9 @@
                                         <div class="modal-footer">
                                             <form action="{{ route('admin.delete.teacher', [$subject->code, $teacher->idTeacher]) }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                                <button type="submit" class="btn btn-outline-danger">Obrisi</button>
                                             </form>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Otkazi</button>
                                         </div>
                                     </div>
                                 </div>

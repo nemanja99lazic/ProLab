@@ -24,7 +24,12 @@ class Appointment extends Model
      * @var string
      */
     protected $primaryKey = 'idAppointment';
+
+    /**
+     * @var string[]
+     */
     protected $dates = ['datetime'];
+
     /**
      * @var array
      */
