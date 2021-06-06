@@ -147,17 +147,9 @@ class StudentController extends Controller
 
         $rokZaPrijavu=$lab->expiration;
 
-        $sada = Carbon::now();
+        $date = Carbon::parse($rokZaPrijavu);
 
-
-        $sada->addHours(2); //za lokalno vreme
-
-
-        if($sada->gt($rokZaPrijavu)){
-
-            return true;
-        }
-        return false;
+        return $date->isPast();
     }
 
     /**
@@ -318,11 +310,9 @@ class StudentController extends Controller
 
         $rokZaPrijavu=$lab->expiration;
 
-        $sada = Carbon::now();
-        $sada->addHours(2); //za lokalno vreme
+        $date = Carbon::parse($rokZaPrijavu);
 
-
-        if($sada->gt($rokZaPrijavu)){
+        if( $date->isPast()){
             Session::put('prosao',$idLab);
             return true;
         }
@@ -466,7 +456,11 @@ class StudentController extends Controller
         //svi termini za ovaj lab
         $appointments=Appointment::where('idLabExercise','=',$request->idLab)->get();
 
+        if(count($appointments)==0){
+            Session::put("nemaTermina",1);
+            return redirect()->route('student.subject.lab.idlab.join.get', [$request->code,$request->idLab]);
 
+        }
         $myAppointmentArray=[];
         //trazim svoj termin
         $appointment=$appointments[0];
@@ -583,8 +577,25 @@ class StudentController extends Controller
         //svi PUNI termini, jer nema svrhe menjati se za slobodan termin
         $allAppointments=Appointment::where('idLabExercise','=',$request->idLab)->get();
         $fullAppointments=[];
-        $myAppointment=HasAppointment::where('idStudent','=',$request->session()->get('user')['userObject']->idUser)
-            ->first();
+        $myHasAppointments=HasAppointment::where('idStudent','=',$request->session()->get('user')['userObject']->idUser)->get();
+        $myHasAppointmentsForThisLab=[];
+        //isfiltriramo samo one za ovaj lab
+        foreach($myHasAppointments as $myHasAppointment) {
+            $temp=Appointment::where('idAppointment','=',$myHasAppointment->idAppointment)->first();
+            if($temp->idLabExercise==$request->idLab)
+                $myHasAppointmentsForThisLab[]=$myHasAppointment;
+        }
+        $myHasAppointments=[];
+        foreach($myHasAppointmentsForThisLab as $myHasAppointmentForThisLab) {
+            $myHasAppointments[]=$myHasAppointmentForThisLab;
+        }
+        $myAppointment=null;
+        foreach($myHasAppointments as $myHasAppointment) {
+
+            $myAppointment = Appointment::where('idAppointment', '=', $myHasAppointment->idAppointment)->first();
+
+        }
+       // dd($myHasAppointments);
 
         if($myAppointment==null) {
             // ako nemam termin, vratim ga na stranicu svih termina, sa ispisom greske
@@ -607,7 +618,7 @@ class StudentController extends Controller
                             $fullAppointment->classroom.",".$fullAppointment->idAppointment;
 
         }
-        $maxItemsPerPage=5;
+        $maxItemsPerPage=6;
         $paginatorArrayForView = new LengthAwarePaginator
         (array_slice($arrayForView, (LengthAwarePaginator::resolveCurrentPage() - 1) * $maxItemsPerPage, $maxItemsPerPage)
             ,count($arrayForView), $maxItemsPerPage, null, [
@@ -617,18 +628,8 @@ class StudentController extends Controller
         //treba mi i podatak u kom se ja trenutno terminu nalazim
 
         //obrises iz HasAppointment mene
-        dd("bunike");
-        HasAppointment::where('idStudent','=',$myId)->where('idAppointment','=',$myAppointment)->delete();
-        //dodam u HasAppointment mene sa swapAppointment
-        $t1=new HasAppointment();
-        $t1->idAppointment = $swapAppointment;
-        $t1->idStudent = $myId;
-        $t1->save();
-        //dodam u HasAppointment drugog studenta sa myAppointment
-        $t2=new HasAppointment();
-        $t2->idAppointment=$myAppointment;
-        $t2->idStudent=$swapId;
-        $t2->save();
+        //dd("bunike");
+
 
 
 
@@ -654,7 +655,9 @@ class StudentController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function subjectIndex($code, Request $request) {
+
         $subject = Subject::where("code", "=", $code)->first();
+
         if (is_null($subject)) {
             return redirect()->to(route('student.index'));
         }
@@ -667,7 +670,7 @@ class StudentController extends Controller
             $teacherList[] = $otherTeacher->user()->first();
         }
 
-        return view("student/subject_index", ["subjectTitle"=> $subjectTitle, "teacherList"=> $teacherList]);
+        return view("student/subject_index", ["subjectTitle"=> $subjectTitle, "teacherList"=> $teacherList,"code"=>$code]);
     }
 
     /**

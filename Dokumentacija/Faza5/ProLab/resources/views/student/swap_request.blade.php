@@ -1,9 +1,33 @@
 <?php //Autor: Valerijan Matvejev 2018/0257; Prikaz za unos zahteva za zamenu ?>
-@extends('layout.main')
+@extends('layout.student_main')
+
+@section('page-nav')
+    <input hidden value="{{ request()->code }}" id="sifraPredmeta">
+    <input hidden value="{{ request()->idLab }}" id="sifraLaba">
+
+    <a class="project-tab-button  nav-item ml-3 mr-1 nav-link btn-outline-dark {{ request()->is('student/subject/*/index')  ? 'active' : ''}}" id="nav-subject-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true" style="font-size: medium">Stranica predmeta</a>
+    <a class="project-tab-button  nav-item mr-1 nav-link btn-outline-dark {{ request()->is('student/subject/*/lab') || request()->is('student/subject/*/lab/*') ? 'active' : ''}}" id="nav-lab-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-profile" aria-selected="false"style="font-size: medium" >Laboratorijske vežbe</a>
+    <a class="project-tab-button  nav-item mr-1 nav-link btn-outline-dark {{ request()->is('student/subject/*/project')  ? 'active' : ''}}" id="nav-project-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-contact" aria-selected="false"style="font-size: medium" >Projekat</a>
+
+@endsection
 @section('content')
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+    <div class="col-5 mt-5 d-flex flex-column justify-content-start">
+        <ul class="nav nav-pills ml-5">
+            <li class="nav-item pill-request" id="pill-reg">
+                <a class="nav-link " id="v-pill-joinAppointment" data-toggle="pill" href="">Prijava/odjava termina</a>
+            </li>
+            <li class="nav-item pill-request" id="pill-new">
+                <a class="nav-link " id="v-pill-swapAppointments" data-toggle="pill" href="">Zamena termina</a>
+            </li>
+            <li class="nav-item pill-request" id="pill-new">
+                <a class="nav-link active " id="v-pill-swapRequest" data-toggle="pill" href="" >Zahtev za zamenu</a>
+            </li>
+        </ul>
+    </div>
 
 
     <div class="row justify-content-center">

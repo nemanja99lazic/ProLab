@@ -17,7 +17,7 @@ use App\Teacher;
 use App\SubjectJoinRequest;
 use App\Attends;
 use App\Project;
-use App\Subject;
+
 use App\LabExercise;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Appointment;
@@ -138,11 +138,11 @@ class TeacherController extends Controller
     }
     /**
      * Prikaz svih zahteva za upis na kurs koji su stigli profesoru
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return view
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function showRequestsList(Request $request)
@@ -166,11 +166,11 @@ class TeacherController extends Controller
 
     /**
      * Privatanje zahteva - POST
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return redirect
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function acceptRequest(Request $request)
@@ -205,11 +205,11 @@ class TeacherController extends Controller
 
     /**
      * Prikaz svih definisanih projekata za odredjeni predmet
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return view
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function showProjects(Request $request)
@@ -227,11 +227,11 @@ class TeacherController extends Controller
 
     /**
      * Prikaz forme za definisanje projekta
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return view
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function showProjectForm(Request $request)
@@ -243,11 +243,11 @@ class TeacherController extends Controller
 
     /**
      * Uklanjanje projekta - POST zahtev
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return response
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function removeProject(Request $request)
@@ -263,7 +263,7 @@ class TeacherController extends Controller
 
         $idProject = $request->get('idProject');
         $success = Project::destroy($idProject);
-        
+
         if($success != 0){
             $message = "Uspesno uklonjen projekat";
             return response()->json(array('message' => $message, 'idProject' => $idProject), TeacherController::HTTP_STATUS_OK);
@@ -277,11 +277,11 @@ class TeacherController extends Controller
 
     /**
      * Definisanje projekta - POST zahtev
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return response
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function defineProject(Request $request){
@@ -303,7 +303,7 @@ class TeacherController extends Controller
         if(Project::where('idSubject', '=', $idSubject)->exists())
         {
             $message = "Jedan projekat za predmet već postoji.";
-            return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_ERROR_ALREADY_EXISTS);            
+            return response()->json(array('message' => $message), TeacherController::HTTP_STATUS_ERROR_ALREADY_EXISTS);
         }
 
         $newProject = new Project;
@@ -321,16 +321,16 @@ class TeacherController extends Controller
 
     /**
      * Prikaz svih labova za dati predmet
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return view
-     * 
+     *
      * - Valerijan Matvejev 2018/0257,
      *  prilagodio Nemanja Lazic 2018/0004
      */
     public function showLabs(Request $request){
-        
+
         $code=$request->code;
         $subject=Subject::where('code','=',$code)->first();
 
@@ -352,11 +352,11 @@ class TeacherController extends Controller
 
     /**
      * Prikaz informacija o labu sa svim terminima za dati lab
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return view
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function showLabAppointments(Request $request)
@@ -385,18 +385,18 @@ class TeacherController extends Controller
             ]);
 
         $paginatorAppointments->withPath("/teacher/subject/". $subjectCode ."/lab/". $idLab ."/appointments");
-        
+
         return view('teacher.show_lab_appointments', ['lab' => $myLab, 'appointments' => $paginatorAppointments, 'code' => $subjectCode]);
     }
 
     /**
      * Prikaz forme za definisanje laboratorijske vezbe
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return view
-     * 
-     * - Nemanja Lazic 2018/0004 
+     *
+     * - Nemanja Lazic 2018/0004
      */
     public function showAddLabForm(Request $request)
     {
@@ -406,11 +406,11 @@ class TeacherController extends Controller
 
     /**
      * Definisanje laboratorijske vezbe - upis laboratorijske vezbe u bazu i odgovarajucih termina
-     * 
+     *
      * @param Request $request Request
-     * 
+     *
      * @return view
-     * 
+     *
      * - Nemanja Lazic 2018/0004
      */
     public function defineLab(Request $request)
