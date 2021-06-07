@@ -14,7 +14,7 @@
     <script src="{{ asset('js/admin/admin.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <title>Pocetna - zahtevi</title>
+    <title>Admin</title>
 </head>
 <body>
     <div class="container-fluid">

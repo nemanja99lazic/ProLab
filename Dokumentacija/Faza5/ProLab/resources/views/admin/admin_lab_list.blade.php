@@ -45,8 +45,8 @@
                     {{ 'Rok za prijavu: '.$lab->expiration->format('j.m. G:i').'h' }}
                 </div>
                 <div class="col-1 offset-2">
-                    <button type="button" class="btn btn-outline-danger p-1 m-0 rounded-pill" data-toggle="modal" data-target="#modal1">Ukloni</button>
-                    <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
+                    <button type="button" class="btn btn-outline-danger p-1 m-0 rounded-pill" data-toggle="modal" data-target="#modalHeader">Ukloni</button>
+                    <div class="modal fade" id="modalHeader" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -77,8 +77,8 @@
                             <tr class="text-center">
                                 <th colspan="3">
                                     <span class="mr-3">{{ 'Održavanje: '.$lab->appointments[$i]->datetime->format('j.m. G:i').'h, sala '.$lab->appointments[$i]->classroom }}</span>
-                                    <button type="button" class="btn btn-outline-dark p-1 mr-3 rounded-pill" data-toggle="modal" data-target="#modal2">Ukloni</button>
-                                    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <button type="button" class="btn btn-outline-dark p-1 mr-3 rounded-pill" data-toggle="modal" data-target={{'#modal'.$lab->appointments[$i]->idAppointment}}>Ukloni</button>
+                                    <div class="modal fade" id={{'modal'.$lab->appointments[$i]->idAppointment}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -114,8 +114,8 @@
                                 <tr class="text-center">
                                     <th colspan="3">
                                         <span class="mr-3">{{ 'Odrzavanje: '.$lab->appointments[$i + 1]->datetime->format('j.m. G:i').'h, sala '.$lab->appointments[$i + 1]->classroom }}</span>
-                                        <button type="button" class="btn btn-outline-dark rounded-pill p-1 m-0" data-toggle="modal" data-target="#modal3">Ukloni</button>
-                                        <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <button type="button" class="btn btn-outline-dark rounded-pill p-1 m-0" data-toggle="modal" data-target={{'#modal'.$lab->appointments[$i + 1]->idAppointment}}>Ukloni</button>
+                                        <div class="modal fade" id={{'modal'.$lab->appointments[$i + 1]->idAppointment}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

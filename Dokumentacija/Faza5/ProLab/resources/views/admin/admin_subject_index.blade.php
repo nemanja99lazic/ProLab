@@ -25,8 +25,8 @@
                         <td>{{ $loop->iteration.'.' }}</td>
                         <td>{{ $teacher->user->forename.' '.$teacher->user->surname }}</td>
                         <td>
-                            <button class="btn btn-outline-danger p-1 m-0 w-75" data-toggle="modal" data-target="#modal">&times;</button>
-                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <button class="btn btn-outline-danger p-1 m-0 w-75" data-toggle="modal" data-target={{'#modal'.$teacher->idTeacher}}>&times;</button>
+                            <div class="modal fade" id={{'modal'.$teacher->idTeacher}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -66,8 +66,8 @@
                         <td>{{ $loop->iteration.'.' }}</td>
                         <td>{{ $student->user->forename.' '.$student->user->surname }}</td>
                         <td>
-                            <button class="btn btn-outline-danger p-1 m-0 w-75" data-toggle="modal" data-target="#modal">&times;</button>
-                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <button class="btn btn-outline-danger p-1 m-0 w-75" data-toggle="modal" data-target={{'#modal'.$student->idStudent}}>&times;</button>
+                            <div class="modal fade" id={{'modal'.$student->idStudent}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
