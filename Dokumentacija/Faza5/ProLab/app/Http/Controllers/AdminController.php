@@ -289,7 +289,7 @@ class AdminController extends Controller {
         foreach ($teams as $team) {
             $teamMember = TeamMember::where('idStudent', '=', $idStudent)->where('idTeam', '=', $team->idTeam)->first();
             if ($teamMember != null) {
-                if ($team->idLeader == $idStudent || count($team->students) == 1) {
+                if ($team->idLeader == $idStudent || count($team->members) == 1) {
                     TeamMember::where('idTeam', '=', $team->idTeam)->delete();
                     $team->delete();
                 } else {
@@ -588,7 +588,7 @@ class AdminController extends Controller {
         }
         foreach ($teamMembers as $teamMember) {
             $team = $teamMember->team;
-            if ($team->idLeader == $idStudent || count($team->students) == 1) {
+            if ($team->idLeader == $idStudent || count($team->members) == 1) {
                 TeamMember::where('idTeam', '=', $team->idTeam)->delete();
                 $team->delete();
             } else {
