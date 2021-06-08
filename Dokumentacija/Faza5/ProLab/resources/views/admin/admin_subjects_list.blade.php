@@ -25,8 +25,8 @@
                             <td>{{ $subjects[$i]->code }}</td>
                             <td>{{ $subjects[$i]->teacher->user->forename.' '.$subjects[$i]->teacher->user->surname }}</td>
                             <td class="text-center">
-                                <button class="btn btn-outline-danger rounded-pill p-1 m-0 w-75" data-toggle="modal" data-target="#modal">&times;</button>
-                                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <button class="btn btn-outline-danger rounded-pill p-1 m-0 w-75" data-toggle="modal" data-target={{'#modal'.$subjects[$i]->code}}>&times;</button>
+                                <div class="modal fade" id={{'modal'.$subjects[$i]->code}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">

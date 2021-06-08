@@ -19,8 +19,8 @@
                 {{ 'Min: '.$project->minMemberNumber.' | Max: '.$project->maxMemberNumber }}
             </div>
             <div class="col">
-                <button type="button" class="btn btn-outline-danger rounded-pill p-1 m-0" data-toggle="modal" data-target="#modal1">Ukloni</button>
-                <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <button type="button" class="btn btn-outline-danger rounded-pill p-1 m-0" data-toggle="modal" data-target="#modalProjekat">Ukloni</button>
+                <div class="modal fade" id="modalProjekat" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -59,8 +59,8 @@
         @for($i = 0; $i < count($teams); $i += 2)
             <div class="row">
                 <div class="col-6">
-                    <table class="table table-bordered table-striped">
-                        <tr>
+                    <table class="table table-bordered">
+                        <tr class="my-header">
                             <th colspan="3" class="text-center">
                                 @if($teams[$i]->locked)
                                     <span class="mr-5">Zaključan</span>
@@ -68,8 +68,8 @@
                                     <span class="mr-5 font-weight-bold">Otključan</span>
                                 @endif
                                 <span class="ml-5 mr-5 h4">{{ $teams[$i]->name }}</span>
-                                <button type="button" class="btn btn-outline-dark rounded-pill p-1 ml-5" data-toggle="modal" data-target="#modal2">Ukloni</button>
-                                <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <button type="button" class="btn btn-outline-dark rounded-pill p-1 ml-5" data-toggle="modal" data-target={{'#modal'.$teams[$i]->idTeam}}>Ukloni</button>
+                                <div class="modal fade" id={{'modal'.$teams[$i]->idTeam}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -90,7 +90,7 @@
                                 </div>
                             </th>
                         <tr>
-                        @foreach($teams[$i]->students as $student)
+                        @foreach($teams[$i]->members as $student)
                             <tr>
                                 <td>
                                     {{ $loop->iteration.'.' }}
@@ -107,16 +107,17 @@
                 </div>
                 @if($i + 1 < count($teams))
                     <div class="col-6">
-                        <table class="table table-bordered table-striped">
-                            <tr>
+                        <table class="table table-bordered">
+                            <tr class="my-header">
                                 <th colspan="3" class="text-center">
                                     @if($teams[$i + 1]->locked)
                                         <span class="mr-3">Zaključan</span>
                                     @else
                                         <span class="mr-3 font-weight-bold">Otključan</span>
                                     @endif
-                                    <button type="button" class="btn btn-outline-dark rounded-pill p-1 m-0" data-toggle="modal" data-target="#modal2">Ukloni</button>
-                                    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <span class="ml-5 mr-5 h4">{{ $teams[$i + 1]->name }}</span>
+                                    <button type="button" class="btn btn-outline-dark rounded-pill p-1 m-0" data-toggle="modal" data-target={{'#modal'.$teams[$i + 1]->idTeam}}>Ukloni</button>
+                                    <div class="modal fade" id={{'modal'.$teams[$i + 1]->idTeam}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -137,10 +138,10 @@
                                     </div>
                                 </th>
                             </tr>
-                            @foreach($teams[$i + 1]->students as $student)
+                            @foreach($teams[$i + 1]->members as $student)
                                 <tr>
                                     <td>
-                                        {{ $lopp->iteration.'.' }}
+                                        {{ $loop->iteration.'.' }}
                                     </td>
                                     <td>
                                         {{ $student->user->forename.' '.$student->user->surname }}
