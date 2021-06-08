@@ -2,7 +2,7 @@
   "id": "16b21def-e0ff-48e3-892a-de333fc243f7",
   "version": "2.0",
   "name": "FazaTestiranja",
-  "url": "http://127.0.0.1:8000",
+  "url": "http://127.0.0.1:8000/admin",
   "tests": [{
     "id": "1cbb2aa1-c9d0-402c-beab-01b60dc119a7",
     "name": "TP1_UspesanLoginAdministrator",
@@ -4861,98 +4861,86 @@
     "id": "c0bd1ea5-adec-4dad-bffe-85a39fb26265",
     "name": "TP35_Admin_uklanjanjePredmeta",
     "commands": [{
-      "id": "b88b14a0-f481-4dc6-ae69-1b0b9cd3ec76",
+      "id": "d629bdab-02d5-4050-8795-87e512251f28",
       "comment": "",
       "command": "open",
       "target": "http://127.0.0.1:8000/admin/subjects/list",
       "targets": [],
       "value": ""
     }, {
-      "id": "daac3a4c-2a9d-49e7-864a-71e2c76f90d3",
+      "id": "e85d26b9-bcb9-4bb2-a551-434df06ef283",
       "comment": "",
       "command": "setWindowSize",
       "target": "1936x1056",
       "targets": [],
       "value": ""
     }, {
-      "id": "019f41c3-fff0-460e-891f-a2a9ab146856",
+      "id": "ece1f2c8-cb87-4f6e-8f5b-4c5428b27608",
       "comment": "",
       "command": "click",
-      "target": "css=tr:nth-child(8) > .text-center > .btn",
+      "target": "css=tr:nth-child(7) > .text-center > .btn",
       "targets": [
-        ["css=tr:nth-child(8) > .text-center > .btn", "css:finder"],
-        ["xpath=//table[@id='subject_list']/tbody/tr[8]/td[5]/button", "xpath:idRelative"],
-        ["xpath=//tr[8]/td[5]/button", "xpath:position"]
+        ["css=tr:nth-child(7) > .text-center > .btn", "css:finder"],
+        ["xpath=//table[@id='subject_list']/tbody/tr[7]/td[5]/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[5]/button", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "703f5494-bcad-401d-9e13-5778e72ee412",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=tr:nth-child(8) > .text-center > .btn",
-      "targets": [
-        ["css=tr:nth-child(8) > .text-center > .btn", "css:finder"],
-        ["xpath=//table[@id='subject_list']/tbody/tr[8]/td[5]/button", "xpath:idRelative"],
-        ["xpath=//tr[8]/td[5]/button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "b5840876-54c1-4352-8bb7-2bd54cf7f451",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=tr:nth-child(8) > .text-center > .btn",
-      "targets": [
-        ["css=tr:nth-child(8) > .text-center > .btn", "css:finder"],
-        ["xpath=//table[@id='subject_list']/tbody/tr[8]/td[5]/button", "xpath:idRelative"],
-        ["xpath=//tr[8]/td[5]/button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "b1987b01-e9f4-41f4-995e-b211dcbc9e35",
+      "id": "7c5f3971-64e4-4409-bbe9-be4c012578b8",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "css=tr:nth-child(2) .modal-header",
+      "target": "css=#modalTT .modal-header",
       "targets": [
-        ["css=tr:nth-child(2) .modal-header", "css:finder"],
-        ["xpath=//div[@id='modal']/div/div/div", "xpath:idRelative"],
-        ["xpath=//div/div/div/div", "xpath:position"]
+        ["css=#modalTT .modal-header", "css:finder"],
+        ["xpath=//div[@id='modalTT']/div/div/div", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[5]/div/div/div/div", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "e84f96b0-b213-4843-bbd9-f2d04214937b",
+      "id": "1ca67e4f-f69f-4881-bc4e-e91b8a40fc41",
       "comment": "",
       "command": "assertText",
-      "target": "css=tr:nth-child(2) .modal-body",
+      "target": "css=#modalTT .modal-body",
       "targets": [
-        ["css=tr:nth-child(2) .modal-body", "css:finder"],
-        ["xpath=//div[@id='modal']/div/div/div[2]", "xpath:idRelative"],
-        ["xpath=//div/div/div/div[2]", "xpath:position"]
+        ["css=#modalTT .modal-body", "css:finder"],
+        ["xpath=//div[@id='modalTT']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[5]/div/div/div/div[2]", "xpath:position"]
       ],
       "value": "Da li zaista želite trajno da obrišete predmet i sve inforamcije vezane za njega?"
     }, {
-      "id": "00fdd421-e4b6-4bed-b3ee-07ac76f50d0d",
+      "id": "993bd201-5ebe-464e-902c-33281d63eb67",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modalTT form > .btn",
+      "targets": [
+        ["css=#modalTT form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='modalTT']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[5]/div/div/div/div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5aaf2927-69dd-410f-89c2-d92c09c4d82e",
       "comment": "",
       "command": "assertText",
-      "target": "css=tr:nth-child(2) form > .btn",
+      "target": "css=#modalTT form > .btn",
       "targets": [
-        ["css=tr:nth-child(2) form > .btn", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//div[@id='modal']/div/div/div[3]/form/button", "xpath:idRelative"],
-        ["xpath=//form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Obriši')]", "xpath:innerText"]
+        ["css=#modalTT form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='modalTT']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[5]/div/div/div/div[3]/form/button", "xpath:position"]
       ],
       "value": "Obriši"
     }, {
-      "id": "0ee79b6f-11a4-4f92-a1a3-bc077dfdf6c3",
+      "id": "6c48da21-7e0d-46dc-b9d5-b3df93e63455",
       "comment": "",
       "command": "click",
-      "target": "css=tr:nth-child(2) form > .btn",
+      "target": "css=#modalTT form > .btn",
       "targets": [
-        ["css=tr:nth-child(2) form > .btn", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//div[@id='modal']/div/div/div[3]/form/button", "xpath:idRelative"],
-        ["xpath=//form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Obriši')]", "xpath:innerText"]
+        ["css=#modalTT form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='modalTT']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[5]/div/div/div/div[3]/form/button", "xpath:position"]
       ],
       "value": ""
     }]
@@ -4960,46 +4948,36 @@
     "id": "033b7c96-e48e-484d-933e-07c00eb006be",
     "name": "TP37_Admin_uklanjanjeProfesoraSaPredmeta",
     "commands": [{
-      "id": "27349d13-ab80-4fcf-b34c-69aad16cf754",
+      "id": "2b539e76-2e9c-4bbb-935e-3967cfe35e49",
       "comment": "",
       "command": "open",
       "target": "http://127.0.0.1:8000/admin/subjects/list",
       "targets": [],
       "value": ""
     }, {
-      "id": "9abecbd6-6f2e-4f24-adc6-b62b9149ec95",
+      "id": "1f2ff5f0-0fbd-4fcd-9d17-7d64d62e8481",
       "comment": "",
       "command": "setWindowSize",
       "target": "1936x1056",
       "targets": [],
       "value": ""
     }, {
-      "id": "67992606-45f0-45ff-8a4c-f5e92e426f47",
+      "id": "3cb7da1e-d4c3-4b74-9822-6b55c880d255",
       "comment": "",
       "command": "click",
-      "target": "linkText=Algoritmi i Strukture Podataka 2",
+      "target": "linkText=Fizika 1",
       "targets": [
-        ["linkText=Algoritmi i Strukture Podataka 2", "linkText"],
-        ["css=tr:nth-child(3) .my-link", "css:finder"],
-        ["xpath=//a[contains(text(),'Algoritmi i Strukture Podataka 2')]", "xpath:link"],
-        ["xpath=//table[@id='subject_list']/tbody/tr[3]/td[2]/a", "xpath:idRelative"],
-        ["xpath=//a[@href='http://127.0.0.1:8000/admin/subjects/ASP2']", "xpath:href"],
-        ["xpath=//tr[3]/td[2]/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Algoritmi i Strukture Podataka 2')]", "xpath:innerText"]
+        ["linkText=Fizika 1", "linkText"],
+        ["css=tr:nth-child(5) .my-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Fizika 1')]", "xpath:link"],
+        ["xpath=//table[@id='subject_list']/tbody/tr[5]/td[2]/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/admin/subjects/F1']", "xpath:href"],
+        ["xpath=//tr[5]/td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Fizika 1')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "d0b24d6b-d3ba-48e2-b5e5-21fbf913a928",
-      "comment": "",
-      "command": "assertElementPresent",
-      "target": "css=tr:nth-child(3) > td > .btn",
-      "targets": [
-        ["css=tr:nth-child(3) > td > .btn", "css:finder"],
-        ["xpath=//tr[3]/td[3]/button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "4d89d5a3-f0d9-41df-9bad-1f90e3140391",
+      "id": "6d2b49a0-a60c-4ab9-96e3-f32e2ff8ec6a",
       "comment": "",
       "command": "click",
       "target": "css=tr:nth-child(3) > td > .btn",
@@ -5009,51 +4987,61 @@
       ],
       "value": ""
     }, {
-      "id": "a1dbf85a-d94c-40c2-a919-7badbed3c41e",
+      "id": "67532efb-b691-48fd-8bdb-cbb686bef821",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "css=.col:nth-child(1) tr:nth-child(2) .modal-header",
+      "target": "css=#modal7 .modal-header",
       "targets": [
-        ["css=.col:nth-child(1) tr:nth-child(2) .modal-header", "css:finder"],
-        ["xpath=//div[@id='modal']/div/div/div", "xpath:idRelative"],
-        ["xpath=//div/div/div/div", "xpath:position"]
+        ["css=#modal7 .modal-header", "css:finder"],
+        ["xpath=//div[@id='modal7']/div/div/div", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "925549a8-2940-4a34-8910-a24676b3f827",
+      "id": "b6e37360-781b-4537-b6d4-56a7400a7a41",
       "comment": "",
       "command": "assertText",
-      "target": "css=.col:nth-child(1) tr:nth-child(2) .modal-body",
+      "target": "css=#modal7 .modal-body",
       "targets": [
-        ["css=.col:nth-child(1) tr:nth-child(2) .modal-body", "css:finder"],
-        ["xpath=//div[@id='modal']/div/div/div[2]", "xpath:idRelative"],
-        ["xpath=//div/div/div/div[2]", "xpath:position"]
+        ["css=#modal7 .modal-body", "css:finder"],
+        ["xpath=//div[@id='modal7']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[2]", "xpath:position"]
       ],
       "value": "Da li zaista želite trajno da obrišete profesora sa datog predmeta?"
     }, {
-      "id": "79be402c-73d8-4108-a64e-80c7103661c6",
+      "id": "01b85e6d-5ce1-489b-82db-cf4f5e0127df",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "css=tr:nth-child(2) .btn-danger",
+      "target": "css=#modal7 form > .btn",
       "targets": [
-        ["css=tr:nth-child(2) .btn-danger", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//div[@id='modal']/div/div/div[3]/form/button", "xpath:idRelative"],
-        ["xpath=//form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Obriši')]", "xpath:innerText"]
+        ["css=#modal7 form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='modal7']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[3]/form/button", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "b74fbc31-2574-409a-89da-d8d598c1ea52",
+      "id": "4e57dba0-cc7d-43c1-bf2f-16fd4a80b1f6",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal7 form > .btn",
+      "targets": [
+        ["css=#modal7 form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='modal7']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[3]/form/button", "xpath:position"]
+      ],
+      "value": "Obriši"
+    }, {
+      "id": "fe8c694d-9db0-4656-9749-46347603de53",
       "comment": "",
       "command": "click",
-      "target": "css=tr:nth-child(2) .btn-danger",
+      "target": "css=#modal7 form > .btn",
       "targets": [
-        ["css=tr:nth-child(2) .btn-danger", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//div[@id='modal']/div/div/div[3]/form/button", "xpath:idRelative"],
-        ["xpath=//form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Obriši')]", "xpath:innerText"]
+        ["css=#modal7 form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='modal7']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[3]/form/button", "xpath:position"]
       ],
       "value": ""
     }]
@@ -6448,6 +6436,651 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "4551abba-26ab-4be7-bcd7-222d0f31da5f",
+    "name": "TP49_Admin_uklanjanjeStudentaSaPredmeta",
+    "commands": [{
+      "id": "8d39f5b2-d67e-4262-a5e7-8b8487473aa3",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/admin/subjects/list",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7408e06a-cae0-4ecf-9adb-20568101215c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc930b62-eb5b-46be-a771-f30908062087",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Fizika 1",
+      "targets": [
+        ["linkText=Fizika 1", "linkText"],
+        ["css=tr:nth-child(5) .my-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Fizika 1')]", "xpath:link"],
+        ["xpath=//table[@id='subject_list']/tbody/tr[5]/td[2]/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/admin/subjects/F1']", "xpath:href"],
+        ["xpath=//tr[5]/td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Fizika 1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "97485ab1-f78f-4e4f-90dd-5d0e612020ff",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(3) > td > .btn",
+      "targets": [
+        ["css=tr:nth-child(3) > td > .btn", "css:finder"],
+        ["xpath=//tr[3]/td[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7bf4240d-1f09-46d4-b2d3-92c04b290ec3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal12 .modal-header",
+      "targets": [
+        ["css=#modal12 .modal-header", "css:finder"],
+        ["xpath=//div[@id='modal12']/div/div/div", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "10001b7c-abea-4a76-b0eb-5cd5911bcb82",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal12 .modal-body",
+      "targets": [
+        ["css=#modal12 .modal-body", "css:finder"],
+        ["xpath=//div[@id='modal12']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "Da li zaista želite trajno da obrišete profesora sa datog predmeta?"
+    }, {
+      "id": "aecedf95-75df-417a-9ea3-1f8a79c531df",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal12 form > .btn",
+      "targets": [
+        ["css=#modal12 form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal12']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f4d19b9-208b-4ee8-b531-e83f9d34f342",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal12 form > .btn",
+      "targets": [
+        ["css=#modal12 form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal12']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[3]/form/button", "xpath:position"]
+      ],
+      "value": "Obriši"
+    }, {
+      "id": "49542cfc-d013-4430-bdb4-e3040e869d01",
+      "comment": "",
+      "command": "click",
+      "target": "css=#modal12 form > .btn",
+      "targets": [
+        ["css=#modal12 form > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal12']/div/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[3]/div/div/div/div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "536d40a2-1a9c-4731-a9e7-2c271ccdf4d1",
+    "name": "TP46_Admin_BrisanjeTimaIzProjekta",
+    "commands": [{
+      "id": "b94782b5-46b5-486c-bbbd-19fdda9e9e31",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/admin/subjects/list",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b1a4303b-c947-4474-b438-065c245f79c9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4f0b1453-8d94-4eb7-8474-77ff2aa7a4bd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Upravljanje u realnom vremenu",
+      "targets": [
+        ["linkText=Upravljanje u realnom vremenu", "linkText"],
+        ["css=tr:nth-child(6) .my-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Upravljanje u realnom vremenu')]", "xpath:link"],
+        ["xpath=//table[@id='subject_list']/tbody/tr[6]/td[2]/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/admin/subjects/URV']", "xpath:href"],
+        ["xpath=//tr[6]/td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Upravljanje u realnom vremenu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3bf81cd4-0c35-4bb6-aacd-6b50636774db",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4cc03a3b-e691-4a0a-9de5-52d7c3259d4b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.m-0:nth-child(3)",
+      "targets": [
+        ["css=.m-0:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[7]", "xpath:attributes"],
+        ["xpath=//div[2]/table/tbody/tr/th/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4daa0e9-b91e-4405-b6d7-be1120bc9802",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal21 .modal-header",
+      "targets": [
+        ["css=#modal21 .modal-header", "css:finder"],
+        ["xpath=//div[@id='modal21']/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/table/tbody/tr/th/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af3d2001-8768-4999-8c1d-9f1d0e49320f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal21 .modal-body",
+      "targets": [
+        ["css=#modal21 .modal-body", "css:finder"],
+        ["xpath=//div[@id='modal21']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/table/tbody/tr/th/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "Da li zaista želite trajno da uklonite tim?"
+    }, {
+      "id": "b32bcd49-8eec-4179-b64c-4a0c343d4775",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal21 .btn-danger",
+      "targets": [
+        ["css=#modal21 .btn-danger", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal21']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/table/tbody/tr/th/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f4e9911-0a36-4da3-8e43-8f3a7b35d54a",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal21 .btn-danger",
+      "targets": [
+        ["css=#modal21 .btn-danger", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal21']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/table/tbody/tr/th/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": "Ukloni projekat"
+    }, {
+      "id": "8a13d5b6-397c-44b9-acaa-3f9f82f55be0",
+      "comment": "",
+      "command": "click",
+      "target": "css=#modal21 .btn-danger",
+      "targets": [
+        ["css=#modal21 .btn-danger", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal21']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/table/tbody/tr/th/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "30e2ca73-0008-4749-970c-7675290cdc25",
+    "name": "TP50_Admin_BrisanjeKorisnika-Profesor",
+    "commands": [{
+      "id": "23797842-7e8d-4684-8ea9-b73d307afee5",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/admin",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "44b2be40-a478-4d5a-84fa-81164e682e25",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e97061ac-42a7-4c90-b8cc-5e7856f00fb2",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-user-tab",
+      "targets": [
+        ["id=nav-user-tab", "id"],
+        ["linkText=Korisnici", "linkText"],
+        ["css=#nav-user-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Korisnici')]", "xpath:link"],
+        ["xpath=//a[@id='nav-user-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Korisnici')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a92f7da-a2d3-4c81-9fc3-0a8f35a1d782",
+      "comment": "",
+      "command": "click",
+      "target": "id=teacher",
+      "targets": [
+        ["id=teacher", "id"],
+        ["css=#teacher", "css:finder"],
+        ["xpath=//input[@id='teacher']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "28d5ba5d-85c7-4e7b-bd83-50b75cd59b1d",
+      "comment": "",
+      "command": "click",
+      "target": "id=search-button",
+      "targets": [
+        ["id=search-button", "id"],
+        ["css=#search-button", "css:finder"],
+        ["xpath=//button[@id='search-button']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pretraga')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b0411bb-da5b-4138-8193-34d6e69e562c",
+      "comment": "",
+      "command": "click",
+      "target": "name=13",
+      "targets": [
+        ["name=13", "name"],
+        ["css=#\\31 3 .remove", "css:finder"],
+        ["xpath=//button[@name='13']", "xpath:attributes"],
+        ["xpath=//tr[@id='13']/td[6]/button", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad06d426-0a08-4040-bb68-c27c7421e8ab",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal13 .modal-header",
+      "targets": [
+        ["css=#modal13 .modal-header", "css:finder"],
+        ["xpath=//div[@id='modal13']/div/div/div", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "48f85f43-8065-4b1b-ba65-1a1b35fbbb8c",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal13 .modal-body",
+      "targets": [
+        ["css=#modal13 .modal-body", "css:finder"],
+        ["xpath=//div[@id='modal13']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "Da li zaista želite trajno da uklonite profesora?"
+    }, {
+      "id": "1c6413ae-08d0-448a-b177-6af747acc16c",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal13 .delete-user",
+      "targets": [
+        ["css=#modal13 .delete-user", "css:finder"],
+        ["xpath=(//button[@name='teacher'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal13']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6e4f9ca0-b1ec-4676-8ae0-c1566164af14",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal13 .delete-user",
+      "targets": [
+        ["css=#modal13 .delete-user", "css:finder"],
+        ["xpath=(//button[@name='teacher'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal13']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": "Ukloni profesora"
+    }, {
+      "id": "3075ceb8-458c-4ef9-99b7-48bdb2753697",
+      "comment": "",
+      "command": "click",
+      "target": "css=#modal13 .delete-user",
+      "targets": [
+        ["css=#modal13 .delete-user", "css:finder"],
+        ["xpath=(//button[@name='teacher'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='modal13']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4d75edbd-2860-41ab-be30-6e3fc9a7f3b2",
+    "name": "TP51_Admin_BrisanjeKorisnika-Student",
+    "commands": [{
+      "id": "2ee232a3-6a03-4021-94fa-e607f6d987ca",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/admin",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2100a2b9-9755-4e6e-858a-a2929dedea24",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1193x806",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "137d6599-e5b7-4931-9326-c089639a2f7b",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-user-tab",
+      "targets": [
+        ["id=nav-user-tab", "id"],
+        ["linkText=Korisnici", "linkText"],
+        ["css=#nav-user-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Korisnici')]", "xpath:link"],
+        ["xpath=//a[@id='nav-user-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Korisnici')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "68ec7f6f-e9e7-4f8c-a969-47de75d98cda",
+      "comment": "",
+      "command": "click",
+      "target": "id=search-button",
+      "targets": [
+        ["id=search-button", "id"],
+        ["css=#search-button", "css:finder"],
+        ["xpath=//button[@id='search-button']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pretraga')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "de05d1fa-fa56-4c41-b7e8-d2829805127b",
+      "comment": "",
+      "command": "click",
+      "target": "name=14",
+      "targets": [
+        ["name=14", "name"],
+        ["css=#\\31 4 .remove", "css:finder"],
+        ["xpath=//button[@name='14']", "xpath:attributes"],
+        ["xpath=//tr[@id='14']/td[7]/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "961f976c-dc0a-4e44-8a00-d82e1eca045a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "name=14",
+      "targets": [
+        ["name=14", "name"],
+        ["css=#\\31 4 .remove", "css:finder"],
+        ["xpath=//button[@name='14']", "xpath:attributes"],
+        ["xpath=//tr[@id='14']/td[7]/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4b4d119-e448-4089-8bae-3a0fbd2512ad",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "name=14",
+      "targets": [
+        ["name=14", "name"],
+        ["css=#\\31 4 .remove", "css:finder"],
+        ["xpath=//button[@name='14']", "xpath:attributes"],
+        ["xpath=//tr[@id='14']/td[7]/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ef2e725-7398-41a5-974a-3f008e0759e4",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal14 .modal-body",
+      "targets": [
+        ["css=#modal14 .modal-body", "css:finder"],
+        ["xpath=//div[@id='modal14']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2986970d-561c-4c7f-a500-633826a58c54",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal14 .modal-body",
+      "targets": [
+        ["css=#modal14 .modal-body", "css:finder"],
+        ["xpath=//div[@id='modal14']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "Da li zaista želite trajno da uklonite studenta?"
+    }, {
+      "id": "6ccda72e-0643-4df4-83ac-e8d6ead4af74",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#modal14 .delete-user",
+      "targets": [
+        ["css=#modal14 .delete-user", "css:finder"],
+        ["xpath=(//button[@name='student'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='modal14']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "68ae5423-8084-44da-bacb-7617be10e926",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#modal14 .delete-user",
+      "targets": [
+        ["css=#modal14 .delete-user", "css:finder"],
+        ["xpath=(//button[@name='student'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='modal14']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": "Ukloni studenta"
+    }, {
+      "id": "465042dd-6945-4a6d-90af-d3e71051bfb9",
+      "comment": "",
+      "command": "click",
+      "target": "css=#modal14 .delete-user",
+      "targets": [
+        ["css=#modal14 .delete-user", "css:finder"],
+        ["xpath=(//button[@name='student'])[6]", "xpath:attributes"],
+        ["xpath=//div[@id='modal14']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "21154a71-a676-4fe9-a376-296d2d0b1ac9",
+    "name": "TP52_Admin_BrisanjeKorisnika-Admin",
+    "commands": [{
+      "id": "89c8b7a4-d268-4203-8421-444e46f76652",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/admin",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "95286ae3-285a-4d34-90d1-8d119cc2a351",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1193x806",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "27a25c91-7aed-4040-a6a8-619500e87f04",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-user-tab",
+      "targets": [
+        ["id=nav-user-tab", "id"],
+        ["linkText=Korisnici", "linkText"],
+        ["css=#nav-user-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Korisnici')]", "xpath:link"],
+        ["xpath=//a[@id='nav-user-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Korisnici')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1a7ed6b2-bde0-4c36-a30f-0537c6939024",
+      "comment": "",
+      "command": "click",
+      "target": "id=admin",
+      "targets": [
+        ["id=admin", "id"],
+        ["css=#admin", "css:finder"],
+        ["xpath=//input[@id='admin']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "66b58522-5fff-4e5a-a6c2-4c7adee937a1",
+      "comment": "",
+      "command": "click",
+      "target": "id=search-button",
+      "targets": [
+        ["id=search-button", "id"],
+        ["css=#search-button", "css:finder"],
+        ["xpath=//button[@id='search-button']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pretraga')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d87a5365-e87b-4b24-983b-b02aba88f759",
+      "comment": "",
+      "command": "click",
+      "target": "name=14",
+      "targets": [
+        ["name=14", "name"],
+        ["css=.remove", "css:finder"],
+        ["xpath=//button[@name='14']", "xpath:attributes"],
+        ["xpath=//tr[@id='14']/td[6]/button", "xpath:idRelative"],
+        ["xpath=//td[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'×')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e025993-3a6c-47a3-8c1a-6c070496d551",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.modal-header",
+      "targets": [
+        ["css=.modal-header", "css:finder"],
+        ["xpath=//div[@id='modal14']/div/div/div", "xpath:idRelative"],
+        ["xpath=//div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6fb4d00b-4276-4ed2-bec5-c78493725cd8",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.modal-body",
+      "targets": [
+        ["css=.modal-body", "css:finder"],
+        ["xpath=//div[@id='modal14']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "61f4cfcf-3ec3-426e-803c-78bb24e4b974",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.modal-body",
+      "targets": [
+        ["css=.modal-body", "css:finder"],
+        ["xpath=//div[@id='modal14']/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "Da li zaista želite trajno da uklonite admina?"
+    }, {
+      "id": "60cb46cb-2013-4de6-bef0-1e23323a6fdc",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "name=admin",
+      "targets": [
+        ["name=admin", "name"],
+        ["css=.delete-user", "css:finder"],
+        ["xpath=//button[@name='admin']", "xpath:attributes"],
+        ["xpath=//div[@id='modal14']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ukloni admina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5348e595-3e70-4b0d-a1a6-65f7974b128c",
+      "comment": "",
+      "command": "assertText",
+      "target": "name=admin",
+      "targets": [
+        ["name=admin", "name"],
+        ["css=.delete-user", "css:finder"],
+        ["xpath=//button[@name='admin']", "xpath:attributes"],
+        ["xpath=//div[@id='modal14']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ukloni admina')]", "xpath:innerText"]
+      ],
+      "value": "Ukloni admina"
+    }, {
+      "id": "fec3beb4-b580-4d14-9c70-a6d1b11f8984",
+      "comment": "",
+      "command": "click",
+      "target": "name=admin",
+      "targets": [
+        ["name=admin", "name"],
+        ["css=.delete-user", "css:finder"],
+        ["xpath=//button[@name='admin']", "xpath:attributes"],
+        ["xpath=//div[@id='modal14']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ukloni admina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "13d5f7a5-0b57-4fea-bd72-4b9679133ad6",
@@ -6483,7 +7116,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["5d15a327-2759-4c19-b513-72b7e6ccf086", "a57fc608-e252-4c68-a936-24855f3c2f09", "e1601908-2c15-4c7d-baf3-4f99ba216dcc", "c0bd1ea5-adec-4dad-bffe-85a39fb26265", "e0e9baad-e0d8-4f23-bd4d-e6372cd9b674", "033b7c96-e48e-484d-933e-07c00eb006be", "def27341-bc9b-4040-bbf8-17303135f83a", "2b9f7c11-7684-4baf-ae82-b8f5fa62b239", "318782b2-12bd-4d04-889d-4504c4107f27", "db801a66-248f-4487-93bf-7939600d2cf2", "ae83d6d7-bd5a-481f-b0fb-607430a5405e", "8a91635f-4485-4f11-9677-b80481bf97af", "4a0b04b1-601b-444b-adb2-ba7182d3581d", "33e91aa3-2e32-47a5-9af4-2c0a00b77d85", "d08ebb4e-b503-4851-b8b9-a97756bff779", "bf7c422c-db0e-4b1d-ae56-4dbc41e614f9"]
+    "tests": ["5d15a327-2759-4c19-b513-72b7e6ccf086", "a57fc608-e252-4c68-a936-24855f3c2f09", "e1601908-2c15-4c7d-baf3-4f99ba216dcc", "c0bd1ea5-adec-4dad-bffe-85a39fb26265", "e0e9baad-e0d8-4f23-bd4d-e6372cd9b674", "033b7c96-e48e-484d-933e-07c00eb006be", "def27341-bc9b-4040-bbf8-17303135f83a", "2b9f7c11-7684-4baf-ae82-b8f5fa62b239", "318782b2-12bd-4d04-889d-4504c4107f27", "db801a66-248f-4487-93bf-7939600d2cf2", "ae83d6d7-bd5a-481f-b0fb-607430a5405e", "8a91635f-4485-4f11-9677-b80481bf97af", "4a0b04b1-601b-444b-adb2-ba7182d3581d", "33e91aa3-2e32-47a5-9af4-2c0a00b77d85", "d08ebb4e-b503-4851-b8b9-a97756bff779", "bf7c422c-db0e-4b1d-ae56-4dbc41e614f9", "536d40a2-1a9c-4731-a9e7-2c271ccdf4d1", "4551abba-26ab-4be7-bcd7-222d0f31da5f", "30e2ca73-0008-4749-970c-7675290cdc25", "4d75edbd-2860-41ab-be30-6e3fc9a7f3b2", "21154a71-a676-4fe9-a376-296d2d0b1ac9"]
   }],
   "urls": ["http://127.0.0.1:8000/", "http://127.0.0.1:8000/register", "http://127.0.0.1:8000/admin", "http://127.0.0.1:8000/admin/requests/newSubjects", "http://127.0.0.1:8000/admin/subjects/list"],
   "plugins": []
