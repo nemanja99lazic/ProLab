@@ -1,0 +1,1736 @@
+{
+  "id": "5ee743e6-a008-418b-a446-f5b85cc2cf7b",
+  "version": "2.0",
+  "name": "prolab_testiranja",
+  "url": "http://127.0.0.1:8000/teacher/subject/ORT1/lab",
+  "tests": [{
+    "id": "61d28ae7-f93f-49ca-8abe-e8898f43bd16",
+    "name": "TP1 Uspesno kreiranje projekta",
+    "commands": [{
+      "id": "30283a68-e00a-4552-8b5d-9417958217de",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/project",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "944e1673-9fdb-455b-83f8-25749fc6e169",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1410e902-17a9-4f99-b5f0-4f4ed85f7269",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-projekat",
+      "targets": [
+        ["id=btn-definisi-projekat", "id"],
+        ["css=#btn-definisi-projekat", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-projekat']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9b7b266-3ca0-4912-8ff9-fc609151ebcf",
+      "comment": "",
+      "command": "click",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0ac5f4d-3a9f-4020-9242-55583442f667",
+      "comment": "",
+      "command": "type",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "projekat"
+    }, {
+      "id": "f890a78e-2528-46bd-805e-8c17124b6b41",
+      "comment": "",
+      "command": "type",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "d9715140-901b-4d23-8d23-b7993ad3c7bd",
+      "comment": "",
+      "command": "click",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56844483-48c3-4da1-acf5-14855191c7a7",
+      "comment": "",
+      "command": "type",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "66a54ee2-35b0-4141-b5ff-2e617ffa43c9",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "20b910d9-0b68-438d-af2a-98814b5ed52a",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2021-06-30"
+    }, {
+      "id": "fd751e8f-78be-4306-989a-942074a5357e",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-potvrdi-definisanje",
+      "targets": [
+        ["id=btn-potvrdi-definisanje", "id"],
+        ["css=#btn-potvrdi-definisanje", "css:finder"],
+        ["xpath=//button[@id='btn-potvrdi-definisanje']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[5]/td[2]/button", "xpath:idRelative"],
+        ["xpath=//td[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "86cec50f-92d8-48c4-aad5-b569c61511f7",
+      "comment": "",
+      "command": "click",
+      "target": "id=modal-btn-potvrdi",
+      "targets": [
+        ["id=modal-btn-potvrdi", "id"],
+        ["css=#modal-btn-potvrdi", "css:finder"],
+        ["xpath=//button[@id='modal-btn-potvrdi']", "xpath:attributes"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c34d053-7b45-4eab-a4a7-d1a6bfc1d3c4",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Projekat uspešno definisan')]", "xpath:innerText"]
+      ],
+      "value": "Projekat uspešno definisan"
+    }]
+  }, {
+    "id": "ff0012e8-e3f3-47c0-a7c3-029f3362a00b",
+    "name": "TP2 NeuspesnoKreiranjeProjektaVeciMinOdMax",
+    "commands": [{
+      "id": "d6cddbf8-5839-49c4-94e3-16dd2daac2bc",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/project",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "300471ec-9e3d-4142-b092-53a3e1499ca5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5bd7ac0e-0fc3-4424-b2a6-7f4be5e9ec43",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-projekat",
+      "targets": [
+        ["id=btn-definisi-projekat", "id"],
+        ["css=#btn-definisi-projekat", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-projekat']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1699476-2bcd-488d-817e-bc2ca1057490",
+      "comment": "",
+      "command": "click",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "17fdf49f-43f4-4476-83dd-35c3c0e61a5e",
+      "comment": "",
+      "command": "type",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "projekat"
+    }, {
+      "id": "d5b187e6-5929-48ed-8705-d6ab6979a6d9",
+      "comment": "",
+      "command": "click",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f0912e7-3543-4c22-8a00-c1f8f280c6b2",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "19.5,19"
+    }, {
+      "id": "21a10a9a-7b29-4511-85e3-fbaef9f9b8b4",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "19.5,19"
+    }, {
+      "id": "e9423d6e-8200-41e1-977a-b1517cdaaa98",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "19.5,19"
+    }, {
+      "id": "beb4537f-c38a-4395-a358-f17244df334a",
+      "comment": "",
+      "command": "click",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc67ca32-0240-491a-a116-98a18a96a7c9",
+      "comment": "",
+      "command": "type",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "9908b197-b573-4b80-b84e-21e310a315cf",
+      "comment": "",
+      "command": "click",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c33518dd-94ab-4860-b009-cfbdc28cbdd1",
+      "comment": "",
+      "command": "type",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "dfb3ad44-f60a-4769-acf5-b7aeb410473b",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0cf5a7a-78e3-48ae-9ccc-8d93637908b1",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed6faa26-5f06-4bdd-a203-3d4ad6972613",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2021-06-30"
+    }, {
+      "id": "fd1f612b-93ea-42c8-b3ba-5bc9e61ca3a6",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-potvrdi-definisanje",
+      "targets": [
+        ["id=btn-potvrdi-definisanje", "id"],
+        ["css=#btn-potvrdi-definisanje", "css:finder"],
+        ["xpath=//button[@id='btn-potvrdi-definisanje']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[5]/td[2]/button", "xpath:idRelative"],
+        ["xpath=//td[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "99f3d95f-8756-4f23-ac9f-205d0344a3d1",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Uneseni minimalan broj članova je veći od maksimalnog broja članova.')]", "xpath:innerText"]
+      ],
+      "value": "Uneseni minimalan broj članova je veći od maksimalnog broja članova."
+    }]
+  }, {
+    "id": "afacb76e-85da-48b5-a4e6-d1e15d4ea764",
+    "name": "TP3 NeuspesnoKreiranjeProjektaVecPostoji",
+    "commands": [{
+      "id": "32c96d4d-e161-4a31-afaa-2adec09ee8dc",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/project",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c9ad4476-ca42-415e-a120-e0c38feb4d36",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1030x506",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a9cc9d78-29fc-432a-9c41-ab7b50228bdb",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-projekat",
+      "targets": [
+        ["id=btn-definisi-projekat", "id"],
+        ["css=#btn-definisi-projekat", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-projekat']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "14ffbc1d-4d30-4be8-bce9-9ac95d2fe153",
+      "comment": "",
+      "command": "click",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d869bc62-af8b-465d-8b42-bf5631475018",
+      "comment": "",
+      "command": "type",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "projekat"
+    }, {
+      "id": "1d298cca-f032-427e-a8e3-65e9da244448",
+      "comment": "",
+      "command": "click",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a62c988-1e55-4192-aced-0679e3b8c8f9",
+      "comment": "",
+      "command": "type",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "1aa4199a-6244-42b6-a2b0-e6affc7c0df6",
+      "comment": "",
+      "command": "click",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2aa98bb2-1b9f-4d68-b8dc-00d00a39f7d5",
+      "comment": "",
+      "command": "type",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "eaa3b3ea-8616-4679-9600-ae1d20f57ecc",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d5a54271-cd84-431e-a8e1-5e3a66dea684",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8abb6f61-727f-49dd-9c99-fbf0a008c06d",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "151916d4-fe5f-41e2-ae47-14dc07e71674",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2021-06-30"
+    }, {
+      "id": "e788a600-237a-4437-a301-79f4b113e6b5",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-potvrdi-definisanje",
+      "targets": [
+        ["id=btn-potvrdi-definisanje", "id"],
+        ["css=#btn-potvrdi-definisanje", "css:finder"],
+        ["xpath=//button[@id='btn-potvrdi-definisanje']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[5]/td[2]/button", "xpath:idRelative"],
+        ["xpath=//td[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "14351a50-97af-40d2-bbe5-e42c8babcf1c",
+      "comment": "",
+      "command": "click",
+      "target": "id=modal-btn-potvrdi",
+      "targets": [
+        ["id=modal-btn-potvrdi", "id"],
+        ["css=#modal-btn-potvrdi", "css:finder"],
+        ["xpath=//button[@id='modal-btn-potvrdi']", "xpath:attributes"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e4edebe-eac7-40f8-9d50-922c6e55ef04",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'GREŠKA! Jedan projekat za predmet već postoji.')]", "xpath:innerText"]
+      ],
+      "value": "GREŠKA! Jedan projekat za predmet već postoji."
+    }]
+  }, {
+    "id": "ae7aeb0b-edff-4a83-b01a-8ce34bdadc39",
+    "name": "TP4 UspesnoBrisanjeProjekta",
+    "commands": [{
+      "id": "27a26e61-0b3a-4dad-84bc-42d903428fd5",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/project",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37a42e93-85ec-4464-9a28-d0dc7614b758",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7e57f784-79c5-4b23-8c42-07b0106cda4c",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.btn-danger",
+      "targets": [
+        ["css=.btn-danger", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//tr[@id='14']/td[5]/button", "xpath:idRelative"],
+        ["xpath=//td[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ukloni projekat')]", "xpath:innerText"]
+      ],
+      "value": "Ukloni projekat"
+    }, {
+      "id": "7a459ac0-3602-480d-aca8-f4b998afc494",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-danger",
+      "targets": [
+        ["css=.btn-danger", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//tr[@id='14']/td[5]/button", "xpath:idRelative"],
+        ["xpath=//td[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ukloni projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef2b9d4c-d2c5-49ce-9567-6e153268c9c1",
+      "comment": "",
+      "command": "click",
+      "target": "id=modal-btn-ukloni",
+      "targets": [
+        ["id=modal-btn-ukloni", "id"],
+        ["css=#modal-btn-ukloni", "css:finder"],
+        ["xpath=//button[@id='modal-btn-ukloni']", "xpath:attributes"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3bfdac26-f6b3-44b3-ba46-9fa0585a808a",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-ispis",
+      "targets": [
+        ["id=alert-ispis", "id"],
+        ["css=#alert-ispis", "css:finder"],
+        ["xpath=//p[@id='alert-ispis']", "xpath:attributes"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Uspesno uklonjen projekat')]", "xpath:innerText"]
+      ],
+      "value": "Uspesno uklonjen projekat"
+    }]
+  }, {
+    "id": "9e1c8403-27bb-435e-b164-35b34c5233b0",
+    "name": "TP6: Neuspesno kreiranje projekta - istekao datum",
+    "commands": [{
+      "id": "92146263-ffee-4494-8d2c-67d8b0394dd1",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/project",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3d3b59d3-48bc-4491-8858-1c0d5e6d30c6",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bdc0481d-a2ae-4965-ab3e-5a48a7bb3692",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-projekat",
+      "targets": [
+        ["id=btn-definisi-projekat", "id"],
+        ["css=#btn-definisi-projekat", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-projekat']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc808187-421c-47fa-be36-0a52ae0a04e4",
+      "comment": "",
+      "command": "click",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39a980f9-c175-4639-861e-c8dfb4fd68ce",
+      "comment": "",
+      "command": "type",
+      "target": "id=nazivProjekta",
+      "targets": [
+        ["id=nazivProjekta", "id"],
+        ["name=nazivProjekta", "name"],
+        ["css=#nazivProjekta", "css:finder"],
+        ["xpath=//input[@id='nazivProjekta']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "projekat"
+    }, {
+      "id": "8ab10a74-a35f-41ed-a350-f1f518c72661",
+      "comment": "",
+      "command": "click",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e7676ff-ee4b-4af6-a95c-a4d30efffc3f",
+      "comment": "",
+      "command": "type",
+      "target": "id=minBrojClanova",
+      "targets": [
+        ["id=minBrojClanova", "id"],
+        ["name=minBrClanova", "name"],
+        ["css=#minBrojClanova", "css:finder"],
+        ["xpath=//input[@id='minBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[2]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "b7ed7a2a-fc61-4a08-a09c-f2280884d90d",
+      "comment": "",
+      "command": "click",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50ac66f6-274b-4fac-9387-b1d144300529",
+      "comment": "",
+      "command": "type",
+      "target": "id=maxBrojClanova",
+      "targets": [
+        ["id=maxBrojClanova", "id"],
+        ["name=maxBrClanova", "name"],
+        ["css=#maxBrojClanova", "css:finder"],
+        ["xpath=//input[@id='maxBrojClanova']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "3"
+    }, {
+      "id": "3d7f6584-0595-4029-9329-3aacbfd0a464",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56aadcfe-b39b-43d2-a05a-db972d24d1a8",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6fad495-7beb-49c0-8713-6457c40a5341",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "0002-06-01"
+    }, {
+      "id": "1903ed0d-63ee-447a-8ed6-eab108b485e9",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "0020-06-01"
+    }, {
+      "id": "b67a899e-d7a4-470c-8d08-031b3a4de442",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "0200-06-01"
+    }, {
+      "id": "8039be0e-1097-4151-ad5e-12e919901ac4",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok",
+      "targets": [
+        ["id=rok", "id"],
+        ["name=rok", "name"],
+        ["css=#rok", "css:finder"],
+        ["xpath=//input[@id='rok']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2005-06-01"
+    }, {
+      "id": "65a3c85c-7f4a-4c68-ad81-8667e3c327d1",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-potvrdi-definisanje",
+      "targets": [
+        ["id=btn-potvrdi-definisanje", "id"],
+        ["css=#btn-potvrdi-definisanje", "css:finder"],
+        ["xpath=//button[@id='btn-potvrdi-definisanje']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[5]/td[2]/button", "xpath:idRelative"],
+        ["xpath=//td[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7919633b-be4b-4028-b4f2-ce05068d79a0",
+      "comment": "",
+      "command": "click",
+      "target": "id=modal-btn-potvrdi",
+      "targets": [
+        ["id=modal-btn-potvrdi", "id"],
+        ["css=#modal-btn-potvrdi", "css:finder"],
+        ["xpath=//button[@id='modal-btn-potvrdi']", "xpath:attributes"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "77e45306-ece1-4301-9560-ad7c25655891",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Projekat uspešno definisan')]", "xpath:innerText"]
+      ],
+      "value": "Datum projekata je vec istekao"
+    }]
+  }, {
+    "id": "da82a2a0-405e-41c8-8554-c5f836a726a0",
+    "name": "TP5 Neuspesno kreiranje projekta - nisu sva polja popunjena",
+    "commands": [{
+      "id": "5636be8f-6521-4018-9dc7-957ef5db6c6c",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/project",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e456ba85-60b0-455e-9cb2-c2d70a5b3ce8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "098a61cf-3e22-4716-b49e-4ea6b5374b70",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-projekat",
+      "targets": [
+        ["id=btn-definisi-projekat", "id"],
+        ["css=#btn-definisi-projekat", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-projekat']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bdc52334-88b0-438d-9dc4-6ac75519ab98",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-potvrdi-definisanje",
+      "targets": [
+        ["id=btn-potvrdi-definisanje", "id"],
+        ["css=#btn-potvrdi-definisanje", "css:finder"],
+        ["xpath=//button[@id='btn-potvrdi-definisanje']", "xpath:attributes"],
+        ["xpath=//table[@id='tabela-definisi-projekat']/tbody/tr[5]/td[2]/button", "xpath:idRelative"],
+        ["xpath=//td[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Definiši projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "abe37401-6ae5-4a67-a17c-4c80ff501c38",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Neko polje nije uneseno. Proverite da li ste uneli sva polja u formi.",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "f7bf1f4f-eacf-4388-95a3-21f23dd5ad9d",
+    "name": "TP8 Neuspesno kreiranje lab vezbe - Prazna polja",
+    "commands": [{
+      "id": "5cbdcb9a-06df-4bf3-9034-3bc5a37ecb12",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ed0f784b-87b3-4ce5-ac8b-ddab36ea697a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc4f47aa-cd3a-426a-9637-5bc50ca46b6e",
+      "comment": "",
+      "command": "click",
+      "target": "id=label-kreiraj-lab",
+      "targets": [
+        ["id=label-kreiraj-lab", "id"],
+        ["css=#label-kreiraj-lab", "css:finder"],
+        ["xpath=//label[@id='label-kreiraj-lab']", "xpath:attributes"],
+        ["xpath=//label", "xpath:position"],
+        ["xpath=//label[contains(.,'Kreiraj laboratorijsku vežbu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a8107e43-541b-4802-a86c-e02c7e76b004",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-lab",
+      "targets": [
+        ["id=btn-definisi-lab", "id"],
+        ["css=#btn-definisi-lab", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-lab']", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Kreiraj laboratorijsku vežbu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad8eda27-6c53-4423-9b90-f7a2ae061689",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Neko polje za unos laboratorijske vežbe nije uneseno. Sva polja su obavezna.')]", "xpath:innerText"]
+      ],
+      "value": "Neko polje za unos laboratorijske vežbe nije uneseno. Sva polja su obavezna."
+    }]
+  }, {
+    "id": "9036aaed-3e18-473c-8e11-8ccefa08efd4",
+    "name": "TP7 Neuspesno kreiranje lab vezbe - Vreme za prijavu isteklo",
+    "commands": [{
+      "id": "22db0775-fe04-44c2-b3d8-dff58bcd49c8",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e94b2a8d-3ea7-4549-9c6a-ae70b0032bf9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b09871ab-0885-4991-ad1d-d0f04a6c41e2",
+      "comment": "",
+      "command": "click",
+      "target": "id=label-kreiraj-lab",
+      "targets": [
+        ["id=label-kreiraj-lab", "id"],
+        ["css=#label-kreiraj-lab", "css:finder"],
+        ["xpath=//label[@id='label-kreiraj-lab']", "xpath:attributes"],
+        ["xpath=//label", "xpath:position"],
+        ["xpath=//label[contains(.,'Kreiraj laboratorijsku vežbu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "223ddb3b-8f92-4269-9bf6-d8cd47417434",
+      "comment": "",
+      "command": "click",
+      "target": "id=ime-laba",
+      "targets": [
+        ["id=ime-laba", "id"],
+        ["name=ime-laba", "name"],
+        ["css=#ime-laba", "css:finder"],
+        ["xpath=//input[@id='ime-laba']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "319faab0-d591-495d-af77-e39a2d584c3d",
+      "comment": "",
+      "command": "type",
+      "target": "id=ime-laba",
+      "targets": [
+        ["id=ime-laba", "id"],
+        ["name=ime-laba", "name"],
+        ["css=#ime-laba", "css:finder"],
+        ["xpath=//input[@id='ime-laba']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "lab"
+    }, {
+      "id": "c75022ed-1a46-4672-ac93-79f63ae87fd2",
+      "comment": "",
+      "command": "type",
+      "target": "id=opis-laba",
+      "targets": [
+        ["id=opis-laba", "id"],
+        ["name=opis-laba", "name"],
+        ["css=#opis-laba", "css:finder"],
+        ["xpath=//textarea[@id='opis-laba']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "opis"
+    }, {
+      "id": "3696e99d-fe1d-4ceb-b512-571a062b6c40",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok-laba",
+      "targets": [
+        ["id=rok-laba", "id"],
+        ["name=rok-laba", "name"],
+        ["css=#rok-laba", "css:finder"],
+        ["xpath=//input[@id='rok-laba']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6c1644a0-f39c-471d-8874-2c6df917f543",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok-laba",
+      "targets": [
+        ["id=rok-laba", "id"],
+        ["name=rok-laba", "name"],
+        ["css=#rok-laba", "css:finder"],
+        ["xpath=//input[@id='rok-laba']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "542d65cf-f826-433d-9a9e-fcb2a2f1ef69",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok-laba",
+      "targets": [
+        ["id=rok-laba", "id"],
+        ["name=rok-laba", "name"],
+        ["css=#rok-laba", "css:finder"],
+        ["xpath=//input[@id='rok-laba']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "1999-06-01T00:00"
+    }, {
+      "id": "d18353c8-7f53-4ded-9208-ce333659b22e",
+      "comment": "",
+      "command": "click",
+      "target": "id=sala",
+      "targets": [
+        ["id=sala", "id"],
+        ["name=sala", "name"],
+        ["css=#sala", "css:finder"],
+        ["xpath=//input[@id='sala']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "09ea4c3d-1e09-44af-9dad-2959c3bf4070",
+      "comment": "",
+      "command": "type",
+      "target": "id=sala",
+      "targets": [
+        ["id=sala", "id"],
+        ["name=sala", "name"],
+        ["css=#sala", "css:finder"],
+        ["xpath=//input[@id='sala']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td/input", "xpath:position"]
+      ],
+      "value": "4"
+    }, {
+      "id": "d60b0277-5ada-44bb-9b6c-3530286a4a45",
+      "comment": "",
+      "command": "click",
+      "target": "id=kapacitet",
+      "targets": [
+        ["id=kapacitet", "id"],
+        ["name=kapacitet", "name"],
+        ["css=#kapacitet", "css:finder"],
+        ["xpath=//input[@id='kapacitet']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba46fa5c-9fa4-4950-b40a-bc43956951c8",
+      "comment": "",
+      "command": "type",
+      "target": "id=kapacitet",
+      "targets": [
+        ["id=kapacitet", "id"],
+        ["name=kapacitet", "name"],
+        ["css=#kapacitet", "css:finder"],
+        ["xpath=//input[@id='kapacitet']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "43"
+    }, {
+      "id": "d8587e91-ce52-4d89-82f6-bc79ccc629a7",
+      "comment": "",
+      "command": "click",
+      "target": "id=lokacija",
+      "targets": [
+        ["id=lokacija", "id"],
+        ["name=lokacija", "name"],
+        ["css=#lokacija", "css:finder"],
+        ["xpath=//input[@id='lokacija']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[3]/input", "xpath:idRelative"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df7828ea-3845-4390-9bc8-dea30614b4ca",
+      "comment": "",
+      "command": "type",
+      "target": "id=lokacija",
+      "targets": [
+        ["id=lokacija", "id"],
+        ["name=lokacija", "name"],
+        ["css=#lokacija", "css:finder"],
+        ["xpath=//input[@id='lokacija']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[3]/input", "xpath:idRelative"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": "ETF"
+    }, {
+      "id": "634d3bc1-731f-4d04-a247-3ac21ffbff54",
+      "comment": "",
+      "command": "click",
+      "target": "id=datum-vreme",
+      "targets": [
+        ["id=datum-vreme", "id"],
+        ["name=datum-vreme", "name"],
+        ["css=#datum-vreme", "css:finder"],
+        ["xpath=//input[@id='datum-vreme']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[4]/input", "xpath:idRelative"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22c27037-c40d-4600-a23d-bddbb9356431",
+      "comment": "",
+      "command": "click",
+      "target": "id=datum-vreme",
+      "targets": [
+        ["id=datum-vreme", "id"],
+        ["name=datum-vreme", "name"],
+        ["css=#datum-vreme", "css:finder"],
+        ["xpath=//input[@id='datum-vreme']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[4]/input", "xpath:idRelative"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d734a49d-97da-441c-9c8b-33d57d6fb86f",
+      "comment": "",
+      "command": "type",
+      "target": "id=datum-vreme",
+      "targets": [
+        ["id=datum-vreme", "id"],
+        ["name=datum-vreme", "name"],
+        ["css=#datum-vreme", "css:finder"],
+        ["xpath=//input[@id='datum-vreme']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[4]/input", "xpath:idRelative"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": "2021-06-10T12:35"
+    }, {
+      "id": "d27d7dfe-f4af-437d-a5cd-c2c6f6f3c827",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-dodaj-termin",
+      "targets": [
+        ["id=btn-dodaj-termin", "id"],
+        ["css=#btn-dodaj-termin", "css:finder"],
+        ["xpath=//button[@id='btn-dodaj-termin']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[5]/button", "xpath:idRelative"],
+        ["xpath=//td[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'+')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe72e5b3-ab9f-40da-8717-e9cd5f4a15dc",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=btn-dodaj-termin",
+      "targets": [
+        ["id=btn-dodaj-termin", "id"],
+        ["css=#btn-dodaj-termin", "css:finder"],
+        ["xpath=//button[@id='btn-dodaj-termin']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[5]/button", "xpath:idRelative"],
+        ["xpath=//td[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'+')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "df72e140-80b8-4825-b560-939d4e0fef2a",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=btn-dodaj-termin",
+      "targets": [
+        ["id=btn-dodaj-termin", "id"],
+        ["css=#btn-dodaj-termin", "css:finder"],
+        ["xpath=//button[@id='btn-dodaj-termin']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[5]/button", "xpath:idRelative"],
+        ["xpath=//td[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'+')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "598446b6-c65e-4f90-84e6-c1dc2f2c9e92",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-lab",
+      "targets": [
+        ["id=btn-definisi-lab", "id"],
+        ["css=#btn-definisi-lab", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-lab']", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Kreiraj laboratorijsku vežbu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d9f35e4-ded3-43b6-93dd-b58395fc1ebc",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Laboratorijska vežba uspešno kreirana.')]", "xpath:innerText"]
+      ],
+      "value": "Uneseni datum i vreme isteka prijave su prošli."
+    }]
+  }, {
+    "id": "46e31d6a-8489-4e8e-9351-c8ac815aa2c0",
+    "name": "TP9 Neuspesno kreiranje lab vezbe - Nije unesen nijedan termin",
+    "commands": [{
+      "id": "54e3c680-1abb-4c67-becf-41aab75fa41a",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "633fffc0-32d5-4e88-b423-b539e3ab449a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "700d08f1-64f1-42c0-b70a-78ad1aaa22ae",
+      "comment": "",
+      "command": "click",
+      "target": "id=label-kreiraj-lab",
+      "targets": [
+        ["id=label-kreiraj-lab", "id"],
+        ["css=#label-kreiraj-lab", "css:finder"],
+        ["xpath=//label[@id='label-kreiraj-lab']", "xpath:attributes"],
+        ["xpath=//label", "xpath:position"],
+        ["xpath=//label[contains(.,'Kreiraj laboratorijsku vežbu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "31226a1f-28db-47ef-98a9-fc4296253e53",
+      "comment": "",
+      "command": "click",
+      "target": "id=ime-laba",
+      "targets": [
+        ["id=ime-laba", "id"],
+        ["name=ime-laba", "name"],
+        ["css=#ime-laba", "css:finder"],
+        ["xpath=//input[@id='ime-laba']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2ab7373-072a-42d7-a54d-c81ca2c1f73a",
+      "comment": "",
+      "command": "type",
+      "target": "id=ime-laba",
+      "targets": [
+        ["id=ime-laba", "id"],
+        ["name=ime-laba", "name"],
+        ["css=#ime-laba", "css:finder"],
+        ["xpath=//input[@id='ime-laba']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ime"
+    }, {
+      "id": "b0f866ff-5e52-4a5b-b13f-f2e0069eedab",
+      "comment": "",
+      "command": "type",
+      "target": "id=opis-laba",
+      "targets": [
+        ["id=opis-laba", "id"],
+        ["name=opis-laba", "name"],
+        ["css=#opis-laba", "css:finder"],
+        ["xpath=//textarea[@id='opis-laba']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "opis"
+    }, {
+      "id": "a93aefc1-ab63-4de8-bfdf-bb507fc167f2",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok-laba",
+      "targets": [
+        ["id=rok-laba", "id"],
+        ["name=rok-laba", "name"],
+        ["css=#rok-laba", "css:finder"],
+        ["xpath=//input[@id='rok-laba']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b646b0d0-8b66-4c6a-8374-9b8b0394d98f",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok-laba",
+      "targets": [
+        ["id=rok-laba", "id"],
+        ["name=rok-laba", "name"],
+        ["css=#rok-laba", "css:finder"],
+        ["xpath=//input[@id='rok-laba']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2022-06-30T13:45"
+    }, {
+      "id": "a2f03412-b424-4ce2-bfb6-42a5f6139d98",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-definisi-lab",
+      "targets": [
+        ["id=btn-definisi-lab", "id"],
+        ["css=#btn-definisi-lab", "css:finder"],
+        ["xpath=//button[@id='btn-definisi-lab']", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Kreiraj laboratorijsku vežbu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af1fb238-1f27-4491-bdc5-c124662325e6",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Nije unesen nijedan termin.')]", "xpath:innerText"]
+      ],
+      "value": "Nije unesen nijedan termin."
+    }]
+  }, {
+    "id": "9ed5454c-4420-42b6-8acf-26961fc3a23d",
+    "name": "TP10 Neuspesno kreiranje lab vezbe - Vreme termina isteklo",
+    "commands": [{
+      "id": "2ad0c627-6623-490f-ba51-1d037e0a12ec",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher/subject/ORT1/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "46753e41-7811-4cef-bfe8-301893f7f011",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x704",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fa92aac2-f0da-4870-afb6-2d4edb320d39",
+      "comment": "",
+      "command": "click",
+      "target": "id=label-kreiraj-lab",
+      "targets": [
+        ["id=label-kreiraj-lab", "id"],
+        ["css=#label-kreiraj-lab", "css:finder"],
+        ["xpath=//label[@id='label-kreiraj-lab']", "xpath:attributes"],
+        ["xpath=//label", "xpath:position"],
+        ["xpath=//label[contains(.,'Kreiraj laboratorijsku vežbu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f9031bb-18f0-4036-8d60-4504f4ae1621",
+      "comment": "",
+      "command": "click",
+      "target": "id=ime-laba",
+      "targets": [
+        ["id=ime-laba", "id"],
+        ["name=ime-laba", "name"],
+        ["css=#ime-laba", "css:finder"],
+        ["xpath=//input[@id='ime-laba']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98a10dd5-fdf0-4d36-8c91-beb7effe82c3",
+      "comment": "",
+      "command": "type",
+      "target": "id=ime-laba",
+      "targets": [
+        ["id=ime-laba", "id"],
+        ["name=ime-laba", "name"],
+        ["css=#ime-laba", "css:finder"],
+        ["xpath=//input[@id='ime-laba']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ime"
+    }, {
+      "id": "0157b263-17d2-482b-9e18-fbe2d610c1f7",
+      "comment": "",
+      "command": "type",
+      "target": "id=opis-laba",
+      "targets": [
+        ["id=opis-laba", "id"],
+        ["name=opis-laba", "name"],
+        ["css=#opis-laba", "css:finder"],
+        ["xpath=//textarea[@id='opis-laba']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "opis"
+    }, {
+      "id": "4c2c6739-7ad3-41a3-97e8-7a0adaf4d8c7",
+      "comment": "",
+      "command": "click",
+      "target": "id=rok-laba",
+      "targets": [
+        ["id=rok-laba", "id"],
+        ["name=rok-laba", "name"],
+        ["css=#rok-laba", "css:finder"],
+        ["xpath=//input[@id='rok-laba']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ef37f86-7204-4144-9746-7c6d6530a6ac",
+      "comment": "",
+      "command": "type",
+      "target": "id=rok-laba",
+      "targets": [
+        ["id=rok-laba", "id"],
+        ["name=rok-laba", "name"],
+        ["css=#rok-laba", "css:finder"],
+        ["xpath=//input[@id='rok-laba']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "2021-06-30T14:00"
+    }, {
+      "id": "ebc251bd-02f8-4848-bf22-210992ed75a2",
+      "comment": "",
+      "command": "click",
+      "target": "id=sala",
+      "targets": [
+        ["id=sala", "id"],
+        ["name=sala", "name"],
+        ["css=#sala", "css:finder"],
+        ["xpath=//input[@id='sala']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4749dce9-9c53-48fb-8714-c6d7876c1edf",
+      "comment": "",
+      "command": "type",
+      "target": "id=sala",
+      "targets": [
+        ["id=sala", "id"],
+        ["name=sala", "name"],
+        ["css=#sala", "css:finder"],
+        ["xpath=//input[@id='sala']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "af7ebee3-e3d9-468b-be52-5f1dad8e321a",
+      "comment": "",
+      "command": "click",
+      "target": "id=kapacitet",
+      "targets": [
+        ["id=kapacitet", "id"],
+        ["name=kapacitet", "name"],
+        ["css=#kapacitet", "css:finder"],
+        ["xpath=//input[@id='kapacitet']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b84fd967-4e0c-4db7-add0-3ff079ccec42",
+      "comment": "",
+      "command": "type",
+      "target": "id=kapacitet",
+      "targets": [
+        ["id=kapacitet", "id"],
+        ["name=kapacitet", "name"],
+        ["css=#kapacitet", "css:finder"],
+        ["xpath=//input[@id='kapacitet']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "44c1a917-0aa3-4856-92e0-5c381562c8a4",
+      "comment": "",
+      "command": "click",
+      "target": "id=lokacija",
+      "targets": [
+        ["id=lokacija", "id"],
+        ["name=lokacija", "name"],
+        ["css=#lokacija", "css:finder"],
+        ["xpath=//input[@id='lokacija']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[3]/input", "xpath:idRelative"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e524298e-003b-4a66-9a4d-d656c0dea188",
+      "comment": "",
+      "command": "type",
+      "target": "id=lokacija",
+      "targets": [
+        ["id=lokacija", "id"],
+        ["name=lokacija", "name"],
+        ["css=#lokacija", "css:finder"],
+        ["xpath=//input[@id='lokacija']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[3]/input", "xpath:idRelative"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": "ETF"
+    }, {
+      "id": "8eb90978-bda6-4716-9e5a-0a8759c84784",
+      "comment": "",
+      "command": "click",
+      "target": "id=datum-vreme",
+      "targets": [
+        ["id=datum-vreme", "id"],
+        ["name=datum-vreme", "name"],
+        ["css=#datum-vreme", "css:finder"],
+        ["xpath=//input[@id='datum-vreme']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[4]/input", "xpath:idRelative"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7c22771-0270-47e9-8fc2-9e118218db7e",
+      "comment": "",
+      "command": "click",
+      "target": "id=datum-vreme",
+      "targets": [
+        ["id=datum-vreme", "id"],
+        ["name=datum-vreme", "name"],
+        ["css=#datum-vreme", "css:finder"],
+        ["xpath=//input[@id='datum-vreme']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[4]/input", "xpath:idRelative"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f84d7bef-d6a8-4ee9-9537-3e5ec34cbec0",
+      "comment": "",
+      "command": "type",
+      "target": "id=datum-vreme",
+      "targets": [
+        ["id=datum-vreme", "id"],
+        ["name=datum-vreme", "name"],
+        ["css=#datum-vreme", "css:finder"],
+        ["xpath=//input[@id='datum-vreme']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[4]/input", "xpath:idRelative"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": "2000-01-01T00:00"
+    }, {
+      "id": "b2b4497e-d83e-4f3d-9d73-038a10c0ebb6",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-dodaj-termin",
+      "targets": [
+        ["id=btn-dodaj-termin", "id"],
+        ["css=#btn-dodaj-termin", "css:finder"],
+        ["xpath=//button[@id='btn-dodaj-termin']", "xpath:attributes"],
+        ["xpath=//tr[@id='forma-dodaj-lab']/td[5]/button", "xpath:idRelative"],
+        ["xpath=//td[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'+')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "58d603d7-c42f-43e2-a9e3-9455584011bc",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=alert-tekst",
+      "targets": [
+        ["id=alert-tekst", "id"],
+        ["css=#alert-tekst", "css:finder"],
+        ["xpath=//p[@id='alert-tekst']", "xpath:attributes"],
+        ["xpath=//div[@id='alert']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Uneseni datum i vreme održavanja termina su prošli.')]", "xpath:innerText"]
+      ],
+      "value": "Uneseni datum i vreme održavanja termina su prošli."
+    }]
+  }],
+  "suites": [{
+    "id": "6b86ab60-fddd-4b50-ba5b-db3b9977c3fa",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["61d28ae7-f93f-49ca-8abe-e8898f43bd16"]
+  }],
+  "urls": ["http://127.0.0.1:8000/teacher/subject/ORT1/project", "http://127.0.0.1:8000/teacher/subject/ORT1/lab"],
+  "plugins": []
+}
