@@ -1,0 +1,6 @@
+Preduslovi za test primere: 
+-da je korisnik prijavljen kao student (svi test primeri)
+-da je prijavio odgovarajuci predmet (svi test primeri)
+-da postoji laboratorijska vezba na datom predmetu sa odredjenim terminom (svi test primeri osim prikaza izabranih predmeta)
+-da postoje odgovarajuci termini za laboratorijsku vezbu (test primeri vezani za zamenu termina)
+

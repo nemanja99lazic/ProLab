@@ -926,6 +926,7 @@ class StudentController extends Controller
         if (is_null($project)) {
             return response()->json(["status"=>"not_ok","message"=> "project not exist"], 200);
         }
+        $minMemberNumber = $project->minMemberNumber;
         if ($project->hasExpired()) {
             return response()->json(["status"=>"not_ok","message"=> "project expired"], 200);
         }
@@ -935,6 +936,9 @@ class StudentController extends Controller
         }
         if ($team->idLeader !== $user->idUser) {
             return response()->json(["status"=>"not_ok","message"=> "not a leader"], 200);
+        }
+        if ($team->members->count() <= $minMemberNumber) {
+            return response()->json(["status"=>"not_ok","message"=> "not have enough members"], 200);
         }
         $team->locked = 1;
         $team->save();

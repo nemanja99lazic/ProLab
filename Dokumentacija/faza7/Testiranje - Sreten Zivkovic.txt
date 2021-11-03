@@ -1,0 +1,19 @@
+
+TP1
+Uslov: prijavljen kao profesor, ne postoji projekat za dati predmet
+
+
+
+TP2 Veci max broj studenata od min broja studenata
+uslov: prijavljen kao profesor
+
+TP3: Projekat vec postoji
+uslov: prijavljen kao profesor, projekat vec postoji
+
+TP4: Brisanje projekta
+Uslov: prijavljen kao profesor, projekat vec postoji
+
+
+Uslov prijavljen kao profesor
+TP5, TP6, TP7, TP8, TP9, TP10
+Uslov: prijavljen kao profesor

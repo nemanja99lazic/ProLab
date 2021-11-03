@@ -1,0 +1,1358 @@
+{
+  "id": "f88876f0-90d2-4edd-9c14-457e98453fa5",
+  "version": "2.0",
+  "name": "Test_primeri_Slobodan_Katanic_2018_0133",
+  "url": "http://localhost:8000/student/subject/AR/lab",
+  "tests": [{
+    "id": "c99e12c2-1fb7-409a-836f-bf4a722ae878",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "92736cc5-2d5a-4de9-a497-e7d273c66aa1",
+    "name": "TP1_PrikazIzabranihPredmeta_USPESNO",
+    "commands": [{
+      "id": "1102dd50-bb51-47bf-bc94-4423151d6fe7",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "85bb8fea-c81f-4b56-9a51-8095b138ae19",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x880",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ac73ae55-4b78-48ba-900b-711f2c571e50",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9ba2af7-caa1-4229-9c4e-87b845227719",
+      "comment": "",
+      "command": "verifyTitle",
+      "target": "Izabrani predmeti",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8366d198-a8fa-4be1-98e1-56c572170baa",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.font-weight-bold:nth-child(1)",
+      "targets": [
+        ["css=.font-weight-bold:nth-child(1)", "css:finder"],
+        ["xpath=//th", "xpath:position"],
+        ["xpath=//th[contains(.,'Predmet')]", "xpath:innerText"]
+      ],
+      "value": "Predmet"
+    }, {
+      "id": "c3eae863-3e5d-44ed-ae05-0afbf18ae1dc",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr > .font-weight-bold:nth-child(2)",
+      "targets": [
+        ["css=tr > .font-weight-bold:nth-child(2)", "css:finder"],
+        ["xpath=//th[2]", "xpath:position"],
+        ["xpath=//th[contains(.,'Stranica')]", "xpath:innerText"]
+      ],
+      "value": "Stranica"
+    }]
+  }, {
+    "id": "52e79d61-563d-4521-a5b7-5f6171487e79",
+    "name": "TP3_Student_PrikazLaboratorijskihVezbiZaPredmet_USPESNO",
+    "commands": [{
+      "id": "a79d4b57-4bb6-463e-92c6-9e219f6a427a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/chosen",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c694cffa-ba44-4990-87ce-66a0c2c1130f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9226d1a7-6084-423f-b8cb-61ed279cc3ae",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(4) a",
+      "targets": [
+        ["css=tr:nth-child(4) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[4]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/AR/index']", "xpath:href"],
+        ["xpath=//tr[4]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "07e96f56-1fb7-4870-b57d-75224f4db2cd",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-lab-tab",
+      "targets": [
+        ["id=nav-lab-tab", "id"],
+        ["linkText=Laboratorijske vežbe", "linkText"],
+        ["css=#nav-lab-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Laboratorijske vežbe')]", "xpath:link"],
+        ["xpath=//a[@id='nav-lab-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[4]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Laboratorijske vežbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9edad31-16ca-4b8e-ba8c-d647c3fbfc5a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Spisak svih laboratorijskih vežbi')]", "xpath:innerText"]
+      ],
+      "value": "Spisak svih laboratorijskih vežbi"
+    }]
+  }, {
+    "id": "2e5cf405-0371-4c6a-8db1-df20f1d00f78",
+    "name": "TP4_Student_PrikazTerminaLaboratorijskeVezbe_USPESNO",
+    "commands": [{
+      "id": "cb15e7d6-beb1-4a4e-8df7-0eed7148ed80",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/AR/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "168a10d2-c9d2-4f6d-895c-e77cdf9a8d55",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "43a31505-264f-42e7-b73a-2e7a795afea3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab1",
+      "targets": [
+        ["linkText=Lab1", "linkText"],
+        ["css=.col-6 tr:nth-child(1) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab1')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/AR/lab/3/join']", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f49eb31-8fa9-470f-a83b-ff376b831cac",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "ba586e94-6acc-4256-bbaf-d48cc36da996",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row:nth-child(7)",
+      "targets": [
+        ["css=.row:nth-child(7)", "css:finder"],
+        ["xpath=//main/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e78cfe1-41c5-48d2-b71b-c1b199156c86",
+      "comment": "",
+      "command": "click",
+      "target": "css=main",
+      "targets": [
+        ["css=main", "css:finder"],
+        ["xpath=//main", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c3a0b1a-c328-4a8b-98d2-12de2c5921c0",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "82266d7f-21c4-4773-86df-c471f7b5dd12",
+    "name": "TP2_Student_PrijavaNaTerminLaboratorijskeVezbe_USPESNO",
+    "commands": [{
+      "id": "733ed6f9-88e2-4b66-9b0b-cf8343926ae4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/AR/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5a356b11-01e3-4b5c-8b19-6f9b994c385f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "45a4ea7b-8a26-41e4-a898-25743a8b8c85",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab1",
+      "targets": [
+        ["linkText=Lab1", "linkText"],
+        ["css=.col-6 tr:nth-child(1) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab1')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/AR/lab/3/join']", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "baf26156-0507-45dc-ac8e-7c60c42cea1d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "006783d3-906e-4dbf-b554-78c7993df346",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1aef9cc-faa6-4572-9d23-f93102c3c407",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 15.07.2021, 10:00')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3744456-844d-4e5a-afcc-99a407bdd44a",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=.row:nth-child(10) > .col-6:nth-child(1) #btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec35df2c-a69c-471a-bb20-91c425b0579e",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=.row:nth-child(10) > .col-6:nth-child(1) #btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f6eb4e87-dde9-4cf1-91be-60f0162fde78",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.row:nth-child(10) > .col-6:nth-child(1) form:nth-child(3) > .btn",
+      "targets": [
+        ["css=.row:nth-child(10) > .col-6:nth-child(1) form:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Odjavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "335c2f8a-33ee-4154-b7a1-721ec3bd3b99",
+    "name": "TP5_PrijavaNaTerminLaboratorijskeVezbe_VecPrijavljen_USPESNO",
+    "commands": [{
+      "id": "0bc698a3-851a-4cfb-b3ab-f8bf27ed1901",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/ASP1/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8ba5cfe2-7df9-4d2f-b2bf-0b155cccbda7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e4dafb1-bc3c-49e7-9559-566430549554",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab2",
+      "targets": [
+        ["linkText=Lab2", "linkText"],
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab2')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/ASP1/lab/8/join']", "xpath:href"],
+        ["xpath=//tr[2]/td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e5f8cbd-30d5-4842-b308-fac33137d242",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "3e50907f-79c7-44e5-937e-ede3ca6866fd",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dcc7291c-057e-4e99-a241-5ef396449a19",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 17.07.2021, 03:42')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f71fa026-5559-4d18-abc2-f2988a7f8d8f",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.col-6:nth-child(1) form:nth-child(3) > .btn",
+      "targets": [
+        ["css=.col-6:nth-child(1) form:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Odjavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2387b5d1-0aa8-4e1b-872a-c88a57dc0298",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.col-6:nth-child(2) #btn-termin-prijava",
+      "targets": [
+        ["css=.col-6:nth-child(2) #btn-termin-prijava", "css:finder"],
+        ["xpath=(//button[@id='btn-termin-prijava'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/table/thead/tr/th/div/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b272bc9a-8fef-43cf-a43f-97a1923efd21",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-6:nth-child(2) #btn-termin-prijava",
+      "targets": [
+        ["css=.col-6:nth-child(2) #btn-termin-prijava", "css:finder"],
+        ["xpath=(//button[@id='btn-termin-prijava'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/table/thead/tr/th/div/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d53c2232-f812-4124-8c52-10fa87b8e2c7",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.col-6:nth-child(2) form:nth-child(3) > .btn",
+      "targets": [
+        ["css=.col-6:nth-child(2) form:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[4]", "xpath:attributes"],
+        ["xpath=//div[2]/table/thead/tr/th/div/form[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "82291722-b693-4af3-baaa-2de1a3bd61e1",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=.col-6:nth-child(1) #btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "70934492-7b4b-46df-9539-74b5bfd2dcb8",
+    "name": "TP5_PrijavaNaTerminLaboratorijskeVezbe_IstekaoRok_NEUSPESNO",
+    "commands": [{
+      "id": "0267378d-05de-463d-a74c-b5c01d60b8c0",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/AR/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "025069bd-6ce9-48ca-93e2-3116705d1455",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "67b97364-3505-4079-b9c2-50723a482500",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab3",
+      "targets": [
+        ["linkText=Lab3", "linkText"],
+        ["css=.col-5 a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab3')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/AR/lab/5/join']", "xpath:href"],
+        ["xpath=//div[2]/table/tbody/tr/td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "83261578-dfbb-463c-a4fd-1436d1c41db4",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "66644250-3807-4252-9713-91ee58348a4f",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af0e9a56-655f-45de-a7f0-fae290d78a19",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 06.06.2021, 22:38')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "91a4e8a2-15f6-4c8a-948c-2e6c43a3358f",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=#btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9fca34bf-3805-434b-b377-0a15b2146a91",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=#btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "23e39485-2ab8-43d9-a585-6101d078f079",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Spisak svih laboratorijskih vežbi')]", "xpath:innerText"]
+      ],
+      "value": "Spisak svih laboratorijskih vežbi"
+    }, {
+      "id": "f5c84e5e-b82b-4a0f-b15a-10668d2ac5b2",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//main/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa80d924-7951-48fc-87fd-08a45e861eb9",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=small",
+      "targets": [
+        ["css=small", "css:finder"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'Rok za prijavu na Lab3 je prošao.')]", "xpath:innerText"]
+      ],
+      "value": "Rok za prijavu na Lab3 je prošao."
+    }]
+  }, {
+    "id": "7ecc36de-6070-4630-964c-107f7f5be2fa",
+    "name": "TP6_Student_OdjavaSaTerminaLaboratorijskeVezbe_USPESNO",
+    "commands": [{
+      "id": "af391107-1128-4735-972f-a246a2ded844",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/AR/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "28a7b974-ce22-4daf-86a9-c71fc6535645",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e275aaea-11ec-44c1-ac53-b1d82f4663e7",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab1",
+      "targets": [
+        ["linkText=Lab1", "linkText"],
+        ["css=.col-6 tr:nth-child(1) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab1')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/AR/lab/3/join']", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7671c8b2-b5d2-40ca-ac2d-6a3ddc33d7eb",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "21a2afcb-97e3-4e11-bb9e-bcc77a959f36",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9e79e0d-416b-4c45-8925-2a08c902b19b",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 15.07.2021, 10:00')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4da5d571-f065-4966-a606-409077184ea7",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.row:nth-child(10) > .col-6:nth-child(1) form:nth-child(3) > .btn",
+      "targets": [
+        ["css=.row:nth-child(10) > .col-6:nth-child(1) form:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Odjavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d0e9d96-bbbc-412b-94f2-1d624649e63c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row:nth-child(10) > .col-6:nth-child(1) form:nth-child(3) > .btn",
+      "targets": [
+        ["css=.row:nth-child(10) > .col-6:nth-child(1) form:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Odjavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d3add4e-82f4-49e0-9fc0-4895c01f6342",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=.row:nth-child(10) > .col-6:nth-child(1) #btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "2f4615f3-124b-4018-85c2-ab755261e73f",
+    "name": "TP8_PrijavaNaTerminLaboratorijskeVezbe_PunTermin_NEUSPESNO",
+    "commands": [{
+      "id": "19a0ce7c-91e0-48a8-8c34-7ff0859f8ece",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/ASP1/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a3ae8450-9edf-44b7-9c8c-73f21c875e42",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d8cf0e54-7e11-4ec0-87a1-29cad689e1b8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab1",
+      "targets": [
+        ["linkText=Lab1", "linkText"],
+        ["css=tr:nth-child(1) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab1')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/ASP1/lab/7/join']", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "37a505c7-9754-451c-a3ee-814390d6d5b9",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "cf79adeb-339c-4d3a-aba1-9b91aecf11fe",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c77a311a-455d-4fc4-9b65-ea661f9fa229",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 10.07.2021, 03:40')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "11dd3105-7d12-4c0c-82a9-c86187d4a5e4",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=.col-6:nth-child(1) #btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fa137eb-ef95-4001-95cf-8faf7e1eca12",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-termin-prijava",
+      "targets": [
+        ["id=btn-termin-prijava", "id"],
+        ["css=.col-6:nth-child(1) #btn-termin-prijava", "css:finder"],
+        ["xpath=//button[@id='btn-termin-prijava']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "41db0407-8cb0-48d7-8125-1f174f2919fa",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=p > small",
+      "targets": [
+        ["css=p > small", "css:finder"],
+        ["xpath=//p/small", "xpath:position"],
+        ["xpath=//small[contains(.,'Termin je popunjen. Potražite ostale termine.')]", "xpath:innerText"]
+      ],
+      "value": "Termin je popunjen. Potražite ostale termine."
+    }, {
+      "id": "53fc6d7d-e09a-4837-a972-e77efedf7cb9",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[4]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "cf963432-9d84-4f02-a743-026b2f69d4e9",
+    "name": "TP_Zamena_BezPrijave",
+    "commands": [{
+      "id": "92fd2e7b-f629-4c6c-a978-0f1a38150e10",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/ASP1/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "64f6e784-23d7-4bc4-a8e4-7e9b69d81e4a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5be56147-6222-447c-a803-d6d97fb00ff9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab3",
+      "targets": [
+        ["linkText=Lab3", "linkText"],
+        ["css=tr:nth-child(3) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab3')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/ASP1/lab/9/join']", "xpath:href"],
+        ["xpath=//tr[3]/td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "65f1c8e2-e9d9-4501-98de-a0958bc26f52",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "5b9d4d96-5dde-4a7e-adde-60fc00442b2d",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fed282f-103b-4b7d-b97c-a1f2060b4ecd",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 20.08.2021, 03:43')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "08c5197b-0bb8-4ac3-9565-b40a25c0edad",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-swapAppointments",
+      "targets": [
+        ["id=v-pill-swapAppointments", "id"],
+        ["linkText=Zamena termina", "linkText"],
+        ["css=#v-pill-swapAppointments", "css:finder"],
+        ["xpath=//a[contains(text(),'Zamena termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapAppointments']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-new']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[7]", "xpath:href"],
+        ["xpath=//main/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zamena termina')]", "xpath:innerText"]
+      ],
+      "value": "Zamena termina"
+    }, {
+      "id": "e72003c9-387b-4179-873f-3a7c1b5b6e68",
+      "comment": "",
+      "command": "click",
+      "target": "id=v-pill-swapAppointments",
+      "targets": [
+        ["id=v-pill-swapAppointments", "id"],
+        ["linkText=Zamena termina", "linkText"],
+        ["css=#v-pill-swapAppointments", "css:finder"],
+        ["xpath=//a[contains(text(),'Zamena termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapAppointments']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-new']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[7]", "xpath:href"],
+        ["xpath=//main/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zamena termina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f75ace7-eaae-4f5b-8402-d845bd16deaa",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=p > small",
+      "targets": [
+        ["css=p > small", "css:finder"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'Ne možete uraditi zamenu ako niste prijavljeni na neki termin.')]", "xpath:innerText"]
+      ],
+      "value": "Ne možete uraditi zamenu ako niste prijavljeni na neki termin."
+    }, {
+      "id": "4327f15f-658d-44fa-8963-aa004cfea2ae",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "078fb9c6-bfb2-468d-9f5a-bd5e5a743186",
+    "name": "TP_ZamenaTermina_USPESNO",
+    "commands": [{
+      "id": "f8abc71d-c07b-4f24-aa60-3e089829582d",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/AR/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e826efbf-1352-4423-9f78-1d9580ac5c04",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aaf8b5c4-f711-4e88-8e2e-dccb91c43f98",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab2",
+      "targets": [
+        ["linkText=Lab2", "linkText"],
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab2')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/AR/lab/4/join']", "xpath:href"],
+        ["xpath=//tr[2]/td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0f3ce81-fc5d-454b-a83b-c6e285ab7dcf",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "4461a991-05f2-4a4a-a647-e4c6e0c8ca92",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "51d94356-7e99-483a-b35a-38f3de8ae955",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 27.07.2021, 10:00')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc5ae785-5f3a-4d3c-be7a-3ec57143cf19",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.col-6:nth-child(1) form:nth-child(3) > .btn",
+      "targets": [
+        ["css=.col-6:nth-child(1) form:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Odjavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "00fe50a5-dcf1-49b2-a271-2faf7ca4d731",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-swapAppointments",
+      "targets": [
+        ["id=v-pill-swapAppointments", "id"],
+        ["linkText=Zamena termina", "linkText"],
+        ["css=#v-pill-swapAppointments", "css:finder"],
+        ["xpath=//a[contains(text(),'Zamena termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapAppointments']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-new']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[7]", "xpath:href"],
+        ["xpath=//main/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zamena termina')]", "xpath:innerText"]
+      ],
+      "value": "Zamena termina"
+    }, {
+      "id": "b976a3db-cdaf-4807-b3a9-ab0ae5aebc39",
+      "comment": "",
+      "command": "click",
+      "target": "id=v-pill-swapAppointments",
+      "targets": [
+        ["id=v-pill-swapAppointments", "id"],
+        ["linkText=Zamena termina", "linkText"],
+        ["css=#v-pill-swapAppointments", "css:finder"],
+        ["xpath=//a[contains(text(),'Zamena termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapAppointments']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-new']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[7]", "xpath:href"],
+        ["xpath=//main/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zamena termina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "868b018a-b044-43fa-a17e-e69d9af6e172",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Izaberite sa kime biste želeli da zamenite termin:')]", "xpath:innerText"]
+      ],
+      "value": "Izaberite sa kime biste želeli da zamenite termin:"
+    }, {
+      "id": "623976bc-692e-4be1-a11c-b0b12908044b",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.text-center:nth-child(2) .font-weight-bold",
+      "targets": [
+        ["css=.text-center:nth-child(2) .font-weight-bold", "css:finder"],
+        ["xpath=//th[2]/h2/small", "xpath:position"],
+        ["xpath=//small[contains(.,'Ime, prezime i broj indeksa')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "848d5895-36f4-4aec-8c19-dcf6bdf9588f",
+      "comment": "",
+      "command": "click",
+      "target": "id=odabrani",
+      "targets": [
+        ["id=odabrani", "id"],
+        ["name=odabrani", "name"],
+        ["css=#odabrani", "css:finder"],
+        ["xpath=//input[@id='odabrani']", "xpath:attributes"],
+        ["xpath=//td/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2e53c07-2ddd-48ed-982d-82cda6211053",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.btn-lg",
+      "targets": [
+        ["css=.btn-lg", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "537c0f8b-f027-4f88-8177-61e947c4ef97",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-lg",
+      "targets": [
+        ["css=.btn-lg", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ebefd5a1-4cdb-4780-8368-ad8313637158",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=p > small",
+      "targets": [
+        ["css=p > small", "css:finder"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'Uspešno izvršena zamena termina.')]", "xpath:innerText"]
+      ],
+      "value": "Uspešno izvršena zamena termina."
+    }, {
+      "id": "acf6c855-d497-47c2-a74b-d823674951d3",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "3ac6ba94-93ed-4b7a-8d9c-cc7b83ec3062",
+    "name": "TP_ZahtevZaZamenuTermina",
+    "commands": [{
+      "id": "52d0e77b-c90b-40dd-bdf2-067cd8a544bf",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/student/subject/AR/lab",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "393d40d0-0a6e-4901-a019-658296f228c9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x864",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1560e338-9b99-4106-abb7-3d1e7d93617e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lab4",
+      "targets": [
+        ["linkText=Lab4", "linkText"],
+        ["css=tr:nth-child(3) a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lab4')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/student/subject/AR/lab/6/join']", "xpath:href"],
+        ["xpath=//tr[3]/td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lab4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d00cc952-dc99-4780-af5b-2589cbb1719d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-joinAppointment",
+      "targets": [
+        ["id=v-pill-joinAppointment", "id"],
+        ["linkText=Prijava/odjava termina", "linkText"],
+        ["css=#v-pill-joinAppointment", "css:finder"],
+        ["xpath=//a[contains(text(),'Prijava/odjava termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-joinAppointment']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-reg']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[6]", "xpath:href"],
+        ["xpath=//main/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prijava/odjava termina')]", "xpath:innerText"]
+      ],
+      "value": "Prijava/odjava termina"
+    }, {
+      "id": "4cb07840-95d2-4637-b6bf-775451185726",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ponuđeni termini za Lab4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae26f85b-5f61-41d2-bdf9-b5f03bae3ec0",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.btn > p",
+      "targets": [
+        ["css=.btn > p", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Rok za prijavu: 30.06.2021, 03:09')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e59b571c-e0bc-4474-a195-4212e14303a2",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "css=.col-6:nth-child(2) form:nth-child(3) > .btn",
+      "targets": [
+        ["css=.col-6:nth-child(2) form:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[4]", "xpath:attributes"],
+        ["xpath=//div[2]/table/thead/tr/th/div/form[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e956242-8eb8-4031-ac8d-4ace2c397906",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-swapAppointments",
+      "targets": [
+        ["id=v-pill-swapAppointments", "id"],
+        ["linkText=Zamena termina", "linkText"],
+        ["css=#v-pill-swapAppointments", "css:finder"],
+        ["xpath=//a[contains(text(),'Zamena termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapAppointments']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-new']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[7]", "xpath:href"],
+        ["xpath=//main/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zamena termina')]", "xpath:innerText"]
+      ],
+      "value": "Zamena termina"
+    }, {
+      "id": "1cc6450b-0ee1-417c-8be5-879bd2cac998",
+      "comment": "",
+      "command": "click",
+      "target": "id=v-pill-swapAppointments",
+      "targets": [
+        ["id=v-pill-swapAppointments", "id"],
+        ["linkText=Zamena termina", "linkText"],
+        ["css=#v-pill-swapAppointments", "css:finder"],
+        ["xpath=//a[contains(text(),'Zamena termina')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapAppointments']", "xpath:attributes"],
+        ["xpath=//li[@id='pill-new']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[7]", "xpath:href"],
+        ["xpath=//main/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zamena termina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "96384aa0-408c-4097-ba88-ab749e6f9b79",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=v-pill-swapRequest",
+      "targets": [
+        ["id=v-pill-swapRequest", "id"],
+        ["linkText=Zahtev za zamenu", "linkText"],
+        ["css=#v-pill-swapRequest", "css:finder"],
+        ["xpath=//a[contains(text(),'Zahtev za zamenu')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapRequest']", "xpath:attributes"],
+        ["xpath=(//li[@id='pill-new']/a)[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[8]", "xpath:href"],
+        ["xpath=//main/div/ul/li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zahtev za zamenu')]", "xpath:innerText"]
+      ],
+      "value": "Zahtev za zamenu"
+    }, {
+      "id": "29d6205f-a99f-4454-b1a8-ce3fc4c4a779",
+      "comment": "",
+      "command": "click",
+      "target": "id=v-pill-swapRequest",
+      "targets": [
+        ["id=v-pill-swapRequest", "id"],
+        ["linkText=Zahtev za zamenu", "linkText"],
+        ["css=#v-pill-swapRequest", "css:finder"],
+        ["xpath=//a[contains(text(),'Zahtev za zamenu')]", "xpath:link"],
+        ["xpath=//a[@id='v-pill-swapRequest']", "xpath:attributes"],
+        ["xpath=(//li[@id='pill-new']/a)[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[8]", "xpath:href"],
+        ["xpath=//main/div/ul/li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Zahtev za zamenu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "72d269cc-213e-40e9-bd0e-b28eef6fff52",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.border-bottom-12",
+      "targets": [
+        ["css=.border-bottom-12", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Odaberite željeni (željene) termine:')]", "xpath:innerText"]
+      ],
+      "value": "Odaberite željeni (željene) termine:"
+    }, {
+      "id": "2ebe2710-6fa8-45e2-bc21-a9a40f0554f3",
+      "comment": "",
+      "command": "click",
+      "target": "id=zahtevi",
+      "targets": [
+        ["id=zahtevi", "id"],
+        ["name=zahtevi[]", "name"],
+        ["css=#zahtevi", "css:finder"],
+        ["xpath=//input[@id='zahtevi']", "xpath:attributes"],
+        ["xpath=//td/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f85ff2d5-6c49-48b2-94ca-b932db3d3cd7",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=btn-kreiranje-zahteva",
+      "targets": [
+        ["id=btn-kreiranje-zahteva", "id"],
+        ["css=#btn-kreiranje-zahteva", "css:finder"],
+        ["xpath=//button[@id='btn-kreiranje-zahteva']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f10f2fe-7e69-4d29-977b-43f2d99f740e",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn-kreiranje-zahteva",
+      "targets": [
+        ["id=btn-kreiranje-zahteva", "id"],
+        ["css=#btn-kreiranje-zahteva", "css:finder"],
+        ["xpath=//button[@id='btn-kreiranje-zahteva']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd51496e-4a1d-41c0-8fc6-576d03a11f19",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=p > small",
+      "targets": [
+        ["css=p > small", "css:finder"],
+        ["xpath=//small", "xpath:position"],
+        ["xpath=//small[contains(.,'Uspešno evidentiran zahtev za zamenu.')]", "xpath:innerText"]
+      ],
+      "value": "Uspešno evidentiran zahtev za zamenu."
+    }, {
+      "id": "8f730a9d-d5ea-4702-bcae-509b9d81f35c",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "cf344506-c1d3-4a09-ad9a-87bfdf266469",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["c99e12c2-1fb7-409a-836f-bf4a722ae878"]
+  }],
+  "urls": ["http://localhost:8000/student", "http://localhost:8000/student/subject/chosen", "http://localhost:8000/student/subject/AR/lab", "http://localhost:8000/student/subject/ASP1/lab"],
+  "plugins": []
+}

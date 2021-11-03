@@ -1,0 +1,56 @@
+Preduslovi za test primere:
+
+TP1: /
+
+TP2: /
+
+TP3: 	- korisnik prijavljen kao teacher
+
+TP4: 	- korisnik prijavljen kao student
+	- student nema kreiran tim za izabrani predmet
+
+TP5:	- korisnik prijavljen kao student
+
+TP6:	- korisnik prijavljen kao student
+	- korisnik ima kreiran tim za izabrani predmet
+	- broj clanova tima je minMemberNumber - 1
+
+TP7:	- korisnik prijavljen kao student
+	- korisnik ima kreiran tim za izabrani predmet
+	- broj clanova tima je minMemberNumber
+
+TP8:	- korisnik prijavljen kao student
+	- korisnik ima kreiran tim za izabrani predmet
+	- broj clanova tima je minMemberNumber + 1
+
+TP9:	- korisnik prijavljen kao student
+	- korisnik ima kreiran tim za izabrani predmet
+	- broj clanova tima je maxMemberNumber - 1
+
+TP10:	- korisnik prijavljen kao student
+	- korisnik ima kreiran tim za izabrani predmet
+	- broj clanova tima je maxMemberNumber
+
+TP11:	- korisnik prijavljen kao student
+	- korisnik nema kreiran tim za izabrani predmet
+	- broj clanova tima kome korisnik hoce da se pridruzi je dostigao maxMemberNumber
+	- tim je otkljucan
+
+TP12:	- korisnik prijavljen kao student
+	- student je vec u timu
+	- postoji bar jos jedan tim koji je otkljucan
+
+TP13:	- korisnik prijavljen kao student
+	- korisnik ima kreiran tim za izabrani predmet
+	- tim je zakljucan
+
+TP14:	- korisnik prijavljen kao student
+	- korisnik nema ni kreiran ni izabran tim za izabrani predmet
+	- tim koji je korisnik odabrao je otkljucan i nije dostigao maxMemberNumber
+
+TP15:	- korisnik prijavljen kao student
+	- korisnik je clan tima
+
+TP16:	- korisnik prijavljen kao student
+	- korisnik nije clan tima i nema kreiran tim za dati predmet
+	- tim koji je korisnik odabrao je zakljucan
