@@ -207,6 +207,11 @@ class Project {
             $showLeader.removeClass(hideClass);
             $exitButton.text("Obriši tim");
         }
+        if (mtd.myTeam.students.length <= Project.getProjectData().min) {
+            $("#lock-team-button").addClass("d-none")
+        } else {
+            $("#lock-team-button").removeClass("d-none");
+        }
         if (mtd.myTeam.isLocked) {
             $lockStatus.text("Zaključan");
         } else {

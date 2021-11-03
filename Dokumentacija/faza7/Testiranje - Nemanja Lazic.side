@@ -1,0 +1,2094 @@
+{
+  "id": "fb275466-3f91-40f4-a41d-09b24a8e9d93",
+  "version": "2.0",
+  "name": "ProLab Testiranje - Sretenov deo",
+  "url": "http://127.0.0.1:8000/student",
+  "tests": [{
+    "id": "79da3b35-892f-44c8-880b-e9b3dc6ad8bd",
+    "name": "TP1_student_subject_index_prikaz",
+    "commands": [{
+      "id": "286f23ee-efcf-410c-9842-63648e7e9125",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "095c04d2-a1b7-46a6-ad5f-6736a8fb14e7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d769c3a4-53d9-4aed-9f5f-063ee4a62f84",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row",
+      "targets": [
+        ["css=.row", "css:finder"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f990240-4ca1-4594-9984-6538f45be67e",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": "marina"
+    }, {
+      "id": "d85a6c6b-6a79-420b-8df5-180439b2b410",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//tr[3]/td/input", "xpath:position"]
+      ],
+      "value": "123456aA"
+    }, {
+      "id": "1b072e22-0b99-4e43-8d59-3e6b26e12dc2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Log in']", "xpath:attributes"],
+        ["xpath=//tr[4]/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5dd6a41d-de93-4525-bf62-4f841f19c603",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "967e7bca-7aba-4e4f-bad8-4c6b1cb733ad",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39e95f65-0c77-4a1d-afa1-a36d4b7e6c2c",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Algoritmi i Strukture Podataka 1 - Stranica predmeta",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bda6cb09-eba7-4497-954f-0fe551e12f9e",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.col-xl-8 > .text-center",
+      "targets": [
+        ["css=.col-xl-8 > .text-center", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Algoritmi i Strukture Podataka 1')]", "xpath:innerText"]
+      ],
+      "value": "Algoritmi i Strukture Podataka 1"
+    }, {
+      "id": "d7a68f18-014f-41fb-9af2-2073fabb3e3f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=th:nth-child(1)",
+      "targets": [
+        ["css=th:nth-child(1)", "css:finder"],
+        ["xpath=//th", "xpath:position"],
+        ["xpath=//th[contains(.,'Predavači')]", "xpath:innerText"]
+      ],
+      "value": "Predavači"
+    }, {
+      "id": "e38c2204-ca27-4a43-b0f6-1d86fb6c64d9",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=th:nth-child(2)",
+      "targets": [
+        ["css=th:nth-child(2)", "css:finder"],
+        ["xpath=//th[2]", "xpath:position"],
+        ["xpath=//th[contains(.,'Kontakt')]", "xpath:innerText"]
+      ],
+      "value": "Kontakt"
+    }]
+  }, {
+    "id": "b868c250-bd3d-49b0-a966-87c6bf94ac23",
+    "name": "TP2_teacher_subject_list_prikaz",
+    "commands": [{
+      "id": "a289acff-bb37-405f-ad1b-939774c0bf0b",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f13f8445-a564-4779-b66f-2d648576bacd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "003abffe-7565-47cf-977a-fcf29cc741c6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row",
+      "targets": [
+        ["css=.row", "css:finder"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "43771981-63c6-4ad7-a078-7f164727f5b0",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": "aca"
+    }, {
+      "id": "057426b9-e11f-43ab-95c6-e11c9d07cdc9",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//tr[3]/td/input", "xpath:position"]
+      ],
+      "value": "123456aA"
+    }, {
+      "id": "6963d6cd-0584-49d8-90b3-8d7cada25285",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//tr[3]/td/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "e7476cc2-e303-42f5-bbc2-2b973df75e3c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Predmeti",
+      "targets": [
+        ["linkText=Predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/teacher/subject/list']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ba2a790-108e-4568-8bf2-6da6370cdd8b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-center",
+      "targets": [
+        ["css=.text-center", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Lista predmeta na kojima predajete')]", "xpath:innerText"]
+      ],
+      "value": "Lista predmeta na kojima predajete"
+    }, {
+      "id": "55729dce-11ea-41ab-bd19-5507e9e316c5",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Lista predmeta",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bd3a222c-7289-4a24-99ab-bd537676cd69",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=th:nth-child(1)",
+      "targets": [
+        ["css=th:nth-child(1)", "css:finder"],
+        ["xpath=//th", "xpath:position"],
+        ["xpath=//th[contains(.,'Predmet')]", "xpath:innerText"]
+      ],
+      "value": "Predmet"
+    }, {
+      "id": "8ce25883-710d-4af0-a53e-e94e08181bf3",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=th:nth-child(2)",
+      "targets": [
+        ["css=th:nth-child(2)", "css:finder"],
+        ["xpath=//th[2]", "xpath:position"],
+        ["xpath=//th[contains(.,'Šifra predmeta')]", "xpath:innerText"]
+      ],
+      "value": "Šifra predmeta"
+    }]
+  }, {
+    "id": "f2e84889-f927-423f-b598-cb014aeab93e",
+    "name": "TP3_teacher_subject_index_prikaz",
+    "commands": [{
+      "id": "c8c49c38-e0a1-4472-b9db-76da51c3e011",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/teacher",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c95d6d0e-5b43-4f19-b9c6-a944720da11f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "369c1ff5-584a-498a-b849-994377d53fd4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Predmeti",
+      "targets": [
+        ["linkText=Predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/teacher/subject/list']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b0bf8ed-c48b-465c-8873-df94df57a53b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=ASP1",
+      "targets": [
+        ["linkText=ASP1", "linkText"],
+        ["css=tr:nth-child(3) a", "css:finder"],
+        ["xpath=//a[contains(text(),'ASP1')]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/teacher/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[3]/td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'ASP1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ef03b25-c076-42df-bad5-3c0169c4b698",
+      "comment": "",
+      "command": "verifyTitle",
+      "target": "Stranica predmeta",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "524be134-1403-4ae1-b9ae-a7e30faef7b4",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=th:nth-child(1)",
+      "targets": [
+        ["css=th:nth-child(1)", "css:finder"],
+        ["xpath=//th", "xpath:position"],
+        ["xpath=//th[contains(.,'Predavači')]", "xpath:innerText"]
+      ],
+      "value": "Predavači"
+    }, {
+      "id": "76661166-9d40-4932-b953-6b29f9901ec8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=th:nth-child(2)",
+      "targets": [
+        ["css=th:nth-child(2)", "css:finder"],
+        ["xpath=//th[2]", "xpath:position"],
+        ["xpath=//th[contains(.,'Kontakt')]", "xpath:innerText"]
+      ],
+      "value": "Kontakt"
+    }, {
+      "id": "5868c5b3-5a2a-4fae-a0b1-09b0c46a4328",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-center",
+      "targets": [
+        ["css=.text-center", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Algoritmi i Strukture Podataka 1')]", "xpath:innerText"]
+      ],
+      "value": "Algoritmi i Strukture Podataka 1"
+    }]
+  }, {
+    "id": "c21e460c-3f5c-41fd-9d2f-0d9756308ad1",
+    "name": "TP4_kreiranje_timova_za_projekte_uspesno_kreiranje",
+    "commands": [{
+      "id": "4076acea-e601-45d9-92d9-7fd0e5145673",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "151e3114-3a72-486a-8279-a90d8e303729",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3080c3e5-e963-4e74-8569-cf7cf8803940",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "99c94c4b-f5e0-4893-a946-6630ada88af1",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "02d0e63b-31c4-440b-9dc1-46ea5c5c8c42",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba00eaf3-af6c-4e8d-ab63-8fd6b402a08b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kreiraj tim",
+      "targets": [
+        ["linkText=Kreiraj tim", "linkText"],
+        ["css=.project-tab-button:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(text(),'Kreiraj tim')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[4]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Kreiraj tim')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "630468d8-b9da-4efd-bad8-3332029c8ecb",
+      "comment": "",
+      "command": "click",
+      "target": "id=form-team-name",
+      "targets": [
+        ["id=form-team-name", "id"],
+        ["css=#form-team-name", "css:finder"],
+        ["xpath=//input[@id='form-team-name']", "xpath:attributes"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr[2]/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "01dfd736-8412-47e1-950f-85f4440d78d0",
+      "comment": "",
+      "command": "type",
+      "target": "id=form-team-name",
+      "targets": [
+        ["id=form-team-name", "id"],
+        ["css=#form-team-name", "css:finder"],
+        ["xpath=//input[@id='form-team-name']", "xpath:attributes"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr[2]/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": "Tim test"
+    }, {
+      "id": "dc4e038b-5578-4210-8c03-1bf5a5bc2222",
+      "comment": "",
+      "command": "click",
+      "target": "id=form-team-sumbit",
+      "targets": [
+        ["id=form-team-sumbit", "id"],
+        ["css=#form-team-sumbit", "css:finder"],
+        ["xpath=//button[@id='form-team-sumbit']", "xpath:attributes"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr[3]/td/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Kreiraj tim')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e5a3db0-fd3d-47d4-92c4-71690f03d165",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=form-message",
+      "targets": [
+        ["id=form-message", "id"],
+        ["css=#form-message", "css:finder"],
+        ["xpath=//div[@id='form-message']", "xpath:attributes"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr[3]/td/div", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/div", "xpath:position"]
+      ],
+      "value": "Uspešno ste kreirali tim"
+    }, {
+      "id": "36e1f457-c772-45fd-a776-8c826b4aa981",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.h2",
+      "targets": [
+        ["css=.h2", "css:finder"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/table/tbody/tr/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Kreiranje tima')]", "xpath:innerText"]
+      ],
+      "value": "Kreiranje tima"
+    }]
+  }, {
+    "id": "5c6c19d8-24a4-4b1a-b838-c1e0208daa56",
+    "name": "TP12_kreiranje_timova_za_projekte_vec_u_timu",
+    "commands": [{
+      "id": "150a868a-08c6-45fc-a94b-2c70f7be0d2a",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "16527e13-481f-4e26-9dcb-d003a5a87274",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "88fc3b17-9ade-4355-b167-738719419ca2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e7ab0e8-781e-4677-9299-b92f3235f1f3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Link->",
+      "targets": [
+        ["linkText=Link->", "linkText"],
+        ["css=.text-center > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Link->')]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Link->')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fbedf56-fecc-4c53-952d-b82d83a8e395",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cb283537-6a21-4a8f-819b-beb43981a555",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1eaa25ce-0e70-472d-88eb-598efcd29d02",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.w-75",
+      "targets": [
+        ["css=.w-75", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr/td/div/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Moj tim')]", "xpath:innerText"]
+      ],
+      "value": "Moj tim"
+    }, {
+      "id": "3f4f351d-0207-444e-8cff-bb1e16f19e6b",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.col-12 > h2",
+      "targets": [
+        ["css=.col-12 > h2", "css:finder"],
+        ["xpath=//div[@id='team-list']/div[2]/div/h2", "xpath:idRelative"],
+        ["xpath=//div/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ostali timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2313bb9e-e9c7-4b8a-adaf-ad4667555b69",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=td > h3",
+      "targets": [
+        ["css=td > h3", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div/table/tr/td/h3", "xpath:idRelative"],
+        ["xpath=//td/h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Perini Petlici')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9c5eab2d-582c-4dd0-9847-8ac14b58f9eb",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tbody:nth-child(2) > .text-center > td",
+      "targets": [
+        ["css=tbody:nth-child(2) > .text-center > td", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div/table/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/table/tbody/tr[3]/td", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }]
+  }, {
+    "id": "b93ecea5-c3e0-4c67-b7aa-21e32753dfab",
+    "name": "TP6_zakljucavanje_tima_neuspesno_minMemberNumber-1",
+    "commands": [{
+      "id": "939d95c6-0d15-49f7-af02-abbd425b9e4d",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f143117f-e318-49e0-90e8-11f3aeee1356",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c3ed273c-2839-4a3b-8c05-a0528cccffa4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b26f708-daaf-4822-9419-ffa17f894220",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "68cac5a4-7587-4ad4-ab2e-d7f26cad3e4e",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d33ead38-1864-4491-bb7b-282241362ced",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8b0736b4-9870-4769-9389-716a995db53f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.show-leader > td",
+      "targets": [
+        ["css=.show-leader > td", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/table/tbody/tr[3]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Vi ste lider tima.')]", "xpath:innerText"]
+      ],
+      "value": "Vi ste lider tima."
+    }, {
+      "id": "617bfef0-2699-40f1-ada6-3f1394a7f028",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }, {
+      "id": "4088ad37-bd25-4d89-b71d-4e09da1015a7",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=unlock-team-button",
+      "targets": [
+        ["id=unlock-team-button", "id"],
+        ["css=#unlock-team-button", "css:finder"],
+        ["xpath=//button[@id='unlock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Otključaj')]", "xpath:innerText"]
+      ],
+      "value": "Otključaj"
+    }]
+  }, {
+    "id": "b28d4217-ef17-496a-850e-ecc73a6e20de",
+    "name": "TP13_kreiranje_timova_za_projekte_uspesno_otkljucavanje",
+    "commands": [{
+      "id": "c4a3f023-0318-498e-9bd3-281b1f9bd6cd",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c53edd35-7635-4dae-bf5c-0eb03c8fe9db",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e168b7bc-8eaa-4740-9a3c-0bada1ecbcf8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1990bc51-ea1a-45f4-87d3-87054d934177",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "49248d8a-eb67-4bc7-8ba6-8b017ff22439",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3660742-3813-4176-a59e-045e1a392b7e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "78391334-d833-4f65-a0b1-4a2a16c98122",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.show-leader > td",
+      "targets": [
+        ["css=.show-leader > td", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/table/tbody/tr[3]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Vi ste lider tima.')]", "xpath:innerText"]
+      ],
+      "value": "Vi ste lider tima."
+    }, {
+      "id": "6fedaac6-e8dd-40c0-970a-d13d931d25c0",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Zaključan"
+    }, {
+      "id": "68fe768b-10dd-466a-a155-710309965cf6",
+      "comment": "",
+      "command": "click",
+      "target": "id=unlock-team-button",
+      "targets": [
+        ["id=unlock-team-button", "id"],
+        ["css=#unlock-team-button", "css:finder"],
+        ["xpath=//button[@id='unlock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Otključaj')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3b3a21f3-5a6e-4459-a76c-14a1b1d04be8",
+      "comment": "",
+      "command": "waitForText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }]
+  }, {
+    "id": "af1fd822-4f9a-4b21-a120-c4e6b360a412",
+    "name": "TP5_neuspesno_kreiranje_tima_ime_prazno",
+    "commands": [{
+      "id": "3a85e14d-a38b-4628-881a-48693d4b4446",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aa1b5921-90fb-4e7e-ac47-0e83bc0d4b1b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d5d44695-5f02-4f0b-9774-69014dedb815",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a977462-48a1-4d11-932c-69dfccfd2f19",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af3aac43-98b4-4f05-8aba-07d643fff8ce",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4e69631-c7ab-4968-8ce1-712f6a985513",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kreiraj tim",
+      "targets": [
+        ["linkText=Kreiraj tim", "linkText"],
+        ["css=.project-tab-button:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(text(),'Kreiraj tim')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[4]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Kreiraj tim')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8b15e3f2-e070-4f6c-8fd1-ab4588557c19",
+      "comment": "",
+      "command": "click",
+      "target": "id=form-team-sumbit",
+      "targets": [
+        ["id=form-team-sumbit", "id"],
+        ["css=#form-team-sumbit", "css:finder"],
+        ["xpath=//button[@id='form-team-sumbit']", "xpath:attributes"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr[3]/td/button", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Kreiraj tim')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2bcc90bb-0b5d-40ff-b6c6-ddab9a664a93",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=form-message",
+      "targets": [
+        ["id=form-message", "id"],
+        ["css=#form-message", "css:finder"],
+        ["xpath=//div[@id='form-message']", "xpath:attributes"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr[3]/td/div", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/div", "xpath:position"]
+      ],
+      "value": "Ime tima mora biti duže od 4 znaka\\nIme sme da sadrži slova, cifre, -, _ i razmak"
+    }, {
+      "id": "64c341f3-921b-4338-81f4-7f5d289384b0",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.h2",
+      "targets": [
+        ["css=.h2", "css:finder"],
+        ["xpath=//div[@id='team-create']/div/div/table/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/table/tbody/tr/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Kreiranje tima')]", "xpath:innerText"]
+      ],
+      "value": "Kreiranje tima"
+    }]
+  }, {
+    "id": "7006efbf-6eea-4fda-a651-f1eb3915f4a5",
+    "name": "TP14_pridruzi_se_timu_uspesno",
+    "commands": [{
+      "id": "e24a28b8-5ded-4f99-a9ad-761fd08ae4e6",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "555d40d3-1e78-4bbe-aab7-fb050f741ca8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "57207b7d-58d2-4c64-86a9-49d542048dc7",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eb0927c7-3f78-4cb1-b2b3-7dbb9105941f",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ce48813a-ad74-4a07-b613-175234fcf672",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "484c6fb9-b65e-4bc2-af44-554aeb0ac668",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "995d81f7-b378-44cf-8e3f-c54ed154ef3d",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.col-12 > h2",
+      "targets": [
+        ["css=.col-12 > h2", "css:finder"],
+        ["xpath=//div[@id='team-list']/div[2]/div/h2", "xpath:idRelative"],
+        ["xpath=//div/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ostali timovi')]", "xpath:innerText"]
+      ],
+      "value": "Ostali timovi"
+    }, {
+      "id": "9d8f6247-bd0a-426d-888e-111b43c06539",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=td > .btn:nth-child(1)",
+      "targets": [
+        ["css=td > .btn:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div/table/tbody/tr[4]/td/button", "xpath:idRelative"],
+        ["xpath=//td/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pridruži se')]", "xpath:innerText"]
+      ],
+      "value": "Pridruži se"
+    }, {
+      "id": "8028895b-b074-42e4-a3e4-503ff7b54cbe",
+      "comment": "",
+      "command": "click",
+      "target": "css=td > .btn:nth-child(1)",
+      "targets": [
+        ["css=td > .btn:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div/table/tbody/tr[4]/td/button", "xpath:idRelative"],
+        ["xpath=//td/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pridruži se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "02c21777-5843-4d98-b3e2-2ec77dec5cbb",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.w-75",
+      "targets": [
+        ["css=.w-75", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr/td/div/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Moj tim')]", "xpath:innerText"]
+      ],
+      "value": "Moj tim"
+    }, {
+      "id": "60c8daff-b508-4447-aa49-0bd9b5ace8a1",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }]
+  }, {
+    "id": "ef6d657c-96f2-48b2-a5da-430b7582e9f2",
+    "name": "TP11_pridruzi_se_timu_neuspesno_dostignut_max",
+    "commands": [{
+      "id": "f2ba22d7-b75e-4853-b509-da54add4efc4",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8f72a2d7-09d0-49b8-bddb-2d90a32c5e8b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2e391f2f-dbbe-4e20-a86b-7f32074f1ca9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2f61f12-2ee6-49f6-9cf0-8cbaf91f22c0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Link->",
+      "targets": [
+        ["linkText=Link->", "linkText"],
+        ["css=.text-center > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Link->')]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Link->')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c08a72eb-b3a3-4cf7-99e0-7484bd021bb5",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-lab-tab",
+      "targets": [
+        ["id=nav-lab-tab", "id"],
+        ["linkText=Laboratorijske vežbe", "linkText"],
+        ["css=#nav-lab-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Laboratorijske vežbe')]", "xpath:link"],
+        ["xpath=//a[@id='nav-lab-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[4]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Laboratorijske vežbe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2379bc4-e686-4673-bb0c-7836af6ff34d",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ab8b36b-cc21-4d7e-80dd-4119184562ea",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2582d12d-1b07-4957-8444-c2e9f7b17853",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-center:nth-child(7) > td",
+      "targets": [
+        ["css=.text-center:nth-child(7) > td", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div[2]/table/tbody/tr[7]/td", "xpath:idRelative"],
+        ["xpath=//tr[7]/td", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }, {
+      "id": "860c4dad-51d2-43f3-b9f7-0368cefdec45",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-center:nth-child(8) .btn",
+      "targets": [
+        ["css=.text-center:nth-child(8) .btn", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div[2]/table/tbody/tr[8]/td/button", "xpath:idRelative"],
+        ["xpath=//tr[8]/td/button", "xpath:position"]
+      ],
+      "value": "Pridruži se"
+    }, {
+      "id": "a4a7612c-62bb-4966-aff7-0201871487bf",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.col-md-6:nth-child(2) h3",
+      "targets": [
+        ["css=.col-md-6:nth-child(2) h3", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div[2]/table/tr/td/h3", "xpath:idRelative"],
+        ["xpath=//div[2]/table/tr/td/h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Tim test')]", "xpath:innerText"]
+      ],
+      "value": "Tim test"
+    }, {
+      "id": "80c42d8f-6488-49ca-9b83-71c4168881ac",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-center:nth-child(8) .btn",
+      "targets": [
+        ["css=.text-center:nth-child(8) .btn", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div[2]/table/tbody/tr[8]/td/button", "xpath:idRelative"],
+        ["xpath=//tr[8]/td/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b50a14b9-02bd-4f49-9a26-607919185cdc",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.text-center:nth-child(8) .btn",
+      "targets": [
+        ["css=.text-center:nth-child(8) .btn", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div[2]/table/tbody/tr[8]/td/button", "xpath:idRelative"],
+        ["xpath=//tr[8]/td/button", "xpath:position"]
+      ],
+      "value": "Pridruži se"
+    }]
+  }, {
+    "id": "aa45ead2-6643-4ccd-8332-eeda9fa9d6c0",
+    "name": "TP15_napusti_tim_uspesno",
+    "commands": [{
+      "id": "1563a70a-2abf-427b-882d-da5bf8b240a7",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c4da5b91-8f66-487b-a641-a4c3f0f036bc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b7c1fa63-ab61-4dac-bbdd-cb15cb66682a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "466756ce-d5d5-40a7-80e9-f0377e1f35a3",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d917f39-e644-48a2-93f7-f096afb72372",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8858cecf-bb27-4bb4-a318-f5731aa9641a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "edb43c83-2e5c-4daa-b627-c5bbb00bef0f",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }, {
+      "id": "8ac6b991-f677-4182-9813-1bb12b2b3da6",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=delete-exit-my-team",
+      "targets": [
+        ["id=delete-exit-my-team", "id"],
+        ["css=#delete-exit-my-team", "css:finder"],
+        ["xpath=//button[@id='delete-exit-my-team']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr/td/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Napusti tim')]", "xpath:innerText"]
+      ],
+      "value": "Napusti tim"
+    }, {
+      "id": "49d1076f-ba16-4dcd-ab24-b2ec938a4918",
+      "comment": "",
+      "command": "click",
+      "target": "id=delete-exit-my-team",
+      "targets": [
+        ["id=delete-exit-my-team", "id"],
+        ["css=#delete-exit-my-team", "css:finder"],
+        ["xpath=//button[@id='delete-exit-my-team']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr/td/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Napusti tim')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "896e2987-f1d5-42ae-ba28-d7e8de85ed7e",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=td > .btn:nth-child(1)",
+      "targets": [
+        ["css=td > .btn:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div/table/tbody/tr[4]/td/button", "xpath:idRelative"],
+        ["xpath=//td/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pridruži se')]", "xpath:innerText"]
+      ],
+      "value": "Pridruži se"
+    }]
+  }, {
+    "id": "beb4031e-e64a-44b0-8423-6f9ac452aa59",
+    "name": "TP16_pridruzi_se_timu_neuspesno_zakljucan_tim",
+    "commands": [{
+      "id": "93b7ddfe-e2ca-4f57-9d7c-222c3e877f6c",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9e073469-0692-4113-bcde-957b73e6d039",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c899c8dd-75e5-47c7-bd2e-57aec63f0f91",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0732f10-d801-4160-8779-e5971c993944",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "237826d7-2e10-43b7-b6e5-c6fa8bdd808d",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "66ca6804-a8ad-44f9-a9d1-48105f52b3be",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9d808987-c3ee-4f86-a7d8-d544d6e29721",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tbody:nth-child(2) > .text-center > td",
+      "targets": [
+        ["css=tbody:nth-child(2) > .text-center > td", "css:finder"],
+        ["xpath=//div[@id='other-teams']/div/table/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/table/tbody/tr[3]/td", "xpath:position"]
+      ],
+      "value": "Zaključan"
+    }, {
+      "id": "8382d0ed-3c54-42d9-96dc-356a29b6947b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.col-12 > h2",
+      "targets": [
+        ["css=.col-12 > h2", "css:finder"],
+        ["xpath=//div[@id='team-list']/div[2]/div/h2", "xpath:idRelative"],
+        ["xpath=//div/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Ostali timovi')]", "xpath:innerText"]
+      ],
+      "value": "Ostali timovi"
+    }]
+  }, {
+    "id": "35508e08-b605-46bb-a4e0-89f7080a0a86",
+    "name": "TP7_zakljucavanje_tima_neuspesno_minMemberNumber",
+    "commands": [{
+      "id": "741e7987-030a-4731-b038-93003cbc4abe",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d0093d5-f065-4ebb-93ae-9cfbd14e0ead",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "70b3f27a-4611-47a1-b6ac-3ecdcc5c4cf1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd45eca5-0f23-4ce2-b93d-68abd98866ec",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6528d18c-e55b-42ee-bcfa-1bdd9cfccdb0",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5db98af-c685-4518-a225-1afa36094549",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "574098d8-4e4f-43c6-b81c-779c398c4b47",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.show-leader > td",
+      "targets": [
+        ["css=.show-leader > td", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/table/tbody/tr[3]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Vi ste lider tima.')]", "xpath:innerText"]
+      ],
+      "value": "Vi ste lider tima."
+    }, {
+      "id": "781a8614-d877-459b-9281-36359ca96310",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }, {
+      "id": "02797c28-54f6-466e-9c01-04876ba6a3bb",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=unlock-team-button",
+      "targets": [
+        ["id=unlock-team-button", "id"],
+        ["css=#unlock-team-button", "css:finder"],
+        ["xpath=//button[@id='unlock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Otključaj')]", "xpath:innerText"]
+      ],
+      "value": "Otključaj"
+    }]
+  }, {
+    "id": "d080f83e-dc7e-45d3-a9a0-f7080f895068",
+    "name": "TP8_zakljucavanje_tima_uspesno_minMemberNumber+1",
+    "commands": [{
+      "id": "f8ec71ec-bd40-4cff-ac62-767e0f26bb57",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d2094913-9b5c-45c1-9731-c7d2b31dedde",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3db4de92-c214-4a40-800b-8ec933ef699f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f0bdab2-7878-4d0e-a6a7-9140c36147bf",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "be7340de-aca8-459f-b4ae-c068162141ff",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0be241b-4ddf-4cc0-9903-4fab3cbad19e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "627c1df1-ea12-4513-a6f1-13b4b12cb221",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.show-leader > td",
+      "targets": [
+        ["css=.show-leader > td", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/table/tbody/tr[3]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Vi ste lider tima.')]", "xpath:innerText"]
+      ],
+      "value": "Vi ste lider tima."
+    }, {
+      "id": "4f9dc710-e923-4b2e-856a-c600dfebe4fd",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }, {
+      "id": "83935e7b-e2d8-4ae9-82e1-b1949a50197c",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=unlock-team-button",
+      "targets": [
+        ["id=unlock-team-button", "id"],
+        ["css=#unlock-team-button", "css:finder"],
+        ["xpath=//button[@id='unlock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Otključaj')]", "xpath:innerText"]
+      ],
+      "value": "Otključaj"
+    }, {
+      "id": "64330aa6-08da-4382-aee2-6515ad41f044",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=lock-team-button",
+      "targets": [
+        ["id=lock-team-button", "id"],
+        ["css=#lock-team-button", "css:finder"],
+        ["xpath=//button[@id='lock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Zaključaj')]", "xpath:innerText"]
+      ],
+      "value": "Zaključaj"
+    }, {
+      "id": "fc01b4b1-53ee-4d12-8c66-a3530442db89",
+      "comment": "",
+      "command": "click",
+      "target": "id=lock-team-button",
+      "targets": [
+        ["id=lock-team-button", "id"],
+        ["css=#lock-team-button", "css:finder"],
+        ["xpath=//button[@id='lock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Zaključaj')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a138b19d-8738-46ce-9b22-581d74c7f65e",
+      "comment": "",
+      "command": "waitForText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Zaključan"
+    }]
+  }, {
+    "id": "5250d357-1192-46ce-94b0-f16cb963eca6",
+    "name": "TP9_zakljucavanje_tima_uspesno_maxMemberNumber-1",
+    "commands": [{
+      "id": "0a4454db-8548-4e13-8cef-ec1b1cb70c36",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9bbd8661-5c6c-4c5d-93ef-9bcdd361130e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "809fa8f4-5678-43c1-84c7-bae0db182d2b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0487c76a-0fee-47ba-b655-095fa385f8e2",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a47a246-5701-49ef-afa2-149c837ff65d",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d8ae79a9-6057-41fb-8ea8-4eb19001cb63",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "52e3bd4d-a867-44db-8247-b379b00a082b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.show-leader > td",
+      "targets": [
+        ["css=.show-leader > td", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/table/tbody/tr[3]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Vi ste lider tima.')]", "xpath:innerText"]
+      ],
+      "value": "Vi ste lider tima."
+    }, {
+      "id": "5be02559-3216-4187-8451-ab9a580c1c33",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }, {
+      "id": "0d3fdacb-e797-4e20-9240-73972bccbfa6",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=unlock-team-button",
+      "targets": [
+        ["id=unlock-team-button", "id"],
+        ["css=#unlock-team-button", "css:finder"],
+        ["xpath=//button[@id='unlock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Otključaj')]", "xpath:innerText"]
+      ],
+      "value": "Otključaj"
+    }, {
+      "id": "c329fe9d-b68c-4ecc-9d20-896d7b037d32",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=lock-team-button",
+      "targets": [
+        ["id=lock-team-button", "id"],
+        ["css=#lock-team-button", "css:finder"],
+        ["xpath=//button[@id='lock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Zaključaj')]", "xpath:innerText"]
+      ],
+      "value": "Zaključaj"
+    }, {
+      "id": "5cac5ae2-984c-420e-9e9c-2b2690b71a57",
+      "comment": "",
+      "command": "click",
+      "target": "id=lock-team-button",
+      "targets": [
+        ["id=lock-team-button", "id"],
+        ["css=#lock-team-button", "css:finder"],
+        ["xpath=//button[@id='lock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Zaključaj')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1684dc7-3dbd-48e1-b4e2-f5379ec085e6",
+      "comment": "",
+      "command": "waitForText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Zaključan"
+    }]
+  }, {
+    "id": "0fe689a5-530a-4348-953d-7a234bf13e7c",
+    "name": "TP10_zakljucavanje_tim_uspesno_maxMemberNumber",
+    "commands": [{
+      "id": "cb2d977b-eaae-458f-85ac-efa96c7f3881",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/student",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "66923da9-3e12-4ca4-a449-ce1fe113f5ff",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "77a31edd-c2fd-4533-8e53-a3eea9104666",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izabrani predmeti",
+      "targets": [
+        ["linkText=Izabrani predmeti", "linkText"],
+        ["css=.ml-3", "css:finder"],
+        ["xpath=//a[contains(text(),'Izabrani predmeti')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/chosen']", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izabrani predmeti')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b712a62-2a43-478e-97ad-ead5398be1ee",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) a",
+      "targets": [
+        ["css=tr:nth-child(2) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Link->')])[2]", "xpath:link"],
+        ["xpath=//a[@href='http://127.0.0.1:8000/student/subject/ASP1/index']", "xpath:href"],
+        ["xpath=//tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "57000666-3109-4627-b25e-36e7844bb645",
+      "comment": "",
+      "command": "click",
+      "target": "id=nav-project-tab",
+      "targets": [
+        ["id=nav-project-tab", "id"],
+        ["linkText=Projekat", "linkText"],
+        ["css=#nav-project-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Projekat')]", "xpath:link"],
+        ["xpath=//a[@id='nav-project-tab']", "xpath:attributes"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[5]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Projekat')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "68ff48b3-a52b-4dd8-9c59-b29c7217004d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Timovi",
+      "targets": [
+        ["linkText=Timovi", "linkText"],
+        ["css=.project-tab-button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Timovi')]", "xpath:link"],
+        ["xpath=//div[@id='nav-div']/nav/div/a[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Timovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cafc2be0-d8e9-40be-8e40-e0df91fa7cc5",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.show-leader > td",
+      "targets": [
+        ["css=.show-leader > td", "css:finder"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[3]/td", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/table/tbody/tr[3]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Vi ste lider tima.')]", "xpath:innerText"]
+      ],
+      "value": "Vi ste lider tima."
+    }, {
+      "id": "f7f9d762-b869-4ddd-a1a9-f12b6d148c1c",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Otključan"
+    }, {
+      "id": "272fed5c-b896-4500-b04e-ff11fd9c6a68",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=unlock-team-button",
+      "targets": [
+        ["id=unlock-team-button", "id"],
+        ["css=#unlock-team-button", "css:finder"],
+        ["xpath=//button[@id='unlock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Otključaj')]", "xpath:innerText"]
+      ],
+      "value": "Otključaj"
+    }, {
+      "id": "6f6670d9-c3fe-4220-95a9-b13ea760a99f",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=lock-team-button",
+      "targets": [
+        ["id=lock-team-button", "id"],
+        ["css=#lock-team-button", "css:finder"],
+        ["xpath=//button[@id='lock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Zaključaj')]", "xpath:innerText"]
+      ],
+      "value": "Zaključaj"
+    }, {
+      "id": "41bb6862-b57c-4b7e-afb1-52f75837860e",
+      "comment": "",
+      "command": "click",
+      "target": "id=lock-team-button",
+      "targets": [
+        ["id=lock-team-button", "id"],
+        ["css=#lock-team-button", "css:finder"],
+        ["xpath=//button[@id='lock-team-button']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Zaključaj')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "451f747a-f793-45b1-864d-c1666b19282b",
+      "comment": "",
+      "command": "waitForText",
+      "target": "id=locked-status",
+      "targets": [
+        ["id=locked-status", "id"],
+        ["css=#locked-status", "css:finder"],
+        ["xpath=//div[@id='locked-status']", "xpath:attributes"],
+        ["xpath=//table[@id='my-team-table']/tbody/tr[4]/td/div/div[2]", "xpath:idRelative"],
+        ["xpath=//td/div/div[2]", "xpath:position"]
+      ],
+      "value": "Zaključan"
+    }]
+  }],
+  "suites": [{
+    "id": "f96e4671-c724-4188-bff0-b04ce0a72029",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://student.etf.bg.ac.rs/security/login.jsf;jsessionid=FFEE3ADF07F1E87A1C54583FAC210C51", "http://127.0.0.1:8000/", "http://127.0.0.1:8000/teacher", "http://127.0.0.1:8000/student"],
+  "plugins": []
+}

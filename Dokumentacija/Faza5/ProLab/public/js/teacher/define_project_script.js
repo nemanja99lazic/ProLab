@@ -43,6 +43,16 @@ $(document).ready(function(){
             return;
         }
 
+        if(new Date() >= new Date(rok)) // proveri da li je datum prosao
+        {
+            let porukaGreska = "Uneseni rok je prošao."
+            $("#alert").removeClass(); // Izbrisace sve klase
+            $("#alert").addClass('alert alert-danger alert-dismissible');
+            $("#alert-tekst").text(porukaGreska);
+            $(".alert").show().delay(3000).fadeOut(300);
+            return;
+        }
+
         // Dopuni modal
         $("#modal-naziv-projekta").text(naziv);
         $("#modal-min-broj-clanova").text(minBrClanova);

@@ -28,6 +28,24 @@ $(document).ready(function (){
         {
             datetimeSQLFormat = labExerciseDateTime.split('T');
             labExerciseDateTime = datetimeSQLFormat[0] + " " + datetimeSQLFormat[1] + ":00"; // predstavljanje u formatu pogodnom za upis u bazu
+            if(new Date() >= new Date(labExerciseDateTime))
+            {
+                let porukaGreska = "Uneseni datum i vreme isteka prijave su prošli."
+                $("#alert").removeClass(); // Izbrisace sve klase
+                $("#alert").addClass('alert alert-danger alert-dismissible');
+                $("#alert-tekst").text(porukaGreska);
+                $(".alert").show().delay(3000).fadeOut(300);
+                return;
+            }
+            if(appointments.length == 0)
+            {
+                let porukaGreska = "Nije unesen nijedan termin."
+                $("#alert").removeClass(); // Izbrisace sve klase
+                $("#alert").addClass('alert alert-danger alert-dismissible');
+                $("#alert-tekst").text(porukaGreska);
+                $(".alert").show().delay(3000).fadeOut(300);
+                return;
+            }
 
             $.ajax({
                 type: "POST",
@@ -123,6 +141,15 @@ $(document).ready(function (){
                 capacity = parseInt(capacity);
                 datetimeSQLFormat = datetime.split("T");
                 datetime = datetimeSQLFormat[0] + " " + datetimeSQLFormat[1] + ":00"; // primer: 2021-06-01T16:37 ----> 2021-06-01 16:37:00
+                if(new Date() >= new Date(datetime))
+                {
+                    let porukaGreska = "Uneseni datum i vreme održavanja termina su prošli."
+                    $("#alert").removeClass(); // Izbrisace sve klase
+                    $("#alert").addClass('alert alert-danger alert-dismissible');
+                    $("#alert-tekst").text(porukaGreska);
+                    $(".alert").show().delay(3000).fadeOut(300);
+                    return;
+                }
                 
                 newAppointment = {classroom: classroom, capacity: capacity, location: location, datetime: datetime};
                 appointments.push(newAppointment);

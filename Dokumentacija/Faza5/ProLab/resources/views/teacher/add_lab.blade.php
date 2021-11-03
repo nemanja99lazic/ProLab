@@ -14,7 +14,7 @@
     <br>
 
     <class class="row justify-content-center">
-        <class class="col-auto">
+        <class class="col-4">
             <h4 class="text-center" id='header-opste'> Opšte</h4>
             <table class="table table-borderless tabela-opste">
                 <tr>
@@ -35,7 +35,7 @@
                 <button class="btn btn-outline-success" id="btn-definisi-lab" data-code={{$code}}>Kreiraj laboratorijsku vežbu</button>
             </div>
         </class>
-        <class class="col-auto">
+        <class class="col-8">
             <h4 class="text-center">Termini</h4>
             <br>
             <table class="table table-striped table-bordered" id="tabela-termini">
